@@ -1,0 +1,7 @@
+Time : 12:15:03
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'locan.personnel' doesn't exist
+Raw SQL : SELECT * FROM `personnel`
+
+Time : 11:41:48
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'locan.personnel' doesn't exist
+Raw SQL : SELECT * FROM `personnel`
