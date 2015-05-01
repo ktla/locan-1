@@ -1,7 +1,8 @@
 $(document).ready(function () {
     $('#dataTable').DataTable({
-        "scrollY": "200px",
+        "scrollY": "400px",
         "scrollCollapse": true,
+        "pageLength": 200,
         "language": {
             "sProcessing": "Traitement en cours...",
             "sSearch": "Rechercher&nbsp;:",

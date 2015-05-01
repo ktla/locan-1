@@ -6,6 +6,7 @@
         <link href = "<?php echo SITE_ROOT; ?>public/css/style.css" rel = 'stylesheet' type = 'text/css' />
         <link href = "<?php echo SITE_ROOT; ?>public/css/jquery.dataTables.min.css" rel = 'stylesheet' type = 'text/css' />
         <link href = "<?php echo SITE_ROOT; ?>public/css/webix.css" rel = 'stylesheet' type = 'text/css' />
+         <link href = "<?php echo SITE_ROOT; ?>public/css/menu.css" rel = 'stylesheet' type = 'text/css' />
         <?php
         global $css;
         if (!empty($css)) {
@@ -22,6 +23,7 @@
 
     </head>
     <body>
+        <div id="container">
         <!-- tous les includes doivent se passer dans le controller
         Correspondant et l'obtenir sous la forme d'une variable data[];
         Pour le cas du template, c'est le controller de base
@@ -34,6 +36,7 @@
             echo '<div id = "page-content">' . $content . '</div>';
         } else {
             echo '<div id = "page-connect">' . $content . "</div>";
+            
         }
         ?>
 
@@ -41,6 +44,6 @@
             <?php echo $footer; ?>
         </div>
 
-
+        </div>
     </body>
 </html>

@@ -1,16 +1,24 @@
 html, body{
-    width:1000px;
-    margin:0 auto;
-    background:white;
-    font-size: 12px;
-    font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
+    //background-image:-moz-linear-gradient(top, #8B4513, white);
+    background-image:-webkit-linear-gradient(top, #E1C4C4, white);
+    //background-image:-o-linear-gradient(top, #8B4513, white);
+    //background-image:linear-gradient(top, #8B4513, white);
+    background-repeat: no-repeat;
+    
     /*border: 1px solid #000;*/
 } 
+#container{
+    width:1000px;
+    margin:0 auto;
+   
+    font-size: 12px;
+    font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
+}
 #page-content{
     //background-color: yellow;
     width: 820px;
-    border-top:8px ridge #E1C4C4;
-    border-bottom:8px ridge #E1C4C4;
+    
+    
     margin: 15px auto;
     //margin-bottom: 15px;
     padding-top: 10px;
@@ -20,7 +28,12 @@ html, body{
 
 
 }
-
+#page-connect-footer{
+    text-decoration:overline;
+    margin-top:30px;
+    margin-left:auto;
+    margin-right:auto;
+}
 #page-content .titre{
 margin-top: 10px;
     padding: 5px;
@@ -47,9 +60,10 @@ margin-top: 10px;
     background-image: url("../img/bg-shade-light.png");
     background-repeat: repeat;
     border-top: 1px solid #EEEEEE;
-    padding: 2px;
+    padding: 5px;
     text-align: right;
-    margin-top: 10px;
+    margin: 10px 0 10px 0;
+    border-radius: 4px;
 }
 #page-content input[type="button"], 
 #page-content input[type="submit"]{
@@ -65,9 +79,14 @@ input[type="button"], input[type="submit"]{
 }
 
 #page-header{
-    width: 1000px;
+    width: 100%;
     height: 180px;
+    margin-top: -45px;
     background: url("../img/banniere.png") no-repeat;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    border-bottom:10px ridge #E1C4C4;
+   
 }
 #menu{
     float: left;
@@ -84,7 +103,7 @@ input[type="button"], input[type="submit"]{
 
 #page-footer{
     text-align:center;
-
+    border-top:8px ridge #E1C4C4;
     position:relative;
     margin:auto;
     width:1000px;
@@ -97,6 +116,14 @@ input[type="button"], input[type="submit"]{
     /*margin-left:28px;*/
     color:#B7B7B7;
     margin-top:10px;
+}
+.trait{
+    /*margin-left:28px;
+    margin-right:28px;*/
+    padding:0px;
+    border-bottom-color:#B7B7B7;
+    border-bottom-style:solid;
+    border-bottom-width:thin;
 }
 
 

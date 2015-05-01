@@ -5,6 +5,7 @@ table.dataTable{
     border-collapse:separate;
     border-spacing:0;
     font-size: 12px;
+    border: 1px solid #CCCCCC;
     //background: #fff url('../img/bg-shade-light.png') repeat-x bottom left;
     // background: url('../img/ui-bg_highlight.png') repeat-x scroll 50% 50% #CCCCCC;
 }

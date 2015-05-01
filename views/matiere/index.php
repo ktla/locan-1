@@ -6,7 +6,9 @@ echo $matieres;
 <div class="recapitulatif">
     <?php echo $total. " mati&egrave;s au total"; ?>
 </div>
-<a href="<?php echo url('matiere', 'add'); ?>">Ajouter</a>
+<div class="navigation">
+    <input type="button" onclick="document.location='<?php echo url('matiere', 'add'); ?>'" value ="Ajouter" />
+</div>
 <?php
 if ($errors) {
     echo "<div style = 'color:red; text-align:center'>Une erreur s'est produite</div>";

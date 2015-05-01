@@ -86,7 +86,7 @@ final class Grid {
         return $i;
     }
 
-    function display($largeur = '100%', $hauteur = '500px') {
+    function display($largeur = '100%', $hauteur = '100%') {
 
         $this->_key = $this->getKey();
 
