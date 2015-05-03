@@ -22,9 +22,9 @@ class EleveController extends Controller {
         $this->Assign("content", $content);
     }
 
-    public function add() {
+    public function saisie() {
         $view = new View();
-        $content = $view->Render("eleve" . DS . "add", false);
+        $content = $view->Render("eleve" . DS . "saisie", false);
         $this->Assign("content", $content);
     }
 

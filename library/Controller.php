@@ -31,6 +31,9 @@ class Controller extends Application {
         $header = new View();
         $header->Assign('app_title', "LOCAN");
         $header->Assign("authentified", ($this->input->session('user') != false));
+        if($this->input->session('user')){
+            $header->Assign("menu", $this->menus->getMenus());
+        }
         $this->Assign('header', $header->Render('header', false));
 
 

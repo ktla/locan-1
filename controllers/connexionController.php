@@ -21,6 +21,7 @@ class connexionController extends Controller {
 
                 $_SESSION['user'] = $this->input->post('login');
                 $_SESSION['anneeacademique'] = $this->input->post('anneeacademique');
+                
                 header("Location:" . SITE_ROOT);
             } else {
                 $view->Assign("errors", true);

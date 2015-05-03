@@ -1,4 +1,4 @@
-<form action ="<?php echo url('matiere', 'add'); ?>" method="post">
+<form action ="<?php echo url('matiere', 'saisie'); ?>" method="post">
     <table cellpadding = "10" cellspacing = "0">
         <tr><td> Nom abrégé </td><td>
                 <input type ="text" name ="code" /></td></tr><tr>

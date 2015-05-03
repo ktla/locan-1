@@ -13,7 +13,7 @@ class personnelController extends Controller {
         $functions->first = "Toutes";
 
         $data = $this->model->selectAll();
-        
+
         $personnels = new Grid($data, 2);
         $personnels->addcolonne(1, "Civ", "CIVILITE");
         $personnels->addcolonne(2, "Matricule", "IDPERSONNEL");
@@ -24,8 +24,8 @@ class personnelController extends Controller {
         $personnels->actionbutton = true;
         $personnels->deletebutton = true;
         $personnels->editbutton = true;
-$total = count($data);
-        
+        $total = count($data);
+
         $this->Assign("content", (new View())->output(["functions" => $functions->view("25%"),
                     "personnels" => $personnels->display(),
                     "total" => $total

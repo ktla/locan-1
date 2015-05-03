@@ -31,7 +31,7 @@ class matiereController extends Controller {
         false));
     }
 
-    public function add() {
+    public function saisie() {
         $view = new View();
         $view->Assign('errors', false);
 
@@ -45,7 +45,7 @@ class matiereController extends Controller {
                 $view->Assign("errors", true);
             }
         }
-        $content = $view->Render("matiere" . DS . "add", false);
+        $content = $view->Render("matiere" . DS . "saisie", false);
         $this->Assign("content", $content);
     }
 

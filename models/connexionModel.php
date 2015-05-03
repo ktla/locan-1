@@ -8,10 +8,14 @@ class connexionModel extends Model {
 
     public function authenticate($login, $pwd) {
         $query = "SELECT * FROM users WHERE LOGIN = :login AND PASSWORD = :pwd";
-        $res = $this->query($query, array("login" => $login,
+        $res = $this->row($query, array("login" => $login,
             "pwd" => $pwd));
-        //var_dump($res);
-        return (count($res) != 0);
+        
+        $val = count($res);
+        if($val != 0){
+            $_SESSION['profile'] = $res['PROFILE'];
+        }
+        return ($val != 0);
     }
     
   

@@ -10,8 +10,9 @@ class IndexController extends Controller {
         $view = new View();
 
         $view->Assign("title", "PAGE INDEX");
-        $str = "Information: " . $_SESSION['user'] . " - ".$_SESSION['anneeacademique'];
+        $str = "Information: " . $_SESSION['user'] . " - ".$_SESSION['anneeacademique'] . " - ".$_SESSION['profile'];
         $view->Assign("body", $str);
+        
         $content = $view->Render("index" . DS . "index", false);
 
         

@@ -41,6 +41,7 @@ class Model extends Database {
         }
         return $res;
     }
+    
 
     public function insert($params = array()) {
         $str = "";
@@ -64,7 +65,7 @@ class Model extends Database {
      * @param type $id
      * @return type
      */
-    public function find($id) {
+    public function findBy($id) {
         return $this->get($id);
     }
 

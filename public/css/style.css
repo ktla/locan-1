@@ -1,9 +1,10 @@
 html, body{
-    //background-image:-moz-linear-gradient(top, #8B4513, white);
+    /*background-image:-moz-linear-gradient(top, #8B4513, white);
     background-image:-webkit-linear-gradient(top, #E1C4C4, white);
-    //background-image:-o-linear-gradient(top, #8B4513, white);
-    //background-image:linear-gradient(top, #8B4513, white);
-    background-repeat: no-repeat;
+    background-image:-o-linear-gradient(top, #8B4513, white);
+    background-image:linear-gradient(top, #8B4513, white);
+    background-repeat: no-repeat;*/
+    
     
     /*border: 1px solid #000;*/
 } 
@@ -11,20 +12,21 @@ html, body{
     width:1000px;
     margin:0 auto;
    
+   
     font-size: 12px;
     font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
 }
 #page-content{
     //background-color: yellow;
-    width: 820px;
-    
-    
-    margin: 15px auto;
-    //margin-bottom: 15px;
-    padding-top: 10px;
-    clear: both;
+    width: 775px;
+    max-height: 571px;
+    overflow: auto;
+
+   
+    /*position: absolute;*/
     /*border: 1px solid green;*/
-    margin-left:180px;
+    margin-left:225px;
+    /*height: 565px;*/
 
 
 }
@@ -80,26 +82,15 @@ input[type="button"], input[type="submit"]{
 
 #page-header{
     width: 100%;
-    height: 180px;
+    height: 160px;
     margin-top: -45px;
     background: url("../img/banniere.png") no-repeat;
     padding-bottom: 5px;
-    margin-bottom: 5px;
+    /*margin-bottom: 5px;*/
     border-bottom:10px ridge #E1C4C4;
-   
+   border-left: 1px solid #000;
 }
-#menu{
-    float: left;
-    position: absolute;
-    /*top: 160px;*/
-    width: 170px;
-    height: 200px;
-    background-color: red;
-    /*border: 2px solid green;*/
-    max-height: 250px;
-    overflow: auto;
 
-}
 
 #page-footer{
     text-align:center;
@@ -107,6 +98,8 @@ input[type="button"], input[type="submit"]{
     position:relative;
     margin:auto;
     width:1000px;
+    clear: left;
+    
 }
 
 .cop{

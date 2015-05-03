@@ -8,6 +8,7 @@ class Application {
      * @var type Input
      */
     protected $input;
+    protected $menus;
 
     function __construct() {
         $this->set_reporting();
@@ -40,6 +41,7 @@ class Application {
             //Si je clique sur deconnect et que je suis dans le controller connexion
             //deja gerer par le constructeur de connexionController
         }
+        $this->menus = new Menus();
     }
 
     private function set_reporting() {
