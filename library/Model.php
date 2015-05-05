@@ -43,14 +43,14 @@ class Model extends Database {
     }
     
 
-    public function insert($params = array()) {
+    public function insertAll($params = array()) {
         $str = "";
         foreach ($params as $key => $val) {
             $str .= ":$key,";
         }
         $str = substr($str, 0, strlen($str) - 1);
         $query = "INSERT INTO `" . $this->_table . "` VALUE ($str)";
-        echo $query;
+        
         return $this->query($query, $params);
     }
 

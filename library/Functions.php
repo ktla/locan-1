@@ -23,3 +23,18 @@ function url($controller = "index", $action = "", $query = "") {
     }
     return $str;
 }
+
+/**
+ * Verifie si l'utilisateur est autoriser a 
+ * acceder a cette page en utilisant son tableau de droit
+ * La liste des droits d'un utilisateur = liste des droit du profile + droit specifique (pas encore implemente)
+ * @global type $DROITS est defini dans la classe Application et contien son tableau de droit
+ * @param type $codedroit
+ * @return boolean
+ */
+function isAuth($codedroit){
+    if(in_array($codedroit, $_SESSION['droits'])){
+        return true;
+    }
+    return false;
+}

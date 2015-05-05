@@ -67,6 +67,7 @@ class View {
         if ($direct_output !== TRUE) {
             ob_start();
         }
+        
 
         //Convertir les data variable en variable locale
         //$data = $this->data; //ou 
@@ -117,6 +118,7 @@ class View {
     }
 
     public function setJS($filename) {
+        
         $this->data['js'] = $this->data['js'] . '<script type = "text/javascript" 
 		src = "' . $filename . '" language = "JavaScript"></script>' . PHP_EOL;
     }

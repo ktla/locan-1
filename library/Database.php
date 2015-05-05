@@ -170,7 +170,7 @@ class Database {
         # Which SQL statement is used 
         $statement = strtolower($rawStatement[0]);
 
-        if ($statement === 'select' || $statement === 'show') {
+        if ($statement === 'select' || $statement === 'show' || $statement === 'lock' || $statement === 'unlock') {
             return $this->sQuery->fetchAll($fetchmode);
         } elseif ($statement === 'insert' || $statement === 'update' || $statement === 'delete') {
             return $this->sQuery->rowCount();
@@ -217,7 +217,9 @@ class Database {
      */
     public function row($query, $params = null, $fetchmode = PDO::FETCH_ASSOC) {
         $this->Init($query, $params);
-        return $this->sQuery->fetch($fetchmode);
+        $row = $this->sQuery->fetch($fetchmode);
+        $this->sQuery->closeCursor();
+        return $row;
     }
 
     /**

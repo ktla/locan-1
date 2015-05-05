@@ -3,6 +3,7 @@
 class Menus extends Database {
 
     public function __construct() {
+        $this->setDroits();
         parent::__construct();
     }
 
@@ -12,14 +13,16 @@ class Menus extends Database {
      * Sa liste des droits = a la liste des droit du groupe 
      * auquel il fait parti + ses droit specifiq
      */
-    public function getDroits() {
-        $profile = $_SESSION['profile'];
-        $query = "SELECT * FROM profile WHERE PROFILE = :profile";
-        $res = $this->query($query, array("profile" => $profile));
-        $droits = $res['DROIT'];
-        return unserialize($droits);
+    public function setDroits() {
+        if (!isset($_SESSION['droits']) || empty($_SESSION['droits'])) {
+            $profile = $_SESSION['profile'];
+            $query = "SELECT CODEDROIT FROM listedroits WHERE PROFILE = :profile";
+            $_SESSION['droits'] = $this->column($query, array("profile" => $profile));
+            
+        }
     }
 
+    
     public function getMenus() {
         $groupes = $this->query("SELECT * FROM groupemenus ORDER BY IDGROUPE");
         $str = "<ul id='menu-accordeon'>";
@@ -29,21 +32,20 @@ class Menus extends Database {
                     . "WHERE l.PROFILE = :profile ORDER BY l.CODEDROIT) "
                     . "AND m.IDGROUPE = :groupe";
             $menus = $this->query($query, ["profile" => $_SESSION['profile'], "groupe" => $groupe['IDGROUPE']]);
-            if(count($menus) > 0){
-                $str .= "<li><p><img src = '".SITE_ROOT . "public/img/" . $groupe['ICON'] ."' alt = '".$groupe['ALT']."' title = '".$groupe['TITLE']."' />"
-                        . "<a>". $groupe['LIBELLE']. "</a></p><ul>";
+            if (count($menus) > 0) {
+                $str .= "<li><p><img src = '" . SITE_ROOT . "public/img/" . $groupe['ICON'] . "' alt = '" . $groupe['ALT'] . "' title = '" . $groupe['TITLE'] . "' />"
+                        . "<a>" . $groupe['LIBELLE'] . "</a></p><ul>";
             }
-            foreach($menus as $menu){
-                $str .= "<li><a href = '".SITE_ROOT.$menu['HREF']."'><img src ='". SITE_ROOT . "public/img/icons/" . $menu['ICON'] ."' alt ='".$menu['ALT']."' title = '".$menu['TITLE']."' />"
-                        . "<span>".$menu['LIBELLE']."</span></a></li>";
+            foreach ($menus as $menu) {
+                $str .= "<li><a href = '" . SITE_ROOT . $menu['HREF'] . "'><img src ='" . SITE_ROOT . "public/img/icons/" . $menu['ICON'] . "' alt ='" . $menu['ALT'] . "' title = '" . $menu['TITLE'] . "' />"
+                        . "<span>" . $menu['LIBELLE'] . "</span></a></li>";
             }
-            if(count($menus) > 0){
+            if (count($menus) > 0) {
                 $str .= "</ul></li>";
             }
         }
         $str .= "</ul>";
         return $str;
-        
     }
 
 }

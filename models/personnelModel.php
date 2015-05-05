@@ -14,6 +14,15 @@ class personnelModel extends Model{
         return $this->query($query);
     }
    
+    public function insert($params){
+ 
+       
+        $query = "INSERT INTO personnels(IDPERSONNEL, CIVILITE, NOM, PRENOM, AUTRENOM, FK_FUNCTION, "
+                . "GRADE, DATENAISS, PORTABLE, TELEPHONE) "
+                . "VALUE(:id, :civilite, :nom, :prenom, :autrenom, :function, :grade, :datenaiss, :portable, :telephone)";
+        
+        return $this->query($query, $params);
+    }
     
     
 }

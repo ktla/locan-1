@@ -7,7 +7,7 @@ class matiereController extends Controller {
     }
 
     public function index() {
-        $matieres = $this->model->selectAll();
+        $matieres = $this->Matiere->selectAll();
         /* $this->Assign("content", (new View())->output(
           array('matieres' => $matieres,
           'errors' => false), false)); */
@@ -31,15 +31,22 @@ class matiereController extends Controller {
         false));
     }
 
+    /**
+     * CODEDROIT : 504
+     */
     public function saisie() {
+        if (!isAuth(504)) {
+            return;
+        }
         $view = new View();
         $view->Assign('errors', false);
 
-        if ($this->input->post('code') && $this->input->post('libelle')) {
-            $array = array("code" => $this->input->post('code'),
-                "libelle" => $this->input->post('libelle'));
-
-            if ($this->model->insert($array)) {
+        if (isset($this->request->code) && isset($this->request->libelle)) {
+               $params = array(
+                   "code" => $this->request->code,
+                   "libelle" => $this->request->libelle
+               );
+            if ($this->Matiere->insert($params)) {
                 header("Location:" . url('matiere'));
             } else {
                 $view->Assign("errors", true);
@@ -50,7 +57,7 @@ class matiereController extends Controller {
     }
 
     public function delete($id) {
-        if ($this->model->delete($id)) {
+        if ($this->Matiere->delete($id)) {
             header("Location:" . url('matiere'));
         } else {
             $this->Assign("content", (new View())->output(array("errors" => true), false));

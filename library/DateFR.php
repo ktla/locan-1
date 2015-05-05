@@ -67,6 +67,8 @@ class DateFR {
 
     //Affiche un format de date normal qui varie en fonction du jrs, le mois et l'annee
     function getDateMessage($len) {
+        if($this->year == "1970")
+            return "";
         //Si c'est l'annee actuelle format AAAA
         if (date("Y", time()) == $this->year) {
             //Si c'est le mois actuel. Format 1-12

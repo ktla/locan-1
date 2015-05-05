@@ -7,17 +7,24 @@ class Application {
      * Plus precisement les GET, POST, COOKIE
      * @var type Input
      */
-    protected $input;
+    protected $request;
     protected $menus;
+    protected $session;
+    protected $input;
 
     function __construct() {
         $this->set_reporting();
         $this->remove_magic_quotes();
         $this->unregister_globals();
 
+        $this->request = new Request();
         $this->input = new Security();
+        $this->session = new Session();
+        foreach ($_SESSION as $key => $val) {
+            $this->session->{$key} = $this->input->session($key);
+        }
 
-        $this->input->sanitize_globals();
+        $this->resetTimeOut();
         /*
          * GERER LA REDIRECTION SI L'UTILISATEUR N'EST PAS AUTHENTIFIER
          */
@@ -41,7 +48,9 @@ class Application {
             //Si je clique sur deconnect et que je suis dans le controller connexion
             //deja gerer par le constructeur de connexionController
         }
-        $this->menus = new Menus();
+        if ($this->connected()) {
+            $this->menus = new Menus();
+        }
     }
 
     private function set_reporting() {
@@ -92,6 +101,22 @@ class Application {
             return true;
         } else {
             return false;
+        }
+    }
+
+    /**
+     * remet a jour le compteur de l'expiration de session
+     */
+    private function resetTimeOut() {
+        if ($this->connected()) {
+            if ($this->session->timeout > time()) {
+                //lui accorder 10 minute de plus
+                $_SESSION['timeout'] = time() + 600;
+            } else {
+                //il a deborder ces 10 minute de grave sans activite, le deconected
+                //unset($_SESSION['user']);
+                header("Location:" . Router::url("connexion", "disconnect"));
+            }
         }
     }
 
