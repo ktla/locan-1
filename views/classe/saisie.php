@@ -53,7 +53,12 @@
             </table>
         </div>
         <div id="onglet2" class="onglet" style="width: 700px; min-height: 210px; display: none; height: 141px">
-            
+            <!-- Puisque tu a la liste des enseignant dans la variable $enseignants
+            tu peux en faire ce que tu veux. Je propose que tu creai pluto un tableau avec leur ID et leur nom
+            et tu met des radiobutton a cote pour qu'on coche le proffesseur principale pour cette classe
+            on supporse donc qu'on a un prof principal par classe 
+            -->
+            <?php var_dump($enseignants); ?>
         </div>
         <div id="onglet3" class="onglet" style="width:700px;min-height:141px; height: 210px;  display: none">
             <label>Matière</label><?php echo $comboMatieres; ?>
@@ -71,6 +76,7 @@
         <div class="navigation">
              <input type="submit" value="Valider" />
         </div>
+       
     </form>
     <?php if($errors){
         echo $message;

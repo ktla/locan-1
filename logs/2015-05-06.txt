@@ -1,0 +1,7 @@
+Time : 19:31:52
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'd.LIBELLE' in 'field list'
+Raw SQL : SELECT c.*, d.LIBELLE AS FK_DECOUPAGE FROM classes c LEFT JOIN decoupage p ON c.DECOUPAGE = p.IDDECOUPAGE
+
+Time : 19:09:07
+SQLSTATE[42000]: Syntax error or access violation: 1103 Incorrect table name ''
+Raw SQL : SELECT * FROM ``

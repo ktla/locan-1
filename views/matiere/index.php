@@ -4,7 +4,7 @@
 echo $matieres;
 ?>
 <div class="recapitulatif">
-    <?php echo $total. " mati&egrave;s au total"; ?>
+    <?php echo $total. " mati&egrave;res au total"; ?>
 </div>
 <div class="navigation">
     <input type="button" onclick="document.location='<?php echo url('matiere', 'saisie'); ?>'" value ="Ajouter" />
