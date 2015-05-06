@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('#dataTable').DataTable({
+    $('#dataTable, #dataTable2').DataTable({
         "aaSorting": [],
         "scrollCollapse": true,
         //"scrollY": "350px",

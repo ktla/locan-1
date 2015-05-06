@@ -9,7 +9,7 @@ class personnelModel extends Model{
     }
     
     public function selectAll(){
-        $query = "SELECT p.*, f.FUNCTION as FUNCTION FROM personnels p "
+        $query = "SELECT p.*, CONCAT(p.NOM,' ', p.PRENOM) AS CNOM, f.FUNCTION as FUNCTION FROM personnels p "
                 . "LEFT JOIN functions f ON f.IDFUNCTION = p.FK_FUNCTION";
         return $this->query($query);
     }
