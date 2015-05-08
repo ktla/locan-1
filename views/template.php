@@ -21,6 +21,7 @@
         <script type="text/javascript" src="<?php echo SITE_ROOT; ?>public/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="<?php echo SITE_ROOT; ?>public/js/webix.js"></script>
         <script type="text/javascript" src="<?php echo SITE_ROOT; ?>public/js/scripts.js"></script>
+        <script type="text/javascript" src="<?php echo SITE_ROOT; ?>public/js/ajax.js"></script>
 
     </head>
     <body>
@@ -29,7 +30,7 @@
             Correspondant et l'obtenir sous la forme d'une variable data[];
             Pour le cas du template, c'est le controller de base
             -->
-
+           
 
             <?php
             echo $header;
@@ -43,7 +44,10 @@
             <div id="page-footer">
                 <?php echo $footer; ?>
             </div>
-
+            <div id="loading"><p>
+                 <img src="<?php echo SITE_ROOT . "public/img/loading.gif" ?>" />
+                 </p>
+        </div>
         </div>
     </body>
 </html>

@@ -1,0 +1,3 @@
+Time : 21:44:14
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'locan.eleve' doesn't exist
+Raw SQL : SELECT e.*, p.ETABLISSEMENT AS FK_PROVENANCE, m.LIBELLE AS FK_MOTIF FROM eleve e LEFT JOIN etablissements p ON p.IDETABLISSEMENT = e.PROVENANCE LEFT JOIN motifsortie m ON m.IDMOTIF = e.MOTIFSORTIE WHERE  MATRICULE = :MATRICULE 

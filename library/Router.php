@@ -31,8 +31,9 @@ class Router {
 
         //Instantier la classe approprier
 
-        if (class_exists($class) && (int) method_exists($class, $action)) {
+        if (class_exists($class)) {
             $controller = new $class;
+            if((int) method_exists($class, $action)){
             if ($query1 != null) {
                 if ($query2 != null) {
                     if ($query3 != null) {
@@ -48,12 +49,11 @@ class Router {
                 $controller->$action();
             //$controller->$action($query1, $query2, $query3, $query4);
             //call_user_func_array(array($controller, $action), $query1);
-        }
-        else {
-            die("1. Fichier <strong> '$controllerName.php'</strong> contient une classe 
-			<strong> '$class' </strong> manquante.<br/>
-			<strong> '$action' </strong> est manquant dans le controller 
-			<strong> '$controllerName.php' </strong>");
+            }else{
+                die("La methode $action du controller $controllerName n'existe pas");
+            }
+        }else {
+            die("La classe $class n'existe pas dans le fichier $controllerName.php");
         }
     }
 

@@ -41,5 +41,20 @@ class EleveModel extends Model {
                 . ":paysnaiss, :dateentree, :provenance, :redoublant, :datesortie, :motifsortie)";
         return $this->query($query, $params);
     }
+    
+    public function findBy($condition = array()) {
+        $str = ""; $params = array();
+       foreach($condition as $key => $condition){
+           $str .= " $key = :$key AND ";
+           $params[$key] = $condition;
+       }
+       $str = substr($str, 0, strlen($str) - 4);
+        $query = "SELECT e.*, p.ETABLISSEMENT AS FK_PROVENANCE, m.LIBELLE AS FK_MOTIF "
+                . "FROM eleves e "
+                . "LEFT JOIN etablissements p ON p.IDETABLISSEMENT = e.PROVENANCE "
+                . "LEFT JOIN motifsortie m ON m.IDMOTIF = e.MOTIFSORTIE "
+                . "WHERE $str";
+        return $this->row($query, $params);
+    }
 
 }

@@ -1,4 +1,4 @@
-<h1>Page AJOUT ELEVE</h1>
+<h1>Saisie de classes</h1>
 <div class="page" style="height: 100%">
     <form action="<?php echo url('classe', 'saisie'); ?>" method="post" enctype="multipart/form-data">
         <div style="margin-bottom: 5px;">

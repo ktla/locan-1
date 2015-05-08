@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * PAGES AJAX : 800XX
+ */
 class EleveController extends Controller {
 
     public function __construct() {
@@ -13,6 +16,8 @@ class EleveController extends Controller {
 
         $data = $this->Eleve->selectAll();
         $eleves = new Combobox($data, "eleves", "MATRICULE", "NOM");
+
+        $eleves->idname = "listeeleve";
         //print_r($eleves);
         //var_dump($eleves);
         $view->Assign("eleves", $eleves->view("50%"));
@@ -29,7 +34,7 @@ class EleveController extends Controller {
             //Appeller l'algorithme pour generer les matricules des eleves
             $matr = rand(10, 100) . "eleve";
             $photo = "";
-             
+
             if (isset($this->request->photo)) {
                 if (move_uploaded_file($this->request->photo['tmp_name'], ROOT . "/photos/eleves/" . $this->request->photo['name'])) {
                     $photo = SITE_ROOT . "photos/eleves/" . $this->request->photo['name'];
@@ -114,6 +119,38 @@ class EleveController extends Controller {
             //Proceder a la modification de cet l'eleve dont l'id est id
         }
         $this->Assign("content", $content);
+    }
+
+    public function ajax($val) {
+        sleep(3);
+        if (!isset($this->session->user)) {
+            print json_encode(false);
+        } else {
+
+            $arr = array();
+            $data = $this->Eleve->findBy(array("MATRICULE" => $val));
+
+            $view = new View();
+            $view->Assign("nom", $data["NOM"]);
+            $view->Assign("prenom", $data["PRENOM"]);
+            $view->Assign("sexe", $data["SEXE"]);
+            $view->Assign("datenaiss", $data["DATENAISS"]);
+            $view->Assign("lieunaiss", $data["LIEUNAISS"]);
+            $view->Assign("nationalite", $data["NATIONALITE"]);
+            $view->Assign("nationalite", $data["NATIONALITE"]);
+            $view->Assign("dateentree", $data["DATEENTREE"]);
+            $view->Assign("provenance", $data["FK_PROVENANCE"]);
+            $view->Assign("datesortie", $data["DATENAISS"]);
+            $view->Assign("motifsortie", $data["FK_MOTIF"]);
+
+            $arr[0] = $view->Render("eleve" . DS . "ajax" . DS . "onglet1", false);
+            $arr[1] = $view->Render("eleve" . DS . "ajax" . DS . "onglet2", false);
+            $arr[2] = $view->Render("eleve" . DS . "ajax" . DS . "onglet3", false);
+            $arr[3] = $view->Render("eleve" . DS . "ajax" . DS . "onglet4", false);
+            $arr[4] = $view->Render("eleve" . DS . "ajax" . DS . "onglet5", false);
+            $arr[5] = $view->Render("eleve" . DS . "ajax" . DS . "onglet6", false);
+            print json_encode($arr);
+        }
     }
 
 }

@@ -94,15 +94,4 @@ function onglets(premier, actuel, nombre) {
     }
 }
 
-$.ajax({
-    url: 'ajax/personnel',
-    type: "GET",
-    data: $("function").val(),
-    success: function (data) {
-        $("#personnel")
-    },
-    error: function(xml, status, error){
-        alert("Erreur de type : " + error);
-    }
 
-});

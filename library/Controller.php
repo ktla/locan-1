@@ -8,14 +8,15 @@ class Controller extends Application {
     public function __construct() {
 
         parent::__construct();
+         //Extraire le mot Eleve dans la chaine EleveController (par exple)
+        $model = strtolower(substr(get_class($this), 0, strlen(get_class($this)) - 10));
+        $this->loadModel($model);
         //Verifier si ce n'est pas une requete AJAX
         if (!isset($_SERVER['HTTP_X_REQUESTED_WITH'])) {
             $this->view_name = '';
             $this->view = new View();
-            //Extraire le mot Eleve dans la chaine EleveController (par exple)
-            $model = strtolower(substr(get_class($this), 0, strlen(get_class($this)) - 10));
             $this->setBreadCrumb();
-            $this->loadModel($model);
+            
             //Charger la page template
             $this->Load_View('template');
 
@@ -108,4 +109,5 @@ class Controller extends Application {
         return '<div class="breadcrumb"><a href ="">Document</a><a  href ="">Document</a><a href ="">Document</a></div>';
     }
 
+   
 }

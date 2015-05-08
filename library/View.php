@@ -83,6 +83,7 @@ class View {
             return ob_get_clean();
         }
     }
+    //public function 
 
     public function setSiteTitle($name) {
         $this->data['site_title'] = '' . $name . '';

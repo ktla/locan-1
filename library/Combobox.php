@@ -34,7 +34,8 @@ class Combobox {
             return "<p class=\"infos\">Aucun enregistrement</p>";
         }
         $str = "";
-        $str .= "<select name=\"" . $this->name . "\" onChange = \"" . $this->onchange . "\" style=\"width:" . $width . "\" id = '" . $this->idname . "'>";
+        $str .= "<select name=\"" . $this->name . "\"".(!empty($this->onchange) ?"onChange ='" . $this->onchange."'":"").
+                " style=\"width:" . $width . "\" id = '" . $this->idname . "'>";
         if (!empty($this->first)) {
             $str .= "<option value=\"0\">" . $this->first . "</option>";
         }

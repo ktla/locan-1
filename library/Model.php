@@ -59,14 +59,15 @@ class Model extends Database {
                         . " WHERE `" . $this->_key . "` = :id", array("id" => $id));
     }
 
-    /**
-     * Recherche dans la BD l'element d'identifiant ID
-     * Methode identique a la methode get (juste pour convenience)
-     * @param type $id
-     * @return type
-     */
-    public function findBy($id) {
-        return $this->get($id);
-    }
+   public function findBy($condition = array()){
+       $str = ""; $params = array();
+       foreach($condition as $key => $condition){
+           $str .= " $key = :$key AND ";
+           $params[$key] = $condition;
+       }
+       $str = substr($str, 0, strlen($str) - 4);
+       $query =  "SELECT * FROM `".$this->_table . "` WHERE $str";
+       return $this->row($query, $params);
+   }
 
 }
