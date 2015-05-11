@@ -9,11 +9,12 @@ class EleveModel extends Model {
         parent::__construct();
     }
 
-    public function selectAll() {
+    public function select() {
         $query = "SELECT e.MATRICULE, CONCAT(e.NOM,' ',e.PRENOM) AS NOM "
                 . "FROM eleves e ORDER BY MATRICULE";
         return $this->query($query);
     }
+    
 
     /**
      * $params = ["nom" => $this->request->nom,

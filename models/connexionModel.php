@@ -2,9 +2,9 @@
 
 class connexionModel extends Model {
 
-    protected  $_table = "connexions";
+    protected $_table = "connexions";
     protected $_key = "IDCONNEXION";
-    
+
     public function __construct() {
         parent::__construct();
     }
@@ -13,12 +13,14 @@ class connexionModel extends Model {
         $query = "SELECT * FROM users WHERE LOGIN = :login AND PASSWORD = :pwd";
         $res = $this->row($query, array("login" => $login,
             "pwd" => $pwd));
-
-        $val = count($res);
-        if ($val != 0) {
+        
+        if(is_array($res)){
+            $val = count($res);
             $_SESSION['profile'] = $res['PROFILE'];
+            return ($val != 0);
+        }else{
+            return $res;
         }
-        return ($val != 0);
     }
 
     public function saveConnexion($con) {
@@ -40,21 +42,21 @@ class connexionModel extends Model {
         /** Terminer le verrouillage de la table connexion */
         //$this->query("UNLOCK TABLES");
     }
-    
+
     /**
      * 
      * @param type $idconnexion
      * @param type $datefin
      * @param type $deconnexion message de deconnexion
      */
-    public function updateConnexion($idconnexion, $connexion, $datefin, $deconnexion){
+    public function updateConnexion($idconnexion, $connexion, $datefin, $deconnexion) {
         $query = "UPDATE connexions SET CONNEXION = :connexion, DATEFIN = :datefin, DECONNEXION = :deconnexion "
                 . "WHERE IDCONNEXION = :id";
         $params = ["connexion" => $connexion,
-               "datefin" => $datefin,
+            "datefin" => $datefin,
             "deconnexion" => $deconnexion,
             "id" => $idconnexion];
-        
+
         return $this->query($query, $params);
     }
 

@@ -67,7 +67,20 @@ class Model extends Database {
        }
        $str = substr($str, 0, strlen($str) - 4);
        $query =  "SELECT * FROM `".$this->_table . "` WHERE $str";
+      
        return $this->row($query, $params);
+   }
+   
+   public function updateBy($id, $params = array()){
+       $str = "";
+       foreach($params as $key => $param){
+           $str .= " SET $key = :$key ,";
+       }
+       $str = substr($str, 0, strlen($str) - 1);
+       $params = array_merge($params, array("key" => $id));
+       $query = "UPDATE `" . $this->_table . "` $str WHERE `" . $this->_key . "` = :key";
+       
+       return $this->query($query, $params);
    }
 
 }

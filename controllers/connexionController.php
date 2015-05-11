@@ -18,7 +18,7 @@ class connexionController extends Controller {
         //le formulaire est soumis
         if (isset($this->request->login) && isset($this->request->pwd)) {
 
-            if ($this->Connexion->authenticate($this->request->login, $this->request->pwd)) {
+            if ($this->Connexion->authenticate($this->request->login, md5($this->request->pwd)) === TRUE) {
 
                 $_SESSION['user'] = $this->request->login;
                 //Definir la valeur du Timeout lors de la connexion a 10 min

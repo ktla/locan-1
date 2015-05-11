@@ -34,7 +34,7 @@
                 </li>
             </ul>
         </div>
-        <div id="onglet1" class="onglet" style="width: 700px; height: 241px; display: block;">
+        <div id="onglet1" class="onglet" style="display: block;">
             <!-- Donne moi le format de la variable que je dois renvoyer pour te permettre 
             de faire cette interface graphique, j'imagine que la liste des eleves suiffi ou le format 
             JSON de cette liste est adequate -->
@@ -52,7 +52,7 @@
                 </tbody>
             </table>
         </div>
-        <div id="onglet2" class="onglet" style="width: 700px; min-height: 210px; display: none; height: 141px">
+        <div id="onglet2" class="onglet" style=" display: none; max-height: 300px;">
             <!-- Puisque tu a la liste des enseignant dans la variable $enseignants
             tu peux en faire ce que tu veux. Je propose que tu creai pluto un tableau avec leur ID et leur nom
             et tu met des radiobutton a cote pour qu'on coche le proffesseur principale pour cette classe
@@ -60,7 +60,7 @@
             -->
             <?php var_dump($enseignants); ?>
         </div>
-        <div id="onglet3" class="onglet" style="width:700px;min-height:141px; height: 210px;  display: none">
+        <div id="onglet3" class="onglet" style="display: none">
             <label>Matière</label><?php echo $comboMatieres; ?>
             <label>Enseignants</label><?php echo $comboEnseignants; ?>
             <label>Coeff. </label><input type="text" name="coeff" value="1" max="6" min="1" size="5" />

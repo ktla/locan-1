@@ -25,4 +25,13 @@ class personnelModel extends Model{
     }
     
     
+    
+    public function updateTelephone($newtel, $login){
+       
+        $query = "UPDATE personnels SET TELEPHONE = :tel WHERE LOGIN = :login";
+        return $this->query($query, ["tel" => $newtel, "login" => $login]);
+      
+    }
+    
+    
 }
