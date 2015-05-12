@@ -46,4 +46,8 @@ class etablissementController extends Controller{
         $content = $view->Render("etablissement" . DS . "index", false);
         $this->Assign("content", $content);
     }
+    
+    public function saisie(){
+        
+    }
 }

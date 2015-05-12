@@ -1,6 +1,10 @@
-<h1>Saisie de classes</h1>
-<div class="page" style="height: 100%">
-    <form action="<?php echo url('classe', 'saisie'); ?>" method="post" enctype="multipart/form-data">
+<div id="entete">
+
+</div>
+<div class="titre">Saisie des classes</div>
+
+<form action="<?php echo url('classe', 'saisie'); ?>" method="post" enctype="multipart/form-data">
+    <div class="page" style="">
         <div style="margin-bottom: 5px;">
             <fieldset><legend>Saisie de la classe</legend>
                 <label>Nom abrégé</label><input type="text" name="nom" />
@@ -40,15 +44,17 @@
             JSON de cette liste est adequate -->
             <?php echo $comboEleves; ?>
             <input type="button" value="Ajouter" />
-            <?php  //la variable $eleves contient la liste des eleves de la BD
+            <?php
+            //la variable $eleves contient la liste des eleves de la BD
             //Tu peux en faire ce que tu veux, si tu veux que je change le format, jette un coup d'oeil
             //dans le controller classeController et la methode saisie, c'est la que j'envoi cette variable sous la forme 
             //d'un tableau
-            //var_dump($eleves); ?>
+            //var_dump($eleves); 
+            ?>
             <table class="dataTable" id="dataTable">
                 <thead><tr><th>Matricule</th><th>Nom et Prénom</th><th>Date de naissance</th></tr></thead>
                 <tbody>
-                    
+
                 </tbody>
             </table>
         </div>
@@ -65,20 +71,26 @@
             <label>Enseignants</label><?php echo $comboEnseignants; ?>
             <label>Coeff. </label><input type="text" name="coeff" value="1" max="6" min="1" size="5" />
             <img src="<?php echo SITE_ROOT . "public/img/ajouter.gif"; ?>" />
-            
+
             <table style="margin-top:5px;" class="dataTable" id="dataTable2">
                 <thead><tr><th>Matière</th><th>Enseignants</th><th>Coefficient</th></tr></thead>
                 <tbody>
-                    
+                   
                 </tbody>
             </table>
         </div>
-        <div class="navigation">
-             <input type="submit" value="Valider" />
-        </div>
-       
-    </form>
-    <?php if($errors){
-        echo $message;
-    } ?>
-</div>
+    </div>
+    <div class="recapitulatif"></div>
+    <div class="navigation">
+        <img  src="<?php echo SITE_ROOT . "public/img/btn_ok.png" ?> " onclick="document.forms[0].submit();" />
+        <img  src="<?php echo SITE_ROOT . "public/img/btn_cancel.png" ?> " 
+              onclick="document.location = '<?php echo Router::url("classe", "saisie"); ?>'" />
+    </div>
+
+</form>
+<div class="status"></div>
+<?php
+if ($errors) {
+    echo $message;
+}
+?>

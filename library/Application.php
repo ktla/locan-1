@@ -51,6 +51,13 @@ class Application {
         if ($this->connected()) {
             $this->menus = new Menus();
         }
+        /**
+          Conservation de l'url de la page active
+         */
+        if ($_SERVER['PHP_SELF'] != "connexion"){
+        //$_SESSION['activeurl'] = substr($_SERVER['PHP_SELF'], 0, (strlen($_SERVER['PHP_SELF']) - strpos($_SERVER['PHP_SELF'], "?")));
+            $_SESSION['activeurl'] = $_SERVER['PHP_SELF'];
+        }
     }
 
     private function set_reporting() {

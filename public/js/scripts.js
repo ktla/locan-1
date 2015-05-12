@@ -2,7 +2,8 @@ $(document).ready(function () {
     $('#dataTable, #dataTable2').DataTable({
         "aaSorting": [],
         "scrollCollapse": true,
-        //"scrollY": "350px",
+        "scrollY": "400px",
+        
         "pageLength": 200,
         "language": {
             "sProcessing": "Traitement en cours...",
@@ -44,6 +45,10 @@ function deleteRow(_url, name) {
         }
     });
 }
+
+function editRow(_url){
+    document.location = _url;
+}
 /*
  * Fonction permettant d'afficher et cacher le menu.
  *
@@ -80,6 +85,15 @@ $(document).ready(function () {
 
         }
     })();
+    //Ajouter le scrolling en fonction de hauteur de la page visible
+    //var headerHeight = $("#page-header").css("height");
+    //headerHeight = headerHeight.substring(0, headerHeight.indexOf("p"));
+    var max = $(window).height() - 154;
+    $("#menu").css({maxHeight: max});
+    var h = $("#entete").height() + $(".navigation").height() + $(".recapitulatif").height() + $(".status").height() + $(".titre").height();
+    $(".page").css({height: $(window).height() - h - 107});
+    //$("#entete").css({height: 154});
+    //$("#page-content").css({maxHeight: window.innerHeight - 10});
 });
 
 function onglets(premier, actuel, nombre) {

@@ -1,8 +1,12 @@
-<div class="titre">
-    Elève
+<div id="entete">
+    <div style="text-align: center;">Liste des élèves : <?php echo $eleves; ?></div>
 </div>
-<div style="margin: 10px;text-align: center;">Liste des élèves : <?php echo $eleves; ?></div>
-<div class="page" style="height: 100%">
+
+<div class="page" style="">
+    <div class="titre">
+        Elève
+    </div>
+
     <form action="<?php echo url('eleve', 'saisie'); ?>" method="post">
         <div class="tabs" style="width: 100%">
             <ul>
@@ -57,6 +61,6 @@
             <?php //echo $viescolaire; ?>
         </div>
         <div id="onglet5" class="onglet" style="display: none;"></div>
-         <div id="onglet6" class="onglet" style="display: none;"></div>
+        <div id="onglet6" class="onglet" style="display: none;"></div>
     </form>
 </div>

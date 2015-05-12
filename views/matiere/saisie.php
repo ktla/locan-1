@@ -9,4 +9,7 @@
         </tr>
 
     </table>
+    <div class="navigation">
+        <input type="submit" value="Ok" />
+    </div>
 </form>

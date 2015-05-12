@@ -11,7 +11,7 @@ class connexionController extends Controller {
     }
 
     public function index() {
-        
+
         $view = new View();
         $view->Assign("errors", false);
         $view->setCSS("public/css/connexion.css");
@@ -26,45 +26,48 @@ class connexionController extends Controller {
                 $_SESSION['anneeacademique'] = $this->request->anneeacademique;
                 //Garder la trace de connexion dans la table connexion
                 $this->keepTrack();
-                header("Location:" . SITE_ROOT);
+                if (isset($this->session->activeurl)) {
+                    header("Location:" . $this->session->activeurl);
+                } else {
+                    header("Location:" . SITE_ROOT);
+                }
             } else {
                 $view->Assign("errors", true);
             }
         }
-        
+
         $view->Assign("post", $this->request);
-        
+
         $this->loadModel("anneeAcademique");
-        
+
         $anneeAcad = $this->Anneeacademique->selectAll();
-        
+
         $anneeacademique = new Combobox($anneeAcad, 'anneeacademique', 'anneeacademique', 'anneeacademique');
 
         $view->Assign("anneeacademique", $anneeacademique->view());
-        
+
         $content = $view->Render("connexion" . DS . "index", false);
-        
+
         $this->Assign("content", $content);
     }
 
     public function disconnect() {
         //S'il n'est meme pas connecter et essaye d'ouvrir l'action disconnect
         //le redireger ver la page de connexion
-        if(!isset($this->session->user)){
+        if (!isset($this->session->user)) {
             header("Location:" . url("connexion"));
         }
-        
+
         $id = $this->session->idconnexion;
         $connexion = "Connexion réussie";
         /** il a deborder, sa session est expiree */
         if ($this->session->timeout <= time()) {
             $datefin = date("Y-m-d H:i:s", $this->session->timeout);
-            $deconnexion = "Session expriée"; 
-        }else{
+            $deconnexion = "Session expriée";
+        } else {
             /** Il s'est deconnecter durant sa session normale */
             $deconnexion = "Session fermée correctement";
             $datefin = date("Y-m-d H:i:s", time());
- 
         }
         //updateConnexion($idconnexion, $connexion, $datefin, $deconnexion)
         $this->Connexion->updateConnexion($id, $connexion, $datefin, $deconnexion);

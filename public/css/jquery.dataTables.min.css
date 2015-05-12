@@ -223,3 +223,8 @@ table.dataTable tbody tr:nth-child(2n +1){
 table.dataTable tbody tr:hover{
     background-color: rgb(207,160,160);
 }
+.dataTables_scrollBody
+{
+ overflow-x:hidden !important;
+ overflow-y:auto !important;
+}

@@ -1,5 +1,5 @@
 <h1>Page AJOUT ELEVE</h1>
-<div class="page" style="height: 100%">
+<div class="page" style="">
     <form action="<?php echo url('eleve', 'saisie'); ?>" method="post" enctype="multipart/form-data">
         <div class="tabs" style="width: 100%">
             <ul>

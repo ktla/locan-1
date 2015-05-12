@@ -62,6 +62,7 @@ $(document).ready(function () {
             },
             error: function (xhr, status, error) {
                 alert(error + " " + xhr + " " + status);
+                document.location = 'connexion';
             }
         });
     });

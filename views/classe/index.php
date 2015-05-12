@@ -4,7 +4,7 @@
 <div style="margin: 10px;text-align: center;"><h1>Information relative a afficher<br/>
         Confere easyscol page classe</h1></div>
 
-<div class="page" style="height: 100%">
+<div class="page" style="">
     <form action="<?php echo url('classe', 'saisie'); ?>" method="post">
         <div class="tabs" style="width: 100%">
             <ul>
