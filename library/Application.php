@@ -20,11 +20,6 @@ class Application {
         $this->request = new Request();
         $this->input = new Security();
         $this->session = new Session();
-        foreach ($_SESSION as $key => $val) {
-            $this->session->{$key} = $this->input->session($key);
-        }
-
-        $this->resetTimeOut();
         /*
          * GERER LA REDIRECTION SI L'UTILISATEUR N'EST PAS AUTHENTIFIER
          */
@@ -36,6 +31,19 @@ class Application {
          * $urlArray[1] = Action
          * $urlArray[2...n] = Argument
          */
+        /**
+          Conservation de l'url de la page active
+         */
+        if ($urlArray[0] != "connexion"){
+            $_SESSION['activeurl'] = $url;
+        }
+        
+        foreach ($_SESSION as $key => $val) {
+            $this->session->{$key} = $this->input->session($key);
+        }
+
+        $this->resetTimeOut();
+        
         $action = (isset($urlArray[1]) && $urlArray[1] != '') ? $urlArray[1] : DEFAULT_ACTION;
         /*
          * Pour eviter une redirection qui n'aboutira, 
@@ -44,20 +52,14 @@ class Application {
          */
         if (!$this->connected() && $urlArray[0] != 'connexion') {
             header("Location:" . url('connexion'));
-        } elseif ($this->connected() && $urlArray[0] == 'connexion' && $action != 'deconnect') {
+        } elseif ($this->connected() && $urlArray[0] == 'connexion' && $action != 'discconnect') {
             //Si je clique sur deconnect et que je suis dans le controller connexion
             //deja gerer par le constructeur de connexionController
         }
         if ($this->connected()) {
             $this->menus = new Menus();
         }
-        /**
-          Conservation de l'url de la page active
-         */
-        if ($_SERVER['PHP_SELF'] != "connexion"){
-        //$_SESSION['activeurl'] = substr($_SERVER['PHP_SELF'], 0, (strlen($_SERVER['PHP_SELF']) - strpos($_SERVER['PHP_SELF'], "?")));
-            $_SESSION['activeurl'] = $_SERVER['PHP_SELF'];
-        }
+        
     }
 
     private function set_reporting() {

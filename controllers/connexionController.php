@@ -26,8 +26,8 @@ class connexionController extends Controller {
                 $_SESSION['anneeacademique'] = $this->request->anneeacademique;
                 //Garder la trace de connexion dans la table connexion
                 $this->keepTrack();
-                if (isset($this->session->activeurl)) {
-                    header("Location:" . $this->session->activeurl);
+                if (isset($_SESSION['activeurl'])) {
+                    header("Location:" . $_SESSION['activeurl']);
                 } else {
                     header("Location:" . SITE_ROOT);
                 }
