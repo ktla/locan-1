@@ -6,7 +6,7 @@ class connexionController extends Controller {
         parent::__construct();
 
         if (isset($this->session->user)) {
-            header("Location:" . SITE_ROOT);
+            header("Location:" . Router::url("connexion", "disconnect"));
         }
     }
 
@@ -27,6 +27,7 @@ class connexionController extends Controller {
                 //Garder la trace de connexion dans la table connexion
                 $this->keepTrack();
                 if (isset($_SESSION['activeurl'])) {
+                   
                     header("Location:" . $_SESSION['activeurl']);
                 } else {
                     header("Location:" . SITE_ROOT);
@@ -77,7 +78,7 @@ class connexionController extends Controller {
         unset($_SESSION['timeout']);
         unset($_SESSION['idconnexion']);
         session_destroy();
-        header("Location:" . url('connexion'));
+        header("Location:" . Router::url('connexion'));
     }
 
     public function keepTrack() {

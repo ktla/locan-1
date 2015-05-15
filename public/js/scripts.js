@@ -1,9 +1,9 @@
+//$('div.dataTables_scrollBody').height( 100 );
 $(document).ready(function () {
     $('#dataTable, #dataTable2').DataTable({
         "aaSorting": [],
         "scrollCollapse": true,
-        "scrollY": "400px",
-        
+        "scrollY": 470,
         "pageLength": 200,
         "language": {
             "sProcessing": "Traitement en cours...",
@@ -90,8 +90,9 @@ $(document).ready(function () {
     //headerHeight = headerHeight.substring(0, headerHeight.indexOf("p"));
     var max = $(window).height() - 154;
     $("#menu").css({maxHeight: max});
-    var h = $("#entete").height() + $(".navigation").height() + $(".recapitulatif").height() + $(".status").height() + $(".titre").height();
-    $(".page").css({height: $(window).height() - h - 107});
+    var h = $("#entete").height() + $(".navigation").height() + $(".recapitulatif").height()
+            + $(".status").height() + $(".titre").height();
+    $(".page").css({height: $(window).height() - h - 97});
     //$("#entete").css({height: 154});
     //$("#page-content").css({maxHeight: window.innerHeight - 10});
 });

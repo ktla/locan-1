@@ -5,6 +5,12 @@ class userController extends Controller {
     public function __construct() {
         parent::__construct();
     }
+    
+    public function index(){
+        $view = new View();
+        $content = $view->Render("user" . DS . "index", false);
+        $this->Assign("content", $content);
+    }
 
     /**
      * affiche la grid des differents connexion de l'utilisateur
@@ -82,6 +88,13 @@ class userController extends Controller {
             
         }
         $content = $view->Render("user" . DS . "telephone", false);
+        $this->Assign("content", $content);
+    }
+    
+    public function droits(){
+        $view = new View();
+        $view->Assign("total", 0);
+        $content = $view->Render("user" . DS . "droits", false);
         $this->Assign("content", $content);
     }
 }

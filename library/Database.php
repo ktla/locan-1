@@ -243,7 +243,7 @@ class Database {
      */
     private function ExceptionLog($message, $sql = "") {
         $exception = 'Unhandled Exception. <br />';
-        $exception .= $message;
+        $exception .= $message . "<br/> ". $sql;
         $exception .= "<br /> You can find the error back in the log.";
 
         if (!empty($sql)) {

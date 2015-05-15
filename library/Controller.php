@@ -8,6 +8,18 @@ class Controller extends Application {
     public function __construct() {
 
         parent::__construct();
+        global $url; //$url est une variable globale defini dans Router.php
+        $urlArray = explode("/", $url);
+        /**
+          Conservation de l'url de la page active
+         */
+        
+        if ($urlArray[0] != "connexion"){
+           
+            $_SESSION['activeurl'] = $url;
+        }
+        
+       
          //Extraire le mot Eleve dans la chaine EleveController (par exple)
         $model = strtolower(substr(get_class($this), 0, strlen(get_class($this)) - 10));
         $this->loadModel($model);

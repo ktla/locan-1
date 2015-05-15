@@ -23,20 +23,14 @@ class Application {
         /*
          * GERER LA REDIRECTION SI L'UTILISATEUR N'EST PAS AUTHENTIFIER
          */
-        global $url;
-        //$url est une variable globale defini dans Router.php
+        global $url;//$url est une variable globale defini dans Router.php
         $urlArray = explode("/", $url);
         /**
          * $urlArray[0] = Controller
          * $urlArray[1] = Action
-         * $urlArray[2...n] = Argument
+         * $urlArray[2...n] = Arguments
          */
-        /**
-          Conservation de l'url de la page active
-         */
-        if ($urlArray[0] != "connexion"){
-            $_SESSION['activeurl'] = $url;
-        }
+        
         
         foreach ($_SESSION as $key => $val) {
             $this->session->{$key} = $this->input->session($key);
@@ -47,12 +41,12 @@ class Application {
         $action = (isset($urlArray[1]) && $urlArray[1] != '') ? $urlArray[1] : DEFAULT_ACTION;
         /*
          * Pour eviter une redirection qui n'aboutira, 
-         * On redirige seulement si nous ne somme pas a la page de connexion
+         * On redirige seulement si nous ne sommes pas a la page de connexion
          * 
          */
         if (!$this->connected() && $urlArray[0] != 'connexion') {
             header("Location:" . url('connexion'));
-        } elseif ($this->connected() && $urlArray[0] == 'connexion' && $action != 'discconnect') {
+        } elseif ($this->connected() && $urlArray[0] == 'connexion') {
             //Si je clique sur deconnect et que je suis dans le controller connexion
             //deja gerer par le constructeur de connexionController
         }

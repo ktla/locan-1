@@ -38,3 +38,15 @@ function isAuth($codedroit){
     }
     return false;
 }
+
+
+function btn_add($action){
+    return "<img src = '" . SITE_ROOT  . "public/img/btn_add.png' onclick = '".$action."'/>";
+}
+function btn_cancel($action){
+    return "<img src = '" . SITE_ROOT  . "public/img/btn_cancel.png' onclick = '".$action."'/>";
+}
+
+function btn_ok($action){
+    return "<img src = \"" . SITE_ROOT  . "public/img/btn_ok.png \" onclick = \"".$action."\"/>";
+}

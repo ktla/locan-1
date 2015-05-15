@@ -1,8 +1,12 @@
+<div id="entete">
+
+</div>
+
 <div class="titre">
     Saisie d'un nouvel Personnel
 </div>
-<div>
-    <form action="<?php echo url("personnel", "saisie"); ?>" method="post">
+<form action="<?php echo url("personnel", "saisie"); ?>" method="post">
+    <div class="page">
         <fieldset><legend> Identit&eacute;</legend>
             <label>Civilit&eacute;</label>
             <?php echo $civilite; ?>
@@ -23,13 +27,16 @@
             <label>Portable</label>
             <input type="text" name="portable" maxlength="15" />
         </fieldset>
-        <div class="navigation">
-        <input type="submit" value="Ok" />
-        <input type="button" value="Annuler" />
-        </div>
-    </form>
-</div>
+    </div>
+    <div class="recapitulatif"></div>
+    <div class="navigation">
+        <?php echo btn_ok("document.forms[0].submit()"); ?>
+        <?php echo btn_cancel("document.location=\"" . Router::url("personnel") . "\""); ?>
+    </div>
+
+</form>
+<div class="status"></div>
 <?php
-if($errors){
+if ($errors) {
     echo "<div class='error'>Quelque chose de grave s'est produit</div>";
 }

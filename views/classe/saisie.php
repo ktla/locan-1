@@ -5,7 +5,7 @@
 
 <form action="<?php echo url('classe', 'saisie'); ?>" method="post" enctype="multipart/form-data">
     <div class="page" style="">
-        <div style="margin-bottom: 5px;">
+        
             <fieldset><legend>Saisie de la classe</legend>
                 <label>Nom abrégé</label><input type="text" name="nom" />
                 <label>Libellé</label><input type="text" name="libelle" />
@@ -15,7 +15,7 @@
                     <option value ="2">Semestre</option>
                 </select>
             </fieldset>
-        </div>
+       
         <div class="tabs" style="width: 100%">
             <ul>
                 <li id="tab1" class="courant">
@@ -58,7 +58,7 @@
                 </tbody>
             </table>
         </div>
-        <div id="onglet2" class="onglet" style=" display: none; max-height: 300px;">
+        <div id="onglet2" class="onglet" style=" display: none;">
             <!-- Puisque tu a la liste des enseignant dans la variable $enseignants
             tu peux en faire ce que tu veux. Je propose que tu creai pluto un tableau avec leur ID et leur nom
             et tu met des radiobutton a cote pour qu'on coche le proffesseur principale pour cette classe
@@ -72,7 +72,7 @@
             <label>Coeff. </label><input type="text" name="coeff" value="1" max="6" min="1" size="5" />
             <img src="<?php echo SITE_ROOT . "public/img/ajouter.gif"; ?>" />
 
-            <table style="margin-top:5px;" class="dataTable" id="dataTable2">
+            <table class="dataTable" id="dataTable2">
                 <thead><tr><th>Matière</th><th>Enseignants</th><th>Coefficient</th></tr></thead>
                 <tbody>
                    
