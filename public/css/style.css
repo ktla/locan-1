@@ -338,33 +338,42 @@ a{
 
 /** FORMULAIRE */
 
-#page-content span.text{
-    margin-right: 20px;
-    margin-top: 15px;
-    padding: 0;
-    line-height: 15px;
+#page-content span.text, #page-content span.select{
+    display: block;
     float: left;
+    height: 35px;
+    margin-right: 15px;
+    margin-top: 10px;
     position: relative;
 }
-#page-content span label{
-    margin-left: 3px;
-    font-weight: bold;
-    display: block;
+#page-content span.text label, #page-content span.select label{
+    left: 0;
+    margin: 0 0 0 3px;
+    padding: 0;
+    position: absolute;
+    top: 0;
     width: 100%;
 }
-#page-content span input{
-    border: 1px solid #CCC; 
-    display: block;
-    height: 20px;
-    padding-left: 6px;
-    width: 100%;
+#page-content span.text input{
+   height: 14px;
+   left: 2px;
+   line-height: 14px;
+   margin: 0;
+   position: absolute;
+   top: 14px;
+   width: 100%;
 }
 
 
 #page-content span select{
-    height: 24px;
-    border: 1px solid #CCC; 
-    padding-left: 1px;
+   height: 18px;
+   left: 2px;
+   line-height: 14px;
+   margin: 0;
+   padding: 0;
+   position: absolute;
+   top: 14px;
+   width: 100%;
 }
 
 .error{
