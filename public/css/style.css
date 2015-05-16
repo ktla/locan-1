@@ -350,6 +350,7 @@ a{
     margin-left: 3px;
     font-weight: bold;
     display: block;
+    width: 100%;
 }
 #page-content span input{
     border: 1px solid #CCC; 
