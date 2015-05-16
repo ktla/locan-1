@@ -1,3 +1,7 @@
+Time : 20:37:06
+SQLSTATE[42S22]: Column not found: 1054 Champ 'p.IDPROFILE' inconnu dans field list
+Raw SQL : SELECT u.*, p.PROFILE AS FK_PROFILE, p.IDPROFILE AS IDPROFILE FROM users u LEFT JOIN profile p ON u.PROFILE = p.IDPROFILE WHERE u.LOGIN = :login AND u.PASSWORD = :pwd
+
 Time : 18:29:08
 SQLSTATE[HY093]: Invalid parameter number: parameter was not defined
 Raw SQL : SELECT CODEDROIT from listedroits WHERE PROFILE = :profile

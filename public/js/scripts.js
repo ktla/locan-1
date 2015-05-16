@@ -102,7 +102,7 @@ $(document).ready(function () {
     var calendar = webix.ui({
         view: "datepicker",
         container: "date",
-        width: 170,
+        width: 155,
         height: 30,
         placeholder: "JJ-MM-AAAA",
         format: "%d/ %m/ %Y",

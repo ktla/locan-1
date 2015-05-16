@@ -71,13 +71,13 @@ class personnelController extends Controller {
         $this->loadModel("civilite");
          $data = $this->Civilite->selectAll();
         $civilite = new Combobox($data, "civilite", "CIVILITE", "CIVILITE");
-        $view->Assign("civilite", $civilite->view("125px"));
+        $view->Assign("civilite", $civilite->view("150px"));
 
 
         $this->loadModel("function");
          $data = $this->Function->selectAll();
         $functions = new Combobox($data, "function", "IDFUNCTION", "FUNCTION");
-        $view->Assign("functions", $functions->view("125px"));
+        $view->Assign("functions", $functions->view("150px"));
         $content = $view->Render("personnel" . DS . "saisie", false);
         $this->Assign("content", $content);
     }

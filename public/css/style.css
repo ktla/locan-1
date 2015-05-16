@@ -338,40 +338,36 @@ a{
 
 /** FORMULAIRE */
 
-#form-saisi-pers span.text{
+#page-content span.text{
     margin-right: 20px;
     margin-top: 15px;
     padding: 0;
     line-height: 15px;
     float: left;
-    
+    position: relative;
 }
-#form-saisi-pers span label{
+#page-content span label{
     margin-left: 3px;
     font-weight: bold;
-    width: 100%;
+    display: block;
 }
-#form-saisi-pers span input{
+#page-content span input{
     border: 1px solid #CCC; 
     display: block;
     height: 20px;
     padding-left: 6px;
+    width: 100%;
 }
-#form-saisi-pers span.fonction{
-    clear: both;
-}
-#form-saisi-pers span input.grade{
-    width: 250px;
-}
-#form-saisi-pers span select{
+
+
+#page-content span select{
     height: 24px;
     border: 1px solid #CCC; 
     padding-left: 1px;
 }
 
-#form-saisi-pers span.date{
-    position: relative;
-    float: left;
-    top: 13px;
-    margin-bottom: 15px;
+.error{
+    font-weight: bold !important;
+    color: #8B4513;
+    text-align: center;   
 }
