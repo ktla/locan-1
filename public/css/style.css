@@ -33,9 +33,21 @@ html, body{
     background-color: #FFFFFF;
     border-bottom: 3px solid #ff6666;
     /*height: 110px;*/
-    padding: 10px;
-    min-height: 80px;
+    padding: 5px;
+    min-height: 60px;
 
+}
+#page-content #entete .logo{
+    position: absolute;
+    left: 0px;
+    top: 1px;
+    z-index: 2;
+    border: none;
+    float: left;
+}
+#page-content #entete .logo img{
+     height: 70%;
+    width: 70%;
 }
 #page-connect-footer{
     text-decoration:overline;
@@ -59,6 +71,7 @@ html, body{
     min-height: 0;
     font-size: 12px;
     font-weight: bold;
+    
 }
 #page-content .recapitulatif{
     padding: 5px;
@@ -221,7 +234,7 @@ BREADCRUMB
 #page-content fieldset{
     border-radius: 4px;
     display: block;
-    margin-top: 15px;
+    /*margin-top: 15px;*/
     position: relative;
 }
 
@@ -321,4 +334,40 @@ a{
     margin: auto; 
     width: 220px;
     border:1px solid #E1C4C4;
+}
+
+/** FORMULAIRE */
+
+#page-content span.text{
+    margin-right: 20px;
+    margin-top: 15px;
+    padding: 0;
+    line-height: 15px;
+    float: left;
+    position: relative;
+}
+#page-content span label{
+    margin-left: 3px;
+    font-weight: bold;
+    display: block;
+}
+#page-content span input{
+    border: 1px solid #CCC; 
+    display: block;
+    height: 20px;
+    padding-left: 6px;
+    width: 100%;
+}
+
+
+#page-content span select{
+    height: 24px;
+    border: 1px solid #CCC; 
+    padding-left: 1px;
+}
+
+.error{
+    font-weight: bold !important;
+    color: #8B4513;
+    text-align: center;   
 }

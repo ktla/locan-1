@@ -118,11 +118,52 @@ class Database {
         } catch (PDOException $e) {
             # Write into log and display Exception
             echo $this->ExceptionLog($e->getMessage(), $query);
+            //var_dump($e);
             die();
         }
 
         # Reset the parameters
         $this->parameters = array();
+    }
+
+    public function prepare($query) {
+        try {
+            # Connect to database
+            if (!$this->bConnected) {
+                $this->Connect();
+            }
+            $this->sQuery = $this->pdo->prepare($query);
+        } catch (PDOException $e) {
+            # Write into log and display Exception
+            echo $this->ExceptionLog($e->getMessage(), $query);
+            die();
+        }
+    }
+
+    public function execute($parameters = array()) {
+
+        try {
+            # Add parameters to the parameter array	
+            $this->bindMore($parameters);
+
+            # Bind parameters
+            if (!empty($this->parameters)) {
+                foreach ($this->parameters as $param) {
+                    $parameters = explode("\x7F", $param);
+                    $this->sQuery->bindParam($parameters[0], $parameters[1]);
+                }
+            }
+
+            # Execute SQL 
+            return $this->sQuery->execute();
+        } catch (PDOException $e) {
+            # Write into log and display Exception
+            echo $this->ExceptionLog($e->getMessage(), "");
+            die();
+        }
+        # Reset the parameters
+        $this->parameters = array();
+        return NULL;
     }
 
     /**
@@ -243,7 +284,7 @@ class Database {
      */
     private function ExceptionLog($message, $sql = "") {
         $exception = 'Unhandled Exception. <br />';
-        $exception .= $message;
+        $exception .= $message . "<br/> " . $sql;
         $exception .= "<br /> You can find the error back in the log.";
 
         if (!empty($sql)) {
@@ -252,7 +293,7 @@ class Database {
         }
         # Write into log
         $this->log->write($message);
-
+       
         return $exception;
     }
 

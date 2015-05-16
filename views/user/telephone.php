@@ -1,11 +1,26 @@
+<div id="entete"></div>
+<div class="titre">
+
+</div>
 <form action="<?php echo Router::url("user", "telephone"); ?>" method="post" >
-    <fieldset><legend>Changement de num&eacute;ro de t&eacute;l&eacute;phone</legend>
-        <label>Nouveau Num&eacute;ro </label><input type="tel" name="telephone" />
-    <input type="submit" value="OK" />
-    <input type="button" value="Annuler" />
-</fieldset>
+    <div class="page">
+        <fieldset><legend>Changement de num&eacute;ro de t&eacute;l&eacute;phone</legend>
+            <label>Nouveau Num&eacute;ro </label><input type="tel" name="telephone" />
+        </fieldset>
+    </div>
+    <div class="recapitulatif">
+        
+        
+    </div>
+    <div class="navigation">
+         <?php echo btn_ok("document.forms[0].submit();"); ?>
+        <?php echo btn_cancel("document.location=\"". Router::url("user", "fiche") . "\""); ?>
+    </div>
 </form>
+
 <?php
-if($errors){
+if ($errors) {
     echo $message;
 }
+?>
+<div class="status"></div>

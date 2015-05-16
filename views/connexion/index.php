@@ -4,7 +4,7 @@
     </div>
 </div>
 <div id="content" style="margin-top:50px;">
-    <form action ="<?php echo url('connexion'); ?>" method="post">     			
+    <form action ="<?php echo Router::url('connexion'); ?>" method="post">     			
         <div class="contenu">
             <p class="titleconnexion">Institut Polyvalent WAGUE</p>
             <p class="trait"></p>

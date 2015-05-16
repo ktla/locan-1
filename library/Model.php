@@ -49,7 +49,7 @@ class Model extends Database {
             $str .= ":$key,";
         }
         $str = substr($str, 0, strlen($str) - 1);
-        $query = "INSERT INTO `" . $this->_table . "` VALUE ($str)";
+        $query = "INSERT INTO `" . $this->_table . "` VALUES ($str)";
         
         return $this->query($query, $params);
     }

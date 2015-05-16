@@ -27,7 +27,7 @@
     margin: 10px 8px;
     list-style: none;
     text-align: center;
-    width: 180px;
+    /*width: 180px;*/
     
 }
 
@@ -109,7 +109,7 @@
    height: 16px;
    width: 16px;
    float: left;
-   left: 10px;
+   left: 5px;
 }
 
 #menu-accordeon a {
@@ -125,7 +125,7 @@
    width: 100%;
    display: block;
    text-align: left;
-   padding-left: 33px;
+   padding-left: 25px;
 }
 
 

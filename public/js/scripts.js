@@ -1,10 +1,13 @@
+//$('div.dataTables_scrollBody').height( 100 );
 $(document).ready(function () {
     $('#dataTable, #dataTable2').DataTable({
         "aaSorting": [],
         "scrollCollapse": true,
-        "scrollY": "400px",
-        
+        "scrollY": 470,
         "pageLength": 200,
+        //"paging" : false,
+        //"searching" :false,
+        //"bInfo" :false,
         "language": {
             "sProcessing": "Traitement en cours...",
             "sSearch": "Rechercher&nbsp;:",
@@ -46,7 +49,7 @@ function deleteRow(_url, name) {
     });
 }
 
-function editRow(_url){
+function editRow(_url) {
     document.location = _url;
 }
 /*
@@ -90,10 +93,31 @@ $(document).ready(function () {
     //headerHeight = headerHeight.substring(0, headerHeight.indexOf("p"));
     var max = $(window).height() - 154;
     $("#menu").css({maxHeight: max});
-    var h = $("#entete").height() + $(".navigation").height() + $(".recapitulatif").height() + $(".status").height() + $(".titre").height();
-    $(".page").css({height: $(window).height() - h - 107});
+    var h = $("#entete").height() + $(".navigation").height() + $(".recapitulatif").height()
+            + $(".status").height() + $(".titre").height();
+    $(".page").css({height: $(window).height() - h - 97});
     //$("#entete").css({height: 154});
     //$("#page-content").css({maxHeight: window.innerHeight - 10});
+
+    var calendar = webix.ui({
+        view: "datepicker",
+        container: "date",
+        width: 155,
+        height: 30,
+        placeholder: "JJ-MM-AAAA",
+        format: "%d/ %m/ %Y",
+        stringResult: true
+    });
+
+
+
+    var form_saisi_pers = function () {
+        var date = calendar.getValue(),
+                dates = date.split(' ');
+        document.getElementById("datenaiss").value = dates[0];
+
+    };
+    document.getElementById("saisi_pers").addEventListener("submit", form_saisi_pers, false);
 });
 
 function onglets(premier, actuel, nombre) {

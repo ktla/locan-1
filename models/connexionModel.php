@@ -10,13 +10,16 @@ class connexionModel extends Model {
     }
 
     public function authenticate($login, $pwd) {
-        $query = "SELECT * FROM users WHERE LOGIN = :login AND PASSWORD = :pwd";
+        $query = "SELECT u.*, p.PROFILE AS FK_PROFILE, p.IDPROFILE AS IDPROFILE FROM users u "
+                . "LEFT JOIN profile p ON u.PROFILE = p.IDPROFILE "
+                . "WHERE u.LOGIN = :login AND u.PASSWORD = :pwd";
         $res = $this->row($query, array("login" => $login,
             "pwd" => $pwd));
         
         if(is_array($res)){
             $val = count($res);
-            $_SESSION['profile'] = $res['PROFILE'];
+            $_SESSION['profile'] = $res['FK_PROFILE'];
+            $_SESSION['idprofile'] = $res['IDPROFILE'];
             return ($val != 0);
         }else{
             return $res;

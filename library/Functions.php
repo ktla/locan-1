@@ -32,9 +32,23 @@ function url($controller = "index", $action = "", $query = "") {
  * @param type $codedroit
  * @return boolean
  */
+
 function isAuth($codedroit){
+    //var_dump($_SESSION['droits']);die();
     if(in_array($codedroit, $_SESSION['droits'])){
         return true;
     }
     return false;
+}
+
+
+function btn_add($action){
+    return "<img src = '" . SITE_ROOT  . "public/img/btn_add.png' onclick = '".$action."'/>";
+}
+function btn_cancel($action){
+    return "<img src = '" . SITE_ROOT  . "public/img/btn_cancel.png' onclick = '".$action."'/>";
+}
+
+function btn_ok($action){
+    return "<img src = \"" . SITE_ROOT  . "public/img/btn_ok.png \" onclick = \"".$action."\"/>";
 }

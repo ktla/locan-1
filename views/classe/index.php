@@ -1,11 +1,14 @@
+<div id="entete">
+    Information relative a afficher<br/>
+    Confere easyscol page classe
+</div>
 <div class="titre">
     Gestion des classes
 </div>
-<div style="margin: 10px;text-align: center;"><h1>Information relative a afficher<br/>
-        Confere easyscol page classe</h1></div>
 
-<div class="page" style="">
-    <form action="<?php echo url('classe', 'saisie'); ?>" method="post">
+
+<form action="<?php echo url('classe', 'saisie'); ?>" method="post">
+    <div class="page" style="">
         <div class="tabs" style="width: 100%">
             <ul>
                 <li id="tab1" class="courant">
@@ -26,11 +29,14 @@
                         Emploi du temps
                     </a>
                 </li>
-                
+
             </ul>
         </div>
         <div id="onglet1" class="onglet" style="display: block;">Liste des eleves</div>
         <div id="onglet2" class="onglet" style="display: none;">liste des enseignant</div>
         <div id="onglet3" class="onglet" style="display: none;">Emploi du temps de la classe</div>
-    </form>
-</div>
+    </div>
+    <div class="recapitulatif"></div>
+    <div class="navigation"></div>
+</form>
+<div class="status"></div>

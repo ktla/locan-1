@@ -47,7 +47,7 @@ class personnelController extends Controller {
         $view->Assign('errors', false);
 
         if (isset($this->request->nom) && isset($this->request->function)) {
-            $generer = substr($pers->nom, 0, strlen($pers->nom)) . rand(0, 500);
+            $generer = substr($this->request->nom, 0, strlen($this->request->nom)) . rand(0, 500);
             $params = [
                 "id" => $generer,
                 "civilite" => $this->request->civilite,
@@ -71,13 +71,13 @@ class personnelController extends Controller {
         $this->loadModel("civilite");
          $data = $this->Civilite->selectAll();
         $civilite = new Combobox($data, "civilite", "CIVILITE", "CIVILITE");
-        $view->Assign("civilite", $civilite->view("25%"));
+        $view->Assign("civilite", $civilite->view("150px"));
 
 
         $this->loadModel("function");
          $data = $this->Function->selectAll();
         $functions = new Combobox($data, "function", "IDFUNCTION", "FUNCTION");
-        $view->Assign("functions", $functions->view("25%"));
+        $view->Assign("functions", $functions->view("150px"));
         $content = $view->Render("personnel" . DS . "saisie", false);
         $this->Assign("content", $content);
     }

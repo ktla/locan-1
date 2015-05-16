@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 11 Mai 2015 à 23:45
+-- Généré le :  Sam 16 Mai 2015 à 21:19
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -118,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `connexions` (
   `DATEFIN` datetime DEFAULT NULL,
   `DECONNEXION` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`IDCONNEXION`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=56 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=146 ;
 
 --
 -- Contenu de la table `connexions`
@@ -179,7 +179,97 @@ INSERT INTO `connexions` (`IDCONNEXION`, `COMPTE`, `DATEDEBUT`, `MACHINESOURCE`,
 (52, 'armel', '2015-05-11 21:15:56', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-11 21:36:21', 'Session expriÃ©e'),
 (53, 'armel', '2015-05-11 21:47:20', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-11 21:59:35', 'Session fermÃ©e correctement'),
 (54, 'jp', '2015-05-11 21:59:42', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-11 22:17:25', 'Session expriÃ©e'),
-(55, 'jp', '2015-05-11 22:21:04', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', '');
+(55, 'jp', '2015-05-11 22:21:04', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(56, 'jp', '2015-05-12 07:38:49', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-12 07:48:49', 'Session expriÃ©e'),
+(57, 'armel', '2015-05-12 07:40:55', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-12 07:50:55', 'Session expriÃ©e'),
+(58, 'jp', '2015-05-12 07:53:25', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-12 08:17:47', 'Session expriÃ©e'),
+(59, 'armel', '2015-05-12 07:53:40', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-12 08:18:12', 'Session expriÃ©e'),
+(60, 'armel', '2015-05-12 08:22:20', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-12 08:33:19', 'Session expriÃ©e'),
+(61, 'jp', '2015-05-12 08:22:34', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-12 08:33:28', 'Session expriÃ©e'),
+(62, 'jp', '2015-05-12 10:11:47', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-12 11:38:35', 'Session expriÃ©e'),
+(63, 'armel', '2015-05-12 10:18:07', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-12 10:20:34', 'Session fermÃ©e correctement'),
+(64, 'armel', '2015-05-12 10:20:46', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-12 12:42:55', 'Session expriÃ©e'),
+(65, 'jp', '2015-05-12 11:22:58', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-12 11:38:38', 'Session expriÃ©e'),
+(66, 'jp', '2015-05-12 11:43:38', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-12 11:59:02', 'Session expriÃ©e'),
+(67, 'jp', '2015-05-12 11:44:51', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-12 11:58:07', 'Session expriÃ©e'),
+(68, 'jp', '2015-05-12 12:06:40', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-12 12:39:49', 'Session expriÃ©e'),
+(69, 'armel', '2015-05-12 13:49:58', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-12 14:05:01', 'Session expriÃ©e'),
+(70, 'jp', '2015-05-12 13:52:44', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(71, 'armel', '2015-05-12 14:59:56', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-12 15:17:55', 'Session expriÃ©e'),
+(72, 'jp', '2015-05-12 15:05:28', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-12 15:19:32', 'Session expriÃ©e'),
+(73, 'armel', '2015-05-12 16:00:04', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-12 17:21:12', 'Session expriÃ©e'),
+(74, 'jp', '2015-05-12 16:06:28', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-12 16:34:16', 'Session expriÃ©e'),
+(75, 'jp', '2015-05-12 16:07:04', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-12 16:32:03', 'Session expriÃ©e'),
+(76, 'jp', '2015-05-12 16:36:48', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-12 18:27:47', 'Session expriÃ©e'),
+(77, 'armel', '2015-05-12 17:31:29', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-12 17:56:40', 'Session expriÃ©e'),
+(78, 'jp', '2015-05-12 17:34:06', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(79, 'armel', '2015-05-12 18:05:34', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-12 18:24:35', 'Session expriÃ©e'),
+(80, 'jp', '2015-05-12 18:33:56', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-12 18:45:22', 'Session expriÃ©e'),
+(81, 'armel', '2015-05-12 18:55:22', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-12 19:05:37', 'Session expriÃ©e'),
+(82, 'jp', '2015-05-12 18:56:06', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-12 19:06:09', 'Session expriÃ©e'),
+(83, 'armel', '2015-05-12 19:13:45', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-12 19:23:45', 'Session expriÃ©e'),
+(84, 'armel', '2015-05-12 20:21:33', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-12 21:01:39', 'Session expriÃ©e'),
+(85, 'jp', '2015-05-12 21:09:05', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-12 21:19:59', 'Session expriÃ©e'),
+(86, 'armel', '2015-05-12 21:10:19', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(87, 'jp', '2015-05-12 21:35:46', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-12 21:49:22', 'Session expriÃ©e'),
+(88, 'jp', '2015-05-12 22:50:07', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(89, 'jp', '2015-05-13 13:15:12', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-13 13:25:42', 'Session expriÃ©e'),
+(90, 'jp', '2015-05-13 13:41:02', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-13 13:52:51', 'Session expriÃ©e'),
+(91, 'jp', '2015-05-13 18:38:38', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(92, 'jp', '2015-05-13 20:15:55', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(93, 'armel', '2015-05-14 07:46:36', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-14 08:19:45', 'Session expriÃ©e'),
+(94, 'jp', '2015-05-14 08:08:02', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-14 08:18:06', 'Session expriÃ©e'),
+(95, 'armel', '2015-05-14 08:24:40', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-14 08:30:26', 'Session fermÃ©e correctement'),
+(96, 'jp', '2015-05-14 08:26:06', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-14 08:28:45', 'Session fermÃ©e correctement'),
+(97, 'jp', '2015-05-14 08:28:47', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-14 08:46:34', 'Session expriÃ©e'),
+(98, 'armel', '2015-05-14 08:30:30', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(99, 'armel', '2015-05-14 08:30:49', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-14 08:30:54', 'Session fermÃ©e correctement'),
+(100, 'armel', '2015-05-14 08:30:58', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(101, 'armel', '2015-05-14 08:33:24', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-14 08:33:35', 'Session fermÃ©e correctement'),
+(102, 'armel', '2015-05-14 08:33:39', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(103, 'armel', '2015-05-14 08:37:42', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-14 08:47:54', 'Session expriÃ©e'),
+(104, 'armel', '2015-05-14 08:49:10', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-14 08:51:49', 'Session fermÃ©e correctement'),
+(105, 'jp', '2015-05-14 08:49:32', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-14 09:00:52', 'Session fermÃ©e correctement'),
+(106, 'armel', '2015-05-14 08:52:11', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-14 09:02:11', 'Session expriÃ©e'),
+(107, 'jp', '2015-05-14 09:01:02', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(108, 'jp', '2015-05-14 09:01:34', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-14 09:13:07', 'Session expriÃ©e'),
+(109, 'armel', '2015-05-14 10:07:58', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-14 10:17:58', 'Session expriÃ©e'),
+(110, 'armel', '2015-05-14 10:26:08', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-14 10:36:11', 'Session expriÃ©e'),
+(111, 'jp', '2015-05-14 11:23:34', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-14 11:45:43', 'Session expriÃ©e'),
+(112, 'jp', '2015-05-14 11:53:18', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-14 12:17:34', 'Session expriÃ©e'),
+(113, 'armel', '2015-05-14 14:06:52', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-14 14:26:58', 'Session expriÃ©e'),
+(114, 'jp', '2015-05-14 20:44:29', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(115, 'armel', '2015-05-14 20:52:43', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(116, 'armel', '2015-05-14 21:31:02', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-14 21:41:02', 'Session expriÃ©e'),
+(117, 'armel', '2015-05-14 21:44:00', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-14 21:54:00', 'Session expriÃ©e'),
+(118, 'armel', '2015-05-14 21:55:48', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-14 22:08:57', 'Session expriÃ©e'),
+(119, 'jp', '2015-05-14 22:52:56', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(120, 'armel', '2015-05-14 22:53:12', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-14 23:03:12', 'Session expriÃ©e'),
+(121, 'armel', '2015-05-15 11:37:14', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-15 12:51:26', 'Session expriÃ©e'),
+(122, 'armel', '2015-05-15 12:52:25', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-15 13:03:34', 'Session expriÃ©e'),
+(123, 'armel', '2015-05-15 13:07:29', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-15 13:22:22', 'Session expriÃ©e'),
+(124, 'jp', '2015-05-15 13:54:13', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-15 14:12:08', 'Session expriÃ©e'),
+(125, 'jp', '2015-05-15 17:07:29', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-15 17:26:15', 'Session expriÃ©e'),
+(126, 'armel', '2015-05-15 17:31:35', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-15 17:41:40', 'Session expriÃ©e'),
+(127, 'jp', '2015-05-15 17:35:30', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-15 18:30:57', 'Session expriÃ©e'),
+(128, 'armel', '2015-05-15 17:51:18', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-15 18:01:23', 'Session expriÃ©e'),
+(129, 'jp', '2015-05-15 18:53:54', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-15 19:16:46', 'Session expriÃ©e'),
+(130, 'armel', '2015-05-15 19:52:43', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-15 20:02:50', 'Session expriÃ©e'),
+(131, 'jp', '2015-05-15 20:02:35', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-15 20:13:48', 'Session expriÃ©e'),
+(132, 'jp', '2015-05-15 20:17:09', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(133, 'armel', '2015-05-15 21:03:35', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-15 21:13:35', 'Session expriÃ©e'),
+(134, 'armel', '2015-05-15 21:23:35', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-15 21:33:35', 'Session expriÃ©e'),
+(135, 'jp', '2015-05-15 21:24:03', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-15 21:40:36', 'Session expriÃ©e'),
+(136, 'armel', '2015-05-16 14:52:17', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-16 15:29:20', 'Session expriÃ©e'),
+(137, 'jp', '2015-05-16 15:04:12', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(138, 'armel', '2015-05-16 16:33:47', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-16 16:46:26', 'Session expriÃ©e'),
+(139, 'armel', '2015-05-16 16:52:02', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-16 17:12:21', 'Session expriÃ©e'),
+(140, 'jp', '2015-05-16 17:38:07', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-16 17:47:56', 'Session fermÃ©e correctement'),
+(141, 'armel', '2015-05-16 17:40:49', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-16 17:48:23', 'Session fermÃ©e correctement'),
+(142, 'jp', '2015-05-16 17:47:59', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-16 18:05:51', 'Session expriÃ©e'),
+(143, 'armel', '2015-05-16 17:48:27', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-16 18:19:42', 'Session expriÃ©e'),
+(144, 'jp', '2015-05-16 18:13:01', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(145, 'armel', '2015-05-16 18:28:48', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -257,7 +347,7 @@ INSERT INTO `droits` (`IDDROIT`, `CODEDROIT`, `LIBELLE`) VALUES
 (37, '505', 'Saisie des classes'),
 (38, '506', 'Saisie des emplois du temps'),
 (39, '601', 'Options générales'),
-(40, '602', 'Mot de passe administrateur'),
+(40, '602', 'Tous les mots de passe'),
 (41, '603', 'Gestion des utilisateurs'),
 (42, '604', 'Droits d''accès utilisateurs'),
 (43, '605', 'Calendrier scolaire'),
@@ -423,7 +513,7 @@ INSERT INTO `groupemenus` (`IDGROUPE`, `LIBELLE`, `ICON`, `ALT`, `TITLE`) VALUES
 
 CREATE TABLE IF NOT EXISTS `listedroits` (
   `CODEDROIT` varchar(10) NOT NULL,
-  `PROFILE` varchar(100) NOT NULL,
+  `PROFILE` int(11) NOT NULL,
   PRIMARY KEY (`CODEDROIT`,`PROFILE`),
   KEY `PROFILE` (`PROFILE`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -433,41 +523,59 @@ CREATE TABLE IF NOT EXISTS `listedroits` (
 --
 
 INSERT INTO `listedroits` (`CODEDROIT`, `PROFILE`) VALUES
-('101', 'Administrateur'),
-('102', 'Administrateur'),
-('103', 'Administrateur'),
-('104', 'Administrateur'),
-('105', 'Administrateur'),
-('201', 'Administrateur'),
-('202', 'Administrateur'),
-('203', 'Administrateur'),
-('204', 'Administrateur'),
-('205', 'Administrateur'),
-('206', 'Administrateur'),
-('207', 'Administrateur'),
-('301', 'Administrateur'),
-('302', 'Administrateur'),
-('303', 'Administrateur'),
-('304', 'Administrateur'),
-('305', 'Administrateur'),
-('306', 'Administrateur'),
-('307', 'Administrateur'),
-('308', 'Administrateur'),
-('401', 'Administrateur'),
-('402', 'Administrateur'),
-('403', 'Administrateur'),
-('404', 'Administrateur'),
-('501', 'Administrateur'),
-('502', 'Administrateur'),
-('503', 'Administrateur'),
-('504', 'Administrateur'),
-('505', 'Administrateur'),
-('506', 'Administrateur'),
-('507', 'Administrateur'),
-('601', 'Administrateur'),
-('602', 'Administrateur'),
-('603', 'Administrateur'),
-('604', 'Administrateur');
+('101', 1),
+('102', 1),
+('103', 1),
+('104', 1),
+('105', 1),
+('201', 1),
+('202', 1),
+('203', 1),
+('204', 1),
+('205', 1),
+('206', 1),
+('207', 1),
+('301', 1),
+('302', 1),
+('303', 1),
+('304', 1),
+('305', 1),
+('306', 1),
+('307', 1),
+('308', 1),
+('309', 1),
+('310', 1),
+('311', 1),
+('312', 1),
+('313', 1),
+('314', 1),
+('401', 1),
+('402', 1),
+('403', 1),
+('404', 1),
+('501', 1),
+('502', 1),
+('503', 1),
+('504', 1),
+('505', 1),
+('506', 1),
+('507', 1),
+('601', 1),
+('602', 1),
+('603', 1),
+('604', 1),
+('605', 1),
+('701', 1),
+('702', 1),
+('801', 1),
+('802', 1),
+('803', 1),
+('101', 2),
+('102', 2),
+('103', 2),
+('104', 2),
+('105', 2),
+('101', 3);
 
 -- --------------------------------------------------------
 
@@ -480,10 +588,14 @@ CREATE TABLE IF NOT EXISTS `locan` (
   `NOM` varchar(150) NOT NULL,
   `RESPONSABLE` varchar(150) NOT NULL,
   `ADRESSE` varchar(150) NOT NULL,
+  `BP` varchar(10) DEFAULT NULL,
   `TELEPHONE` varchar(30) NOT NULL,
   `TELEPHONE2` varchar(30) NOT NULL,
   `MOBILE` varchar(30) NOT NULL,
+  `FAX` varchar(30) CHARACTER SET ucs2 DEFAULT NULL,
   `EMAIL` varchar(30) DEFAULT NULL,
+  `SITEWEB` varchar(30) DEFAULT NULL,
+  `LOGO` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -491,8 +603,8 @@ CREATE TABLE IF NOT EXISTS `locan` (
 -- Contenu de la table `locan`
 --
 
-INSERT INTO `locan` (`ID`, `NOM`, `RESPONSABLE`, `ADRESSE`, `TELEPHONE`, `TELEPHONE2`, `MOBILE`, `EMAIL`) VALUES
-('IPW', 'Institut Polyvalent WAGUE', 'Mme WACGUE', 'Route vers SOA', '+237654258182', '+237958652142', '+237584961536', 'institutwague@gmail.com');
+INSERT INTO `locan` (`ID`, `NOM`, `RESPONSABLE`, `ADRESSE`, `BP`, `TELEPHONE`, `TELEPHONE2`, `MOBILE`, `FAX`, `EMAIL`, `SITEWEB`, `LOGO`) VALUES
+('IPW', 'Institut Polyvalent WAGUE', 'Mme WACGUE', 'Route vers SOA', NULL, '+237654258182', '+237958652142', '+237584961536', NULL, 'institutwague@gmail.com', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -522,8 +634,6 @@ INSERT INTO `matieres` (`CODE`, `LIBELLE`) VALUES
 ('geqr', 'erger'),
 ('gwerge', 'berherhtre'),
 ('hwerher', 'vefert'),
-('hrthr', 'erther'),
-('erger', 'gerge'),
 ('herthert', 'erthret'),
 ('ernr', 'erhre'),
 ('gerg', 'werger'),
@@ -531,8 +641,8 @@ INSERT INTO `matieres` (`CODE`, `LIBELLE`) VALUES
 ('rthre', 'rthret'),
 ('math', 'mathÃ©matique'),
 ('ntjty', 'rtrjht'),
-('gergr', 'vevrt'),
-('transformation', 'transforme');
+('transformation', 'transforme'),
+('rthrthrt', 'ukykt');
 
 -- --------------------------------------------------------
 
@@ -552,14 +662,14 @@ CREATE TABLE IF NOT EXISTS `menus` (
   PRIMARY KEY (`IDMENUS`),
   KEY `CODEDROIT` (`CODEDROIT`),
   KEY `IDGROUPE` (`IDGROUPE`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
 
 --
 -- Contenu de la table `menus`
 --
 
 INSERT INTO `menus` (`IDMENUS`, `IDGROUPE`, `LIBELLE`, `HREF`, `ICON`, `CODEDROIT`, `ALT`, `TITLE`) VALUES
-(1, 1, 'Mot de passe', 'user/mdp', 'mdp.png', '101', NULL, NULL),
+(1, 1, 'Mon mot de passe', 'user/mdp', 'mdp.png', '101', NULL, NULL),
 (2, 1, 'Mon email', 'user/email', 'email.png', '102', NULL, NULL),
 (3, 1, 'Mes connexions', 'user/connexion', 'connexion.png', '103', NULL, NULL),
 (4, 1, 'Mon téléphone', 'user/telephone', 'telephone.png', '104', NULL, NULL),
@@ -581,7 +691,23 @@ INSERT INTO `menus` (`IDMENUS`, `IDGROUPE`, `LIBELLE`, `HREF`, `ICON`, `CODEDROI
 (20, 4, 'Saisie notes', 'note/saisie', 'addnote.png', '401', NULL, NULL),
 (21, 4, 'Récapitulatif', 'note/recapitulatif', 'recapitulatif.png', '402', NULL, NULL),
 (22, 4, 'Bilans bulletins', 'note/bilan', 'bilan.png', '403', NULL, NULL),
-(23, 2, 'Enseignants', 'enseignant', 'enseignant.png', '207', NULL, 'Gestion des enseignants');
+(23, 2, 'Enseignants', 'enseignant', 'enseignant.png', '207', NULL, 'Gestion des enseignants'),
+(24, 3, 'Absences du jour', 'salle/absence', 'absence.png', '302', NULL, NULL),
+(25, 3, 'Consultation des absences', 'salle/consultation', 'consultation.png', '303', NULL, NULL),
+(26, 3, 'Suivi des absences', 'absence/suivi', 'suivi.png', '304', NULL, NULL),
+(27, 3, 'Saisie d''une absence', 'absence/saisie', 'absence.png', '305', NULL, NULL),
+(28, 3, 'Justification des absences', 'absence/justification', 'justification.png', '306', NULL, NULL),
+(29, 3, 'Envoi de SMS', 'sms/envoi', 'envoi.png', '307', NULL, NULL),
+(30, 3, 'Suivi des SMS', 'sms/suivi', 'suivi.png', '308', NULL, NULL),
+(31, 3, 'Saisie des appréciations', 'salle/appreciation', 'appreciation.png', '309', NULL, NULL),
+(32, 3, 'Passages à l''infirmerie', 'infirmerie/passage', 'passage.png', '310', NULL, NULL),
+(33, 3, 'Punitions', 'punition', 'punition.png', '311', NULL, NULL),
+(34, 3, 'Sanctions', 'salle/sanction', 'sanction.png', '312', NULL, NULL),
+(35, 3, 'Paramétrage des justification', 'absence/parametrage', 'parametrage.png', '313', NULL, NULL),
+(36, 6, 'Options générales', 'parametres/options', 'option.png', '601', NULL, NULL),
+(37, 6, 'Tous les mots de passe', 'parametres/mdp', 'mdp.png', '602', NULL, NULL),
+(38, 6, 'Gestion des droits d''accès', 'user/droits', 'droit.png', '604', NULL, NULL),
+(39, 6, 'Calendrier scolaire', 'etablissement/calendrier', 'calendrier.png', '605', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -682,8 +808,11 @@ INSERT INTO `personnels` (`IDPERSONNEL`, `LOGIN`, `CIVILITE`, `NOM`, `PRENOM`, `
 ('ADMIN', 'bruno', 'M.', 'Bruno', 'Bruno', '', 4, NULL, NULL, NULL, '', NULL),
 ('ADMIN2', 'jp', 'M.', 'Ainam', 'Jean-paul', '', 3, NULL, '2015-05-05', NULL, '235', 'jpainam@gmail.com'),
 ('ASSIST01', 'estelle', 'Mme', 'Estelle', 'Estelle', '', 1, NULL, NULL, NULL, '', NULL),
+('gerge301', NULL, 'Mlle', 'gerge', 'wregerg', 'strsre', 1, 'wehewh', '0000-00-00', 'ergwre', 'gwerge', NULL),
 ('PERSO01', 'nom1', 'M.', 'Nom1', 'Prenom2', '', 1, NULL, NULL, NULL, '+237652289165', NULL),
-('PESO02', 'nom2', 'Mme', 'Nom2', 'Prenom2', '', 2, NULL, NULL, NULL, '+237698106057', NULL);
+('PESO02', 'nom2', 'Mme', 'Nom2', 'Prenom2', '', 2, NULL, NULL, NULL, '+237698106057', NULL),
+('rnbethrt386', NULL, 'M.', 'rnbethrt', 'rtrthr', 'nethet', 1, 'retherthjr', '0000-00-00', 'entnt', 'htrhtr', NULL),
+('rntnr331', NULL, 'M.', 'rntnr', 'rgnr', 'thnt', 2, '4threhr', '0000-00-00', 'wrbrt', 'wrbrt', NULL);
 
 -- --------------------------------------------------------
 
@@ -692,18 +821,22 @@ INSERT INTO `personnels` (`IDPERSONNEL`, `LOGIN`, `CIVILITE`, `NOM`, `PRENOM`, `
 --
 
 CREATE TABLE IF NOT EXISTS `profile` (
+  `IDPROFILE` int(11) NOT NULL AUTO_INCREMENT,
   `PROFILE` varchar(100) NOT NULL,
-  `DROIT` blob NOT NULL,
-  PRIMARY KEY (`PROFILE`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`IDPROFILE`),
+  KEY `PROFILE` (`PROFILE`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Contenu de la table `profile`
 --
 
-INSERT INTO `profile` (`PROFILE`, `DROIT`) VALUES
-('Administrateur', ''),
-('Enseignant', '');
+INSERT INTO `profile` (`IDPROFILE`, `PROFILE`) VALUES
+(1, 'Administrateur'),
+(2, 'Assistant de bureau'),
+(3, 'Enseignant'),
+(4, 'Infirmerie'),
+(5, 'Responsable');
 
 -- --------------------------------------------------------
 
@@ -733,7 +866,7 @@ CREATE TABLE IF NOT EXISTS `responsables` (
 CREATE TABLE IF NOT EXISTS `users` (
   `LOGIN` varchar(80) CHARACTER SET utf8 NOT NULL,
   `PASSWORD` text CHARACTER SET utf8 NOT NULL,
-  `PROFILE` varchar(100) DEFAULT NULL,
+  `PROFILE` int(11) DEFAULT NULL,
   `DROITSPECIFIQUE` text,
   `ACTIF` int(11) NOT NULL DEFAULT '1' COMMENT 'Actif = 1 et 0 = Non actif (cad bloquee)',
   PRIMARY KEY (`LOGIN`),
@@ -746,12 +879,12 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`LOGIN`, `PASSWORD`, `PROFILE`, `DROITSPECIFIQUE`, `ACTIF`) VALUES
-('armel', '069a6a9ccaaca7967a0c43cb5e161187', 'Administrateur', NULL, 1),
-('bruno', 'md5(''bruno'')', 'Enseignant', NULL, 1),
-('estelle', 'md5(''estelle'')', 'Enseignant', NULL, 1),
-('jp', '55add3d845bfcd87a9b0949b0da49c0a', 'Administrateur', NULL, 1),
-('nom1', 'md5(''nom1'')', 'Enseignant', NULL, 1),
-('nom2', 'md5(''nom2'')', 'Enseignant', NULL, 1);
+('armel', '069a6a9ccaaca7967a0c43cb5e161187', 1, NULL, 1),
+('bruno', 'md5(''bruno'')', 1, NULL, 1),
+('estelle', 'md5(''estelle'')', 2, NULL, 1),
+('jp', '55add3d845bfcd87a9b0949b0da49c0a', 1, NULL, 1),
+('nom1', 'md5(''nom1'')', 2, NULL, 1),
+('nom2', 'md5(''nom2'')', 1, NULL, 1);
 
 --
 -- Contraintes pour les tables exportées
@@ -777,8 +910,8 @@ ALTER TABLE `eleves`
 -- Contraintes pour la table `listedroits`
 --
 ALTER TABLE `listedroits`
-  ADD CONSTRAINT `listedroits_ibfk_1` FOREIGN KEY (`CODEDROIT`) REFERENCES `droits` (`CODEDROIT`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `listedroits_ibfk_2` FOREIGN KEY (`PROFILE`) REFERENCES `profile` (`PROFILE`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `listedroits_ibfk_2` FOREIGN KEY (`PROFILE`) REFERENCES `profile` (`IDPROFILE`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `listedroits_ibfk_1` FOREIGN KEY (`CODEDROIT`) REFERENCES `droits` (`CODEDROIT`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `menus`
@@ -804,7 +937,7 @@ ALTER TABLE `responsables`
 -- Contraintes pour la table `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`PROFILE`) REFERENCES `profile` (`PROFILE`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`PROFILE`) REFERENCES `profile` (`IDPROFILE`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

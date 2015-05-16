@@ -83,7 +83,7 @@ class DateFR {
                 }
                 if (date("d", time()) === $this->getDate() + 1)
                     return "Hier " . date("H:i", $this->strtime);
-                return $this->getDate() . " " . $this->getMois($len);
+                return $this->getDate() . " " . $this->getMois($len) . " à " . $this->getTime();
             }//Si c'est pas le mois actuel
             return $this->getDate() . " " . $this->getMois($len);
         }//Si c'est pas l'annee actuelle alors afficher
