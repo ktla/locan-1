@@ -32,7 +32,9 @@ function url($controller = "index", $action = "", $query = "") {
  * @param type $codedroit
  * @return boolean
  */
+
 function isAuth($codedroit){
+    //var_dump($_SESSION['droits']);die();
     if(in_array($codedroit, $_SESSION['droits'])){
         return true;
     }

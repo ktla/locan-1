@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 15 Mai 2015 à 12:26
+-- Généré le :  Sam 16 Mai 2015 à 21:19
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -118,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `connexions` (
   `DATEFIN` datetime DEFAULT NULL,
   `DECONNEXION` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`IDCONNEXION`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=121 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=146 ;
 
 --
 -- Contenu de la table `connexions`
@@ -244,7 +244,32 @@ INSERT INTO `connexions` (`IDCONNEXION`, `COMPTE`, `DATEDEBUT`, `MACHINESOURCE`,
 (117, 'armel', '2015-05-14 21:44:00', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-14 21:54:00', 'Session expriÃ©e'),
 (118, 'armel', '2015-05-14 21:55:48', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-14 22:08:57', 'Session expriÃ©e'),
 (119, 'jp', '2015-05-14 22:52:56', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
-(120, 'armel', '2015-05-14 22:53:12', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', '');
+(120, 'armel', '2015-05-14 22:53:12', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-14 23:03:12', 'Session expriÃ©e'),
+(121, 'armel', '2015-05-15 11:37:14', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-15 12:51:26', 'Session expriÃ©e'),
+(122, 'armel', '2015-05-15 12:52:25', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-15 13:03:34', 'Session expriÃ©e'),
+(123, 'armel', '2015-05-15 13:07:29', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-15 13:22:22', 'Session expriÃ©e'),
+(124, 'jp', '2015-05-15 13:54:13', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-15 14:12:08', 'Session expriÃ©e'),
+(125, 'jp', '2015-05-15 17:07:29', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-15 17:26:15', 'Session expriÃ©e'),
+(126, 'armel', '2015-05-15 17:31:35', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-15 17:41:40', 'Session expriÃ©e'),
+(127, 'jp', '2015-05-15 17:35:30', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-15 18:30:57', 'Session expriÃ©e'),
+(128, 'armel', '2015-05-15 17:51:18', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-15 18:01:23', 'Session expriÃ©e'),
+(129, 'jp', '2015-05-15 18:53:54', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-15 19:16:46', 'Session expriÃ©e'),
+(130, 'armel', '2015-05-15 19:52:43', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-15 20:02:50', 'Session expriÃ©e'),
+(131, 'jp', '2015-05-15 20:02:35', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-15 20:13:48', 'Session expriÃ©e'),
+(132, 'jp', '2015-05-15 20:17:09', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(133, 'armel', '2015-05-15 21:03:35', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-15 21:13:35', 'Session expriÃ©e'),
+(134, 'armel', '2015-05-15 21:23:35', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-15 21:33:35', 'Session expriÃ©e'),
+(135, 'jp', '2015-05-15 21:24:03', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-15 21:40:36', 'Session expriÃ©e'),
+(136, 'armel', '2015-05-16 14:52:17', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-16 15:29:20', 'Session expriÃ©e'),
+(137, 'jp', '2015-05-16 15:04:12', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(138, 'armel', '2015-05-16 16:33:47', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-16 16:46:26', 'Session expriÃ©e'),
+(139, 'armel', '2015-05-16 16:52:02', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-16 17:12:21', 'Session expriÃ©e'),
+(140, 'jp', '2015-05-16 17:38:07', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-16 17:47:56', 'Session fermÃ©e correctement'),
+(141, 'armel', '2015-05-16 17:40:49', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-16 17:48:23', 'Session fermÃ©e correctement'),
+(142, 'jp', '2015-05-16 17:47:59', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-16 18:05:51', 'Session expriÃ©e'),
+(143, 'armel', '2015-05-16 17:48:27', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-16 18:19:42', 'Session expriÃ©e'),
+(144, 'jp', '2015-05-16 18:13:01', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(145, 'armel', '2015-05-16 18:28:48', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -322,7 +347,7 @@ INSERT INTO `droits` (`IDDROIT`, `CODEDROIT`, `LIBELLE`) VALUES
 (37, '505', 'Saisie des classes'),
 (38, '506', 'Saisie des emplois du temps'),
 (39, '601', 'Options générales'),
-(40, '602', 'Mot de passe administrateur'),
+(40, '602', 'Tous les mots de passe'),
 (41, '603', 'Gestion des utilisateurs'),
 (42, '604', 'Droits d''accès utilisateurs'),
 (43, '605', 'Calendrier scolaire'),
@@ -488,7 +513,7 @@ INSERT INTO `groupemenus` (`IDGROUPE`, `LIBELLE`, `ICON`, `ALT`, `TITLE`) VALUES
 
 CREATE TABLE IF NOT EXISTS `listedroits` (
   `CODEDROIT` varchar(10) NOT NULL,
-  `PROFILE` varchar(100) NOT NULL,
+  `PROFILE` int(11) NOT NULL,
   PRIMARY KEY (`CODEDROIT`,`PROFILE`),
   KEY `PROFILE` (`PROFILE`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -498,43 +523,59 @@ CREATE TABLE IF NOT EXISTS `listedroits` (
 --
 
 INSERT INTO `listedroits` (`CODEDROIT`, `PROFILE`) VALUES
-('101', 'Administrateur'),
-('102', 'Administrateur'),
-('103', 'Administrateur'),
-('104', 'Administrateur'),
-('105', 'Administrateur'),
-('201', 'Administrateur'),
-('202', 'Administrateur'),
-('203', 'Administrateur'),
-('204', 'Administrateur'),
-('205', 'Administrateur'),
-('206', 'Administrateur'),
-('207', 'Administrateur'),
-('301', 'Administrateur'),
-('302', 'Administrateur'),
-('304', 'Administrateur'),
-('305', 'Administrateur'),
-('307', 'Administrateur'),
-('308', 'Administrateur'),
-('310', 'Administrateur'),
-('311', 'Administrateur'),
-('312', 'Administrateur'),
-('314', 'Administrateur'),
-('401', 'Administrateur'),
-('402', 'Administrateur'),
-('403', 'Administrateur'),
-('404', 'Administrateur'),
-('501', 'Administrateur'),
-('502', 'Administrateur'),
-('503', 'Administrateur'),
-('504', 'Administrateur'),
-('505', 'Administrateur'),
-('506', 'Administrateur'),
-('507', 'Administrateur'),
-('601', 'Administrateur'),
-('602', 'Administrateur'),
-('603', 'Administrateur'),
-('604', 'Administrateur');
+('101', 1),
+('102', 1),
+('103', 1),
+('104', 1),
+('105', 1),
+('201', 1),
+('202', 1),
+('203', 1),
+('204', 1),
+('205', 1),
+('206', 1),
+('207', 1),
+('301', 1),
+('302', 1),
+('303', 1),
+('304', 1),
+('305', 1),
+('306', 1),
+('307', 1),
+('308', 1),
+('309', 1),
+('310', 1),
+('311', 1),
+('312', 1),
+('313', 1),
+('314', 1),
+('401', 1),
+('402', 1),
+('403', 1),
+('404', 1),
+('501', 1),
+('502', 1),
+('503', 1),
+('504', 1),
+('505', 1),
+('506', 1),
+('507', 1),
+('601', 1),
+('602', 1),
+('603', 1),
+('604', 1),
+('605', 1),
+('701', 1),
+('702', 1),
+('801', 1),
+('802', 1),
+('803', 1),
+('101', 2),
+('102', 2),
+('103', 2),
+('104', 2),
+('105', 2),
+('101', 3);
 
 -- --------------------------------------------------------
 
@@ -621,14 +662,14 @@ CREATE TABLE IF NOT EXISTS `menus` (
   PRIMARY KEY (`IDMENUS`),
   KEY `CODEDROIT` (`CODEDROIT`),
   KEY `IDGROUPE` (`IDGROUPE`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
 
 --
 -- Contenu de la table `menus`
 --
 
 INSERT INTO `menus` (`IDMENUS`, `IDGROUPE`, `LIBELLE`, `HREF`, `ICON`, `CODEDROIT`, `ALT`, `TITLE`) VALUES
-(1, 1, 'Mot de passe', 'user/mdp', 'mdp.png', '101', NULL, NULL),
+(1, 1, 'Mon mot de passe', 'user/mdp', 'mdp.png', '101', NULL, NULL),
 (2, 1, 'Mon email', 'user/email', 'email.png', '102', NULL, NULL),
 (3, 1, 'Mes connexions', 'user/connexion', 'connexion.png', '103', NULL, NULL),
 (4, 1, 'Mon téléphone', 'user/telephone', 'telephone.png', '104', NULL, NULL),
@@ -662,7 +703,11 @@ INSERT INTO `menus` (`IDMENUS`, `IDGROUPE`, `LIBELLE`, `HREF`, `ICON`, `CODEDROI
 (32, 3, 'Passages à l''infirmerie', 'infirmerie/passage', 'passage.png', '310', NULL, NULL),
 (33, 3, 'Punitions', 'punition', 'punition.png', '311', NULL, NULL),
 (34, 3, 'Sanctions', 'salle/sanction', 'sanction.png', '312', NULL, NULL),
-(35, 3, 'Paramétrage des justification', 'absence/parametrage', 'parametrage.png', '313', NULL, NULL);
+(35, 3, 'Paramétrage des justification', 'absence/parametrage', 'parametrage.png', '313', NULL, NULL),
+(36, 6, 'Options générales', 'parametres/options', 'option.png', '601', NULL, NULL),
+(37, 6, 'Tous les mots de passe', 'parametres/mdp', 'mdp.png', '602', NULL, NULL),
+(38, 6, 'Gestion des droits d''accès', 'user/droits', 'droit.png', '604', NULL, NULL),
+(39, 6, 'Calendrier scolaire', 'etablissement/calendrier', 'calendrier.png', '605', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -763,8 +808,11 @@ INSERT INTO `personnels` (`IDPERSONNEL`, `LOGIN`, `CIVILITE`, `NOM`, `PRENOM`, `
 ('ADMIN', 'bruno', 'M.', 'Bruno', 'Bruno', '', 4, NULL, NULL, NULL, '', NULL),
 ('ADMIN2', 'jp', 'M.', 'Ainam', 'Jean-paul', '', 3, NULL, '2015-05-05', NULL, '235', 'jpainam@gmail.com'),
 ('ASSIST01', 'estelle', 'Mme', 'Estelle', 'Estelle', '', 1, NULL, NULL, NULL, '', NULL),
+('gerge301', NULL, 'Mlle', 'gerge', 'wregerg', 'strsre', 1, 'wehewh', '0000-00-00', 'ergwre', 'gwerge', NULL),
 ('PERSO01', 'nom1', 'M.', 'Nom1', 'Prenom2', '', 1, NULL, NULL, NULL, '+237652289165', NULL),
-('PESO02', 'nom2', 'Mme', 'Nom2', 'Prenom2', '', 2, NULL, NULL, NULL, '+237698106057', NULL);
+('PESO02', 'nom2', 'Mme', 'Nom2', 'Prenom2', '', 2, NULL, NULL, NULL, '+237698106057', NULL),
+('rnbethrt386', NULL, 'M.', 'rnbethrt', 'rtrthr', 'nethet', 1, 'retherthjr', '0000-00-00', 'entnt', 'htrhtr', NULL),
+('rntnr331', NULL, 'M.', 'rntnr', 'rgnr', 'thnt', 2, '4threhr', '0000-00-00', 'wrbrt', 'wrbrt', NULL);
 
 -- --------------------------------------------------------
 
@@ -773,18 +821,22 @@ INSERT INTO `personnels` (`IDPERSONNEL`, `LOGIN`, `CIVILITE`, `NOM`, `PRENOM`, `
 --
 
 CREATE TABLE IF NOT EXISTS `profile` (
+  `IDPROFILE` int(11) NOT NULL AUTO_INCREMENT,
   `PROFILE` varchar(100) NOT NULL,
-  `DROIT` blob NOT NULL,
-  PRIMARY KEY (`PROFILE`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`IDPROFILE`),
+  KEY `PROFILE` (`PROFILE`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Contenu de la table `profile`
 --
 
-INSERT INTO `profile` (`PROFILE`, `DROIT`) VALUES
-('Administrateur', ''),
-('Enseignant', '');
+INSERT INTO `profile` (`IDPROFILE`, `PROFILE`) VALUES
+(1, 'Administrateur'),
+(2, 'Assistant de bureau'),
+(3, 'Enseignant'),
+(4, 'Infirmerie'),
+(5, 'Responsable');
 
 -- --------------------------------------------------------
 
@@ -814,7 +866,7 @@ CREATE TABLE IF NOT EXISTS `responsables` (
 CREATE TABLE IF NOT EXISTS `users` (
   `LOGIN` varchar(80) CHARACTER SET utf8 NOT NULL,
   `PASSWORD` text CHARACTER SET utf8 NOT NULL,
-  `PROFILE` varchar(100) DEFAULT NULL,
+  `PROFILE` int(11) DEFAULT NULL,
   `DROITSPECIFIQUE` text,
   `ACTIF` int(11) NOT NULL DEFAULT '1' COMMENT 'Actif = 1 et 0 = Non actif (cad bloquee)',
   PRIMARY KEY (`LOGIN`),
@@ -827,12 +879,12 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`LOGIN`, `PASSWORD`, `PROFILE`, `DROITSPECIFIQUE`, `ACTIF`) VALUES
-('armel', '069a6a9ccaaca7967a0c43cb5e161187', 'Administrateur', NULL, 1),
-('bruno', 'md5(''bruno'')', 'Enseignant', NULL, 1),
-('estelle', 'md5(''estelle'')', 'Enseignant', NULL, 1),
-('jp', '55add3d845bfcd87a9b0949b0da49c0a', 'Administrateur', NULL, 1),
-('nom1', 'md5(''nom1'')', 'Enseignant', NULL, 1),
-('nom2', 'md5(''nom2'')', 'Enseignant', NULL, 1);
+('armel', '069a6a9ccaaca7967a0c43cb5e161187', 1, NULL, 1),
+('bruno', 'md5(''bruno'')', 1, NULL, 1),
+('estelle', 'md5(''estelle'')', 2, NULL, 1),
+('jp', '55add3d845bfcd87a9b0949b0da49c0a', 1, NULL, 1),
+('nom1', 'md5(''nom1'')', 2, NULL, 1),
+('nom2', 'md5(''nom2'')', 1, NULL, 1);
 
 --
 -- Contraintes pour les tables exportées
@@ -858,8 +910,8 @@ ALTER TABLE `eleves`
 -- Contraintes pour la table `listedroits`
 --
 ALTER TABLE `listedroits`
-  ADD CONSTRAINT `listedroits_ibfk_1` FOREIGN KEY (`CODEDROIT`) REFERENCES `droits` (`CODEDROIT`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `listedroits_ibfk_2` FOREIGN KEY (`PROFILE`) REFERENCES `profile` (`PROFILE`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `listedroits_ibfk_2` FOREIGN KEY (`PROFILE`) REFERENCES `profile` (`IDPROFILE`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `listedroits_ibfk_1` FOREIGN KEY (`CODEDROIT`) REFERENCES `droits` (`CODEDROIT`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `menus`
@@ -885,7 +937,7 @@ ALTER TABLE `responsables`
 -- Contraintes pour la table `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`PROFILE`) REFERENCES `profile` (`PROFILE`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`PROFILE`) REFERENCES `profile` (`IDPROFILE`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

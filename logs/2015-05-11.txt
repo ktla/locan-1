@@ -1,7 +1,0 @@
-Time : 22:24:30
-SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ID' in 'where clause'
-Raw SQL : SELECT * FROM `etablissements` WHERE  ID = :ID 
-
-Time : 22:23:53
-SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ID' in 'where clause'
-Raw SQL : SELECT * FROM `etablissements` WHERE  ID = :ID 

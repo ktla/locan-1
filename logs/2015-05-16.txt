@@ -1,0 +1,21 @@
+Time : 18:29:08
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined
+Raw SQL : SELECT CODEDROIT from listedroits WHERE PROFILE = :profile
+
+Time : 18:28:42
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined
+Raw SQL : SELECT CODEDROIT from listedroits WHERE PROFILE = :profile
+
+Time : 18:15:26
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined
+Raw SQL : DELETE FROM listedroits WHERE PROFILE = :profile
+
+Time : 18:13:21
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '101-1' for key 'PRIMARY'
+
+Time : 18:09:24
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '101-1' for key 'PRIMARY'
+
+Time : 18:08:36
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined
+Raw SQL : DELETE FROM listedroits WHERE PROFILE = :profile

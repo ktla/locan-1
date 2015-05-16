@@ -5,6 +5,9 @@ $(document).ready(function () {
         "scrollCollapse": true,
         "scrollY": 470,
         "pageLength": 200,
+        //"paging" : false,
+        //"searching" :false,
+        //"bInfo" :false,
         "language": {
             "sProcessing": "Traitement en cours...",
             "sSearch": "Rechercher&nbsp;:",
@@ -46,7 +49,7 @@ function deleteRow(_url, name) {
     });
 }
 
-function editRow(_url){
+function editRow(_url) {
     document.location = _url;
 }
 /*
@@ -95,6 +98,26 @@ $(document).ready(function () {
     $(".page").css({height: $(window).height() - h - 97});
     //$("#entete").css({height: 154});
     //$("#page-content").css({maxHeight: window.innerHeight - 10});
+
+    var calendar = webix.ui({
+        view: "datepicker",
+        container: "date",
+        width: 170,
+        height: 30,
+        placeholder: "JJ-MM-AAAA",
+        format: "%d/ %m/ %Y",
+        stringResult: true
+    });
+
+
+
+    var form_saisi_pers = function () {
+        var date = calendar.getValue(),
+                dates = date.split(' ');
+        document.getElementById("datenaiss").value = dates[0];
+
+    };
+    document.getElementById("saisi_pers").addEventListener("submit", form_saisi_pers, false);
 });
 
 function onglets(premier, actuel, nombre) {

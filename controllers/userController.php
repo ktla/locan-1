@@ -5,8 +5,8 @@ class userController extends Controller {
     public function __construct() {
         parent::__construct();
     }
-    
-    public function index(){
+
+    public function index() {
         $view = new View();
         $content = $view->Render("user" . DS . "index", false);
         $this->Assign("content", $content);
@@ -74,27 +74,51 @@ class userController extends Controller {
         $this->Assign("content", (new View())->output());
     }
 
-    public function telephone(){
+    public function telephone() {
         $view = new View();
         $view->Assign("errors", false);
         //Validation du formulaire
-        if(isset($this->request->telephone)){
+        if (isset($this->request->telephone)) {
             $this->loadModel("personnel");
-            if($this->Personnel->updateTelephone($this->request->telephone, $this->session->user)){
+            if ($this->Personnel->updateTelephone($this->request->telephone, $this->session->user)) {
                 echo "Reussite";
                 //Rediriger sur ma fiche pour voir que la modif est a jour
                 //header("Location:" . Router::url("user", "fiche"));
             }
-            
         }
         $content = $view->Render("user" . DS . "telephone", false);
         $this->Assign("content", $content);
     }
-    
-    public function droits(){
+
+    public function droits() {
         $view = new View();
-        $view->Assign("total", 0);
+        $view->Assign("errors", false);
+        $this->loadModel("profile");
+        $this->loadModel("droit");
+        $profiles = $this->Profile->selectAll();
+        //validation du formulaire
+        if (isset($this->request->soumis)) {
+            //Parcourir les profils, et mettre a jour leur droits respectifs
+            foreach ($profiles as $profile) {
+                if (isset($_POST[$profile['IDPROFILE']]) && !empty($_POST[$profile['IDPROFILE']])) {
+                    $this->Droit->emptyDroits($profile['IDPROFILE']);
+                    $this->Droit->insertDroits($profile['IDPROFILE'], $_POST[$profile['IDPROFILE']]);
+                }
+            }
+            header("Location" . Router::url("user", "droits"));
+        }
+        $listedroits = array();
+        foreach ($profiles as $profile) {
+            $listedroits[$profile['IDPROFILE']] = $this->Droit->findListeDroits($profile['IDPROFILE']);
+        }
+        $view->Assign("listedroits", $listedroits);
+        $droits = $this->Droit->selectAll();
+        $view->Assign("total", count($droits));
+        $view->Assign("droits", $droits);
+        $view->Assign("profiles", $profiles);
+
         $content = $view->Render("user" . DS . "droits", false);
         $this->Assign("content", $content);
     }
+
 }

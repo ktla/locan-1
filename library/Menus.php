@@ -15,9 +15,9 @@ class Menus extends Database {
      */
     public function setDroits() {
         if (!isset($_SESSION['droits']) || empty($_SESSION['droits'])) {
-            $profile = $_SESSION['profile'];
-            $query = "SELECT CODEDROIT FROM listedroits WHERE PROFILE = :profile";
-            $_SESSION['droits'] = $this->column($query, array("profile" => $profile));
+            $idprofile = $_SESSION['idprofile'];
+            $query = "SELECT CODEDROIT FROM listedroits WHERE PROFILE = :idprofile";
+            $_SESSION['droits'] = $this->column($query, ["idprofile" => $idprofile]);
             
         }
     }
@@ -31,7 +31,8 @@ class Menus extends Database {
                     . "WHERE m.CODEDROIT IN (SELECT l.CODEDROIT FROM listedroits l "
                     . "WHERE l.PROFILE = :profile ORDER BY l.CODEDROIT) "
                     . "AND m.IDGROUPE = :groupe";
-            $menus = $this->query($query, ["profile" => $_SESSION['profile'], "groupe" => $groupe['IDGROUPE']]);
+            $menus = $this->query($query, ["profile" => $_SESSION['idprofile'], "groupe" => $groupe['IDGROUPE']]);
+            
             if (count($menus) > 0) {
                 $str .= "<li><p><img src = '" . SITE_ROOT . "public/img/" . $groupe['ICON'] . "' alt = '" . $groupe['ALT'] . "' title = '" . $groupe['TITLE'] . "' />"
                         . "<a>" . $groupe['LIBELLE'] . "</a></p><ul>";

@@ -335,3 +335,43 @@ a{
     width: 220px;
     border:1px solid #E1C4C4;
 }
+
+/** FORMULAIRE */
+
+#form-saisi-pers span.text{
+    margin-right: 20px;
+    margin-top: 15px;
+    padding: 0;
+    line-height: 15px;
+    float: left;
+    
+}
+#form-saisi-pers span label{
+    margin-left: 3px;
+    font-weight: bold;
+    width: 100%;
+}
+#form-saisi-pers span input{
+    border: 1px solid #CCC; 
+    display: block;
+    height: 20px;
+    padding-left: 6px;
+}
+#form-saisi-pers span.fonction{
+    clear: both;
+}
+#form-saisi-pers span input.grade{
+    width: 250px;
+}
+#form-saisi-pers span select{
+    height: 24px;
+    border: 1px solid #CCC; 
+    padding-left: 1px;
+}
+
+#form-saisi-pers span.date{
+    position: relative;
+    float: left;
+    top: 13px;
+    margin-bottom: 15px;
+}
