@@ -1,5 +1,18 @@
+
+var calendar;
 //$('div.dataTables_scrollBody').height( 100 );
 $(document).ready(function () {
+    //Ajouter le scrolling en fonction de hauteur de la page visible
+    //var headerHeight = $("#page-header").css("height");
+    //headerHeight = headerHeight.substring(0, headerHeight.indexOf("p"));
+    var max = $(window).height() - 154;
+    $("#menu").css({maxHeight: max});
+    var h = $("#entete").height() + $(".navigation").height() + $(".recapitulatif").height()
+            + $(".status").height() + $(".titre").height();
+    $(".page").css({height: $(window).height() - h - 97});
+    //$("#entete").css({height: 154});
+    //$("#page-content").css({maxHeight: window.innerHeight - 10});
+    
     $('#dataTable, #dataTable2').DataTable({
         "aaSorting": [],
         "scrollCollapse": true,
@@ -30,6 +43,15 @@ $(document).ready(function () {
                 "sSortDescending": ": activer pour trier la colonne par ordre d&eacute;croissant"
             }
         }
+    });
+    calendar = webix.ui({
+        view: "datepicker",
+        container: "date",
+        width: 140,
+        height: 25,
+        placeholder: "JJ-MM-AAAA",
+        format: "%d-%m-%Y",
+        stringResult: true
     });
 });
 
@@ -88,36 +110,6 @@ $(document).ready(function () {
 
         }
     })();
-    //Ajouter le scrolling en fonction de hauteur de la page visible
-    //var headerHeight = $("#page-header").css("height");
-    //headerHeight = headerHeight.substring(0, headerHeight.indexOf("p"));
-    var max = $(window).height() - 154;
-    $("#menu").css({maxHeight: max});
-    var h = $("#entete").height() + $(".navigation").height() + $(".recapitulatif").height()
-            + $(".status").height() + $(".titre").height();
-    $(".page").css({height: $(window).height() - h - 97});
-    //$("#entete").css({height: 154});
-    //$("#page-content").css({maxHeight: window.innerHeight - 10});
-
-    var calendar = webix.ui({
-        view: "datepicker",
-        container: "date",
-        width: 155,
-        height: 30,
-        placeholder: "JJ-MM-AAAA",
-        format: "%d/ %m/ %Y",
-        stringResult: true
-    });
-
-
-
-    var form_saisi_pers = function () {
-        var date = calendar.getValue(),
-                dates = date.split(' ');
-        document.getElementById("datenaiss").value = dates[0];
-
-    };
-    document.getElementById("saisi_pers").addEventListener("submit", form_saisi_pers, false);
 });
 
 function onglets(premier, actuel, nombre) {

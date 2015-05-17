@@ -45,7 +45,14 @@ class personnelController extends Controller {
         }
         $view = new View();
         $view->Assign('errors', false);
-
+        $js = "function submitForm() {
+                date = calendar.getValue(), dates = date.split(' ');
+                document.getElementById(\"datenaiss\").value = dates[0];
+                document.forms[0].submit();
+            }";
+        
+        $view->setTextJS($js);
+        
         if (isset($this->request->nom) && isset($this->request->function)) {
             $generer = substr($this->request->nom, 0, strlen($this->request->nom)) . rand(0, 500);
             $params = [

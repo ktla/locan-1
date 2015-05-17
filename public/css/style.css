@@ -9,7 +9,7 @@ html, body{
     /*border: 1px solid #000;*/
 } 
 #container{
-    width:1000px;
+    width:1100px;
     margin:0 auto;
 
 
@@ -18,7 +18,7 @@ html, body{
 }
 #page-content{
     background-color: #F7F7F7;
-    width: 775px;
+    width: 875px;
 
     clear: right;
     margin: 2px;
@@ -236,6 +236,7 @@ BREADCRUMB
     display: block;
     /*margin-top: 15px;*/
     position: relative;
+    float: left;
 }
 
 /** ONGLETS */
@@ -346,6 +347,7 @@ a{
     margin-top: 10px;
     position: relative;
 }
+
 #page-content span.text label, #page-content span.select label{
     left: 0;
     margin: 0 0 0 3px;
@@ -376,6 +378,10 @@ a{
    width: 100%;
 }
 
+#page-content .page legend{
+    color: #B63B00;
+    font-weight: bold;
+}
 .error{
     font-weight: bold !important;
     color: #8B4513;

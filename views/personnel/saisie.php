@@ -1,11 +1,10 @@
 <div id="entete">
 
 </div>
-
 <div class="titre">
     Saisie d'un nouvel Personnel
 </div>
-<form action="<?php echo url("personnel", "saisie"); ?>" method="post" id="form-saisi-pers">
+<form action="<?php echo url("personnel", "saisie"); ?>" method="post" >
     <div class="page">
         <fieldset><legend> Identit&eacute;</legend>
             <span class="select" style="width: 150px;">
@@ -50,15 +49,14 @@
 
     <div class="recapitulatif">
         <?php
-            
         if ($errors) {
             echo "<div class='error'>$message</div>";
         }
         ?>
-        
+
     </div>
     <div class="navigation">
-        <?php echo btn_ok("document.forms[0].submit()"); ?>
+        <?php echo btn_ok("submitForm();"); ?>
         <?php echo btn_cancel("document.location=\"" . Router::url("personnel") . "\""); ?>
     </div>
 

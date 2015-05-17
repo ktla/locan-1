@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
         <title>Gestion des activités académique</title>
         <link href = "<?php echo SITE_ROOT; ?>public/css/style.css" rel = 'stylesheet' type = 'text/css' />
@@ -22,6 +22,14 @@
         <script type="text/javascript" src="<?php echo SITE_ROOT; ?>public/js/codebase/webix.js"></script>
         <script type="text/javascript" src="<?php echo SITE_ROOT; ?>public/js/scripts.js"></script>
         <script type="text/javascript" src="<?php echo SITE_ROOT; ?>public/js/ajax.js"></script>
+        <script>
+            <?php
+            global $_JS;
+            if (!empty($_JS)) {
+                echo $_JS;
+            }
+            ?>
+        </script>
 
     </head>
     <body>
@@ -30,7 +38,7 @@
             Correspondant et l'obtenir sous la forme d'une variable data[];
             Pour le cas du template, c'est le controller de base
             -->
-           
+
 
             <?php
             echo $header;
@@ -45,9 +53,9 @@
                 <?php echo $footer; ?>
             </div>
             <div id="loading"><p>
-                 <img src="<?php echo SITE_ROOT . "public/img/loading.gif" ?>" />
-                 </p>
-        </div>
+                    <img src="<?php echo SITE_ROOT . "public/img/loading.gif" ?>" />
+                </p>
+            </div>
         </div>
     </body>
 </html>

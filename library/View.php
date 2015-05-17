@@ -20,7 +20,7 @@ class View {
     }
 
     public function output($params = null, $direct_output = FALSE) {
-         if ($params != null) {
+        if ($params != null) {
             $this->data = $params;
         }
         /**
@@ -42,7 +42,7 @@ class View {
      * le htmlentities
      */
     public function Assign($variable = '', $value = "") {
-     
+
         if ($variable == '') {
             $this->data = $value;
         } else {
@@ -67,7 +67,7 @@ class View {
         if ($direct_output !== TRUE) {
             ob_start();
         }
-        
+
 
         //Convertir les data variable en variable locale
         //$data = $this->data; //ou 
@@ -83,6 +83,7 @@ class View {
             return ob_get_clean();
         }
     }
+
     //public function 
 
     public function setSiteTitle($name) {
@@ -108,9 +109,9 @@ class View {
     public function setCSS($filename) {
 
         if (file_exists(ROOT . DS . $filename)) {
-             global $css;
+            global $css;
             $css .= "<link href = '" . SITE_ROOT . '/' . str_replace('\\', '/', $filename) . "' rel = 'stylesheet' type = 'text/css' />";
-          
+
             $this->data['css'] .= $css;
             //print $this->data['css'];
         } else {
@@ -119,9 +120,15 @@ class View {
     }
 
     public function setJS($filename) {
-        
+
         $this->data['js'] = $this->data['js'] . '<script type = "text/javascript" 
 		src = "' . $filename . '" language = "JavaScript"></script>' . PHP_EOL;
+    }
+
+    public function setTextJS($js = "") {
+       global $_JS;
+       $_JS .= PHP_EOL . $js;
+       //$this->data['_JS'] .= $_JS;
     }
 
 }

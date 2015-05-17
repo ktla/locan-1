@@ -20,7 +20,7 @@ class EleveController extends Controller {
         $eleves->idname = "listeeleve";
         //print_r($eleves);
         //var_dump($eleves);
-        $view->Assign("eleves", $eleves->view("50%"));
+        $view->Assign("eleves", $eleves->view());
 
         $content = $view->Render("eleve" . DS . "index", false);
         $this->Assign("content", $content);
@@ -88,19 +88,38 @@ class EleveController extends Controller {
 
         $paysnaiss = new Combobox($data, "paysnaiss", "PAYS", "PAYS");
         $nationalite = new Combobox($data, "nationalite", "PAYS", "PAYS");
-        $view->Assign("paysnaiss", $paysnaiss->view("75%"));
-        $view->Assign("nationalite", $nationalite->view("75%"));
+        $view->Assign("paysnaiss", $paysnaiss->view());
+        $view->Assign("nationalite", $nationalite->view());
 
         $this->loadModel('etablissement');
         $data = $this->Etablissement->selectAll();
         $provenance = new Combobox($data, "provenance", "IDETABLISSEMENT", "ETABLISSEMENT");
-        $view->Assign("provenance", $provenance->view("75%"));
+        $view->Assign("provenance", $provenance->view());
 
         $this->loadModel('motifsortie');
         $data = $this->Motifsortie->selectAll();
         $motif = new Combobox($data, "motifsortie", "IDMOTIF", "LIBELLE");
-        $view->Assign("motifsortie", $motif->view("85%"));
+        $view->Assign("motifsortie", $motif->view());
 
+        $this->loadModel("classe");
+        $classes = $this->Classe->selectAll();
+        $comboClasse = new Combobox($classes, "classe", "CODE", "LIBELLE");
+        $view->Assign("classes", $comboClasse->view());
+        
+        $this->loadModel("civilite");
+        $civ = $this->Civilite->selectAll();
+        $civilite = new Combobox($civ, "civilite", "CIVILITE", "CIVILITE");
+        $view->Assign("civilite", $civilite->view());
+        
+        $this->loadModel("parente");
+        $par = $this->Parente->selectAll();
+        $parente = new Combobox($par, "parente", "LIBELLE", "LIBELLE");
+        $view->Assign("parente", $parente->view());
+        
+        $this->loadModel("charge");
+        $charges = $this->Charge->selectAll();
+        $view->Assign("charges", $charges);
+        
         $content = $view->Render("eleve" . DS . "saisie", false);
         $this->Assign("content", $content);
     }
