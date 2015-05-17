@@ -3,6 +3,15 @@
         <img src="<?php echo SITE_ROOT . "public/img/saisieeleve.png"; ?>" />
     </div>
 </div>
+<script>
+    function resetResponsable(){
+        document.forms['formresponsable'].reset();
+    }
+    function saveResponsable(){
+        $()
+    }
+    
+</script>
 <div class="titre">
     Ajout d'un nouvel &eacute;l&egrave;ve
 </div>
