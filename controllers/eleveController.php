@@ -105,21 +105,21 @@ class EleveController extends Controller {
         $classes = $this->Classe->selectAll();
         $comboClasse = new Combobox($classes, "classe", "CODE", "LIBELLE");
         $view->Assign("classes", $comboClasse->view());
-        
+
         $this->loadModel("civilite");
         $civ = $this->Civilite->selectAll();
         $civilite = new Combobox($civ, "civilite", "CIVILITE", "CIVILITE");
         $view->Assign("civilite", $civilite->view());
-        
+
         $this->loadModel("parente");
         $par = $this->Parente->selectAll();
         $parente = new Combobox($par, "parente", "LIBELLE", "LIBELLE");
         $view->Assign("parente", $parente->view());
-        
+
         $this->loadModel("charge");
         $charges = $this->Charge->selectAll();
         $view->Assign("charges", $charges);
-        
+
         $content = $view->Render("eleve" . DS . "saisie", false);
         $this->Assign("content", $content);
     }
@@ -142,6 +142,18 @@ class EleveController extends Controller {
 
     public function ajax($val) {
         sleep(3);
+        if (!strcmp($val, "responsable")) {
+            $this->saveResponsable();
+        } else {
+            $this->onglets($val);
+        }
+    }
+
+    public function saveResponsable(){
+        $this->loadModel("responsable");
+        //$resp = $this->Responsable->find
+    }
+    public function onglets($val) {
         if (!isset($this->session->user)) {
             print json_encode(false);
         } else {

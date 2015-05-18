@@ -43,7 +43,7 @@ $(document).ready(function () {
 
     $("#listeeleve").change(function () {
         $.ajax({
-            url: "eleve/ajax/" + $("#listeeleve").val(),
+            url: "./eleve/ajax/" + $("#listeeleve").val(),
             type: 'POST',
             dataType: "json",
             data: "ideleve = " + $("#listeeleve").val(),

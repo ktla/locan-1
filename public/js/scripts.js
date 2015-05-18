@@ -1,18 +1,7 @@
 
-var calendar;
+var calendar, caldatenaiss, caldateentree;
 //$('div.dataTables_scrollBody').height( 100 );
 $(document).ready(function () {
-    //Ajouter le scrolling en fonction de hauteur de la page visible
-    //var headerHeight = $("#page-header").css("height");
-    //headerHeight = headerHeight.substring(0, headerHeight.indexOf("p"));
-    var max = $(window).height() - 154;
-    $("#menu").css({maxHeight: max});
-    var h = $("#entete").height() + $(".navigation").height() + $(".recapitulatif").height()
-            + $(".status").height() + $(".titre").height();
-    $(".page").css({height: $(window).height() - h - 97});
-    //$("#entete").css({height: 154});
-    //$("#page-content").css({maxHeight: window.innerHeight - 10});
-    
     $('#dataTable, #dataTable2').DataTable({
         "aaSorting": [],
         "scrollCollapse": true,
@@ -44,9 +33,35 @@ $(document).ready(function () {
             }
         }
     });
+    //Ajouter le scrolling en fonction de hauteur de la page visible
+    
+    var max = $(window).height() - 154;
+    $("#menu").css({maxHeight: max});
+    var h = $("#entete").height() + $(".navigation").height() + $(".recapitulatif").height()
+            + $(".status").height() + $(".titre").height();
+    $(".page").css({height: $(window).height() - h - 97});
+    
     calendar = webix.ui({
         view: "datepicker",
         container: "date",
+        width: 140,
+        height: 25,
+        placeholder: "JJ-MM-AAAA",
+        format: "%d-%m-%Y",
+        stringResult: true
+    });
+    caldatenaiss = webix.ui({
+        view: "datepicker",
+        container: "datenaiss",
+        width: 140,
+        height: 25,
+        placeholder: "JJ-MM-AAAA",
+        format: "%d-%m-%Y",
+        stringResult: true
+    });
+    caldateentree = webix.ui({
+        view: "datepicker",
+        container: "dateentree",
         width: 140,
         height: 25,
         placeholder: "JJ-MM-AAAA",
@@ -70,7 +85,22 @@ function deleteRow(_url, name) {
         }
     });
 }
+/**
+ * utiliser pour afficher les message
+ * de warning a l'endroit de l'utilisateur
+ * @param {type} sms
+ * @returns {undefined}
+ * 
+ */
 
+function alertWebix(sms){
+     webix.modalbox({
+        title: "Informations",
+        buttons: ["Ok"],
+        width: "300px",
+        text: sms,
+    });
+}
 function editRow(_url) {
     document.location = _url;
 }
@@ -114,7 +144,7 @@ $(document).ready(function () {
 
 function onglets(premier, actuel, nombre) {
     for (i = premier; i < nombre + 1; i++) {
-        if (i == actuel) {
+        if (i === actuel) {
             document.getElementById('tab' + i).className = 'courant';
             document.getElementById('onglet' + i).style.display = 'block';
         } else {
