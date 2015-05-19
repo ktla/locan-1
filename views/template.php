@@ -5,6 +5,7 @@
 
         <title>Gestion des activités académique</title>
         <link href = "<?php echo SITE_ROOT; ?>public/css/style.css" rel = 'stylesheet' type = 'text/css' />
+        <link href = "<?php echo SITE_ROOT; ?>public/js/jquery-ui.css" rel = 'stylesheet' type = 'text/css' />
         <link href = "<?php echo SITE_ROOT; ?>public/css/jquery.dataTables.min.css" rel = 'stylesheet' type = 'text/css' />
         <link href = "<?php echo SITE_ROOT; ?>public/js/codebase/webix.css" rel = 'stylesheet' type = 'text/css' />
         <link href = "<?php echo SITE_ROOT; ?>public/css/menu.css" rel = 'stylesheet' type = 'text/css' />
@@ -18,6 +19,7 @@
         <link href = "<?php echo SITE_ROOT; ?>public/img/favicon.ico"
               rel = "shortcut icon" type = "image/vnd.microsoft.icon" />
         <script type="text/javascript" src="<?php echo SITE_ROOT; ?>public/js/jquery-1.11.2.min.js"></script>
+        <script type="text/javascript" src="<?php echo SITE_ROOT; ?>public/js/jquery-ui.js"></script>
         <script type="text/javascript" src="<?php echo SITE_ROOT; ?>public/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="<?php echo SITE_ROOT; ?>public/js/codebase/webix.js"></script>
         <script type="text/javascript" src="<?php echo SITE_ROOT; ?>public/js/scripts.js"></script>

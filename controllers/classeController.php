@@ -37,19 +37,19 @@ class classeController extends Controller{
             $this->loadModel("eleve");
             $eleves = $this->Eleve->selectAll();
             $view->Assign("eleves", $eleves);
-            $comboEleve = new Combobox($eleves, "liseeleve", "MATRICULE", "NOM");
-           $view->Assign("comboEleves", $comboEleve->view("25%")); 
+            $comboEleve = new Combobox($eleves, "listeeleve", "MATRICULE", "NOM");
+           $view->Assign("comboEleves", $comboEleve->view()); 
 
 
            $this->loadModel("personnel");
            $pers = $this->Personnel->selectAll();
            $comboEnseignants = new Combobox($pers, "listeenseignant", "IDPERSONNEL", "CNOM");
-           $view->Assign("comboEnseignants", $comboEnseignants->view("25%"));
+           $view->Assign("comboEnseignants", $comboEnseignants->view());
 
            $this->loadModel("matiere");
            $mat = $this->Matiere->selectAll();
            $comboMatieres = new Combobox($mat, "listematiere", "CODE", "LIBELLE");
-           $view->Assign("comboMatieres", $comboMatieres->view("25%"));
+           $view->Assign("comboMatieres", $comboMatieres->view());
 
            $view->Assign("enseignants", $pers);
             $content = $view->Render("classe" . DS . "saisie", false);

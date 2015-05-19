@@ -9,10 +9,16 @@
         document.forms['formresponsable'].reset();
     }
     function saveResponsable() {
-        if ($("input[name=nom]").val() === "" || $("input[name=telephone]").val() === "") {
+        var tabres = [];
+        tabres = $("input[name=charge]:checked");
+        console.log(tabres[0].value);
+        return;
+        /*removeRequiredFields([$("input[name=nom]"), $("input[name=portable]")]);
+        if ($("input[name=nom]").val() === "" || $("input[name=portable]").val() === "") {
             alertWebix("Veuillez remplir les champs obligatoires");
+            addRequiredFields([$("input[name=nom]"), $("input[name=portable]")]);
             return;
-        }
+        }*/
         element = {
             "civilite": $("select[name=civilite]").val(),
             "nom": $("input[name=nom]").val(),
@@ -28,7 +34,9 @@
             "numsms": $("input[name=numsms]").val(),
             "cp": $("input[name=cp]").val()
         };
+        
         resp.push(element);
+        
         cible = $("#responsablebody");
         
         
@@ -56,18 +64,33 @@
     }
     //Soumet effectivement le formulaire des eleves au server
     function soumettreFormEleve() {
+        removeRequiredFields([$("input[name=nomel]"), $("#datenaiss")]);
         frm = $("form[name=frmeleve]");
-        //add the responsable data
-        var hidden = $("<input type='hidden' name='responsables'/>");
-        hidden.val(JSON.stringify(resp));
-        frm.append(hidden);
-        //add the date from webix datepicker
-        d = caldatenaiss.getValue();
+         d = caldatenaiss.getValue();
         dNaiss = $("<input type='hidden' name='datenaiss'/>");
         dNaiss.val(d.split(' ')[0]);
         d = caldateentree.getValue();
         dEntree = $("<input type = 'hidden' name = 'dateentree' />");
         dEntree.val(d.split(' ')[0]);
+        
+        if($("input[name=nomel]").val() === "" || dNaiss.val() === ""){
+            alertWebix("Veuillez remplir les champs obligatoires");
+            addRequiredFields([$("input[name=nomel]"), $("#datenaiss")]);
+            onglets(1, 1, 3);
+            return;
+        }
+        if(resp.length === 0){
+            alertWebix("Définir au moins les informations d'un responsable");
+            requiredFields([$("input[name=nom]"), $("input[name=portable]")]);
+            onglets(1, 2, 3);
+            return;
+        }
+        //add the responsable data
+        var hidden = $("<input type='hidden' name='responsables'/>");
+        hidden.val(JSON.stringify(resp));
+        frm.append(hidden);
+        //add the date from webix datepicker
+       
 
         frm.append(dEntree);
         frm.append(dNaiss);
@@ -102,7 +125,7 @@
                 $("input[name=photo]").val("");
             },
             error: function (xhr, status, error) {
-                alert(error + " " + xhr + " " + status);
+                alert("Veuillez vous reconnecté ou rafraichir la page");
             }
         });
     }
@@ -293,14 +316,13 @@
                     echo "<label style = 'font-weight:bold;'>" . $charge['LIBELLE'] . "</label></span>";
                 }
                 ?>
-                
-                <span class="text" style="width: 140px">
-                    <label>T&eacute;l&eacute;phone</label>
-                    <input type="text" name="telephone" />
-                </span>
                 <span class="text" style="width: 140px">
                     <label>Portable</label>
                     <input type="text" name="portable" />
+                </span>
+                <span class="text" style="width: 140px">
+                    <label>T&eacute;l&eacute;phone</label>
+                    <input type="text" name="telephone" />
                 </span>
                 <span class="text" style="width: 140px">
                     <label>E-mail</label>
