@@ -12,13 +12,5 @@ class userModel extends Model{
         $query = "SELECT * FROM connexions WHERE COMPTE = :compte ORDER BY IDCONNEXION DESC";
         return $this->query($query, ["compte" => $compte]);
     }
-    
-    public function updateUser($params){
-        
-    }
-    
-    
-    
-    
-    
+       
 }

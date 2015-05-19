@@ -39,33 +39,6 @@
 
 
 $(document).ready(function () {
-
-
-    $("#listeeleve").change(function () {
-        $.ajax({
-            url: "./eleve/ajax/" + $("#listeeleve").val(),
-            type: 'POST',
-            dataType: "json",
-            data: "ideleve = " + $("#listeeleve").val(),
-            success: function (result) {
-                //if(!result)
-                //location.reload(true);
-                /*for (var i in result) {
-                 $("#onglet" + i).html(result[i]);
-                 }*/
-                $("#onglet1").html(result[0]);
-                $("#onglet2").html(result[1]);
-                $("#onglet3").html(result[2]);
-                $("#onglet4").html(result[3]);
-                $("#onglet5").html(result[4]);
-                $("#onglet6").html(result[5]);
-            },
-            error: function (xhr, status, error) {
-                alert(error + " " + xhr + " " + status);
-                document.location = 'connexion';
-            }
-        });
-    });
     // Global ajax cursor change
     $(document).ajaxStart(function () {
         $("#loading").show();

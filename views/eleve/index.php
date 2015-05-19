@@ -1,7 +1,35 @@
 <div id="entete">
     <div style="text-align: center;">Liste des élèves : <?php echo $eleves; ?></div>
 </div>
-
+<script>
+    $("#listeeleve").change(function () {
+       
+        $.ajax({
+            url: "./eleve/ajax/" + $("#listeeleve").val(),
+            type: 'POST',
+            dataType: "json",
+            data: "ideleve = " + $("#listeeleve").val(),
+            success: function (result) {
+                console.log(result);
+                //if(!result)
+                //location.reload(true);
+                /*for (var i in result) {
+                 $("#onglet" + i).html(result[i]);
+                 }*/
+                $("#onglet1").html(result[0]);
+                $("#onglet2").html(result[1]);
+                $("#onglet3").html(result[2]);
+                $("#onglet4").html(result[3]);
+                $("#onglet5").html(result[4]);
+                $("#onglet6").html(result[5]);
+            },
+            error: function (xhr, status, error) {
+                alert(error + " " + xhr + " " + status);
+                document.location = 'connexion';
+            }
+        });
+    });
+</script>
 <div class="page" style="">
     <div class="titre">
         Elève

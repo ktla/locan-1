@@ -20,7 +20,7 @@ class EleveController extends Controller {
         $eleves->idname = "listeeleve";
         //print_r($eleves);
         //var_dump($eleves);
-        $view->Assign("eleves", $eleves->view());
+        $view->Assign("eleves", $eleves->view("250px"));
 
         $content = $view->Render("eleve" . DS . "index", false);
         $this->Assign("content", $content);
@@ -30,40 +30,38 @@ class EleveController extends Controller {
      * Validation des donnees si le formulaire est soumis
      */
     private function validerSaisie(&$message) {
-        if (isset($this->request->nom) && isset($this->request->prenom)) {
-            //Appeller l'algorithme pour generer les matricules des eleves
-            $matr = rand(10, 100) . "eleve";
-            $photo = "";
-
-            if (isset($this->request->photo)) {
-                if (move_uploaded_file($this->request->photo['tmp_name'], ROOT . "/photos/eleves/" . $this->request->photo['name'])) {
-                    $photo = SITE_ROOT . "photos/eleves/" . $this->request->photo['name'];
-                } else {
-                    $message = "Erreur lors de la sauvegarde du fichier photo : " . $this->request->photo['name'];
-                    return false;
-                }
-            }
+        if (isset($this->request->nomel) && isset($this->request->prenomel)) {
+            $responsables = json_decode($_POST['responsables']);
             $redoublant = (strcasecmp($this->request->redoublant, "Oui") == 0);
-            $params = ["matricule" => $matr,
-                "nom" => $this->request->nom,
-                "prenom" => $this->request->prenom,
+            $provenance = empty($this->request->provenance) ? null: $this->request->provenance;
+           
+            $params = [
+                "matricule" => "",
+                "nom" => $this->request->nomel,
+                "prenom" => $this->request->prenomel,
                 "autrenom" => $this->request->autrenom,
                 "sexe" => $this->request->sexe,
-                "photo" => $photo,
+                "photo" => $this->request->hiddenphoto,
+                "cni" => $this->request->cni,
                 "nationalite" => $this->request->nationalite,
                 "datenaiss" => $this->request->datenaiss,
                 "lieunaiss" => $this->request->lieunaiss,
                 "paysnaiss" => $this->request->paysnaiss,
                 "dateentree" => $this->request->dateentree,
-                "provenance" => $this->request->provenance,
+                "provenance" => $provenance,
                 "redoublant" => $redoublant,
-                "datesortie" => $this->request->datesortie,
-                "motifsortie" => $this->request->motifsortie
             ];
             //Effectuer l'insertion a proprement parle
             if ($this->Eleve->insert($params)) {
-                header("Location: " . Router::url("eleve"));
-                return true; //va jamais arriver la;
+                //Si tout s'est bien passee, inserer les responsables en utilisant le last insert id
+                $id = $this->Eleve->lastInsertId();
+                if ($this->saveNewResponsables($responsables, $id) && $this->linkToResponsables($responsables, $id)) {
+                    //Si tout va bien, rediriger sur a liste des eleves
+                    header("Location: " . Router::url("eleve"));
+                }else{
+                    $message = "Erreur de sauvegarde des responsables";
+                    return false;
+                }
             } else {
                 $message = "Erreur lors de la sauvegarde de l'élève";
                 return false;
@@ -72,7 +70,34 @@ class EleveController extends Controller {
         return false;
     }
 
+    /**
+     * Methode appellee dans la validation du formulaire validateSaisie
+     * Fonction deleguer de la function validate saisie
+     * cette fonction gere le volet sauvegarde des informations  concernant des responsables
+     * @param type $responsables des responsables sous formes d'un object JSON, ces responsables sont a inserer dans la BD
+     * @param type $ideleve l'eleve dont ils sont les responsables
+     */
+    private function saveNewResponsables($responsables, $ideleve = 0) {
+        echo $ideleve;
+        var_dump($responsables);
+        //Parcourir le array des responsables et inserer, recuperer le lastinsertId et l'inserer dans la table
+        //de jointure eleve_responsable dont le libelle est estresponsable
+        /* COMMENT PARCOURIR UN OBJECT JSON */
+        return false;
+    }
+
+    /**
+     * Methode appeller dans la validation du formulaire validateSaisie
+     * @param type $responsables des responsables existant deja dans la BD mais qui sont responsables 
+     * de cet nouvel eleve, on n'insere donc pas, mais on lie seulement les id dans la table de jointure estresponsable
+     * @param type $ideleve l'eleve dont il est le responsable
+     */
+    private function linkToResponsables($responsables, $ideleve = 0) {
+        return true;
+    }
+
     public function saisie() {
+
         $message = "";
         $view = new View();
         $validate = $this->validerSaisie($message);
@@ -95,16 +120,6 @@ class EleveController extends Controller {
         $data = $this->Etablissement->selectAll();
         $provenance = new Combobox($data, "provenance", "IDETABLISSEMENT", "ETABLISSEMENT");
         $view->Assign("provenance", $provenance->view());
-
-        $this->loadModel('motifsortie');
-        $data = $this->Motifsortie->selectAll();
-        $motif = new Combobox($data, "motifsortie", "IDMOTIF", "LIBELLE");
-        $view->Assign("motifsortie", $motif->view());
-
-        $this->loadModel("classe");
-        $classes = $this->Classe->selectAll();
-        $comboClasse = new Combobox($classes, "classe", "CODE", "LIBELLE");
-        $view->Assign("classes", $comboClasse->view());
 
         $this->loadModel("civilite");
         $civ = $this->Civilite->selectAll();
@@ -142,17 +157,9 @@ class EleveController extends Controller {
 
     public function ajax($val) {
         sleep(3);
-        if (!strcmp($val, "responsable")) {
-            $this->saveResponsable();
-        } else {
-            $this->onglets($val);
-        }
+        $this->onglets($val);
     }
 
-    public function saveResponsable(){
-        $this->loadModel("responsable");
-        //$resp = $this->Responsable->find
-    }
     public function onglets($val) {
         if (!isset($this->session->user)) {
             print json_encode(false);
@@ -182,6 +189,46 @@ class EleveController extends Controller {
             $arr[5] = $view->Render("eleve" . DS . "ajax" . DS . "onglet6", false);
             print json_encode($arr);
         }
+    }
+
+    //Utiliser dans la page saisie eleve et permet
+    //d'uploader la photo sur le server et concerver 
+    //le chemin dans un input hidden qui sera ensuite envoyer par le formulaire generale de l'eleve
+    //0 pour premiere submission dont l'aaction est ajout
+    //1 pour seconde soumission dont l'action est effacer
+    public function photo($action) {
+        $json_array = array();
+        if (!strcmp($action, "upload")) {
+            $photo = "";
+            $message = "";
+            if (move_uploaded_file($_FILES['photo']['tmp_name'], ROOT . "/public/photos/eleves/" . $_FILES['photo']['name'])) {
+                $photo = SITE_ROOT . "public/photos/eleves/" . $_FILES['photo']['name'];
+            } else {
+                $message = "Erreur lors de la sauvegarde du fichier photo : " . $_FILES['photo']['name'];
+            }
+
+            if (!empty($photo)) {
+                $json_array[0] = btn_add_disabled("") . " " . btn_effacer("effacerPhotoEleve();");
+            } else {
+                $json_array[0] = btn_add("savePhotoEleve();") . " " . btn_effacer_disabled("");
+            }
+            $json_array[1] = $photo;
+            $json_array[2] = $message;
+            $json_array[3] = $_FILES['photo']['name'];
+        } else {
+            if (unlink(ROOT . DS . "public" . DS . "photos" . DS . "eleves" . DS . $action)) {
+                $json_array[0] = btn_add("savePhotoEleve();") . " " . btn_effacer_disabled("");
+                $json_array[1] = "";
+                $json_array[2] = "";
+                $json_array[3] = "";
+            } else {
+                $json_array[0] = btn_add_disabled("") . " " . btn_effacer("effacerPhotoEleve();");
+                $json_array[1] = $action;
+                $json_array[2] = "Erreur lors de la suppression de l'image";
+                $json_array[3] = "";
+            }
+        }
+        print json_encode($json_array);
     }
 
 }

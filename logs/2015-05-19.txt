@@ -1,0 +1,19 @@
+Time : 12:41:08
+SQLSTATE[HY093]: Invalid parameter number
+Raw SQL : UPDATE `users` SET  PASSWORD = :PASSWORD  WHERE  LOGIN = :LOGIN
+
+Time : 12:40:29
+SQLSTATE[HY093]: Invalid parameter number
+Raw SQL : UPDATE `users` SET  PASSWORD = :PASSWORD  WHERE  LOGIN = :LOGIN
+
+Time : 12:39:17
+SQLSTATE[HY093]: Invalid parameter number
+Raw SQL : UPDATE `users` SET  PASSWORD = :PASSWORD  WHERE  LOGIN = :armel
+
+Time : 12:38:34
+SQLSTATE[HY093]: Invalid parameter number
+Raw SQL : UPDATE `users` SET  PASSWORD = :PASSWORD  WHERE  LOGIN = :armel
+
+Time : 12:37:33
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE  LOGIN = ?' at line 1
+Raw SQL : UPDATE `users` SET  PASSWORD = :PASSWORD WHERE  WHERE  LOGIN = :armel

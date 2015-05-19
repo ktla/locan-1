@@ -1,9 +1,4 @@
 html, body{
-    //background-image:-moz-linear-gradient(top, #8B4513, white);
-    /*background-image:-webkit-linear-gradient(top, #E1C4C4, white);
-    background-image:-o-linear-gradient(top, #8B4513, white);
-    background-image:linear-gradient(top, #8B4513, white);
-    background-repeat: no-repeat;*/
     margin: 0;
     padding: 0;
     /*border: 1px solid #000;*/
@@ -98,6 +93,7 @@ html, body{
 #page-content .navigation img{
     vertical-align:middle; 
     cursor:pointer;
+    
 }
 #page-content .status{
     height: 18px;
@@ -383,8 +379,8 @@ a{
     color: #B63B00;
     font-weight: bold;
 }
-.error{
+.errors{
     font-weight: bold !important;
-    color: #8B4513;
+    color: #ff0066;
     text-align: center;   
 }

@@ -17,31 +17,36 @@ class EleveModel extends Model {
     
 
     /**
-     * $params = ["nom" => $this->request->nom,
-      "prenom" => $this->request->prenom,
-      "autrenom" => $this->request->autrenom,
-      "sexe" => $this->request->postsexe,
-      "photo" => $photo,
-      "nationalite" => $this->request->nationalite,
-      "datenaiss" => $this->request->datenaiss,
-      "lieunaiss" => $this->request->lieunaiss,
-      "paysnaiss" => $this->request->paysnaiss,
-      "dateentree" => $this->request->dateentree,
-      "provenance" => $this->request->provenance,
-      "redoublant" => $redoublant,
-      "datesortie" => $this->request->datesortie,
-      "motifsortie" => $this->request->motifsortie
+     *  "matricule" => "",
+                "nom" => $this->request->nomel,
+                "prenom" => $this->request->prenomel,
+                "autrenom" => $this->request->autrenom,
+                "sexe" => $this->request->sexe,
+                "photo" => $this->request->hiddenphoto,
+                "cni" => $this->request->cni,
+                "nationalite" => $this->request->nationalite,
+                "datenaiss" => $this->request->datenaiss,
+                "lieunaiss" => $this->request->lieunaiss,
+                "paysnaiss" => $this->request->paysnaiss,
+                "dateentree" => $this->request->dateentree,
+                "provenance" => $this->request->provenance,
+                "redoublant" => $redoublant,
+                "datesortie" => $this->request->datesortie,
+                "motifsortie" => $this->request->motifsortie
       ];
      * @param type $params
      * @return type
      */
     public function insert($params) {
-        $query = "INSERT INTO eleves(MATRICULE, NOM, PRENOM, AUTRENOM, SEXE, PHOTO, NATIONALITE, "
-                . "DATENAISS, LIEUNAISS, PAYSNAISS, DATEENTREE, PROVENANCE, REDOUBLANT, DATESORTIE, MOTIFSORTIE) "
-                . "VALUE(:matricule, :nom, :prenom, :autrenom, :sexe, :photo, :nationalite, :datenaiss, :lieunaiss, "
-                . ":paysnaiss, :dateentree, :provenance, :redoublant, :datesortie, :motifsortie)";
+        $query = "INSERT INTO eleves(MATRICULE, NOM, PRENOM, AUTRENOM, SEXE, PHOTO, CNI, NATIONALITE, "
+                . "DATENAISS, LIEUNAISS, PAYSNAISS, DATEENTREE, PROVENANCE, REDOUBLANT) "
+                . "VALUE(:matricule, :nom, :prenom, :autrenom, :sexe, :photo, :cni, :nationalite, :datenaiss, :lieunaiss, "
+                . ":paysnaiss, :dateentree, :provenance, :redoublant)";
+      
         return $this->query($query, $params);
     }
+    
+    
     
     public function findBy($condition = array()) {
         $str = ""; $params = array();

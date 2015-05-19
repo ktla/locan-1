@@ -1,5 +1,5 @@
 <div class="fiche">
-<fieldset><legend>Identité</legend>
+    <fieldset style="width: 650px;"><legend>Identité</legend>
     <table>
         <tr><td width = "20%">Nom : </td><td><?php echo $nom; ?></td></tr>
         <tr><td>Prénom : </td><td><?php echo $prenom; ?></td></tr>
@@ -9,7 +9,7 @@
         <tr><td>Pays de nationalité : </td><td><?php echo $nationalite; ?></td></tr>
     </table>
 </fieldset>
-<fieldset><legend>Scolarité actuelle</legend>
+<fieldset style="width: 650px;"><legend>Scolarité actuelle</legend>
     <table>
         <tr><td  width = "20%">Classe : </td><td><?php //echo $classe; ?></td></tr>
         <tr><td>Redoublant : </td><td><?php //echo $redoublant; ?></td></tr>

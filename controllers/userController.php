@@ -52,7 +52,8 @@ class userController extends Controller {
                 //Verifier que l'ancien mot de passe est correcte
                 $user = $this->User->findBy(array("LOGIN" => $this->session->user, "PASSWORD" => md5($this->request->pwdactuel)));
                 if (is_array($user) && count($user) > 0) {
-                    if ($this->User->updateBy($this->session->user, array("PASSWORD" => md5($this->request->newpwd)))) {
+                    
+                    if ($this->User->update(["PASSWORD" => md5($this->request->newpwd)], ["LOGIN" => $this->session->user])) {
                         header("Location:" . Router::url("connexion", "disconnect"));
                     } else {
                         $message = "Une erreur de mise a jour";
@@ -69,23 +70,55 @@ class userController extends Controller {
         $content = $view->Render("user" . DS . "mdp", false);
         $this->Assign("content", $content);
     }
-
+    /**
+     * Modification de son adresse email
+     */
     public function email() {
-        $this->Assign("content", (new View())->output());
+        $view = new View();
+        $view->Assign("errors", false);
+        $message = "";
+        if(!empty($this->request->email)){
+            //verifier si c'est un email valide en utilisant une expression reguliere
+            $valide = true;
+            if($valide){
+                $this->loadModel("personnel");
+                if($this->Personnel->update(['EMAIL' => $this->request->email], ["LOGIN" => $this->session->user])){
+                    header("Location:". Router::url("user", "fiche"));
+                }
+            }else{
+                $view->Assign("errors", true);
+                $message = "Format d'email invalide";
+            }
+            
+        }
+        if(isset($this->request->email) && empty($this->request->email)){
+             $view->Assign("errors", true);
+            $message = "Veuillez remplir le champ email";
+        }
+        $view->Assign("message", $message);
+        
+        $this->Assign("content", $view->output());
     }
 
     public function telephone() {
         $view = new View();
         $view->Assign("errors", false);
+         $this->loadModel("personnel");
+         
         //Validation du formulaire
-        if (isset($this->request->telephone)) {
-            $this->loadModel("personnel");
-            if ($this->Personnel->updateTelephone($this->request->telephone, $this->session->user)) {
-                echo "Reussite";
+        if (!empty($this->request->telephone) || !empty($this->request->portable)) {
+            $params = ["TELEPHONE" => $this->request->telephone, "PORTABLE" => $this->request->portable];
+            if ($this->Personnel->update($params, ["LOGIN" => $this->session->user])) {
                 //Rediriger sur ma fiche pour voir que la modif est a jour
-                //header("Location:" . Router::url("user", "fiche"));
+                header("Location:" . Router::url("user", "fiche"));
             }
         }
+        $pers = $this->Personnel->findBy(["LOGIN" => $this->session->user]);
+        $portable = $pers[0]["PORTABLE"];
+        $tel = $pers[0]["TELEPHONE"];
+        $view->Assign("tel", $tel);
+        $view->Assign("portable", $portable);
+        
         $content = $view->Render("user" . DS . "telephone", false);
         $this->Assign("content", $content);
     }
@@ -121,4 +154,8 @@ class userController extends Controller {
         $this->Assign("content", $content);
     }
 
+    
+    public function fiche(){
+        $this->Assign("content", (new View())->output());
+    }
 }

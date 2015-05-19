@@ -5,33 +5,42 @@
 </div>
 <script>
     var resp = [], incr = 0;
-
     function resetResponsable() {
         document.forms['formresponsable'].reset();
     }
     function saveResponsable() {
-        if($("input[name=nom]").val() === "" || $("input[name=telephone]").val() === ""){
+        if ($("input[name=nom]").val() === "" || $("input[name=telephone]").val() === "") {
             alertWebix("Veuillez remplir les champs obligatoires");
             return;
         }
-        resp[incr] = {
+        element = {
             "civilite": $("select[name=civilite]").val(),
             "nom": $("input[name=nom]").val(),
             "prenom": $("input[name=prenom]").val(),
-            "adresse": $("textarea[name=adresse]").val(),
+            "adresse": $("input[name=adresse1]").val() + "#" + $("input[name=adresse2]").val() + "#" + $("input[name=adresse3]").val(),
             "telephone": $("input[name=telephone]").val(),
             "portable": $("input[name=portable]").val(),
             "email": $("input[name=email]").val(),
-            "profession": $("input[name=profession]").val()
+            "profession": $("input[name=profession]").val(),
+            "parente": $("select[name=parente]").val(),
+            "charge": $("input[name=charge]:checked"),
+            "acceptesms": $("input[name=acceptesms]:checked"),
+            "numsms": $("input[name=numsms]").val(),
+            "cp": $("input[name=cp]").val()
         };
+        resp.push(element);
         cible = $("#responsablebody");
-
+        
+        
+        
         nom = document.createElement("td");
         nom.appendChild(document.createTextNode($("input[name=nom]").val()));
         prenom = document.createElement("td");
         prenom.appendChild(document.createTextNode($("input[name=prenom]").val()));
         imgsrc = document.createElement("img");
         imgsrc.setAttribute("src", "../public/img/delete.png");
+        
+        imgsrc.setAttribute("onclick", "supprimerLigneResp(" + incr + ");");
         action = document.createElement("td");
         action.appendChild(imgsrc);
 
@@ -42,11 +51,86 @@
         cible.append(tr);
         incr++;
         resetResponsable();
-        console.log(tr);
+        console.log(resp);
         console.log(JSON.stringify(resp));
     }
+    //Soumet effectivement le formulaire des eleves au server
+    function soumettreFormEleve() {
+        frm = $("form[name=frmeleve]");
+        //add the responsable data
+        var hidden = $("<input type='hidden' name='responsables'/>");
+        hidden.val(JSON.stringify(resp));
+        frm.append(hidden);
+        //add the date from webix datepicker
+        d = caldatenaiss.getValue();
+        dNaiss = $("<input type='hidden' name='datenaiss'/>");
+        dNaiss.val(d.split(' ')[0]);
+        d = caldateentree.getValue();
+        dEntree = $("<input type = 'hidden' name = 'dateentree' />");
+        dEntree.val(d.split(' ')[0]);
 
+        frm.append(dEntree);
+        frm.append(dNaiss);
+        frm.append($("input[name=hiddenphoto]"));
+        frm.submit();
+    }
+    function savePhotoEleve() {
+        if ($("input[name=photo]").val() === "") {
+            alertWebix("Veuillez sélectionner le fichier image");
+            return;
+        }
+        frmphoto = $("#frmphoto");
+        var formData = new FormData(document.getElementById("frmphoto"));
+
+        $.ajax({
+            url: frmphoto.attr("action"),
+            type: 'POST',
+            enctype: 'multipart/form-data',
+            dataType: "json",
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                $("#btn_photo_action").html(result[0]);
+                //cadre pour l'affichage de l'image uploader
+                $("#photoeleve").html("<img style = 'width:200px;height:200px;' src ='" + result[1] + "' />");
+                $(".errors").html(result[2]);
+                //hidden photo contient le nom de la photo a sauvegarder et envoyer plutart au server
+                $("input[name=hiddenphoto]").val(result[3]);
+                //le input type file
+                $("input[name=photo]").val("");
+            },
+            error: function (xhr, status, error) {
+                alert(error + " " + xhr + " " + status);
+            }
+        });
+    }
+    function effacerPhotoEleve() {
+        $.ajax({
+            url: $("input[name=urleffacer]").val() + "/" + $("input[name=hiddenphoto]").val(),
+            type: 'POST',
+            dataType: "json",
+            data: $("#hiddenphoto").val(),
+            success: function (result) {
+                $("#btn_photo_action").html(result[0]);
+                $("#photoeleve").html(result[1]);
+                $(".errors").html(result[2]);
+                $("input[name=hiddenphoto]").val(result[3]);
+                $("input[name=photo]").val("");
+            },
+            error: function (xhr, status, error) {
+                alert(error + " " + xhr + " " + status);
+            }
+        });
+    }
+    //supprime une ligne de la table et de la variable JSON
+    function supprimerLigneResp(indice){
+        //Supprimer l'element a l'index indice
+        alert(indice);
+    }
 </script>
+<div id="tesst"></div>
 <div class="titre">
     Ajout d'un nouvel &eacute;l&egrave;ve
 </div>
@@ -107,7 +191,7 @@
                 <span class="text" style="width: 140px">
                     <label>Date de Naissance</label>
                     <div id="datenaiss" style="margin-top: 10px;"></div>
-                    <input type="hidden" name="datenaiss" maxlength="30" />
+
                 </span>
                 <span class="select" style="width: 180px">`
                     <label>Pays de Naiss.</label>
@@ -120,20 +204,20 @@
             </fieldset>
             <fieldset style="width: 419px; margin-left: 10px">
                 <legend>Informations internes</legend>
-                <span class="text" style="width: 190px">
+                <span class="text" style="width: 130px">
                     <label>CNI</label>
                     <input type="text" name="cni" />
                 </span>
-                <span class="text" style="width: 180px;" >
+                <span class="text" style="width: 250px;" >
                     <label>Identifiant dans l'Etabl.</label>
-                    <input type="text" name="identifiant" value="153005" disabled="disabled" />
+                    <input type="text" name="identifiant" value="" disabled="disabled" />
                 </span>
                 <span class="text" style="width: 125px;margin-right: 20px;">
                     <label>Date entrée : </label>
                     <div id="dateentree" style="margin-top: 10px;"></div>
                     <input type="hidden" name="dateentree" maxlength="30" />
                 </span>
-                <span class="select" style="width: 250px">
+                <span class="select" style="width: 257px">
                     <label>Provenance :</label>
                     <?php echo $provenance; ?>
                 </span>
@@ -144,18 +228,18 @@
                         <option value="1">Oui</option>
                     </select>
                 </span>
-                <span class="select" style="width: 250px">
+                <span class="text" style="width: 250px">
                     <label>Classe</label>
-                    <?php echo $classes; ?>
+                    <input type="text" name="classe" disabled="disabled" value="R.A.S" />
                 </span>
                 <span class="text" style="width: 125px;margin-right: 20px;">
                     <label>Date de sortie : </label>
                     <div id="date" style="margin-top: 10px;"></div>
                     <input type="hidden" name="datesortie" maxlength="30" />
                 </span>
-                <span class="select" style="width: 250px">
+                <span class="text" style="width: 250px">
                     <label>Motif de sortie : </label>
-                    <?php echo $motifsortie; ?>
+                    <input type="text" name="motifsortie" disabled="disabled" value="R.A.S" />
                 </span>
             </fieldset>
         </form>
@@ -173,7 +257,7 @@
 
                 </thead>
                 <tbody id="responsablebody">
-                    <tr><td>Ainam</td><td>Jean - Paul</td><td>del</td></tr>
+
                 </tbody>
             </table>
 
@@ -205,11 +289,11 @@
                 <?php
                 foreach ($charges as $charge) {
                     echo "<span style = 'margin-right:15px'>"
-                    . "<input type ='checkbox' value = \"" . $charge['IDCHARGE'] . "\" name = 'charge[]' />";
+                    . "<input type ='checkbox' value = \"" . $charge['IDCHARGE'] . "\" name = 'charge' />";
                     echo "<label style = 'font-weight:bold;'>" . $charge['LIBELLE'] . "</label></span>";
                 }
                 ?>
-                <div style="height: 15px; clear: both; content: ' ';"></div>
+                
                 <span class="text" style="width: 140px">
                     <label>T&eacute;l&eacute;phone</label>
                     <input type="text" name="telephone" />
@@ -229,14 +313,20 @@
                 </span>
                 <span class="text" style="width: 140px;" >
                     <label>N° envoi de SMS</label>
-                    <input type="text" name="numsms" />
+                    <input type="text" name="numsms" maxlength="20"/>
                 </span>
 
                 <fieldset style="width: 440px;"><legend>Coordonn&eacute;es</legend>
 
-                    <span style="width: 140px;">
+                    <span class="text" style="width: 418px;">
                         <label>Adresse</label>
-                        <textarea style ='position:relative;' rows ='3' cols ='50' name="adresse" /></textarea>
+                        <input type="text" name="adresse1" placeholder = 'Adresse'/>
+                    </span>
+                    <span class="text" style="width: 418px;margin-top:-10px;" placeholder = 'Adresse'>
+                        <input type="text" name="adresse2" placeholder = 'Adresse'/>
+                    </span>
+                    <span class="text" style="width: 418px; margin-top:-10px;">
+                        <input type="text" name="adresse3" placeholder = 'Adresse' />
                     </span>
                     <span class="text" style="width: 418px;">
                         <label>Code Postal</label>
@@ -254,8 +344,8 @@
         </fieldset>
     </div>
     <div id="onglet3" class="onglet" style=" display: none; height: 470px; ">
-        <form action=""  method="post" enctype="multipart/form-data">
-            <fieldset style = 'width: 480px;'><legend>Informations responsables</legend>
+        <form action="<?php echo Router::url("eleve", "photo", "upload"); ?>"  enctype="multipart/form-data" id="frmphoto">
+            <fieldset style = 'width: 400px; height: 270px;'><legend>Photo d'identit&eacute;</legend>
                 <p>Vous pouvez si vous le souhaitez, ajouter une photo d'identit&eacute; sur 
                     la fiche de l'&eacute;l&egrave;ve.
                 </p>
@@ -263,13 +353,25 @@
                     de l'&eacute;tablissement et permet l'impression
                 </p>
                 <p>Vous devez utilisez imp&eacute;rativement un format de photo d'identit&eacute; 
-                    r&eacute;glementaire de 35x45 sous peine d'obtenir une photo d&eacute;form&eacute;e.
+                    r&eacute;glementaire de 200x200 px sous peine d'obtenir une photo d&eacute;form&eacute;e.
                 </p>
                 <p>
                     Les formats gif, jpg, jpeg et png sont accept&eacute;s.
                 </p>
-                <input type="file" name="photo" maxlength="30" />
+                <input type="file" name="photo" maxlength="30" required="" style="margin: 0; padding: 0" />
+                <div  style="position: relative; top: 10px; margin-right: 10px; clear: both;" class="navigation">
+                    <div id="btn_photo_action"><?php echo btn_add("savePhotoEleve()"); ?>
+                        <?php echo btn_effacer_disabled(""); ?>
+                    </div>
+
+                </div>
+                <input type="hidden" name="urleffacer" value="<?php echo Router::url("eleve", "photo"); ?>" />
+                <input type="hidden" name="hiddenphoto" />
             </fieldset>
+
+            <div id="photoeleve" style="border: 1px solid #000; float: left;  position: relative;width: 200px; height: 200px;margin: 8px 20px;">
+
+            </div>
         </form>
     </div>
 </div>
@@ -282,7 +384,7 @@
     </div>
 </div>
 <div class="navigation">
-    <?php echo btn_ok("document.forms['frmeleve'].submit();"); ?>
+    <?php echo btn_ok("soumettreFormEleve();"); ?>
 </div>
 
 <div class="status"></div>

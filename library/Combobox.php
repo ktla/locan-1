@@ -11,6 +11,8 @@ class Combobox {
     public $selectedid; //Si selected = TRUE, indiquer l'identifiant de cet element qui devrai etre selectionner par defaut
     public $other = FALSE;  //Precise s'il ya possibilite de choisir en dernier lieu ---Autre---
    
+    public $disabled = false;
+    
     /* Id utiliser, meme chose pour name */
     public $idname;
     public $textother = "--Autre | Pr&eacute;ciser--"; //Text a afficher s'il l'option autre existe
@@ -34,7 +36,12 @@ class Combobox {
             return "<p class=\"infos\">Aucun enregistrement</p>";
         }
         $str = "";
-        $str .= "<select name=\"" . $this->name . "\"".(!empty($this->onchange) ?"onChange ='" . $this->onchange."'":"").
+        $dis = "";
+        if ($this->disabled) {
+            $dis = 'disabled';
+        }
+
+        $str .= "<select $dis name=\"" . $this->name . "\"".(!empty($this->onchange) ?"onChange ='" . $this->onchange."'":"").
                 " style=\"width:" . $width . "\" id = '" . $this->idname . "'>";
         if (!empty($this->first)) {
             $str .= "<option value=\"0\">" . $this->first . "</option>";

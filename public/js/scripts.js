@@ -1,4 +1,7 @@
-
+/* data: {
+ file: filename
+ },
+ */
 var calendar, caldatenaiss, caldateentree;
 //$('div.dataTables_scrollBody').height( 100 );
 $(document).ready(function () {
@@ -34,40 +37,13 @@ $(document).ready(function () {
         }
     });
     //Ajouter le scrolling en fonction de hauteur de la page visible
-    
+
     var max = $(window).height() - 154;
     $("#menu").css({maxHeight: max});
     var h = $("#entete").height() + $(".navigation").height() + $(".recapitulatif").height()
             + $(".status").height() + $(".titre").height();
     $(".page").css({height: $(window).height() - h - 97});
     
-    calendar = webix.ui({
-        view: "datepicker",
-        container: "date",
-        width: 140,
-        height: 25,
-        placeholder: "JJ-MM-AAAA",
-        format: "%d-%m-%Y",
-        stringResult: true
-    });
-    caldatenaiss = webix.ui({
-        view: "datepicker",
-        container: "datenaiss",
-        width: 140,
-        height: 25,
-        placeholder: "JJ-MM-AAAA",
-        format: "%d-%m-%Y",
-        stringResult: true
-    });
-    caldateentree = webix.ui({
-        view: "datepicker",
-        container: "dateentree",
-        width: 140,
-        height: 25,
-        placeholder: "JJ-MM-AAAA",
-        format: "%d-%m-%Y",
-        stringResult: true
-    });
 });
 
 
@@ -93,8 +69,8 @@ function deleteRow(_url, name) {
  * 
  */
 
-function alertWebix(sms){
-     webix.modalbox({
+function alertWebix(sms) {
+    webix.modalbox({
         title: "Informations",
         buttons: ["Ok"],
         width: "300px",
@@ -140,6 +116,34 @@ $(document).ready(function () {
 
         }
     })();
+    calendar = webix.ui({
+        view: "datepicker",
+        container: "date",
+        width: 140,
+        height: 25,
+        placeholder: "JJ-MM-AAAA",
+        format: "%d-%m-%Y",
+        stringResult: true
+    });
+    caldatenaiss = webix.ui({
+        view: "datepicker",
+        container: "datenaiss",
+        width: 140,
+        height: 25,
+        placeholder: "JJ-MM-AAAA",
+        format: "%d-%m-%Y",
+        stringResult: true
+    });
+    caldateentree = webix.ui({
+        view: "datepicker",
+        container: "dateentree",
+        width: 140,
+        height: 25,
+        placeholder: "JJ-MM-AAAA",
+        format: "%d-%m-%Y",
+        stringResult: true
+    });
+    
 });
 
 function onglets(premier, actuel, nombre) {

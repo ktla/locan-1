@@ -41,7 +41,6 @@ class Model extends Database {
         }
         return $res;
     }
-    
 
     public function insertAll($params = array()) {
         $str = "";
@@ -50,8 +49,27 @@ class Model extends Database {
         }
         $str = substr($str, 0, strlen($str) - 1);
         $query = "INSERT INTO `" . $this->_table . "` VALUES ($str)";
-        
+
         return $this->query($query, $params);
+    }
+
+    public function update($params = array(), $keys = array()) {
+        
+        $str = "";
+        foreach ($params as $key => $param) {
+            $str .= " $key = :$key,";
+        }
+        $str = substr($str, 0, strlen($str) - 1);
+        $condition = "";
+        if (empty($keys)) {
+            $condition = "1=1";
+        }
+        foreach ($keys as $key => $val) {
+            $condition .= " $key = :$key AND ";
+        }
+        $condition = substr($condition, 0, strlen($condition) - 4);
+        $query = "UPDATE `" . $this->_table . "` SET $str  WHERE $condition";
+        return $this->query($query, array_merge($params, $keys));
     }
 
     public function get($id) {
@@ -59,28 +77,29 @@ class Model extends Database {
                         . " WHERE `" . $this->_key . "` = :id", array("id" => $id));
     }
 
-   public function findBy($condition = array()){
-       $str = ""; $params = array();
-       foreach($condition as $key => $condition){
-           $str .= " $key = :$key AND ";
-           $params[$key] = $condition;
-       }
-       $str = substr($str, 0, strlen($str) - 4);
-       $query =  "SELECT * FROM `".$this->_table . "` WHERE $str";
-      
-       return $this->row($query, $params);
-   }
-   
-   public function updateBy($id, $params = array()){
-       $str = "";
-       foreach($params as $key => $param){
-           $str .= " SET $key = :$key ,";
-       }
-       $str = substr($str, 0, strlen($str) - 1);
-       $params = array_merge($params, array("key" => $id));
-       $query = "UPDATE `" . $this->_table . "` $str WHERE `" . $this->_key . "` = :key";
-       
-       return $this->query($query, $params);
-   }
+    public function findBy($condition = array()) {
+        $str = "";
+        $params = array();
+        foreach ($condition as $key => $condition) {
+            $str .= " $key = :$key AND ";
+            $params[$key] = $condition;
+        }
+        $str = substr($str, 0, strlen($str) - 4);
+        $query = "SELECT * FROM `" . $this->_table . "` WHERE $str";
+
+        return $this->query($query, $params);
+    }
+
+    public function updateBy($id, $params = array()) {
+        $str = "";
+        foreach ($params as $key => $param) {
+            $str .= " SET $key = :$key ,";
+        }
+        $str = substr($str, 0, strlen($str) - 1);
+        $params = array_merge($params, array("key" => $id));
+        $query = "UPDATE `" . $this->_table . "` $str WHERE `" . $this->_key . "` = :key";
+
+        return $this->query($query, $params);
+    }
 
 }
