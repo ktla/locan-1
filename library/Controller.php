@@ -2,8 +2,7 @@
 
 class Controller extends Application {
 
-    protected $view;
-    protected $view_name;
+    protected $view = null;
 
     public function __construct() {
 
@@ -15,24 +14,17 @@ class Controller extends Application {
          */
         
         if ($urlArray[0] != "connexion"){
-           
             $_SESSION['activeurl'] = $url;
         }
         
-       
          //Extraire le mot Eleve dans la chaine EleveController (par exple)
         $model = strtolower(substr(get_class($this), 0, strlen(get_class($this)) - 10));
         $this->loadModel($model);
         //Verifier si ce n'est pas une requete AJAX
         if (!isset($_SERVER['HTTP_X_REQUESTED_WITH'])) {
-            $this->view_name = '';
+            //Charger la page template, confere destructeur __destruct
             $this->view = new View();
-            $this->setBreadCrumb();
-            
-            //Charger la page template
-            $this->Load_View('template');
-
-
+            $this->view->Assign("authentified", isset($this->session->user));
             //Peut se faire directement dans le template
             //Charger le CSS
             //$this->view->setCSS('public' . DS . 'css' . DS . 'style.css');
@@ -42,6 +34,7 @@ class Controller extends Application {
             $header = new View();
             $header->Assign('app_title', "LOCAN");
             $header->Assign("authentified", (isset($this->session->user)));
+           
             if (isset($this->session->user)) {
                 $header->Assign("menu", $this->menus->getMenus());
             }
@@ -63,15 +56,6 @@ class Controller extends Application {
         $this->view->Assign($variable, $value);
     }
 
-    /* protected function loadModel($model) {
-      $modelName = $model . 'Model';
-      $model = strtolower($model);
-      if (class_exists($modelName)) {
-      $this->models[$model] = new $modelName();
-      //var_dump($this->models);
-      }
-      } */
-
     protected function loadModel($model) {
         $modelName = strtolower($model) . 'Model';
         if (class_exists($modelName)) {
@@ -82,35 +66,18 @@ class Controller extends Application {
         }
     }
 
-    /* protected function getModel($model) {
-      $model = strtolower($model);
-
-      if (array_key_exists($model, $this->models) === FALSE) {
-      $modelName = $model . 'Model';
-      if (class_exists($modelName)) {
-      $this->models[$model] = new $modelName();
-      }else{
-      die("Classe $modelName n'existe pas");
-      }
-      }
-      if (is_object($this->models[$model])) {
-      return $this->models[$model];
-      } else {
-      return false;
-      }
-      } */
-
-    function Load_View($name) {
+    function loadView($name) {
+         
         //echo ROOT . DS . 'views' . DS . strtolower($name) . 'php';
-        if (file_exists(ROOT . DS . 'views' . DS . strtolower($name) . '.php')) {
+       /* if (file_exists(ROOT . DS . 'views' . DS . strtolower($name) . '.php')) {
             $this->view_name = $name;
-        }
+        }*/
     }
 
+ 
     function __destruct() {
-        if (!empty($this->view_name)) {
-            $this->view->Assign("authentified", isset($this->session->user));
-            $this->view->Render($this->view_name);
+        if ($this->view != null) {
+            $this->view->Render('template');
         }
     }
 

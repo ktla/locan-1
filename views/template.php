@@ -4,6 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
         <title>Gestion des activités académique</title>
+        <link href = "<?php echo SITE_ROOT; ?>public/img/favicon.ico" rel = "shortcut icon" type = "image/vnd.microsoft.icon" />
         <link href = "<?php echo SITE_ROOT; ?>public/css/style.css" rel = 'stylesheet' type = 'text/css' />
         <?php
         global $css;
@@ -12,23 +13,19 @@
         }
         ?>
 
-        <link href = "<?php echo SITE_ROOT; ?>public/img/favicon.ico"
-              rel = "shortcut icon" type = "image/vnd.microsoft.icon" />
+        
         <script type="text/javascript" src="<?php echo SITE_ROOT; ?>public/js/jquery-1.11.2.min.js"></script>
         <script type="text/javascript" src="<?php echo SITE_ROOT; ?>public/js/jquery-ui.js"></script>
         <script type="text/javascript" src="<?php echo SITE_ROOT; ?>public/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="<?php echo SITE_ROOT; ?>public/js/codebase/webix.js"></script>
         <script type="text/javascript" src="<?php echo SITE_ROOT; ?>public/js/scripts.js"></script>
-        <script type="text/javascript" src="<?php echo SITE_ROOT; ?>public/js/ajax.js"></script>
-        <script>
             <?php
             global $_JS;
             if (!empty($_JS)) {
-                echo $_JS;
+                echo "<script>$_JS</script>";
             }
             ?>
-        </script>
-
+        <?php echo $clientsjs; ?>
     </head>
     <body>
         <div id="container">
@@ -55,5 +52,7 @@
                 </p>
             </div>
         </div>
+        <!-- Inclure late loading fichier JS -->
+        
     </body>
 </html>

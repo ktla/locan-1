@@ -1,4 +1,10 @@
-$(document).ready(function () {    
+$(document).ready(function () {
+    $(document).ajaxStart(function () {
+        $("#loading").show();
+    }).ajaxStop(function () {
+        $("#loading").hide();
+    });
+
     $.extend($.fn.dataTable.defaults, {
         "aaSorting": [],
         "scrollCollapse": true,
@@ -31,40 +37,7 @@ $(document).ready(function () {
         }
     });
     $('#dataTable, #dataTable2').DataTable();
-    $('#tab_elv, #tab_mat').DataTable({
-        "paging": false,
-        "bInfo": false
-    });
-    $('#tab_pp, #tab_ra, #tab_cpe').DataTable({
-        "paging": false,
-        "bInfo": false,
-        "searching": false
-    });
-
-    var pop1 = popup("#dialog-form", ajoutEleve);
-    var pop2 = popup("#dialog-pp-form", ajoutEleve);
-    var pop3 = popup("#dialog-cpe-form", ajoutEleve);
-    var pop4 = popup("#dialog-ra-form", ajoutEleve);
-    var pop5 = popup("#dialog-mat-form", ajoutEleve);
-    pop5.dialog("option", "height", 250);
-
-    $("#ajout_eleve").button().on("click", function () {
-        pop1.dialog("open");
-    });
-
-    $("#ajout_pp").button().on("click", function () {
-        pop2.dialog("open");
-    });
-    $("#ajout_cpe").button().on("click", function () {
-        pop3.dialog("open");
-    });
-    $("#ajout_ra").button().on("click", function () {
-        pop4.dialog("open");
-    });
-
-    $("#ajout_mat").button().on("click", function () {
-        pop5.dialog("open");
-    });
+    
 
     /*
      * Fonction permettant d'afficher et cacher le menu.
@@ -110,9 +83,7 @@ $(document).ready(function () {
             + $(".status").height() + $(".titre").height();
     $(".page").css({height: $(window).height() - h - 97});
 
-    calendar = getCalendar("date");
-    caldatenaiss = getCalendar("datenaiss");
-    caldateentree = getCalendar("dateentree");
+    
 });
 
 
@@ -161,22 +132,7 @@ function onglets(premier, actuel, nombre) {
         }
     }
 }
-function popup(id, func) {
-    var dial = $(id).dialog({
-        autoOpen: false,
-        height: 160,
-        width: 350,
-        modal: true,
-        resizable: false,
-        buttons: {
-            "Ajouter": func,
-            Annuler: function () {
-                dial.dialog("close");
-            }
-        }
-    });
-    return dial;
-}
+
 
 /**
  * Permet d'ajouter un style particulier au champs obligatoires
@@ -185,7 +141,7 @@ function popup(id, func) {
  */
 function addRequiredFields(fields) {
     for (i = 0; i < fields.length; i++) {
-        if(fields[i].val() === "")
+        if (fields[i].val() === "")
             fields[i].addClass("requiredFields");
     }
 }
@@ -212,9 +168,3 @@ function getCalendar(id) {
     });
     return calendar;
 }
-/*
- * Ajout eleve - Classe fenetre popup
- */
-var ajoutEleve = function () {
-    alert("test");
-};

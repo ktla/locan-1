@@ -3,19 +3,14 @@
 </div>
 <script>
     $("#listeeleve").change(function () {
-       
         $.ajax({
-            url: "./eleve/ajax/" + $("#listeeleve").val(),
+            url: "./eleve/ajax",
             type: 'POST',
             dataType: "json",
-            data: "ideleve = " + $("#listeeleve").val(),
+            data: {
+                "ideleve" : $("#listeeleve").val()
+            },
             success: function (result) {
-                console.log(result);
-                //if(!result)
-                //location.reload(true);
-                /*for (var i in result) {
-                 $("#onglet" + i).html(result[i]);
-                 }*/
                 $("#onglet1").html(result[0]);
                 $("#onglet2").html(result[1]);
                 $("#onglet3").html(result[2]);
@@ -24,8 +19,7 @@
                 $("#onglet6").html(result[5]);
             },
             error: function (xhr, status, error) {
-                alert(error + " " + xhr + " " + status);
-                document.location = 'connexion';
+                alertWebix("Veuillez rafraichir la page \n" + status + " " + error);
             }
         });
     });

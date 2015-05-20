@@ -10,6 +10,7 @@ class View {
         $this->data['site_icon'] = '';
         $this->data['meta_description'] = '';
         $this->data['meta_keywords'] = '';
+        $this->data['clientsjs'] = '';
 
         $this->data['css'] = '';
         $this->data['js'] = '';
@@ -91,9 +92,27 @@ class View {
     }
 
     public function setSiteIcon($filename) {
-        if (file_exists(SITE_ROOT . DS . $filename)) {
+        if (file_exists(SITE_ROOT . $filename)) {
             $this->data['site_icon'] = '	<link href = "' . SITE_ROOT . DS .
                     $filename . '" rel = "shortcut icon" type = "image/vnd.microsoft.icon" />';
+        }
+    }
+
+    public function clientsJS($name) {
+        if (file_exists(ROOT . DS . "views" . DS . strtolower($name) . ".js")) {
+            $entree = file_get_contents(ROOT . DS . 'views' . DS . strtolower($name) . '.js');
+            $filename = ROOT . DS . "public" . DS . "js" . DS . "clients.js";
+            if (empty($this->data['clientsjs'])) {
+                fopen($filename, "w");
+            }
+            if (file_put_contents($filename, $entree, FILE_APPEND)) {
+                $this->data['clientsjs'] = "<script type='text/javascript' src='"
+                        . SITE_ROOT . "public/js/clients.js'></script>";
+            } else {
+                die("Impossible de copier les fichier $name.js et clients.js dans public");
+            }
+        } else {
+            die("Fichier javascript " . ROOT . DS . 'views' . DS . $name . ".js inexistante");
         }
     }
 
@@ -126,9 +145,9 @@ class View {
     }
 
     public function setTextJS($js = "") {
-       global $_JS;
-       $_JS .= PHP_EOL . $js;
-       //$this->data['_JS'] .= $_JS;
+        global $_JS;
+        $_JS .= PHP_EOL . $js;
+        //$this->data['_JS'] .= $_JS;
     }
 
 }

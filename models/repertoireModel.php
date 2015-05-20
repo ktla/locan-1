@@ -14,7 +14,7 @@ class repertoireModel extends Model {
                 . "UNION "
                 . "SELECT CIVILITE, CONCAT(NOM,' ', PRENOM) AS NOM, TELEPHONE, PORTABLE, EMAIL FROM personnels "
                 . "UNION "
-                . "SELECT CIVILITE, IDENTITE AS NOM, TELEPHONE, PORTABLE, EMAIL FROM responsables ";
+                . "SELECT CIVILITE, CONCAT(NOM, ' ', PRENOM) AS NOM, TELEPHONE, PORTABLE, EMAIL FROM responsables ";
         return $this->query($query);
     }
 }

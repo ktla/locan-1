@@ -9,7 +9,7 @@
 </div>
 <form action="<?php echo url("personnel", "saisie"); ?>" method="post" >
     <div class="page">
-        <fieldset style="width: 700px;background-color: #FFF;"><legend> Identit&eacute;</legend>
+        <fieldset style="width: 700px;float: none; margin: auto;"><legend> Identit&eacute;</legend>
             <span class="select" style="width: 150px;">
                 <label>Civilit&eacute;</label>
                 <?php echo $civilite; ?>

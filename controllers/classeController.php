@@ -29,6 +29,7 @@ class classeController extends Controller{
     
     
     public function saisie(){
+        $this->view->clientsJS("classe" . DS . "classe");
         if(!isset($this->request->saisie)){
             $this->showClasses();
         }else{

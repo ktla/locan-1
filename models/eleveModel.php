@@ -3,7 +3,7 @@
 class EleveModel extends Model {
 
     protected $_table = "eleves";
-    protected $_key = "id";
+    protected $_key = "IDELEVE";
 
     public function __construct() {
         parent::__construct();
@@ -16,6 +16,15 @@ class EleveModel extends Model {
     }
     
 
+    public function selectAll(){
+        $query = "SELECT e.*, CONCAT(e.MATRICULE, ' - ', e.NOM, ' ', e.PRENOM) AS CNOM, "
+                . "p.ETABLISSEMENT AS FK_PROVENANCE, m.LIBELLE AS FK_MOTIFSORTIE "
+                . "FROM eleves e "
+                . "LEFT JOIN etablissements p ON p.IDETABLISSEMENT = e.PROVENANCE "
+                . "LEFT JOIN motifsortie m ON m.IDMOTIF = e.MOTIFSORTIE "
+                . "ORDER BY e.MATRICULE";
+        return $this->query($query);
+    }
     /**
      *  "matricule" => "",
                 "nom" => $this->request->nomel,

@@ -1,3 +1,23 @@
+Time : 12:34:55
+SQLSTATE[42S02]: Base table or view not found: 1051 Unknown table 'r'
+Raw SQL : SELECT r.*, CONCAT(CIVILITE, ' ', NOM, ' ', PRENOM) AS CNOM FROM responsables
+
+Time : 10:31:03
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'CONCA' in 'field list'
+Raw SQL : SELECT '' AS CIVILITE, CONCAT(ID,'-',NOM) AS NOM , CONCAT(TELEPHONE, '/', TELEPHONE2) AS TELEPHONE, MOBILE AS PORTABLE, EMAIL FROM locan UNION SELECT CIVILITE, CONCAT(NOM,' ', PRENOM) AS NOM, TELEPHONE, PORTABLE, EMAIL FROM personnels UNION SELECT CIVILITE, CONCA%(NOM, ' ', PRENOM) AS NOM, TELEPHONE, PORTABLE, EMAIL FROM responsables
+
+Time : 10:29:54
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'IDENTITE' in 'field list'
+Raw SQL : SELECT '' AS CIVILITE, CONCAT(ID,'-',NOM) AS NOM , CONCAT(TELEPHONE, '/', TELEPHONE2) AS TELEPHONE, MOBILE AS PORTABLE, EMAIL FROM locan UNION SELECT CIVILITE, CONCAT(NOM,' ', PRENOM) AS NOM, TELEPHONE, PORTABLE, EMAIL FROM personnels UNION SELECT CIVILITE, IDENTITE AS NOM, TELEPHONE, PORTABLE, EMAIL FROM responsables
+
+Time : 10:19:16
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'p.PROVENANCE' in 'on clause'
+Raw SQL : SELECT e.*, CONCAT(e.MATRICULE, ' - ', e.NOM, ' ', e.PRENOM) AS CNOM, p.ETABLISSEMENT AS FK_PROVENANCE, m.LIBELLE AS FK_MOTIFSORTIE FROM eleves e LEFT JOIN etablissements p ON p.PROVENANCE = e.IDETABLISSEMENT LEFT JOIN motifsortie m ON m.IDMOTIF = e.MOTIFSORTIE ORDER BY e.MATRICULE
+
+Time : 10:18:45
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'locan.eleve' doesn't exist
+Raw SQL : SELECT e.*, CONCAT(e.MATRICULE, ' - ', e.NOM, ' ', e.PRENOM) AS CNOM, p.ETABLISSEMENT AS FK_PROVENANCE, m.LIBELLE AS FK_MOTIFSORTIE FROM eleve e LEFT JOIN etablissements p ON p.PROVENANCE = e.IDETABLISSEMENT LEFT JOIN motifsortie m ON m.IDMOTIF = e.MOTIFSORTIE ORDER BY e.MATRICULE
+
 Time : 09:36:18
 SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`locan`.`responsable_charge`, CONSTRAINT `responsable_charge_ibfk_2` FOREIGN KEY (`IDCHARGE`) REFERENCES `charge` (`IDCHARGE`))
 Raw SQL : INSERT INTO  responsable_charge( IDRESPONSABLEELEVE, IDCHARGE) VALUES(:idresponsableeleve,:idcharge)

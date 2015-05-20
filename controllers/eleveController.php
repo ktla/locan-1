@@ -11,15 +11,15 @@ class EleveController extends Controller {
 
     public function index() {
         $view = new View();
+
+
         //Le model du dit controller est charger automatiquement
         //$this->Load_Model("eleve");
 
         $data = $this->Eleve->selectAll();
-        $eleves = new Combobox($data, "eleves", "MATRICULE", "NOM");
-
+        $eleves = new Combobox($data, "listeeleve", "IDELEVE", "CNOM");
         $eleves->idname = "listeeleve";
-        //print_r($eleves);
-        //var_dump($eleves);
+
         $view->Assign("eleves", $eleves->view("250px"));
 
         $content = $view->Render("eleve" . DS . "index", false);
@@ -78,7 +78,7 @@ class EleveController extends Controller {
      * @param type $ideleve l'eleve dont ils sont les responsables
      */
     private function saveResponsables($newresponsables, $ideleve = 0, $oldresponsable = null) {
-        var_dump($newresponsables);
+
         $this->loadModel("responsable");
         $this->loadModel("responsableeleve");
         $this->loadModel("responsablecharge");
@@ -106,21 +106,21 @@ class EleveController extends Controller {
                     "numsms" => $resp->numsms
                 ];
                 if ($this->Responsableeleve->insert($params)) {
-                   $idrespeleve = $this->Responsableeleve->lastInsertId();
+                    $idrespeleve = $this->Responsableeleve->lastInsertId();
                     foreach ($resp->charge as $charge) {
                         $params = [
                             "idresponsableeleve" => $idrespeleve,
                             "idcharge" => $charge];
-                        if($this->Responsablecharge->insert($params)){
+                        if ($this->Responsablecharge->insert($params)) {
                             continue;
-                        }else{
+                        } else {
                             return false;
                         }
                     }
-                }else{
+                } else {
                     return false;
                 }
-            }else{
+            } else {
                 return false;
             }
         }
@@ -128,6 +128,7 @@ class EleveController extends Controller {
     }
 
     public function saisie() {
+        $this->view->clientsJS("eleve" . DS . "eleve");
 
         $message = "";
         $view = new View();
@@ -161,10 +162,17 @@ class EleveController extends Controller {
         $par = $this->Parente->selectAll();
         $parente = new Combobox($par, "parente", "LIBELLE", "LIBELLE");
         $view->Assign("parente", $parente->view());
+        $parente->name = "parenteextra";
+        $view->Assign("parenteextra", $parente->view());
 
         $this->loadModel("charge");
         $charges = $this->Charge->selectAll();
         $view->Assign("charges", $charges);
+
+        $this->loadModel("responsable");
+        $resp = $this->Responsable->selectAll();
+        $comboResponsables = new Combobox($resp, "listeresponsable", "IDRESPONSABLE", "CNOM");
+        $view->Assign("comboResponsables", $comboResponsables->view());
 
         $content = $view->Render("eleve" . DS . "saisie", false);
         $this->Assign("content", $content);
@@ -186,18 +194,14 @@ class EleveController extends Controller {
         $this->Assign("content", $content);
     }
 
-    public function ajax($val) {
-        sleep(3);
-        $this->onglets($val);
-    }
-
-    public function onglets($val) {
+    public function ajax() {
+        sleep(2);
         if (!isset($this->session->user)) {
             print json_encode(false);
         } else {
 
             $arr = array();
-            $data = $this->Eleve->findBy(array("MATRICULE" => $val));
+            $data = $this->Eleve->findBy(array("IDELEVE" => $this->request->ideleve));
 
             $view = new View();
             $view->Assign("nom", $data["NOM"]);

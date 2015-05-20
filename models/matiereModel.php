@@ -9,7 +9,7 @@ class matiereModel extends Model {
         parent::__construct();
     }
     
-    public function insert($params){
+    public function insert($params = array()){
         $query = "INSERT INTO matieres(CODE, LIBELLE) "
                 . "VALUE (:code, :libelle)"; 
        return $this->query($query, $params);

@@ -7,4 +7,11 @@ class responsableModel extends Model{
     public function __construct() {
         parent::__construct();
     }
+    
+    public function selectAll() {
+        
+        $query = "SELECT r.*, CONCAT(CIVILITE, ' ', NOM, ' ', PRENOM) AS CNOM "
+                . "FROM $this->_table r ORDER BY NOM";
+        return $this->query($query);
+    }
 }

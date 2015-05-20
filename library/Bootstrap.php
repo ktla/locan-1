@@ -19,6 +19,7 @@ function __autoload($className) {
         //Une erreur grave
         die("Error: Class $className introuvable");
     }
+    
 }
 
 Router::route();

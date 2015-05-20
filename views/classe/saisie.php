@@ -5,14 +5,15 @@
 
 <form action="<?php echo url('classe', 'saisie'); ?>" method="post" enctype="multipart/form-data">
     <div class="page" style="">
-        <fieldset style="margin-bottom: 20px;"><legend>Saisie de la classe</legend>
-            <span class="text" style="width: 150px;"><label>Nom abrégé</label><input type="text" name="nom" /></span>
-            <span class="text" style="width: 360px;"><label>Libellé</label><input type="text" name="libelle" /></span>
+        <fieldset style="float: none; width: 710px; margin: auto;margin-bottom: 10px;"><legend>Saisie de la classe</legend>
+            <span class="text" style="width: 150px;"><label>Nom abr&eacute;g&eacute;</label><input type="text" name="nom" /></span>
+            <span class="text" style="width: 360px;"><label>Libell&eacute;</label><input type="text" name="libelle" /></span>
             <span class="select" style="width: 150px;">    
                 <label>Découpage</label>
                 <select name="decoupage">
-                    <option value="1">Trimestre</option>
-                    <option value ="2">Semestre</option>
+                     <option value="1">Sequence</option>
+                    <option value="2">Trimestre</option>
+                    <option value ="3">Semestre</option>
                 </select>
             </span>
         </fieldset>
