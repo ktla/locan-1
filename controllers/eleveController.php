@@ -30,11 +30,11 @@ class EleveController extends Controller {
      * Validation des donnees si le formulaire est soumis
      */
     private function validerSaisie(&$message) {
-        if (isset($this->request->nomel) && isset($this->request->prenomel)) {
+        if (!empty($this->request->nomel) && !empty($this->request->prenomel)) {
             $responsables = json_decode($_POST['responsables']);
             $redoublant = (strcasecmp($this->request->redoublant, "Oui") == 0);
-            $provenance = empty($this->request->provenance) ? null: $this->request->provenance;
-           
+            $provenance = empty($this->request->provenance) ? null : $this->request->provenance;
+
             $params = [
                 "matricule" => "",
                 "nom" => $this->request->nomel,
@@ -55,11 +55,11 @@ class EleveController extends Controller {
             if ($this->Eleve->insert($params)) {
                 //Si tout s'est bien passee, inserer les responsables en utilisant le last insert id
                 $id = $this->Eleve->lastInsertId();
-                if ($this->saveNewResponsables($responsables, $id) && $this->linkToResponsables($responsables, $id)) {
+                if ($this->saveResponsables($responsables, $id)) {
                     //Si tout va bien, rediriger sur a liste des eleves
                     header("Location: " . Router::url("eleve"));
-                }else{
-                    $message = "Erreur de sauvegarde des responsables";
+                } else {
+                    $message = "Erreur lors de la sauvegarde des responsables";
                     return false;
                 }
             } else {
@@ -77,22 +77,53 @@ class EleveController extends Controller {
      * @param type $responsables des responsables sous formes d'un object JSON, ces responsables sont a inserer dans la BD
      * @param type $ideleve l'eleve dont ils sont les responsables
      */
-    private function saveNewResponsables($responsables, $ideleve = 0) {
-        echo $ideleve;
-        var_dump($responsables);
-        //Parcourir le array des responsables et inserer, recuperer le lastinsertId et l'inserer dans la table
-        //de jointure eleve_responsable dont le libelle est estresponsable
-        /* COMMENT PARCOURIR UN OBJECT JSON */
-        return false;
-    }
+    private function saveResponsables($newresponsables, $ideleve = 0, $oldresponsable = null) {
+        var_dump($newresponsables);
+        $this->loadModel("responsable");
+        $this->loadModel("responsableeleve");
+        $this->loadModel("responsablecharge");
+        foreach ($newresponsables as $resp) {
+            $params = [
+                "civilite" => $resp->civilite,
+                "nom" => $resp->nom,
+                "prenom" => $resp->prenom,
+                "adresse" => $resp->adresse,
+                "telephone" => $resp->telephone,
+                "portable" => $resp->portable,
+                "email" => $resp->email,
+                "profession" => $resp->profession,
+                "bp" => $resp->bp
+            ];
 
-    /**
-     * Methode appeller dans la validation du formulaire validateSaisie
-     * @param type $responsables des responsables existant deja dans la BD mais qui sont responsables 
-     * de cet nouvel eleve, on n'insere donc pas, mais on lie seulement les id dans la table de jointure estresponsable
-     * @param type $ideleve l'eleve dont il est le responsable
-     */
-    private function linkToResponsables($responsables, $ideleve = 0) {
+            if ($this->Responsable->insert($params)) {
+                $idresp = $this->Responsable->lastInsertId();
+                $acceptesms = isset($resp->acceptesms) ? 1 : 0;
+                $params = [
+                    "idresponsable" => $idresp,
+                    "ideleve" => $ideleve,
+                    "parente" => $resp->parente,
+                    "acceptesms" => $acceptesms,
+                    "numsms" => $resp->numsms
+                ];
+                if ($this->Responsableeleve->insert($params)) {
+                   $idrespeleve = $this->Responsableeleve->lastInsertId();
+                    foreach ($resp->charge as $charge) {
+                        $params = [
+                            "idresponsableeleve" => $idrespeleve,
+                            "idcharge" => $charge];
+                        if($this->Responsablecharge->insert($params)){
+                            continue;
+                        }else{
+                            return false;
+                        }
+                    }
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }
         return true;
     }
 

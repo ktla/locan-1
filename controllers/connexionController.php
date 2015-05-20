@@ -22,7 +22,7 @@ class connexionController extends Controller {
 
                 $_SESSION['user'] = $this->request->login;
                 //Definir la valeur du Timeout lors de la connexion a 10 min
-                $_SESSION['timeout'] = time() + 600;
+                $_SESSION['timeout'] = time() + TIME_OUT;
                 $_SESSION['anneeacademique'] = $this->request->anneeacademique;
                 //Garder la trace de connexion dans la table connexion
                 $this->keepTrack();

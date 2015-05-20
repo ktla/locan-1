@@ -114,7 +114,7 @@ class Application {
         if ($this->connected()) {
             if ($this->session->timeout > time()) {
                 //lui accorder 10 minute de plus
-                $_SESSION['timeout'] = time() + 600;
+                $_SESSION['timeout'] = time() + TIME_OUT;
             } else {
                 //il a deborder ces 10 minute de grave sans activite, le deconected
                 //unset($_SESSION['user']);

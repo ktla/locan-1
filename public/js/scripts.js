@@ -1,10 +1,4 @@
-/* data: {
- file: filename
- },
- */
-var calendar, caldatenaiss, caldateentree;
-//$('div.dataTables_scrollBody').height( 100 );
-$(document).ready(function () {
+$(document).ready(function () {    
     $.extend($.fn.dataTable.defaults, {
         "aaSorting": [],
         "scrollCollapse": true,
@@ -37,56 +31,41 @@ $(document).ready(function () {
         }
     });
     $('#dataTable, #dataTable2').DataTable();
-    $('#tab_elv').DataTable({
+    $('#tab_elv, #tab_mat').DataTable({
         "paging": false,
         "bInfo": false
     });
-    $('#tab_pp').DataTable({
-        "paging": false,
-        "bInfo": false,
-        "searching": false
-    });
-    $('#tab_cpe').DataTable({
-        "paging": false,
-        "bInfo": false,
-        "searching": false
-    });
-    $('#tab_ra').DataTable({
+    $('#tab_pp, #tab_ra, #tab_cpe').DataTable({
         "paging": false,
         "bInfo": false,
         "searching": false
     });
 
-    $('#tab_mat').DataTable({
-        "paging": false,
-        "bInfo": false
-    });
-    
-    var pop1 = popup("#dialog-form",ajoutEleve);
-    var pop2 = popup("#dialog-pp-form",ajoutEleve);
-    var pop3 = popup("#dialog-cpe-form",ajoutEleve);
+    var pop1 = popup("#dialog-form", ajoutEleve);
+    var pop2 = popup("#dialog-pp-form", ajoutEleve);
+    var pop3 = popup("#dialog-cpe-form", ajoutEleve);
     var pop4 = popup("#dialog-ra-form", ajoutEleve);
-    var pop5 = popup("#dialog-mat-form",ajoutEleve); 
-    pop5.dialog("option","height",250);
+    var pop5 = popup("#dialog-mat-form", ajoutEleve);
+    pop5.dialog("option", "height", 250);
 
-    $("#ajout_eleve").button().on("click", function() {
+    $("#ajout_eleve").button().on("click", function () {
         pop1.dialog("open");
     });
 
-    $("#ajout_pp").button().on("click", function() {
+    $("#ajout_pp").button().on("click", function () {
         pop2.dialog("open");
     });
-    $("#ajout_cpe").button().on("click", function() {
+    $("#ajout_cpe").button().on("click", function () {
         pop3.dialog("open");
     });
-    $("#ajout_ra").button().on("click", function() {
+    $("#ajout_ra").button().on("click", function () {
         pop4.dialog("open");
     });
-    
-   $("#ajout_mat").button().on("click", function() {
+
+    $("#ajout_mat").button().on("click", function () {
         pop5.dialog("open");
     });
-    
+
     /*
      * Fonction permettant d'afficher et cacher le menu.
      *
@@ -131,6 +110,9 @@ $(document).ready(function () {
             + $(".status").height() + $(".titre").height();
     $(".page").css({height: $(window).height() - h - 97});
 
+    calendar = getCalendar("date");
+    caldatenaiss = getCalendar("datenaiss");
+    caldateentree = getCalendar("dateentree");
 });
 
 
@@ -158,50 +140,15 @@ function deleteRow(_url, name) {
 
 function alertWebix(sms) {
     webix.modalbox({
-        title: "Informations",
+        title: "Alerte",
         buttons: ["Ok"],
         width: "300px",
-        text: sms,
+        text: sms
     });
 }
 function editRow(_url) {
     document.location = _url;
 }
-/*
- * Fonction permettant d'afficher et cacher le menu.
- *
- */
-$(document).ready(function () {
-
-    calendar = webix.ui({
-        view: "datepicker",
-        container: "date",
-        width: 140,
-        height: 25,
-        placeholder: "JJ-MM-AAAA",
-        format: "%d-%m-%Y",
-        stringResult: true
-    });
-    caldatenaiss = webix.ui({
-        view: "datepicker",
-        container: "datenaiss",
-        width: 140,
-        height: 25,
-        placeholder: "JJ-MM-AAAA",
-        format: "%d-%m-%Y",
-        stringResult: true
-    });
-    caldateentree = webix.ui({
-        view: "datepicker",
-        container: "dateentree",
-        width: 140,
-        height: 25,
-        placeholder: "JJ-MM-AAAA",
-        format: "%d-%m-%Y",
-        stringResult: true
-    });
-
-});
 
 function onglets(premier, actuel, nombre) {
     for (i = premier; i < nombre + 1; i++) {
@@ -223,7 +170,7 @@ function popup(id, func) {
         resizable: false,
         buttons: {
             "Ajouter": func,
-            Cancel: function() {
+            Annuler: function () {
                 dial.dialog("close");
             }
         }
@@ -238,7 +185,8 @@ function popup(id, func) {
  */
 function addRequiredFields(fields) {
     for (i = 0; i < fields.length; i++) {
-        fields[i].addClass("requiredFields");
+        if(fields[i].val() === "")
+            fields[i].addClass("requiredFields");
     }
 }
 /**
@@ -253,11 +201,11 @@ function removeRequiredFields(fields) {
 }
 
 function getCalendar(id) {
-    var calendar = webix.ui({
+    calendar = webix.ui({
         view: "datepicker",
         container: id,
-        width: 155,
-        height: 30,
+        width: 140,
+        height: 25,
         placeholder: "JJ-MM-AAAA",
         format: "%d/ %m/ %Y",
         stringResult: true
@@ -267,6 +215,6 @@ function getCalendar(id) {
 /*
  * Ajout eleve - Classe fenetre popup
  */
-var ajoutEleve = function() {
+var ajoutEleve = function () {
     alert("test");
 };

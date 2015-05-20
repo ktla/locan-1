@@ -54,7 +54,7 @@ class Model extends Database {
     }
 
     public function update($params = array(), $keys = array()) {
-        
+
         $str = "";
         foreach ($params as $key => $param) {
             $str .= " $key = :$key,";
@@ -70,6 +70,24 @@ class Model extends Database {
         $condition = substr($condition, 0, strlen($condition) - 4);
         $query = "UPDATE `" . $this->_table . "` SET $str  WHERE $condition";
         return $this->query($query, array_merge($params, $keys));
+    }
+
+    /**
+     * Function permettant l'insertion d'une maniere generique
+     * @param type $params
+     * @return type
+     */
+    public function insert($params = array()) {
+        $str = "";
+        $val = "";
+        foreach ($params as $key => $param) {
+            $str .= " " . strtoupper($key) . ",";
+            $val .= ":$key,";
+        }
+        $str = substr($str, 0, strlen($str) - 1);
+        $val = substr($val, 0, strlen($val) - 1);
+        $query = "INSERT INTO  $this->_table($str) VALUES($val)";
+        return $this->query($query, $params);
     }
 
     public function get($id) {

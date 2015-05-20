@@ -1,0 +1,7 @@
+Time : 09:36:18
+SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`locan`.`responsable_charge`, CONSTRAINT `responsable_charge_ibfk_2` FOREIGN KEY (`IDCHARGE`) REFERENCES `charge` (`IDCHARGE`))
+Raw SQL : INSERT INTO  responsable_charge( IDRESPONSABLEELEVE, IDCHARGE) VALUES(:idresponsableeleve,:idcharge)
+
+Time : 08:41:03
+SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1
+Raw SQL : INSERT INTO `responsables` VALUES (:civilite,:nom,:prenom,:adresse,:telephone,:portable,:email,:profession)

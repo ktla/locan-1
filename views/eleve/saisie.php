@@ -9,16 +9,12 @@
         document.forms['formresponsable'].reset();
     }
     function saveResponsable() {
-        var tabres = [];
-        tabres = $("input[name=charge]:checked");
-        console.log(tabres[0].value);
-        return;
-        /*removeRequiredFields([$("input[name=nom]"), $("input[name=portable]")]);
+        removeRequiredFields([$("input[name=nom]"), $("input[name=portable]")]);
         if ($("input[name=nom]").val() === "" || $("input[name=portable]").val() === "") {
             alertWebix("Veuillez remplir les champs obligatoires");
             addRequiredFields([$("input[name=nom]"), $("input[name=portable]")]);
             return;
-        }*/
+        }
         element = {
             "civilite": $("select[name=civilite]").val(),
             "nom": $("input[name=nom]").val(),
@@ -29,25 +25,25 @@
             "email": $("input[name=email]").val(),
             "profession": $("input[name=profession]").val(),
             "parente": $("select[name=parente]").val(),
-            "charge": $("input[name=charge]:checked"),
-            "acceptesms": $("input[name=acceptesms]:checked"),
+            "charge": $("input[name=charge]:checked").map(function () {
+                return this.value;
+            }).get(),
+            "acceptesms": $("input[name=acceptesms]:checked").val(),
             "numsms": $("input[name=numsms]").val(),
-            "cp": $("input[name=cp]").val()
+            "bp": $("input[name=bp]").val()
         };
-        
         resp.push(element);
-        
+
+
         cible = $("#responsablebody");
-        
-        
-        
+
         nom = document.createElement("td");
         nom.appendChild(document.createTextNode($("input[name=nom]").val()));
         prenom = document.createElement("td");
         prenom.appendChild(document.createTextNode($("input[name=prenom]").val()));
         imgsrc = document.createElement("img");
         imgsrc.setAttribute("src", "../public/img/delete.png");
-        
+
         imgsrc.setAttribute("onclick", "supprimerLigneResp(" + incr + ");");
         action = document.createElement("td");
         action.appendChild(imgsrc);
@@ -59,27 +55,26 @@
         cible.append(tr);
         incr++;
         resetResponsable();
-        console.log(resp);
         console.log(JSON.stringify(resp));
     }
     //Soumet effectivement le formulaire des eleves au server
     function soumettreFormEleve() {
         removeRequiredFields([$("input[name=nomel]"), $("#datenaiss")]);
         frm = $("form[name=frmeleve]");
-         d = caldatenaiss.getValue();
+        d = caldatenaiss.getValue();
         dNaiss = $("<input type='hidden' name='datenaiss'/>");
         dNaiss.val(d.split(' ')[0]);
         d = caldateentree.getValue();
         dEntree = $("<input type = 'hidden' name = 'dateentree' />");
         dEntree.val(d.split(' ')[0]);
-        
-        if($("input[name=nomel]").val() === "" || dNaiss.val() === ""){
+
+        if ($("input[name=nomel]").val() === "" || dNaiss.val() === "") {
             alertWebix("Veuillez remplir les champs obligatoires");
             addRequiredFields([$("input[name=nomel]"), $("#datenaiss")]);
             onglets(1, 1, 3);
             return;
         }
-        if(resp.length === 0){
+        if (resp.length === 0) {
             alertWebix("Définir au moins les informations d'un responsable");
             requiredFields([$("input[name=nom]"), $("input[name=portable]")]);
             onglets(1, 2, 3);
@@ -90,7 +85,7 @@
         hidden.val(JSON.stringify(resp));
         frm.append(hidden);
         //add the date from webix datepicker
-       
+
 
         frm.append(dEntree);
         frm.append(dNaiss);
@@ -125,7 +120,7 @@
                 $("input[name=photo]").val("");
             },
             error: function (xhr, status, error) {
-                alert("Veuillez vous reconnecté ou rafraichir la page");
+                alert("Veuillez vous reconnecté en rafraichissant la page");
             }
         });
     }
@@ -148,7 +143,7 @@
         });
     }
     //supprime une ligne de la table et de la variable JSON
-    function supprimerLigneResp(indice){
+    function supprimerLigneResp(indice) {
         //Supprimer l'element a l'index indice
         alert(indice);
     }
@@ -351,8 +346,8 @@
                         <input type="text" name="adresse3" placeholder = 'Adresse' />
                     </span>
                     <span class="text" style="width: 418px;">
-                        <label>Code Postal</label>
-                        <input type="text" name="cp" />
+                        <label>Boite Postale</label>
+                        <input type="text" name="bp" />
                     </span>
 
                 </fieldset>
