@@ -94,11 +94,11 @@ class Model extends Database {
         return $this->query("SELECT * FROM `" . $this->_table . "` "
                         . " WHERE `" . $this->_key . "` = :id", array("id" => $id));
     }
-    
-    public function findBy($condition = array()) {
+
+    public function findBy($conditions = array()) {
         $str = "";
         $params = array();
-        foreach ($condition as $key => $condition) {
+        foreach ($conditions as $key => $condition) {
             $str .= " $key = :$key AND ";
             $params[$key] = $condition;
         }
@@ -106,6 +106,22 @@ class Model extends Database {
         $query = "SELECT * FROM `" . $this->_table . "` WHERE $str";
 
         return $this->query($query, $params);
+    }
+
+    /*
+     * Retourne une et une seule ligne de la table
+     */
+
+    public function findSingleRowBy($conditions = array()) {
+        $str = "";
+        $params = array();
+        foreach ($conditions as $key => $condition) {
+            $str .= " $key = :$key AND ";
+            $params[$key] = $condition;
+        }
+        $str = substr($str, 0, strlen($str) - 4);
+        $query = "SELECT * FROM `" . $this->_table . "` WHERE $str";
+        return $this->row($query, $params);
     }
 
     public function updateBy($id, $params = array()) {

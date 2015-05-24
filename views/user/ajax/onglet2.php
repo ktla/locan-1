@@ -1,4 +1,3 @@
-
 <table class="dataTable" id="dataTable2">
     <thead><tr><th>CODE</th><th>LIBELLE</th><th>ACTIF</th></tr></thead>
     <tbody>

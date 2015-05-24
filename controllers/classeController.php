@@ -70,5 +70,11 @@ class classeController extends Controller{
         }
     }
     
+    public function edit($id){
+        $view = new View();
+        $content = $view->Render("classe" . DS . "edit", false);
+        $this->Assign("content", $content);
+    }
+    
    
 }

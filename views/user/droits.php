@@ -1,5 +1,5 @@
 <div id="entete">
-
+    <?php //var_dump($profiles);  ?>
 </div>
 <div class="titre">
     Gestion des droits utilisateurs
@@ -41,7 +41,7 @@
 
             </ul>
         </div>
-        <div id="onglet1" class="onglet" style="display: block;height: 500px">
+        <div id="onglet1" class="onglet" style="display: block;height: 450px">
             <?php
             $i = 0;
             $table = "<table class = 'dataTable'>";
@@ -52,13 +52,13 @@
             $table .= "</thead><tbody>";
             for ($i = 0; $droits[$i]["CODEDROIT"] < 200; $i++) {
                 $droit = $droits[$i];
-                
+
                 $table .= "<tr><td>" . $droit['LIBELLE'] . "</td>";
                 foreach ($profiles as $profile) {
                     $liste = is_null($listedroits[$profile['IDPROFILE']]) ? array() : $listedroits[$profile['IDPROFILE']];
+
                     if (in_array($droit['CODEDROIT'], $liste)) {
-                        $table .= "<td><input type = 'checkbox' name = '" . $profile['IDPROFILE'] . "[]' value = '" . $droit["CODEDROIT"] . "' "
-                                . (isAuth($droit['CODEDROIT']) ? "checked" : "") . "/></td>";
+                        $table .= "<td><input type = 'checkbox' name = '" . $profile['IDPROFILE'] . "[]' value = '" . $droit["CODEDROIT"] . "' checked/></td>";
                     } else {
                         $table .= "<td><input type = 'checkbox' name = '" . $profile['IDPROFILE'] . "[]' value = '" . $droit["CODEDROIT"] . "' /></td>";
                     }
@@ -69,7 +69,7 @@
             print $table;
             ?>
         </div>
-        <div id="onglet2" class="onglet" style="display: none;height: 500px">
+        <div id="onglet2" class="onglet" style="display: none;height: 450px">
             <?php
             $table = "<table class = 'dataTable'>";
             $table .= "<thead><th>Libell&eacute; du droit</th>";
@@ -83,8 +83,7 @@
                 foreach ($profiles as $profile) {
                     $liste = is_null($listedroits[$profile['IDPROFILE']]) ? array() : $listedroits[$profile['IDPROFILE']];
                     if (in_array($droit['CODEDROIT'], $liste)) {
-                        $table .= "<td><input type = 'checkbox' name = '" . $profile['IDPROFILE'] . "[]' value = '" . $droit["CODEDROIT"] . "' "
-                                . (isAuth($droit['CODEDROIT']) ? "checked" : "") . "/></td>";
+                        $table .= "<td><input type = 'checkbox' name = '" . $profile['IDPROFILE'] . "[]' value = '" . $droit["CODEDROIT"] . "' checked/></td>";
                     } else {
                         $table .= "<td><input type = 'checkbox' name = '" . $profile['IDPROFILE'] . "[]' value = '" . $droit["CODEDROIT"] . "' /></td>";
                     }
@@ -95,7 +94,7 @@
             print $table;
             ?>
         </div>
-        <div id="onglet3" class="onglet" style="display: none;height: 500px">
+        <div id="onglet3" class="onglet" style="display: none;height: 450px">
             <?php
             $table = "<table class = 'dataTable'>";
             $table .= "<thead><th>Libell&eacute; du droit</th>";
@@ -105,13 +104,12 @@
             $table .= "</thead><tbody>";
             for (; $droits[$i]["CODEDROIT"] < 400; $i++) {
                 $droit = $droits[$i];
-               
+
                 $table .= "<tr><td>" . $droit['LIBELLE'] . "</td>";
                 foreach ($profiles as $profile) {
                     $liste = is_null($listedroits[$profile['IDPROFILE']]) ? array() : $listedroits[$profile['IDPROFILE']];
                     if (in_array($droit['CODEDROIT'], $liste)) {
-                        $table .= "<td><input type = 'checkbox' name = '" . $profile['IDPROFILE'] . "[]' value = '" . $droit["CODEDROIT"] . "' "
-                                . (isAuth($droit['CODEDROIT']) ? "checked" : "") . "/></td>";
+                        $table .= "<td><input type = 'checkbox' name = '" . $profile['IDPROFILE'] . "[]' value = '" . $droit["CODEDROIT"] . "' checked/></td>";
                     } else {
                         $table .= "<td><input type = 'checkbox' name = '" . $profile['IDPROFILE'] . "[]' value = '" . $droit["CODEDROIT"] . "' /></td>";
                     }
@@ -122,7 +120,7 @@
             print $table;
             ?>
         </div>
-        <div id="onglet4" class="onglet" style="display: none;height: 500px">
+        <div id="onglet4" class="onglet" style="display: none;height: 450px">
             <?php
             $table = "<table class = 'dataTable'>";
             $table .= "<thead><th>Libell&eacute; du droit</th>";
@@ -134,21 +132,25 @@
                 $droit = $droits[$i];
                 $table .= "<tr><td>" . $droit['LIBELLE'] . "</td>";
                 foreach ($profiles as $profile) {
+                    //echo "ici";
                     $liste = is_null($listedroits[$profile['IDPROFILE']]) ? array() : $listedroits[$profile['IDPROFILE']];
+                    //var_dump($liste);
+                    //var_dump($profile);
+                    //die();
                     if (in_array($droit['CODEDROIT'], $liste)) {
-                        $table .= "<td><input type = 'checkbox' name = '" . $profile['IDPROFILE'] . "[]' value = '" . $droit["CODEDROIT"] . "' "
-                                . (isAuth($droit['CODEDROIT']) ? "checked" : "") . "/></td>";
+                        $table .= "<td><input type = 'checkbox' name = '" . $profile['IDPROFILE'] . "[]' value = '" . $droit["CODEDROIT"] . "' checked/></td>";
                     } else {
                         $table .= "<td><input type = 'checkbox' name = '" . $profile['IDPROFILE'] . "[]' value = '" . $droit["CODEDROIT"] . "' /></td>";
                     }
                 }
                 $table .= "</tr>";
+                //die();
             }
             $table .= "</tbody></table>";
             print $table;
             ?>
         </div>
-        <div id="onglet5" class="onglet" style="display: none;height: 500px">
+        <div id="onglet5" class="onglet" style="display: none;height: 450px">
             <?php
             $table = "<table class = 'dataTable'>";
             $table .= "<thead><th>Libell&eacute; du droit</th>";
@@ -162,8 +164,7 @@
                 foreach ($profiles as $profile) {
                     $liste = is_null($listedroits[$profile['IDPROFILE']]) ? array() : $listedroits[$profile['IDPROFILE']];
                     if (in_array($droit['CODEDROIT'], $liste)) {
-                        $table .= "<td><input type = 'checkbox' name = '" . $profile['IDPROFILE'] . "[]' value = '" . $droit["CODEDROIT"] . "' "
-                                . (isAuth($droit['CODEDROIT']) ? "checked" : "") . "/></td>";
+                        $table .= "<td><input type = 'checkbox' name = '" . $profile['IDPROFILE'] . "[]' value = '" . $droit["CODEDROIT"] . "' checked/></td>";
                     } else {
                         $table .= "<td><input type = 'checkbox' name = '" . $profile['IDPROFILE'] . "[]' value = '" . $droit["CODEDROIT"] . "' /></td>";
                     }

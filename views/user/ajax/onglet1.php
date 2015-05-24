@@ -1,23 +1,24 @@
-<div class="fiche">
-    <fieldset  style="width: 700px;float: none; margin: auto;"><legend>Identité</legend>
-    <table cellpadding = "7">
-        <tr><td width = "20%" style="font-weight: bold">Nom : </td><td><?php //echo $nom; ?></td></tr>
-        <tr><td style="font-weight: bold">Prénom : </td><td><?php //echo $prenom; ?></td></tr>
-        <tr><td style="font-weight: bold">Sexe : </td><td><?php //echo $sexe; ?></td></tr>
-        <tr><td style="font-weight: bold">Date de naissance : </td><td><?php //echo $datenaiss; ?></td></tr>
-        <tr><td style="font-weight: bold">Lieu de naissance : </td><td><?php //echo $lieunaiss; ?></td></tr>
-        <tr><td style="font-weight: bold">Pays de nationalité : </td><td><?php //echo $nationalite; ?></td></tr>
+<fieldset  style="width: 680px;float: none; margin: auto;"><legend>Profile utilisateur</legend>
+    <table cellpadding = "3">
+        <tr><td style="font-weight: bold;width :200px">Login : </td><td><?php echo $login; ?></td></tr>
+        <tr><td style="font-weight: bold">Mot de passe : </td><td><?php echo "xxxxxxxxxxxxxxxxxxxxxxx"; ?></td></tr>
+        <tr><td style="font-weight: bold">Profile : </td><td><?php echo $profile; ?></td></tr>
+        <tr><td style="font-weight: bold">Actif : </td><td><?php echo $actif; ?></td></tr>
     </table>
 </fieldset>
-<fieldset style="width: 700px;float: none; margin: auto;"><legend>Scolarité actuelle</legend>
-    <table cellpadding = "7">
-        <tr><td  width = "20%" style="font-weight: bold">Classe : </td><td><?php //echo $classe; ?></td></tr>
-        <tr><td style="font-weight: bold">Redoublant : </td><td><?php //echo $redoublant; ?></td></tr>
-        <tr><td style="font-weight: bold">Date d'entrée : </td><td><?php //echo $dateentree; ?></td></tr>
-        <tr><td style="font-weight: bold">Provenance : </td><td><?php //echo $provenance; ?></td></tr>
-        <tr><td style="font-weight: bold">Date de sortie : </td><td><?php //echo $datesortie; ?></td></tr>
-        <tr><td style="font-weight: bold">Motif sortie : </td><td><?php //echo $motifsortie; ?></td></tr>
+<div style="height: 20px; content: ' ';"></div>
+<fieldset style="width: 680px;float: none; margin: auto;"><legend>Information du personnel</legend>
+    <table cellpadding = "3">
+        <tr><td  style="font-weight: bold; width :200px">ID Personnel : </td><td><?php echo $idpersonnel; ?></td></tr>
+        <tr><td style="font-weight: bold">Civilit&eacute; : </td><td><?php echo $civilite; ?></td></tr>
+        <tr><td style="font-weight: bold">Nom : </td><td><?php echo $nom; ?></td></tr>
+        <tr><td style="font-weight: bold">Pr&eacute;nom : </td><td><?php echo $prenom; ?></td></tr>
+        <tr><td style="font-weight: bold">Autre nom : </td><td><?php echo $autrenom; ?></td></tr>
+        <tr><td style="font-weight: bold">Fonction : </td><td><?php echo $fonction; ?></td></tr>
+        <tr><td style="font-weight: bold">Grade : </td><td><?php echo $grade; ?></td></tr>
+        <tr><td style="font-weight: bold">Date naissance : </td><td><?php echo $datenaiss; ?></td></tr>
+        <tr><td style="font-weight: bold">Portable : </td><td><?php echo $portable; ?></td></tr>
+        <tr><td style="font-weight: bold">T&eacute;l&eacute;phone : </td><td><?php echo $telephone; ?></td></tr>
+        <tr><td style="font-weight: bold">Email : </td><td><?php echo $email; ?></td></tr>
     </table>
-    
 </fieldset>
-</div>

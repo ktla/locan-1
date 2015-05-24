@@ -228,3 +228,6 @@ table.dataTable tbody tr:hover{
  overflow-x:hidden !important;
  overflow-y:auto !important;
 }
+.dataTables_scroll{
+    overflow: auto;
+}

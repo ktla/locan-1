@@ -14,11 +14,13 @@ $(document).ready(function () {
     $.extend($.fn.dataTable.defaults, {
         "aaSorting": [],
         "scrollCollapse": true,
-        "scrollY": 470,
+        "scrollY": 450,
         "pageLength": 200,
         "paging": true,
         "searching": true,
         "bInfo": true,
+        "sScrollX": "100%",
+        "sScrollXInner": "100%",
         "language": {
             "sProcessing": "Traitement en cours...",
             "sSearch": "Rechercher&nbsp;:",
@@ -136,6 +138,14 @@ function onglets(premier, actuel, nombre) {
             document.getElementById('tab' + i).className = 'noncourant';
             document.getElementById('onglet' + i).style.display = 'none';
         }
+    }
+    if ($.fn.DataTable.isDataTable("#dataTable")) {
+        table = $("#dataTable").DataTable();
+        table.columns.adjust().draw();
+    }
+     if ($.fn.DataTable.isDataTable("#dataTable2")) {
+        table = $("#dataTable2").DataTable();
+        table.columns.adjust().draw();
     }
 }
 

@@ -56,7 +56,7 @@ class userController extends Controller {
                 //Verifier que l'ancien mot de passe est correcte
                 $user = $this->User->findBy(array("LOGIN" => $this->session->user, "PASSWORD" => md5($this->request->pwdactuel)));
                 if (is_array($user) && count($user) > 0) {
-                    
+
                     if ($this->User->update(["PASSWORD" => md5($this->request->newpwd)], ["LOGIN" => $this->session->user])) {
                         header("Location:" . Router::url("connexion", "disconnect"));
                     } else {
@@ -74,6 +74,7 @@ class userController extends Controller {
         $content = $view->Render("user" . DS . "mdp", false);
         $this->Assign("content", $content);
     }
+
     /**
      * Modification de son adresse email
      */
@@ -81,48 +82,49 @@ class userController extends Controller {
         $view = new View();
         $view->Assign("errors", false);
         $message = "";
-        if(!empty($this->request->email)){
+        if (!empty($this->request->email)) {
             //verifier si c'est un email valide en utilisant une expression reguliere
             $valide = true;
-            if($valide){
+            if ($valide) {
                 $this->loadModel("personnel");
-                if($this->Personnel->update(['EMAIL' => $this->request->email], ["LOGIN" => $this->session->user])){
-                    header("Location:". Router::url("user", "fiche"));
+                if ($this->Personnel->update(['EMAIL' => $this->request->email], ["LOGIN" => $this->session->user])) {
+                    header("Location:" . Router::url("user", "fiche"));
                 }
-            }else{
+            } else {
                 $view->Assign("errors", true);
                 $message = "Format d'email invalide";
             }
-            
         }
-        if(isset($this->request->email) && empty($this->request->email)){
-             $view->Assign("errors", true);
+        if (isset($this->request->email) && empty($this->request->email)) {
+            $view->Assign("errors", true);
             $message = "Veuillez remplir le champ email";
         }
         $view->Assign("message", $message);
-        
+
         $this->Assign("content", $view->output());
     }
 
     public function telephone() {
         $view = new View();
         $view->Assign("errors", false);
-         $this->loadModel("personnel");
-         
+        $this->loadModel("personnel");
+        $this->loadModel("user");
+        $user = $this->User->findBy(["LOGIN" => $this->session->user]);
+        $iduser = $user[0]['IDUSER'];
         //Validation du formulaire
         if (!empty($this->request->telephone) || !empty($this->request->portable)) {
             $params = ["TELEPHONE" => $this->request->telephone, "PORTABLE" => $this->request->portable];
-            if ($this->Personnel->update($params, ["LOGIN" => $this->session->user])) {
+            if ($this->Personnel->update($params, ["IDUSER" => $iduser])) {
                 //Rediriger sur ma fiche pour voir que la modif est a jour
                 header("Location:" . Router::url("user", "fiche"));
             }
         }
-        $pers = $this->Personnel->findBy(["LOGIN" => $this->session->user]);
+        $pers = $this->Personnel->findBy(["IDUSER" => $iduser]);
         $portable = $pers[0]["PORTABLE"];
         $tel = $pers[0]["TELEPHONE"];
         $view->Assign("tel", $tel);
         $view->Assign("portable", $portable);
-        
+
         $content = $view->Render("user" . DS . "telephone", false);
         $this->Assign("content", $content);
     }
@@ -133,10 +135,11 @@ class userController extends Controller {
         $this->loadModel("profile");
         $this->loadModel("droit");
         $profiles = $this->Profile->selectAll();
-       
+
         //validation du formulaire
         if (isset($this->request->soumis)) {
             //Parcourir les profils, et mettre a jour leur droits respectifs
+
             foreach ($profiles as $profile) {
                 if (isset($_POST[$profile['IDPROFILE']]) && !empty($_POST[$profile['IDPROFILE']])) {
                     $this->Profile->update(["LISTEDROIT" => json_encode($_POST[$profile['IDPROFILE']])], ["IDPROFILE" => $profile['IDPROFILE']]);
@@ -158,19 +161,19 @@ class userController extends Controller {
         $this->Assign("content", $content);
     }
 
-    
-    public function fiche(){
+    public function fiche() {
         $this->Assign("content", (new View())->output());
     }
+
     /**
      * Ajax utiliser dans la page index de user
      */
-    public function ajax(){
+    public function ajax() {
         //Envoyer les infos de l'utilisateur
-        $user = $this->User->findBy(["IDUSER" => $this->request->iduser]);
+        $user = $this->User->findSingleRowBy(["IDUSER" => $this->request->iduser]);
         $view = new View();
-       
-        $data = $this->User->mesConnexions($user[0]["LOGIN"]);
+
+        $data = $this->User->mesConnexions($user["LOGIN"]);
         $grid = new Grid($data, 0);
 
         $grid->addcolonne(0, "IDCONNEXION", "IDCONNEXION", false);
@@ -190,16 +193,41 @@ class userController extends Controller {
         //Droit de l'utilisateur
         $this->loadModel("droit");
         $droits = $this->Droit->selectAll();
-        $mesdroit = $user[0]["DROITSPECIFIQUE"];
+        $mesdroit = $user["DROITSPECIFIQUE"];
         $view->Assign("droits", $droits);
         $view->Assign("mesdroits", $mesdroit);
         
+        /*
+         * Variables de l'onglet 1
+         */
+        $view->Assign("login", $user['LOGIN']);
+        $this->loadModel("profile");
+        $profile = $this->Profile->findSingleRowBy(["IDPROFILE" => $user['PROFILE']]);
+        $view->Assign("profile", $profile['PROFILE']);
+        $view->Assign("actif", ($user['ACTIF'] == 1) ? 'Actif' : 'Non Actif' );
+        //information du personnel
+        $this->loadModel("personnel");
+        $pers = $this->Personnel->findSingleRowBy(["IDUSER" => $this->request->iduser]);
+        $view->Assign("idpersonnel", $pers['IDPERSONNEL']);
+        $view->Assign("civilite", $pers['CIVILITE']);
+        $view->Assign("nom", $pers['NOM']);
+        $view->Assign("prenom", $pers['PRENOM']);
+        $view->Assign("autrenom", $pers['AUTRENOM']);
+        $this->loadModel("fonction");
+        $fonction = $this->Fonction->findSingleRowBy(["IDFONCTION" => $pers['FONCTION']]);
+        $view->Assign("fonction", $fonction['LIBELLE']);
+        $view->Assign("grade", $pers['GRADE']);
+        $view->Assign("datenaiss", $pers['DATENAISS']);
+        $view->Assign("portable", $pers['PORTABLE']);
+        $view->Assign("telephone", $pers['TELEPHONE']);
+        $view->Assign("email", $pers['EMAIL']);
         $arr = array();
         $arr[0] = $view->Render("user" . DS . "ajax" . DS . "onglet1", false);
         $arr[1] = $view->Render("user" . DS . "ajax" . DS . "onglet2", false);
         $arr[2] = $view->Render("user" . DS . "ajax" . DS . "onglet3", false);
         $arr[3] = $total;
-        
+
         echo json_encode($arr);
     }
+
 }

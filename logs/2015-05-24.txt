@@ -1,0 +1,19 @@
+Time : 19:19:31
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'LOGIN' in 'where clause'
+Raw SQL : SELECT p.*, f.LIBELLE AS LIBELLE FROM `personnels` p LEFT JOIN fonctions f ON p.FONCTION = f.IDFONCTION WHERE  LOGIN = :LOGIN
+
+Time : 19:18:41
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'LOGIN' in 'where clause'
+Raw SQL : SELECT p.*, f.LIBELLE AS LIBELLE FROM `personnels` p LEFT JOIN fonctions f ON p.FONCTION = f.IDFONCTION WHERE  LOGIN = :LOGIN
+
+Time : 19:14:16
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'LOGIN' in 'where clause'
+Raw SQL : SELECT p.*, f.LIBELLE AS LIBELLE FROM `personnels` p LEFT JOIN fonctions f ON p.FONCTION = f.IDFONCTION WHERE  LOGIN = :LOGIN
+
+Time : 19:13:11
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '','102','103','104','105','201','202','203','204','205','206','207','301','302',' at line 1
+Raw SQL : SELECT m.* FROM menus m WHERE m.CODEDROIT IN (101','102','103','104','105','201','202','203','204','205','206','207','301','302','303','304','305','306','307','308','309','310','311','312','313','314','315','401','404','405','406','501','502','503','504','505','506','507','601','602','603','604','605','701','702','801','802','803) AND m.IDGROUPE = :groupe
+
+Time : 19:05:12
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '\'[\\\'101\\\',\\\'102\\\',\\\'103\\\',\\\'104\\\',\\\'105\\\',\\\'201\\\',\\\'2' at line 1
+Raw SQL : SELECT m.* FROM menus m WHERE m.CODEDROIT IN (\'[\\\'101\\\',\\\'102\\\',\\\'103\\\',\\\'104\\\',\\\'105\\\',\\\'201\\\',\\\'202\\\',\\\'203\\\',\\\'204\\\',\\\'205\\\',\\\'206\\\',\\\'207\\\',\\\'301\\\',\\\'302\\\',\\\'303\\\',\\\'304\\\',\\\'305\\\',\\\'306\\\',\\\'307\\\',\\\'308\\\',\\\'309\\\',\\\'310\\\',\\\'311\\\',\\\'312\\\',\\\'313\\\',\\\'314\\\',\\\'315\\\',\\\'401\\\',\\\'404\\\',\\\'405\\\',\\\'406\\\',\\\'501\\\',\\\'502\\\',\\\'503\\\',\\\'504\\\',\\\'505\\\',\\\'506\\\',\\\'507\\\',\\\'601\\\',\\\'602\\\',\\\'603\\\',\\\'604\\\',\\\'605\\\',\\\'701\\\',\\\'702\\\',\\\'801\\\',\\\'802\\\',\\\'803\\\']\') AND m.IDGROUPE = :groupe
