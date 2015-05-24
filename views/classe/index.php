@@ -1,6 +1,8 @@
 <div id="entete">
-    Information relative a afficher<br/>
-    Confere easyscol page classe
+    <span class="select" style="width: 200px">
+        <label>Classe : </label>
+        <?php echo $classes; ?>
+    </span>
 </div>
 <div class="titre">
     Gestion des classes

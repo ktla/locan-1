@@ -102,12 +102,12 @@ class View {
         if (file_exists(ROOT . DS . "views" . DS . strtolower($name) . ".js")) {
             $entree = file_get_contents(ROOT . DS . 'views' . DS . strtolower($name) . '.js');
             $filename = ROOT . DS . "public" . DS . "js" . DS . "clients.js";
+            //si la variable est vide, vider le contenu du fichier clients.js
             if (empty($this->data['clientsjs'])) {
                 fopen($filename, "w");
             }
             if (file_put_contents($filename, $entree, FILE_APPEND)) {
-                $this->data['clientsjs'] = "<script type='text/javascript' src='"
-                        . SITE_ROOT . "public/js/clients.js'></script>";
+                $this->data['clientsjs'] = "<script type='text/javascript' src='". SITE_ROOT . "public/js/clients.js'></script>";
             } else {
                 die("Impossible de copier les fichier $name.js et clients.js dans public");
             }

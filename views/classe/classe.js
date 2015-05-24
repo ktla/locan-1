@@ -1,7 +1,8 @@
 $(document).ready(function () {
     $('#tab_elv, #tab_mat').DataTable({
         "paging": false,
-        "bInfo": false
+        "bInfo": false,
+        "scrollY": 200,
     });
     $('#tab_pp, #tab_ra, #tab_cpe').DataTable({
         "paging": false,

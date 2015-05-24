@@ -1,9 +1,15 @@
+//Loading external javascript files
+$("head").append('<script type="text/javascript" src="http://localhost/locan/public/js/jquery-ui.js"></script>');
+$("head").append('<script type="text/javascript" src="http://localhost/locan/public/js/jquery.dataTables.min.js"></script>');
+$("head").append('<script type="text/javascript" src="http://localhost/locan/public/js/codebase/webix.js"></script>');
+
 $(document).ready(function () {
     $(document).ajaxStart(function () {
         $("#loading").show();
     }).ajaxStop(function () {
         $("#loading").hide();
     });
+
 
     $.extend($.fn.dataTable.defaults, {
         "aaSorting": [],
@@ -36,8 +42,8 @@ $(document).ready(function () {
             }
         }
     });
+    //default datatables
     $('#dataTable, #dataTable2').DataTable();
-    
 
     /*
      * Fonction permettant d'afficher et cacher le menu.
@@ -83,7 +89,7 @@ $(document).ready(function () {
             + $(".status").height() + $(".titre").height();
     $(".page").css({height: $(window).height() - h - 97});
 
-    
+
 });
 
 

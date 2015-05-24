@@ -28,7 +28,7 @@
             </span>
             <span class="select" style="width: 150px;">
                 <label>Fonction</label>
-                <?php echo $functions; ?>
+                <?php echo $fonctions; ?>
             </span>
             <span class="text" style=" width: 350px;">
                 <label>Grade</label>
@@ -39,13 +39,13 @@
                 <div id="date" style="margin-top: 10px;"></div>
                 <input type="hidden" id="datenaiss" name="datenaiss" value="" />
             </span>
-            <span class="text" style="width: 142px;margin-right: 20px;">
-                <label>T&eacute;l&eacute;phone</label>
-                <input type="text" name="telephone" maxlength="15"/>
-            </span>
-            <span class="text" style="width: 150px;">
+            <span class="text" style="width: 182px;">
                 <label>Portable</label>
                 <input type="text" name="portable" maxlength="15" />
+            </span>
+            <span class="text" style="width: 145px;margin-right: 20px;">
+                <label>T&eacute;l&eacute;phone</label>
+                <input type="text" name="telephone" maxlength="15"/>
             </span>
         </fieldset>
     </div>

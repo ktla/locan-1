@@ -1,35 +1,13 @@
 <div id="entete">
     <div style="text-align: center;">Liste des élèves : <?php echo $eleves; ?></div>
 </div>
-<script>
-    $("#listeeleve").change(function () {
-        $.ajax({
-            url: "./eleve/ajax",
-            type: 'POST',
-            dataType: "json",
-            data: {
-                "ideleve" : $("#listeeleve").val()
-            },
-            success: function (result) {
-                $("#onglet1").html(result[0]);
-                $("#onglet2").html(result[1]);
-                $("#onglet3").html(result[2]);
-                $("#onglet4").html(result[3]);
-                $("#onglet5").html(result[4]);
-                $("#onglet6").html(result[5]);
-            },
-            error: function (xhr, status, error) {
-                alertWebix("Veuillez rafraichir la page \n" + status + " " + error);
-            }
-        });
-    });
-</script>
-<div class="page" style="">
-    <div class="titre">
-        Elève
-    </div>
 
-    <form action="<?php echo url('eleve', 'saisie'); ?>" method="post">
+<div class="titre">
+    Elève
+</div>
+
+<form action="<?php echo url('eleve', 'saisie'); ?>" method="post">
+    <div class="page" style="">
         <div class="tabs" style="width: 100%">
             <ul>
                 <li id="tab1" class="courant">
@@ -70,19 +48,48 @@
                 </li>
             </ul>
         </div>
-        <div id="onglet1" class="onglet" style="display: block;">
-            <?php //echo $identite; ?>
+        <div id="onglet1" class="onglet" style="display: block;height: 500px">
+            <div class="fiche">
+                <fieldset style="width: 700px;float: none; margin: auto;"><legend>Identité</legend>
+                    <table cellpadding = "7">
+                        <tr><td width = "20%" style="font-weight: bold">Nom : </td><td><?php //echo //$nom;  ?></td></tr>
+                        <tr><td style="font-weight: bold">Prénom : </td><td><?php //echo// $prenom;  ?></td></tr>
+                        <tr><td style="font-weight: bold">Sexe : </td><td><?php //echo //$sexe;  ?></td></tr>
+                        <tr><td style="font-weight: bold">Date de naissance : </td><td><?php //echo $datenaiss;  ?></td></tr>
+                        <tr><td style="font-weight: bold">Lieu de naissance : </td><td><?php //echo $lieunaiss;  ?></td></tr>
+                        <tr><td style="font-weight: bold">Pays de nationalité : </td><td><?php // echo $nationalite;  ?></td></tr>
+                    </table>
+                </fieldset>
+                <fieldset style="width: 700px;float: none; margin: auto;"><legend>Scolarité actuelle</legend>
+                    <table  cellpadding = "7">
+                        <tr><td  width = "20%" style="font-weight: bold">Classe : </td><td><?php //echo $classe;   ?></td></tr>
+                        <tr><td style="font-weight: bold">Redoublant : </td><td><?php //echo $redoublant;   ?></td></tr>
+                        <tr><td style="font-weight: bold">Date d'entrée : </td><td><?php // echo $dateentree;  ?></td></tr>
+                        <tr><td style="font-weight: bold">Provenance : </td><td><?php //echo //$provenance;  ?></td></tr>
+                        <tr><td style="font-weight: bold">Date de sortie : </td><td><?php //echo// $datesortie;  ?></td></tr>
+                        <tr><td style="font-weight: bold">Motif sortie : </td><td><?php //echo// $motifsortie;  ?></td></tr>
+                    </table>
+
+                </fieldset>
+            </div>
         </div>
-        <div id="onglet2" class="onglet" style="display: none;">
+        <div id="onglet2" class="onglet" style="display: none;height: 500px">
             <?php //echo $responsables; ?>
         </div>
-        <div id="onglet3" class="onglet" style="display: none;">
+        <div id="onglet3" class="onglet" style="display: none;height: 500px">
             <?php //echo $emplois; ?>
         </div>
-        <div id="onglet4" class="onglet" style="display: none;">
+        <div id="onglet4" class="onglet" style="display: none;height: 500px">
             <?php //echo $viescolaire; ?>
         </div>
-        <div id="onglet5" class="onglet" style="display: none;"></div>
-        <div id="onglet6" class="onglet" style="display: none;"></div>
-    </form>
+        <div id="onglet5" class="onglet" style="display: none;height: 500px"></div>
+        <div id="onglet6" class="onglet" style="display: none;height: 500px"></div>
+    </div>
+    <div class="recapitulatif"></div>
+    <div class="navigation"></div>
+
+</form>
+<div class="status">
+    <a href ="<?php echo Router::url("eleve", "imprimer"); ?>">Imprimer</a>
+    
 </div>

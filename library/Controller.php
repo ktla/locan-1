@@ -16,8 +16,8 @@ class Controller extends Application {
         if ($urlArray[0] != "connexion"){
             $_SESSION['activeurl'] = $url;
         }
-        
-         //Extraire le mot Eleve dans la chaine EleveController (par exple)
+
+        //Extraire le mot Eleve dans la chaine EleveController (par exple)
         $model = strtolower(substr(get_class($this), 0, strlen(get_class($this)) - 10));
         $this->loadModel($model);
         //Verifier si ce n'est pas une requete AJAX
@@ -34,7 +34,7 @@ class Controller extends Application {
             $header = new View();
             $header->Assign('app_title', "LOCAN");
             $header->Assign("authentified", (isset($this->session->user)));
-           
+
             if (isset($this->session->user)) {
                 $header->Assign("menu", $this->menus->getMenus());
             }
@@ -67,16 +67,16 @@ class Controller extends Application {
     }
 
     function loadView($name) {
-         
+
         //echo ROOT . DS . 'views' . DS . strtolower($name) . 'php';
-       /* if (file_exists(ROOT . DS . 'views' . DS . strtolower($name) . '.php')) {
-            $this->view_name = $name;
+        /* if (file_exists(ROOT . DS . 'views' . DS . strtolower($name) . '.php')) {
+          $this->view_name = $name;
         }*/
     }
 
  
     function __destruct() {
-        if ($this->view != null) {
+        if ($this->view != null && $this->pdf == null) {
             $this->view->Render('template');
         }
     }

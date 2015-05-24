@@ -32,18 +32,18 @@ class Menus extends Database {
                     . "WHERE l.PROFILE = :profile ORDER BY l.CODEDROIT) "
                     . "AND m.IDGROUPE = :groupe";
             $menus = $this->query($query, ["profile" => $_SESSION['idprofile'], "groupe" => $groupe['IDGROUPE']]);
-            
+           
             if (count($menus) > 0) {
-                $str .= "<li><p><img src = '" . SITE_ROOT . "public/img/" . $groupe['ICON'] . "' alt = '" . $groupe['ALT'] . "' title = '" . $groupe['TITLE'] . "' />"
-                        . "<a>" . $groupe['LIBELLE'] . "</a></p><ul>";
-            }
-            foreach ($menus as $menu) {
-                $str .= "<li><a href = '" . SITE_ROOT . $menu['HREF'] . "'><img src ='" . SITE_ROOT . "public/img/icons/" . $menu['ICON'] . "' alt ='" . $menu['ALT'] . "' title = '" . $menu['TITLE'] . "' />"
-                        . "<span>" . $menu['LIBELLE'] . "</span></a></li>";
-            }
-            if (count($menus) > 0) {
-                $str .= "</ul></li>";
-            }
+              $str .= "<li><p><img src = '" . SITE_ROOT . "public/img/" . $groupe['ICON'] . "' alt = '" . $groupe['ALT'] . "' title = '" . $groupe['TITLE'] . "' />"
+              . "<a>" . $groupe['LIBELLE'] . "</a></p><ul>";
+              }
+              foreach ($menus as $menu) {
+              $str .= "<li><a href = '" . SITE_ROOT . $menu['HREF'] . "'><img src ='" . SITE_ROOT . "public/img/icons/" . $menu['ICON'] . "' alt ='" . $menu['ALT'] . "' title = '" . $menu['TITLE'] . "' />"
+              . "<span>" . $menu['LIBELLE'] . "</span></a></li>";
+              }
+              if (count($menus) > 0) {
+              $str .= "</ul></li>";
+              } 
         }
         $str .= "</ul>";
         return $str;

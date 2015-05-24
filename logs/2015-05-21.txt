@@ -1,0 +1,35 @@
+Time : 10:30:19
+SQLSTATE[HY000]: General error: 2031 
+Raw SQL : SELECT p.*, f.LIBELLE AS LIBELLE FROM `personnels` p LEFT JOIN fonctions f ON p.FONCTION = f.IDFONCTION WHERE  FONCTION = :FONCTION
+
+Time : 10:29:23
+SQLSTATE[HY000]: General error: 2031 
+Raw SQL : SELECT p.*, f.LIBELLE AS LIBELLE FROM `personnels` p LEFT JOIN fonctions f ON p.FONCTION = f.IDFONCTION WHERE  FONCTION = :FONCTION
+
+Time : 10:28:57
+SQLSTATE[HY000]: General error: 2031 
+Raw SQL : SELECT p.*, f.LIBELLE AS LIBELLE FROM `personnels` p LEFT JOIN fonctions f ON p.FONCTION = f.IDFONCTION WHERE  FONCTION = :FONCTION
+
+Time : 10:28:05
+SQLSTATE[HY000]: General error: 2031 
+Raw SQL : SELECT p.*, f.LIBELLE AS LIBELLE FROM personnels p LEFT JOIN fonctions f ON p.FONCTION = f.IDFONCTION WHERE  FONCTION = :FONCTION
+
+Time : 10:27:24
+SQLSTATE[HY000]: General error: 2031 
+Raw SQL : SELECT p.*, f.LIBELLE AS LIBELLE FROM `personnels` p LEFT JOIN fonctions f ON p.FONCTION = f.IDFONCTION WHERE  FONCTION = :FONCTION
+
+Time : 10:26:46
+SQLSTATE[HY000]: General error: 2031 
+Raw SQL : SELECT p.*, f.LIBELLE AS LIBELLE FROM `personnels` p LEFT JOIN fonctions f ON p.FONCTION = f.IDFONCTION WHERE  FONCTION = :FONCTION  ORDER BY NOM
+
+Time : 10:00:56
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'locan.functions' doesn't exist
+Raw SQL : SELECT p.*, CONCAT(p.NOM,' ', p.PRENOM) AS CNOM, f.FUNCTION as FUNCTION FROM personnels p LEFT JOIN functions f ON f.IDFUNCTION = p.FK_FUNCTION
+
+Time : 09:28:56
+SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`locan`.`personnels`, CONSTRAINT `personnels_ibfk_1` FOREIGN KEY (`CIVILITE`) REFERENCES `civilite` (`CIVILITE`) ON DELETE SET NULL ON UPDATE CASCADE)
+Raw SQL : INSERT INTO personnels(IDPERSONNEL, CIVILITE, NOM, PRENOM, AUTRENOM, FK_FUNCTION, GRADE, DATENAISS, PORTABLE, TELEPHONE) VALUE(:id, :civilite, :nom, :prenom, :autrenom, :function, :grade, :datenaiss, :portable, :telephone)
+
+Time : 09:28:15
+SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`locan`.`personnels`, CONSTRAINT `personnels_ibfk_1` FOREIGN KEY (`CIVILITE`) REFERENCES `civilite` (`CIVILITE`) ON DELETE SET NULL ON UPDATE CASCADE)
+Raw SQL : INSERT INTO personnels(IDPERSONNEL, CIVILITE, NOM, PRENOM, AUTRENOM, FK_FUNCTION, GRADE, DATENAISS, PORTABLE, TELEPHONE) VALUE(:id, :civilite, :nom, :prenom, :autrenom, :function, :grade, :datenaiss, :portable, :telephone)

@@ -42,10 +42,10 @@
             <?php echo $tel1 . " " . $tel2 . " " . $mobile . " " . $email; ?>
         </fieldset>
     </div>
-    <div id="onglet2" class="onglet" style="display: none; height: 100%;">
+    <div id="onglet2" class="onglet" style="display: none;">
         <?php echo $personnels; ?>
     </div>
-    <div id="onglet3" class="onglet" style="display: none; height: 100%;">
+    <div id="onglet3" class="onglet" style="display: none;">
         <?php echo $eleves; ?>
     </div>
 </div>

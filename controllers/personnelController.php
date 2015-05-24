@@ -8,11 +8,12 @@ class personnelController extends Controller {
 
     function index() {
 
-        $this->loadModel("function");
-        $data = $this->Function->selectAll();
-        $functions = new Combobox($data, "function", "IDFUNCTION", "FUNCTION");
-        $functions->first = "Toutes";
-        $functions->onchange = "showPersonnelByFunction()";
+        $this->view->clientsJS("personnel" . DS . "personnel");
+        $this->loadModel("fonction");
+        $data = $this->Fonction->selectAll();
+        $fonctions = new Combobox($data, "fonction", "IDFONCTION", "LIBELLE");
+        $fonctions->first = "Toutes";
+        $fonctions->onchange = "showPersonnelByFunction();";
 
         
         $data = $this->Personnel->selectAll();
@@ -22,19 +23,46 @@ class personnelController extends Controller {
         $personnels->addcolonne(2, "Matricule", "IDPERSONNEL");
         $personnels->addcolonne(3, "Nom", "NOM");
         $personnels->addcolonne(4, "Prénom", "PRENOM");
-        $personnels->addcolonne(5, "Fonction", "FUNCTION");
+        $personnels->addcolonne(5, "Fonction", "LIBELLE");
         $personnels->addcolonne(6, "Téléphone", "TELEPHONE");
         $personnels->actionbutton = true;
         $personnels->deletebutton = true;
         $personnels->editbutton = true;
         $total = count($data);
 
-        $this->Assign("content", (new View())->output(["functions" => $functions->view("25%"),
+        $this->Assign("content", (new View())->output(["fonctions" => $fonctions->view("50%"),
                     "personnels" => $personnels->display(),
                     "total" => $total
                         ], false));
     }
-
+    /** Function ajax appellee quand on choisi une function, confere showPersonnelByFunction()
+     * dans la methode index. Permet l'affichage du personnel en fonction du onchange dans la fonction
+     */
+    public function ajax(){
+        $view = new View();
+        if ($this->request->fonction != 0) {
+            $data = $this->Personnel->findBy(["FONCTION" => $this->request->fonction]);
+        } else {
+            $data = $this->Personnel->selectAll();
+        }
+        $personnels = new Grid($data, 2);
+        $personnels->addcolonne(1, "Civ", "CIVILITE");
+        $personnels->addcolonne(2, "Matricule", "IDPERSONNEL");
+        $personnels->addcolonne(3, "Nom", "NOM");
+        $personnels->addcolonne(4, "Prénom", "PRENOM");
+        $personnels->addcolonne(5, "Fonction", "LIBELLE");
+        $personnels->addcolonne(6, "Téléphone", "TELEPHONE");
+        $personnels->actionbutton = true;
+        $personnels->deletebutton = true;
+        $personnels->editbutton = true;
+        $total = count($data);
+        
+        $view->Assign("personnels", $personnels->display());
+        $view->Assign("total", $total);
+        echo $view->Render("personnel" . DS . "ajax" . DS . "index", false);
+        
+    }
+    
     /**
      * 
      * CODEDROIT : 502
@@ -43,17 +71,10 @@ class personnelController extends Controller {
         if (!isAuth(502)) {
             return;
         }
+        $this->view->clientsJS("personnel" . DS . "personnel");
         $view = new View();
         $view->Assign('errors', false);
-        $js = "function submitForm() {
-                date = calendar.getValue(), dates = date.split(' ');
-                document.getElementById(\"datenaiss\").value = dates[0];
-                document.forms[0].submit();
-            }";
-        
-        $view->setTextJS($js);
-        
-        if (isset($this->request->nom) && isset($this->request->function)) {
+        if (!empty($this->request->nom) && !empty($this->request->fonction) && !empty($this->request->portable)) {
             $generer = substr($this->request->nom, 0, strlen($this->request->nom)) . rand(0, 500);
             $params = [
                 "id" => $generer,
@@ -61,7 +82,7 @@ class personnelController extends Controller {
                 "nom" => $this->request->nom,
                 "prenom" => $this->request->prenom,
                 "autrenom" => $this->request->autrenom,
-                "function" => $this->request->function,
+                "fonction" => $this->request->fonction,
                 "grade" => $this->request->grade,
                 "datenaiss" => $this->request->datenaiss,
                 "telephone" => $this->request->telephone,
@@ -77,14 +98,14 @@ class personnelController extends Controller {
 
         $this->loadModel("civilite");
          $data = $this->Civilite->selectAll();
-        $civilite = new Combobox($data, "civilite", "CIVILITE", "CIVILITE");
+        $civilite = new Combobox($data, "civilite", "CIVILITE", "CIVILITE", true, "Mr");
         $view->Assign("civilite", $civilite->view("150px"));
 
 
-        $this->loadModel("function");
-         $data = $this->Function->selectAll();
-        $functions = new Combobox($data, "function", "IDFUNCTION", "FUNCTION");
-        $view->Assign("functions", $functions->view("150px"));
+        $this->loadModel("fonction");
+         $data = $this->Fonction->selectAll();
+        $fonctions = new Combobox($data, "fonction", "IDFONCTION", "LIBELLE");
+        $view->Assign("fonctions", $fonctions->view());
         $content = $view->Render("personnel" . DS . "saisie", false);
         $this->Assign("content", $content);
     }

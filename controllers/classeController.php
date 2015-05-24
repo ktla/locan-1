@@ -6,7 +6,13 @@ class classeController extends Controller{
         parent::__construct();
     }
      public function index(){
-         $this->Assign("content", (new View())->output(),false);
+         $view = new View();
+         $data = $this->Classe->selectAll();
+         $comboClasse = new Combobox($data, "classes", "CODE", "LIBELLE");
+         $comboClasse->first = " ";
+         $view->Assign("classes", $comboClasse->view());
+         $content = $view->Render("classe" . DS . "index", false);
+         $this->Assign("content", $content);
     }
     private function showClasses(){
         $classes = $this->Classe->selectAll();

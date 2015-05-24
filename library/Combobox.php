@@ -7,7 +7,7 @@ class Combobox {
     public $show; //Colonne visible a l'utilisateur, afficher entre les <option>row[show]<option>
     public $name; //name du <select name = name>
     public $first; //Information a afficher en premier dans le select (premier option)
-    private $selected; //Existe t-il un element selectionner au depart TRUE ou FALSE
+    public $selected; //Existe t-il un element selectionner au depart TRUE ou FALSE
     public $selectedid; //Si selected = TRUE, indiquer l'identifiant de cet element qui devrai etre selectionner par defaut
     public $other = FALSE;  //Precise s'il ya possibilite de choisir en dernier lieu ---Autre---
    
@@ -41,7 +41,7 @@ class Combobox {
             $dis = 'disabled';
         }
 
-        $str .= "<select $dis name=\"" . $this->name . "\"".(!empty($this->onchange) ?"onChange ='" . $this->onchange."'":"").
+        $str .= "<select $dis  name=\"" . $this->name . "\"  ".(!empty($this->onchange) ?"onChange ='" . $this->onchange."'":"").
                 " style=\"width:" . $width . "\" id = '" . $this->idname . "'>";
         if (!empty($this->first)) {
             $str .= "<option value=\"0\">" . $this->first . "</option>";

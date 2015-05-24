@@ -8,6 +8,10 @@ class userController extends Controller {
 
     public function index() {
         $view = new View();
+        $this->view->clientsJS("user" . DS . "user");
+        $data = $this->User->selectAll();
+        $comboUser = new Combobox($data, "listeusers", "IDUSER", "LOGIN");
+        $view->Assign("comboUser", $comboUser->view());
         $content = $view->Render("user" . DS . "index", false);
         $this->Assign("content", $content);
     }
@@ -129,20 +133,20 @@ class userController extends Controller {
         $this->loadModel("profile");
         $this->loadModel("droit");
         $profiles = $this->Profile->selectAll();
+       
         //validation du formulaire
         if (isset($this->request->soumis)) {
             //Parcourir les profils, et mettre a jour leur droits respectifs
             foreach ($profiles as $profile) {
                 if (isset($_POST[$profile['IDPROFILE']]) && !empty($_POST[$profile['IDPROFILE']])) {
-                    $this->Droit->emptyDroits($profile['IDPROFILE']);
-                    $this->Droit->insertDroits($profile['IDPROFILE'], $_POST[$profile['IDPROFILE']]);
+                    $this->Profile->update(["LISTEDROIT" => json_encode($_POST[$profile['IDPROFILE']])], ["IDPROFILE" => $profile['IDPROFILE']]);
                 }
             }
             header("Location" . Router::url("user", "droits"));
         }
         $listedroits = array();
         foreach ($profiles as $profile) {
-            $listedroits[$profile['IDPROFILE']] = $this->Droit->findListeDroits($profile['IDPROFILE']);
+            $listedroits[$profile['IDPROFILE']] = json_decode($this->Profile->getDroits($profile['IDPROFILE']));
         }
         $view->Assign("listedroits", $listedroits);
         $droits = $this->Droit->selectAll();
@@ -157,5 +161,45 @@ class userController extends Controller {
     
     public function fiche(){
         $this->Assign("content", (new View())->output());
+    }
+    /**
+     * Ajax utiliser dans la page index de user
+     */
+    public function ajax(){
+        //Envoyer les infos de l'utilisateur
+        $user = $this->User->findBy(["IDUSER" => $this->request->iduser]);
+        $view = new View();
+       
+        $data = $this->User->mesConnexions($user[0]["LOGIN"]);
+        $grid = new Grid($data, 0);
+
+        $grid->addcolonne(0, "IDCONNEXION", "IDCONNEXION", false);
+        $grid->addcolonne(1, "Date de début", "DATEDEBUT");
+        $grid->addcolonne(2, "Machine", "MACHINESOURCE");
+        $grid->addcolonne(3, "Adresse", "IPSOURCE");
+        $grid->addcolonne(4, "Connexion", "CONNEXION");
+        $grid->addcolonne(5, "Date de fin", "DATEFIN");
+        $grid->addcolonne(6, "Déconnexion", "DECONNEXION");
+        $grid->setColDate(1);
+        $grid->setColDate(5);
+        $grid->actionbutton = true;
+        $grid->deletebutton = true;
+        $grid->editbutton = false;
+        $total = count($data);
+        $view->Assign("connexions", $grid->display());
+        //Droit de l'utilisateur
+        $this->loadModel("droit");
+        $droits = $this->Droit->selectAll();
+        $mesdroit = $user[0]["DROITSPECIFIQUE"];
+        $view->Assign("droits", $droits);
+        $view->Assign("mesdroits", $mesdroit);
+        
+        $arr = array();
+        $arr[0] = $view->Render("user" . DS . "ajax" . DS . "onglet1", false);
+        $arr[1] = $view->Render("user" . DS . "ajax" . DS . "onglet2", false);
+        $arr[2] = $view->Render("user" . DS . "ajax" . DS . "onglet3", false);
+        $arr[3] = $total;
+        
+        echo json_encode($arr);
     }
 }

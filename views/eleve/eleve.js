@@ -1,6 +1,31 @@
 var calendrier, caldatenaiss, caldateentree;
 
 $(document).ready(function () {
+    
+    //appliquer dans le select du fichier index
+    
+    $("#listeeleve").change(function () {
+        $.ajax({
+            url: "./eleve/ajax",
+            type: 'POST',
+            dataType: "json",
+            data: {
+                "ideleve": $("#listeeleve").val()
+            },
+            success: function (result) {
+                $("#onglet1").html(result[0]);
+                $("#onglet2").html(result[1]);
+                $("#onglet3").html(result[2]);
+                $("#onglet4").html(result[3]);
+                $("#onglet5").html(result[4]);
+                $("#onglet6").html(result[5]);
+            },
+            error: function (xhr, status, error) {
+                alertWebix("Veuillez rafraichir la page \n" + status + " " + error);
+            }
+        });
+    });
+
     calendrier = getCalendar("date");
     caldatenaiss = getCalendar("datenaiss");
     caldateentree = getCalendar("dateentree");
@@ -12,16 +37,16 @@ $(document).ready(function () {
         modal: true,
         resizable: false,
         buttons: {
-            "Ajouter": function (){
+            "Ajouter": function () {
                 alert("cliquer");
             },
             Annuler: function () {
-                dial.dialog("close");
+                $(this).dialog("close");
             }
         }
     });
     $("#ajout-responsable").button().on("click", function () {
-       $("#ajout-responsable-dialog-form").dialog("open");
+        $("#ajout-responsable-dialog-form").dialog("open");
     });
 });
 

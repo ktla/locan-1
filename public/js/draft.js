@@ -46,3 +46,15 @@
                 /*for (var i in result) {
                  $("#onglet" + i).html(result[i]);
                  }*/
+ 
+ 
+ /*.done(function (script, status) {
+
+}).fail(function (xhr, settings, exception) {
+    alert(xhr + ' ' + exception + ' ' + settings);
+    console.log(xhr + ' ' + exception + ' ' + settings);
+});
+
+<script type="text/javascript" src="<?php echo SITE_ROOT; ?>public/js/jquery-ui.js"></script>
+        <script type="text/javascript" src="<?php echo SITE_ROOT; ?>public/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="<?php echo SITE_ROOT; ?>public/js/codebase/webix.js"></script>*/

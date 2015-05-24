@@ -9,5 +9,8 @@ class profileModel extends Model{
         parent::__construct();
     }
     
-    
+    public function getDroits($profile){
+        $query = "SELECT LISTEDROIT FROM $this->_table WHERE $this->_key = :profile";
+        return $this->single($query, ["profile" => $profile]);
+    }
 }

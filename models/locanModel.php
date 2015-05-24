@@ -21,7 +21,7 @@ class locanModel extends Model{
                 "logo" => $logo
             ];
      */
-    public function insert($params){
+    public function insert($params = array()){
         $query = "INSERT INTO locan(ID, NOM, RESPONSABLE, ADRESSE, "
                 . "BP, TELEPHONE, TELEPHONE2, MOBILE, FAX, EMAIL, "
                 . "SITEWEB, LOGO) "

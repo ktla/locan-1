@@ -311,7 +311,7 @@ a{
 }
 /**FICHE */
 .fiche tr:nth-child(2n +1){
-    background-color: rgb(225, 196, 196); //#E1C4C4
+    //background-color: rgb(225, 196, 196); //#E1C4C4
 }
 .fiche table{
     width: 100%;

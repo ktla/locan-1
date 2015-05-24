@@ -15,6 +15,8 @@ function __autoload($className) {
         require_once(ROOT . DS . 'library' . DS . strtolower($className) . '.php');
     }else if(file_exists(ROOT . DS . 'entites' . DS . strtolower($className) . '.php')){
         require_once(ROOT . DS . 'entites' . DS . strtolower($className) . '.php');
+    }else if(file_exists(ROOT . DS . 'library' . DS . 'tcpdf' . DS . strtolower($className) . '.php')){
+        require_once(ROOT . DS . 'library' . DS . 'tcpdf' . DS . strtolower($className) . '.php');
     } else {
         //Une erreur grave
         die("Error: Class $className introuvable");

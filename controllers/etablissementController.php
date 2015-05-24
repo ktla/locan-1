@@ -27,7 +27,7 @@ class etablissementController extends Controller {
         $personnels->addcolonne(2, "Matricule", "IDPERSONNEL");
         $personnels->addcolonne(3, "Nom", "NOM");
         $personnels->addcolonne(4, "Prénom", "PRENOM");
-        $personnels->addcolonne(5, "Fonction", "FUNCTION");
+        $personnels->addcolonne(5, "Fonction", "LIBELLE");
         $personnels->addcolonne(6, "Téléphone", "TELEPHONE");
         $personnels->actionbutton = false;
         $view->Assign("personnels", $personnels->display());

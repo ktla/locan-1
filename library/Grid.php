@@ -153,7 +153,7 @@ final class Grid {
             if ($this->actionbutton) {
 
                 if ($this->editbutton || $this->deletebutton) {
-                    $str .= "<td style = 'width:50px;padding:0; margin:0;text-align:right;'>";
+                    $str .= "<td style = 'width:50px;padding:0; margin:0;text-align:center;'>";
                     if ($this->editbutton) {
                         $_url = url($controller, 'modify', $line[$this->_key]);
                         $str .= "<img style = 'cursor:pointer;' onclick = \"document.location='" . $_url . "');\""

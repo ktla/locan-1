@@ -11,7 +11,7 @@ class EleveController extends Controller {
 
     public function index() {
         $view = new View();
-
+        $this->view->clientsJS("eleve" . DS . "eleve");
 
         //Le model du dit controller est charger automatiquement
         //$this->Load_Model("eleve");
@@ -199,10 +199,8 @@ class EleveController extends Controller {
         if (!isset($this->session->user)) {
             print json_encode(false);
         } else {
-
             $arr = array();
-            $data = $this->Eleve->findBy(array("IDELEVE" => $this->request->ideleve));
-
+            $data = $this->Eleve->findBy(["IDELEVE" => $this->request->ideleve]);
             $view = new View();
             $view->Assign("nom", $data["NOM"]);
             $view->Assign("prenom", $data["PRENOM"]);
@@ -264,6 +262,14 @@ class EleveController extends Controller {
             }
         }
         print json_encode($json_array);
+    }
+
+    public function imprimer() {
+        $this->pdf = new PDF();
+        $view = new View();
+        $view->Assign("pdf", $this->pdf);
+        echo $view->Render("eleve" . DS . "imprimer", false);
+        //$this->Assign("content", $content);
     }
 
 }

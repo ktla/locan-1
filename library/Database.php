@@ -203,7 +203,7 @@ class Database {
      */
     public function query($query, $params = null, $fetchmode = PDO::FETCH_ASSOC) {
         $query = trim($query);
-
+       
         $this->Init($query, $params);
 
         $rawStatement = explode(" ", $query);

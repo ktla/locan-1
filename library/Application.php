@@ -11,7 +11,8 @@ class Application {
     protected $menus;
     protected $session;
     protected $input;
-
+    protected $pdf = null;
+            
     function __construct() {
         $this->set_reporting();
         $this->remove_magic_quotes();
@@ -37,7 +38,7 @@ class Application {
         }
 
         $this->resetTimeOut();
-        
+       
         $action = (isset($urlArray[1]) && $urlArray[1] != '') ? $urlArray[1] : DEFAULT_ACTION;
         /*
          * Pour eviter une redirection qui n'aboutira, 
@@ -111,10 +112,10 @@ class Application {
      * remet a jour le compteur de l'expiration de session
      */
     private function resetTimeOut() {
-        if ($this->connected()) {
+       if ($this->connected()) {
             if ($this->session->timeout > time()) {
                 //lui accorder 10 minute de plus
-                $_SESSION['timeout'] = time() + TIME_OUT;
+                $_SESSION['timeout'] = time() + TIME_OUT; //TIME_OUT Defini dans public/index.php
             } else {
                 //il a deborder ces 10 minute de grave sans activite, le deconected
                 //unset($_SESSION['user']);

@@ -41,7 +41,7 @@
 
             </ul>
         </div>
-        <div id="onglet1" class="onglet" style="display: block;">
+        <div id="onglet1" class="onglet" style="display: block;height: 500px">
             <?php
             $i = 0;
             $table = "<table class = 'dataTable'>";
@@ -69,7 +69,7 @@
             print $table;
             ?>
         </div>
-        <div id="onglet2" class="onglet" style="display: none;">
+        <div id="onglet2" class="onglet" style="display: none;height: 500px">
             <?php
             $table = "<table class = 'dataTable'>";
             $table .= "<thead><th>Libell&eacute; du droit</th>";
@@ -95,7 +95,7 @@
             print $table;
             ?>
         </div>
-        <div id="onglet3" class="onglet" style="display: none;">
+        <div id="onglet3" class="onglet" style="display: none;height: 500px">
             <?php
             $table = "<table class = 'dataTable'>";
             $table .= "<thead><th>Libell&eacute; du droit</th>";
@@ -122,7 +122,7 @@
             print $table;
             ?>
         </div>
-        <div id="onglet4" class="onglet" style="display: none;">
+        <div id="onglet4" class="onglet" style="display: none;height: 500px">
             <?php
             $table = "<table class = 'dataTable'>";
             $table .= "<thead><th>Libell&eacute; du droit</th>";
@@ -148,7 +148,7 @@
             print $table;
             ?>
         </div>
-        <div id="onglet5" class="onglet" style="display: none;">
+        <div id="onglet5" class="onglet" style="display: none;height: 500px">
             <?php
             $table = "<table class = 'dataTable'>";
             $table .= "<thead><th>Libell&eacute; du droit</th>";

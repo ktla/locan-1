@@ -94,7 +94,7 @@ class Model extends Database {
         return $this->query("SELECT * FROM `" . $this->_table . "` "
                         . " WHERE `" . $this->_key . "` = :id", array("id" => $id));
     }
-
+    
     public function findBy($condition = array()) {
         $str = "";
         $params = array();

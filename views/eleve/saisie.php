@@ -1,6 +1,6 @@
 <div id="entete">
     <div class="logo">
-        <img src="<?php echo SITE_ROOT . "public/img/saisieeleve.png"; ?>" />
+        <img src="<?php echo SITE_ROOT . "public/img/wide_saisieeleve.png"; ?>" />
     </div>
 </div>
 <div class="titre">

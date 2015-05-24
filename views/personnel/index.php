@@ -1,10 +1,10 @@
 <div id="entete">
-    <div style="text-align: center;margin-bottom: 5px;">Fonction <?php echo $functions; ?></div>
+    <div style="text-align: center;margin-bottom: 5px;">Fonction <?php echo $fonctions; ?></div>
 </div>
 <div class="titre">
     Gestion du Personnel
 </div>
-<form action="<?php echo Router::url("personnel", "saisie"); ?>" >
+<form action="<?php echo Router::url("personnel", "saisie"); ?>" name="frmpersonnel">
     <div class="page">
 
         <!-- div class="breadcrumb"><a href ="">Document</a><a  href ="">Document</a><a href ="">Document</a></div -->
