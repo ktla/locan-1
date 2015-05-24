@@ -22,3 +22,12 @@ $(document).ready(function () {
 
   
 });
+
+function validerFormDroit(){
+    frm = $("form[name=frmdroit]");
+    hidden = $("<input type = 'hidden' name = 'iduser' />");
+    hidden.val($("select[name=listeusers]").val());
+    frm.append(hidden);
+    //console.log(frm);
+    frm.submit();
+}

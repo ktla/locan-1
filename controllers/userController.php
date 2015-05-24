@@ -7,10 +7,16 @@ class userController extends Controller {
     }
 
     public function index() {
+
+        if (!empty($this->request->iduser)) {
+            $droits = json_encode($_POST['droits']);
+            $this->User->update(["DROITSPECIFIQUE" => $droits], ["IDUSER" => $this->request->iduser]);
+        }
         $view = new View();
         $this->view->clientsJS("user" . DS . "user");
         $data = $this->User->selectAll();
         $comboUser = new Combobox($data, "listeusers", "IDUSER", "LOGIN");
+        $comboUser->first = " ";
         $view->Assign("comboUser", $comboUser->view());
         $content = $view->Render("user" . DS . "index", false);
         $this->Assign("content", $content);
@@ -81,13 +87,16 @@ class userController extends Controller {
     public function email() {
         $view = new View();
         $view->Assign("errors", false);
+        $user = $this->User->findSingleRowBy(["LOGIN" => $this->session->user]);
+        $iduser = $user['IDUSER'];
+
         $message = "";
         if (!empty($this->request->email)) {
             //verifier si c'est un email valide en utilisant une expression reguliere
             $valide = true;
             if ($valide) {
                 $this->loadModel("personnel");
-                if ($this->Personnel->update(['EMAIL' => $this->request->email], ["LOGIN" => $this->session->user])) {
+                if ($this->Personnel->update(['EMAIL' => $this->request->email], ["IDUSER" => $iduser])) {
                     header("Location:" . Router::url("user", "fiche"));
                 }
             } else {
@@ -108,9 +117,9 @@ class userController extends Controller {
         $view = new View();
         $view->Assign("errors", false);
         $this->loadModel("personnel");
-        $this->loadModel("user");
-        $user = $this->User->findBy(["LOGIN" => $this->session->user]);
-        $iduser = $user[0]['IDUSER'];
+        $user = $this->User->findSingleRowBy(["LOGIN" => $this->session->user]);
+        $iduser = $user['IDUSER'];
+
         //Validation du formulaire
         if (!empty($this->request->telephone) || !empty($this->request->portable)) {
             $params = ["TELEPHONE" => $this->request->telephone, "PORTABLE" => $this->request->portable];
@@ -126,38 +135,6 @@ class userController extends Controller {
         $view->Assign("portable", $portable);
 
         $content = $view->Render("user" . DS . "telephone", false);
-        $this->Assign("content", $content);
-    }
-
-    public function droits() {
-        $view = new View();
-        $view->Assign("errors", false);
-        $this->loadModel("profile");
-        $this->loadModel("droit");
-        $profiles = $this->Profile->selectAll();
-
-        //validation du formulaire
-        if (isset($this->request->soumis)) {
-            //Parcourir les profils, et mettre a jour leur droits respectifs
-
-            foreach ($profiles as $profile) {
-                if (isset($_POST[$profile['IDPROFILE']]) && !empty($_POST[$profile['IDPROFILE']])) {
-                    $this->Profile->update(["LISTEDROIT" => json_encode($_POST[$profile['IDPROFILE']])], ["IDPROFILE" => $profile['IDPROFILE']]);
-                }
-            }
-            header("Location" . Router::url("user", "droits"));
-        }
-        $listedroits = array();
-        foreach ($profiles as $profile) {
-            $listedroits[$profile['IDPROFILE']] = json_decode($this->Profile->getDroits($profile['IDPROFILE']));
-        }
-        $view->Assign("listedroits", $listedroits);
-        $droits = $this->Droit->selectAll();
-        $view->Assign("total", count($droits));
-        $view->Assign("droits", $droits);
-        $view->Assign("profiles", $profiles);
-
-        $content = $view->Render("user" . DS . "droits", false);
         $this->Assign("content", $content);
     }
 
@@ -193,10 +170,10 @@ class userController extends Controller {
         //Droit de l'utilisateur
         $this->loadModel("droit");
         $droits = $this->Droit->selectAll();
-        $mesdroit = $user["DROITSPECIFIQUE"];
+        $mesdroits = json_decode($user["DROITSPECIFIQUE"]);
         $view->Assign("droits", $droits);
-        $view->Assign("mesdroits", $mesdroit);
-        
+        $view->Assign("mesdroits", $mesdroits);
+
         /*
          * Variables de l'onglet 1
          */

@@ -14,22 +14,21 @@ class Menus extends Database {
      * auquel il fait parti + ses droit specifiq
      */
     public function setDroits() {
-        if (!isset($_SESSION['droits']) || empty($_SESSION['droits'])) {
-            $idprofile = $_SESSION['idprofile'];
-            $query = "SELECT LISTEDROIT FROM profile WHERE IDPROFILE = :idprofile";
-            $_SESSION['droits'] = json_decode($this->single($query, ["idprofile" => $idprofile]));
-       
-       }
+        //if (!isset($_SESSION['droits']) || empty($_SESSION['droits'])) {
+            $user = $_SESSION['user'];
+            $query = "SELECT DROITSPECIFIQUE FROM users WHERE LOGIN = :login";
+            $_SESSION['droits'] = json_decode($this->single($query, ["login" => $user]));
+       // }
     }
 
     public function getMenus() {
-       
+
         $droits = json_encode($_SESSION['droits']);
-         $droits = str_replace("\\", "", $droits);
-         $droits = str_replace("\"", "'", $droits);
+        $droits = str_replace("\\", "", $droits);
+        $droits = str_replace("\"", "'", $droits);
         $droits = substr($droits, 0, strlen($droits) - 1);
         $droits = substr($droits, - strlen($droits) + 1);
-       
+
         $groupes = $this->query("SELECT * FROM groupemenus ORDER BY IDGROUPE");
         $str = "<ul id='menu-accordeon'>";
         foreach ($groupes as $groupe) {

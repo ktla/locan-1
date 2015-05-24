@@ -2,9 +2,15 @@
     <thead><tr><th>CODE</th><th>LIBELLE</th><th>ACTIF</th></tr></thead>
     <tbody>
         <?php
+        $mesdroits = is_null($mesdroits) ? array() : $mesdroits;
         foreach ($droits as $droit) {
-            echo "<tr><td>" . $droit['CODEDROIT'] . "</td><td>" . $droit['LIBELLE'] . "</td><td>"
-            . "<input type = 'checkbox' name = 'droits' value = '" . $droit['CODEDROIT'] . "' /></td></tr>";
+            echo "<tr><td>" . $droit['CODEDROIT'] . "</td><td>" . $droit['LIBELLE'] . "</td><td>";
+            if (in_array($droit['CODEDROIT'], $mesdroits)) {
+                echo "<input type = 'checkbox' name = 'droits[]' checked value = '" . $droit['CODEDROIT'] . "' />";
+            } else {
+                echo "<input type = 'checkbox' name = 'droits[]' value = '" . $droit['CODEDROIT'] . "' />";
+            }
+            echo "</td></tr>";
         }
         ?>
     </tbody>
