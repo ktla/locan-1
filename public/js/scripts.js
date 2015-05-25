@@ -45,7 +45,7 @@ $(document).ready(function () {
         }
     });
     //default datatables
-    $('#dataTable, #dataTable2').DataTable();
+   $('#dataTable, #dataTable2').DataTable();
 
     /*
      * Fonction permettant d'afficher et cacher le menu.
@@ -145,6 +145,10 @@ function onglets(premier, actuel, nombre) {
     }
      if ($.fn.DataTable.isDataTable("#dataTable2")) {
         table = $("#dataTable2").DataTable();
+        table.columns.adjust().draw();
+    }
+    if($.fn.DataTable.isDataTable("#tab_mat")){
+        table = $("#tab_mat").DataTable();
         table.columns.adjust().draw();
     }
 }

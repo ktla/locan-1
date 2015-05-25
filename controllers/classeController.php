@@ -44,7 +44,7 @@ class classeController extends Controller{
             $this->loadModel("eleve");
             $eleves = $this->Eleve->selectAll();
             $view->Assign("eleves", $eleves);
-            $comboEleve = new Combobox($eleves, "listeeleve", "MATRICULE", "NOM");
+            $comboEleve = new Combobox($eleves, "listeeleve", "IDELEVE", "CNOM");
            $view->Assign("comboEleves", $comboEleve->view()); 
 
 
