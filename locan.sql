@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 20, 2015 at 10:45 AM
+-- Generation Time: May 26, 2015 at 12:08 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -120,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `connexions` (
   `DATEFIN` datetime DEFAULT NULL,
   `DECONNEXION` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`IDCONNEXION`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=228 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=261 ;
 
 --
 -- Dumping data for table `connexions`
@@ -193,7 +193,40 @@ INSERT INTO `connexions` (`IDCONNEXION`, `COMPTE`, `DATEDEBUT`, `MACHINESOURCE`,
 (224, 'armel', '2015-05-20 07:39:57', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-20 07:58:37', 'Session expriÃ©e'),
 (225, 'jp', '2015-05-20 07:52:00', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-20 08:02:15', 'Session expriÃ©e'),
 (226, 'jp', '2015-05-20 08:07:48', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-20 08:18:46', 'Session expriÃ©e'),
-(227, 'jp', '2015-05-20 08:32:57', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', '');
+(227, 'jp', '2015-05-20 08:32:57', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-20 09:52:57', 'Session fermÃ©e correctement'),
+(228, 'jp', '2015-05-20 09:53:13', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-20 11:22:28', 'Session expriÃ©e'),
+(229, 'armel', '2015-05-20 09:58:56', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-20 13:27:01', 'Session fermÃ©e correctement'),
+(230, 'jp', '2015-05-20 12:07:15', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(231, 'armel', '2015-05-20 13:27:41', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(232, 'jp', '2015-05-21 00:04:39', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-21 01:57:39', 'Session expriÃ©e'),
+(233, 'armel', '2015-05-21 00:53:26', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-21 01:56:11', 'Session expriÃ©e'),
+(234, 'jp', '2015-05-21 08:18:34', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-21 10:49:15', 'Session expriÃ©e'),
+(235, 'armel', '2015-05-21 08:33:07', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-21 12:33:31', 'Session expriÃ©e'),
+(236, 'jp', '2015-05-21 11:26:51', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(237, 'armel', '2015-05-21 17:58:20', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(238, 'armel', '2015-05-22 15:28:03', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(239, 'jp', '2015-05-22 16:26:52', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-22 18:04:56', 'Session expriÃ©e'),
+(240, 'jp', '2015-05-22 16:30:51', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-22 17:57:38', 'Session expriÃ©e'),
+(241, 'jp', '2015-05-23 15:45:08', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-23 16:48:47', 'Session expriÃ©e'),
+(242, 'jp', '2015-05-23 18:25:56', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-23 19:31:00', 'Session expriÃ©e'),
+(243, 'jp', '2015-05-23 21:37:13', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(244, 'armel', '2015-05-23 21:43:25', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-23 23:33:09', 'Session expriÃ©e'),
+(245, 'armel', '2015-05-23 23:43:29', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-24 01:53:00', 'Session expriÃ©e'),
+(246, 'armel', '2015-05-24 06:40:48', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-24 07:49:13', 'Session fermÃ©e correctement'),
+(247, 'armel', '2015-05-24 07:49:23', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-24 09:00:28', 'Session fermÃ©e correctement'),
+(248, 'jp', '2015-05-24 08:59:11', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-24 10:03:50', 'Session expriÃ©e'),
+(249, 'armel', '2015-05-24 09:00:33', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-24 10:07:43', 'Session expriÃ©e'),
+(250, 'armel', '2015-05-24 10:16:38', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-24 10:24:23', 'Session fermÃ©e correctement'),
+(251, 'armel', '2015-05-24 10:28:24', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-24 14:04:03', 'Session expriÃ©e'),
+(252, 'jp', '2015-05-24 10:29:20', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-24 12:24:48', 'Session expriÃ©e'),
+(253, 'armel', '2015-05-24 19:02:27', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-24 22:21:46', 'Session expriÃ©e'),
+(254, 'jp', '2015-05-24 19:03:28', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-24 23:54:17', 'Session fermÃ©e correctement'),
+(255, 'armel', '2015-05-24 22:29:23', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(256, 'armel', '2015-05-24 23:54:26', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-24 23:55:29', 'Session fermÃ©e correctement'),
+(257, 'armel', '2015-05-24 23:55:33', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-25 00:01:07', 'Session fermÃ©e correctement'),
+(258, 'armel', '2015-05-25 00:01:09', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-25 00:01:10', 'Session fermÃ©e correctement'),
+(259, 'jp', '2015-05-25 00:01:15', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(260, 'jp', '2015-05-25 22:47:15', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -273,7 +306,6 @@ INSERT INTO `droits` (`IDDROIT`, `CODEDROIT`, `LIBELLE`) VALUES
 (39, '601', 'Options générales'),
 (40, '602', 'Tous les mots de passe'),
 (41, '603', 'Gestion des utilisateurs'),
-(42, '604', 'Droits d''accès utilisateurs'),
 (43, '605', 'Calendrier scolaire'),
 (44, '701', 'Sauvegarder la base de données'),
 (45, '702', 'Restaurer la base de données'),
@@ -314,7 +346,7 @@ CREATE TABLE IF NOT EXISTS `eleves` (
   KEY `LIEUNAISS` (`PAYSNAISS`),
   KEY `PROVENANCE` (`PROVENANCE`),
   KEY `MOTIFSORTIE` (`MOTIFSORTIE`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=39 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
 
 --
 -- Dumping data for table `eleves`
@@ -345,7 +377,9 @@ INSERT INTO `eleves` (`IDELEVE`, `MATRICULE`, `NOM`, `PRENOM`, `AUTRENOM`, `SEXE
 (35, '', 'jchvjhv', 'lkbjk', 'vkbkj', 'M', '031014_1754_Connectinga20.png', 'kuvyuv', 'Cameroun', '2015-05-20', 'Cameroun', 'iuigui', '2015-05-19', 1, 0, NULL, NULL),
 (36, '', 'jchvjhv', 'lkbjk', 'vkbkj', 'M', '031014_1754_Connectinga20.png', 'kuvyuv', 'Cameroun', '2015-05-20', 'Cameroun', 'iuigui', '2015-05-19', 1, 0, NULL, NULL),
 (37, '', 'jchvjhv', 'lkbjk', 'vkbkj', 'M', '031014_1754_Connectinga20.png', 'kuvyuv', 'Cameroun', '2015-05-20', 'Cameroun', 'iuigui', '2015-05-19', 1, 0, NULL, NULL),
-(38, '', 'jchvjhv', 'lkbjk', 'vkbkj', 'M', '031014_1754_Connectinga20.png', 'kuvyuv', 'Cameroun', '2015-05-20', 'Cameroun', 'iuigui', '2015-05-19', 1, 0, NULL, NULL);
+(38, '', 'jchvjhv', 'lkbjk', 'vkbkj', 'M', '031014_1754_Connectinga20.png', 'kuvyuv', 'Cameroun', '2015-05-20', 'Cameroun', 'iuigui', '2015-05-19', 1, 0, NULL, NULL),
+(39, '', 'jchvjhv', 'lkbjk', 'vkbkj', 'M', '031014_1754_Connectinga20.png', 'kuvyuv', 'Cameroun', '2015-05-20', 'Cameroun', 'iuigui', '2015-05-19', 1, 0, NULL, NULL),
+(40, '', 'jchvjhv', 'lkbjk', 'vkbkj', 'M', '031014_1754_Connectinga20.png', 'kuvyuv', 'Cameroun', '2015-05-20', 'Cameroun', 'iuigui', '2015-05-19', 1, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -385,20 +419,20 @@ INSERT INTO `etablissements` (`IDETABLISSEMENT`, `ETABLISSEMENT`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `functions`
+-- Table structure for table `fonctions`
 --
 
-CREATE TABLE IF NOT EXISTS `functions` (
-  `IDFUNCTION` int(11) NOT NULL AUTO_INCREMENT,
-  `FUNCTION` varchar(50) NOT NULL,
-  PRIMARY KEY (`IDFUNCTION`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+CREATE TABLE IF NOT EXISTS `fonctions` (
+  `IDFONCTION` int(11) NOT NULL AUTO_INCREMENT,
+  `LIBELLE` varchar(50) CHARACTER SET latin1 NOT NULL,
+  PRIMARY KEY (`IDFONCTION`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `functions`
+-- Dumping data for table `fonctions`
 --
 
-INSERT INTO `functions` (`IDFUNCTION`, `FUNCTION`) VALUES
+INSERT INTO `fonctions` (`IDFONCTION`, `LIBELLE`) VALUES
 (1, 'Enseignant'),
 (2, 'Assistant éducation'),
 (3, 'Direction'),
@@ -434,79 +468,6 @@ INSERT INTO `groupemenus` (`IDGROUPE`, `LIBELLE`, `ICON`, `ALT`, `TITLE`) VALUES
 (8, 'Année précédente', 'anneeprecende.png', NULL, NULL),
 (9, 'Imports/Exports', 'compte.png', NULL, NULL),
 (10, 'Tableau d''affichage', 'compte.png', NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `listedroits`
---
-
-CREATE TABLE IF NOT EXISTS `listedroits` (
-  `CODEDROIT` varchar(10) NOT NULL,
-  `PROFILE` int(11) NOT NULL,
-  PRIMARY KEY (`CODEDROIT`,`PROFILE`),
-  KEY `PROFILE` (`PROFILE`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `listedroits`
---
-
-INSERT INTO `listedroits` (`CODEDROIT`, `PROFILE`) VALUES
-('101', 1),
-('102', 1),
-('103', 1),
-('104', 1),
-('105', 1),
-('201', 1),
-('202', 1),
-('203', 1),
-('204', 1),
-('205', 1),
-('206', 1),
-('207', 1),
-('301', 1),
-('302', 1),
-('303', 1),
-('304', 1),
-('305', 1),
-('306', 1),
-('307', 1),
-('308', 1),
-('309', 1),
-('310', 1),
-('311', 1),
-('312', 1),
-('313', 1),
-('314', 1),
-('315', 1),
-('401', 1),
-('402', 1),
-('403', 1),
-('404', 1),
-('501', 1),
-('502', 1),
-('503', 1),
-('504', 1),
-('505', 1),
-('506', 1),
-('507', 1),
-('601', 1),
-('602', 1),
-('603', 1),
-('604', 1),
-('605', 1),
-('701', 1),
-('702', 1),
-('801', 1),
-('802', 1),
-('803', 1),
-('101', 2),
-('102', 2),
-('103', 2),
-('104', 2),
-('105', 2),
-('101', 3);
 
 -- --------------------------------------------------------
 
@@ -637,7 +598,6 @@ INSERT INTO `menus` (`IDMENUS`, `IDGROUPE`, `LIBELLE`, `HREF`, `ICON`, `CODEDROI
 (35, 3, 'Paramétrage des justification', 'absence/parametrage', 'parametrage.png', '313', NULL, NULL),
 (36, 6, 'Options générales', 'parametres/options', 'option.png', '601', NULL, NULL),
 (37, 6, 'Tous les mots de passe', 'parametres/mdp', 'mdp.png', '602', NULL, NULL),
-(38, 6, 'Gestion des droits d''accès', 'user/droits', 'droit.png', '604', NULL, NULL),
 (39, 6, 'Calendrier scolaire', 'etablissement/calendrier', 'calendrier.png', '605', NULL, NULL),
 (40, 3, 'Saisie d''une punition', 'punition/saisie', 'punition.png', '315', NULL, NULL);
 
@@ -716,12 +676,12 @@ INSERT INTO `pays` (`PAYS`) VALUES
 
 CREATE TABLE IF NOT EXISTS `personnels` (
   `IDPERSONNEL` varchar(15) CHARACTER SET latin1 NOT NULL,
-  `LOGIN` varchar(80) DEFAULT NULL,
+  `IDUSER` int(11) DEFAULT NULL,
   `CIVILITE` varchar(10) DEFAULT NULL,
   `NOM` varchar(30) CHARACTER SET latin1 NOT NULL,
   `PRENOM` varchar(30) CHARACTER SET latin1 NOT NULL,
   `AUTRENOM` varchar(30) CHARACTER SET latin1 NOT NULL,
-  `FK_FUNCTION` int(11) NOT NULL,
+  `FONCTION` int(11) DEFAULT NULL,
   `GRADE` varchar(15) CHARACTER SET latin1 DEFAULT NULL,
   `DATENAISS` date DEFAULT NULL,
   `PORTABLE` varchar(15) CHARACTER SET latin1 DEFAULT NULL,
@@ -729,25 +689,20 @@ CREATE TABLE IF NOT EXISTS `personnels` (
   `EMAIL` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`IDPERSONNEL`),
   KEY `CIVILITE` (`CIVILITE`),
-  KEY `LOGIN` (`LOGIN`)
+  KEY `LOGIN` (`IDUSER`),
+  KEY `FONCTION` (`FONCTION`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `personnels`
 --
 
-INSERT INTO `personnels` (`IDPERSONNEL`, `LOGIN`, `CIVILITE`, `NOM`, `PRENOM`, `AUTRENOM`, `FK_FUNCTION`, `GRADE`, `DATENAISS`, `PORTABLE`, `TELEPHONE`, `EMAIL`) VALUES
-('ADMIN', 'armel', 'Mr', 'Bruno', 'Bruno', '', 4, NULL, NULL, '652847527', '65847223', 'fort'),
-('ADMIN2', 'jp', 'Mr', 'Ainam', 'Jean-paul', '', 3, NULL, '2015-05-05', NULL, '235', 'jpainam@gmail.com'),
-('ASSIST01', 'estelle', 'Mlle', 'Estelle', 'Estelle', '', 1, NULL, NULL, NULL, '', NULL),
-('dtfty416', NULL, 'Dr', 'dtfty', 'fhtmfgh', 'FGM', 1, 'fm', '0000-00-00', 'fhjm', 'hfjm', NULL),
-('ehtrher322', NULL, 'Dr', 'ehtrher', 'drthr', 'drtntr', 1, 'etnetrjh', '0000-00-00', 'dgnr', 'rryt', NULL),
-('insertion du js', NULL, 'Dr', 'insertion du js', 'insert', 'sfbge', 1, '', '2015-05-12', '', '', NULL),
-('PERSO01', 'nom1', 'Mr', 'Nom1', 'Prenom2', '', 1, NULL, NULL, NULL, '+237652289165', NULL),
-('PESO02', 'nom2', 'Mlle', 'Nom2', 'Prenom2', '', 2, NULL, NULL, NULL, '+237698106057', NULL),
-('rnbethrt386', NULL, 'Mr', 'rnbethrt', 'rtrthr', 'nethet', 1, 'retherthjr', '0000-00-00', 'entnt', 'htrhtr', NULL),
-('rntnr331', NULL, 'Mr', 'rntnr', 'rgnr', 'thnt', 2, '4threhr', '0000-00-00', 'wrbrt', 'wrbrt', NULL),
-('sgdrt185', NULL, 'Dr', 'sgdrt', 'dghnfth', ' fgn', 3, 'fhgmfhm', '0000-00-00', 'gh fgh', 'gmj', NULL);
+INSERT INTO `personnels` (`IDPERSONNEL`, `IDUSER`, `CIVILITE`, `NOM`, `PRENOM`, `AUTRENOM`, `FONCTION`, `GRADE`, `DATENAISS`, `PORTABLE`, `TELEPHONE`, `EMAIL`) VALUES
+('ADMIN', 1, 'Mr', 'Bruno', 'Bruno', '', 4, NULL, NULL, '652847527', '65847224', 'fort'),
+('ADMIN2', 4, 'Mr', 'Ainam', 'Jean-paul', '', 3, NULL, '2015-05-05', NULL, '235', 'erberre'),
+('ASSIST01', 5, 'Mlle', 'Estelle', 'Estelle', '', 1, NULL, NULL, NULL, '', NULL),
+('dtfty416', 6, 'Dr', 'dtfty', 'fhtmfgh', 'FGM', 1, 'fm', '0000-00-00', 'fhjm', 'hfjm', NULL),
+('PERSO01', 2, 'Mr', 'Nom1', 'Prenom2', '', 1, NULL, NULL, NULL, '+237652289165', NULL);
 
 -- --------------------------------------------------------
 
@@ -757,8 +712,8 @@ INSERT INTO `personnels` (`IDPERSONNEL`, `LOGIN`, `CIVILITE`, `NOM`, `PRENOM`, `
 
 CREATE TABLE IF NOT EXISTS `profile` (
   `IDPROFILE` int(11) NOT NULL AUTO_INCREMENT,
-  `PROFILE` varchar(100) NOT NULL,
-  `LISTEDROIT` text NOT NULL,
+  `PROFILE` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `LISTEDROIT` text,
   PRIMARY KEY (`IDPROFILE`),
   KEY `PROFILE` (`PROFILE`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
@@ -768,11 +723,11 @@ CREATE TABLE IF NOT EXISTS `profile` (
 --
 
 INSERT INTO `profile` (`IDPROFILE`, `PROFILE`, `LISTEDROIT`) VALUES
-(1, 'Administrateur', ''),
-(2, 'Assistant de bureau', ''),
-(3, 'Enseignant', ''),
-(4, 'Infirmerie', ''),
-(5, 'Responsable', '');
+(1, 'Administrateur', NULL),
+(2, 'Assistant de bureau', NULL),
+(3, 'Enseignant', NULL),
+(4, 'Infirmerie', NULL),
+(5, 'Responsable', NULL);
 
 -- --------------------------------------------------------
 
@@ -793,7 +748,7 @@ CREATE TABLE IF NOT EXISTS `responsables` (
   `PROFESSION` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`IDRESPONSABLE`),
   KEY `CIVILITE` (`CIVILITE`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
 
 --
 -- Dumping data for table `responsables`
@@ -801,7 +756,11 @@ CREATE TABLE IF NOT EXISTS `responsables` (
 
 INSERT INTO `responsables` (`IDRESPONSABLE`, `CIVILITE`, `NOM`, `PRENOM`, `ADRESSE`, `BP`, `TELEPHONE`, `PORTABLE`, `EMAIL`, `PROFESSION`) VALUES
 (25, 'Dr', 'lbobn', 'blknn', '##', '', '', 'kbb', '', ';knln'),
-(26, 'Dr', 'bibinno', 'jbb', 'ohhoi#lnoi#', '235', 'nlnk', 'ino', '', '');
+(26, 'Dr', 'bibinno', 'jbb', 'ohhoi#lnoi#', '235', 'nlnk', 'ino', '', ''),
+(27, 'Dr', 'lbobn', 'blknn', '##', '', '', 'kbb', '', ';knln'),
+(28, 'Dr', 'bibinno', 'jbb', 'ohhoi#lnoi#', '235', 'nlnk', 'ino', '', ''),
+(29, 'Dr', 'lbobn', 'blknn', '##', '', '', 'kbb', '', ';knln'),
+(30, 'Dr', 'bibinno', 'jbb', 'ohhoi#lnoi#', '235', 'nlnk', 'ino', '', '');
 
 -- --------------------------------------------------------
 
@@ -823,7 +782,13 @@ CREATE TABLE IF NOT EXISTS `responsable_charge` (
 INSERT INTO `responsable_charge` (`IDRESPONSABLEELEVE`, `IDCHARGE`) VALUES
 (9, 'Accident'),
 (10, 'Accident'),
-(9, 'Contact');
+(11, 'Accident'),
+(12, 'Accident'),
+(13, 'Accident'),
+(14, 'Accident'),
+(9, 'Contact'),
+(11, 'Contact'),
+(13, 'Contact');
 
 -- --------------------------------------------------------
 
@@ -842,7 +807,7 @@ CREATE TABLE IF NOT EXISTS `responsable_eleve` (
   KEY `PARENTE` (`PARENTE`),
   KEY `IDRESPONSABLE` (`IDRESPONSABLE`,`IDELEVE`),
   KEY `IDELEVE` (`IDELEVE`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `responsable_eleve`
@@ -850,7 +815,11 @@ CREATE TABLE IF NOT EXISTS `responsable_eleve` (
 
 INSERT INTO `responsable_eleve` (`IDRESPONSABLEELEVE`, `IDRESPONSABLE`, `IDELEVE`, `PARENTE`, `ACCEPTESMS`, `NUMSMS`) VALUES
 (9, 25, 38, 'COUSINE', b'1', 'kubiub'),
-(10, 26, 38, 'COUSINE', b'1', 'iononoi');
+(10, 26, 38, 'COUSINE', b'1', 'iononoi'),
+(11, 27, 39, 'COUSINE', b'1', 'kubiub'),
+(12, 28, 39, 'COUSINE', b'1', 'iononoi'),
+(13, 29, 40, 'COUSINE', b'1', 'kubiub'),
+(14, 30, 40, 'COUSINE', b'1', 'iononoi');
 
 -- --------------------------------------------------------
 
@@ -859,27 +828,28 @@ INSERT INTO `responsable_eleve` (`IDRESPONSABLEELEVE`, `IDRESPONSABLE`, `IDELEVE
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
+  `IDUSER` int(11) NOT NULL AUTO_INCREMENT,
   `LOGIN` varchar(80) CHARACTER SET utf8 NOT NULL,
   `PASSWORD` text CHARACTER SET utf8 NOT NULL,
   `PROFILE` int(11) DEFAULT NULL,
-  `DROITSPECIFIQUE` text,
+  `DROITSPECIFIQUE` text CHARACTER SET utf8,
   `ACTIF` int(11) NOT NULL DEFAULT '1' COMMENT 'Actif = 1 et 0 = Non actif (cad bloquee)',
-  PRIMARY KEY (`LOGIN`),
+  PRIMARY KEY (`IDUSER`),
   UNIQUE KEY `LOGIN` (`LOGIN`),
   KEY `PROFILE` (`PROFILE`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`LOGIN`, `PASSWORD`, `PROFILE`, `DROITSPECIFIQUE`, `ACTIF`) VALUES
-('armel', '069a6a9ccaaca7967a0c43cb5e161187', 1, NULL, 1),
-('bruno', 'md5(''bruno'')', 1, NULL, 1),
-('estelle', 'md5(''estelle'')', 2, NULL, 1),
-('jp', '55add3d845bfcd87a9b0949b0da49c0a', 1, NULL, 1),
-('nom1', 'md5(''nom1'')', 2, NULL, 1),
-('nom2', 'md5(''nom2'')', 1, NULL, 1);
+INSERT INTO `users` (`IDUSER`, `LOGIN`, `PASSWORD`, `PROFILE`, `DROITSPECIFIQUE`, `ACTIF`) VALUES
+(1, 'armel', '069a6a9ccaaca7967a0c43cb5e161187', 1, '["104","105","201","202","203","204","205","206","207","305","401","402","403","404","405","406","501","502","503","504","505","602","603","605"]', 1),
+(2, 'bruno', 'md5(''bruno'')', 1, '["101","102","103","104","105","201","202","203","204","205","206","207","301","302","303","304","305","306","307","308","309","310","311","312","313","314","315","401","402","403","404","405","406","501","502","503","504","505","506","507","601","602","603","604","605","701","702","801","802","803"]', 1),
+(3, 'estelle', 'md5(''estelle'')', 2, NULL, 1),
+(4, 'jp', '55add3d845bfcd87a9b0949b0da49c0a', 1, '["101","102","103","104","105","201","202","203","204","205","206","207","301","302","303","304","305","306","307","308","309","310","311","312","313","314","315","401","402","403","404","405","406","501","502","503","504","505","506","507","601","602","603","604","605","701","702","801","802","803"]', 1),
+(5, 'nom1', 'md5(''nom1'')', 2, NULL, 1),
+(6, 'nom2', 'md5(''nom2'')', 4, '["101","102","103","104","105","201","202","203","204","205","206","207","301","302","303","304","305","306","307","308","309","310","311","312","313","314","315","401","402","403","404","405","406","501","502","503","504","505","506","507","601","602","603","604","605","701","702","801","802","803"]', 0);
 
 --
 -- Constraints for dumped tables
@@ -902,13 +872,6 @@ ALTER TABLE `eleves`
   ADD CONSTRAINT `eleves_ibfk_5` FOREIGN KEY (`PROVENANCE`) REFERENCES `etablissements` (`IDETABLISSEMENT`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `listedroits`
---
-ALTER TABLE `listedroits`
-  ADD CONSTRAINT `listedroits_ibfk_1` FOREIGN KEY (`CODEDROIT`) REFERENCES `droits` (`CODEDROIT`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `listedroits_ibfk_2` FOREIGN KEY (`PROFILE`) REFERENCES `profile` (`IDPROFILE`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Constraints for table `menus`
 --
 ALTER TABLE `menus`
@@ -920,7 +883,8 @@ ALTER TABLE `menus`
 --
 ALTER TABLE `personnels`
   ADD CONSTRAINT `personnels_ibfk_1` FOREIGN KEY (`CIVILITE`) REFERENCES `civilite` (`CIVILITE`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `personnels_ibfk_2` FOREIGN KEY (`LOGIN`) REFERENCES `users` (`LOGIN`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `personnels_ibfk_3` FOREIGN KEY (`FONCTION`) REFERENCES `fonctions` (`IDFONCTION`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `personnels_ibfk_4` FOREIGN KEY (`IDUSER`) REFERENCES `users` (`IDUSER`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `responsables`
@@ -932,8 +896,8 @@ ALTER TABLE `responsables`
 -- Constraints for table `responsable_charge`
 --
 ALTER TABLE `responsable_charge`
-  ADD CONSTRAINT `responsable_charge_ibfk_2` FOREIGN KEY (`IDCHARGE`) REFERENCES `charge` (`IDCHARGE`),
-  ADD CONSTRAINT `responsable_charge_ibfk_1` FOREIGN KEY (`IDRESPONSABLEELEVE`) REFERENCES `responsable_eleve` (`IDRESPONSABLEELEVE`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `responsable_charge_ibfk_1` FOREIGN KEY (`IDRESPONSABLEELEVE`) REFERENCES `responsable_eleve` (`IDRESPONSABLEELEVE`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `responsable_charge_ibfk_2` FOREIGN KEY (`IDCHARGE`) REFERENCES `charge` (`IDCHARGE`);
 
 --
 -- Constraints for table `responsable_eleve`
