@@ -1,5 +1,5 @@
 <div id="entete">
-
+    <div class="logo"><img src="<?php echo SITE_ROOT . "public/img/wide_classe.png"; ?>" /></div>
 </div>
 <div class="titre">Saisie des classes</div>
 

@@ -1,5 +1,5 @@
 <div id="entete">
-
+<div class="logo"><img src="<?php echo SITE_ROOT . "public/img/wide_email.png"; ?>" /></div>
 </div>
 <div class="titre">Modification de mon email</div>
 

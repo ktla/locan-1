@@ -19,12 +19,13 @@ function showPersonnelByFunction() {
         url: "./personnel/ajax",
         type: 'POST',
         enctype: 'multipart/form-data',
-        dataType: "html",
+        dataType: "json",
         data: {
             "fonction": $("select[name=fonction]").val()
         },
         success: function (result) {
-            $("form[name=frmpersonnel]").html(result);
+            $(".page").html(result[0]);
+            $(".recapitulatif").html(result[1]);
         },
         error: function (xhr, status, error) {
             alert("Veuillez vous reconnecté en rafraichissant la page \n" + error);

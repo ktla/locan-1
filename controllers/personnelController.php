@@ -56,10 +56,13 @@ class personnelController extends Controller {
         $personnels->deletebutton = true;
         $personnels->editbutton = true;
         $total = count($data);
-        
+        $json_array = array();
         $view->Assign("personnels", $personnels->display());
         $view->Assign("total", $total);
-        echo $view->Render("personnel" . DS . "ajax" . DS . "index", false);
+        $json_array[0] = $view->Render("personnel" . DS . "ajax" . DS . "ajax1", false);
+        $json_array[1] = $view->Render("personnel" . DS . "ajax" . DS . "ajax2", false);
+        
+        echo json_encode($json_array);
         
     }
     

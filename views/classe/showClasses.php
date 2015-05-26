@@ -1,4 +1,6 @@
-<div id="entete"></div>
+<div id="entete">
+    <div class="logo"><img src="<?php echo SITE_ROOT . "public/img/wide_classe.png"; ?>" /></div>
+</div>
 <div class="titre">Liste des classes</div>
 <form action="<?php echo Router::url("classe", "saisie"); ?>" method="post">
     <div class="page">

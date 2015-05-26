@@ -1,5 +1,5 @@
 <div id="entete">
-
+     <div class="logo"><img src="<?php echo SITE_ROOT . "public/img/wide_pwd.png"; ?>" /></div>
 </div>
 <div class="titre">Changement de son mot de passe</div>
 
