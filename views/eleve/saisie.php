@@ -82,7 +82,7 @@
                 </span>
                 <span class="text" style="width: 250px;" >
                     <label>Identifiant dans l'Etabl.</label>
-                    <input type="text" name="identifiant" value="" disabled="disabled" />
+                    <input type="text" name="identifiant" />
                 </span>
                 <span class="text" style="width: 125px;margin-right: 20px;">
                     <label>Date entrée : </label>

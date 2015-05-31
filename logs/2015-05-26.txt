@@ -1,0 +1,35 @@
+Time : 09:41:48
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '5-28-2014-2015' for key 'IDELEVE'
+Raw SQL : INSERT INTO  inscription( IDELEVE, IDCLASSE, ANNEEACADEMIQUE) VALUES(:IDELEVE,:IDCLASSE,:ANNEEACADEMIQUE)
+
+Time : 09:39:21
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ': idclasse AND i.ANNEEACADEMIQUE =: anneeacademique) ORDER BY e.MATRICULE' at line 1
+Raw SQL : SELECT e.* FROM eleves e WHERE e.IDELEVE IN (SELECT i.IDELEVE FROM inscription i WHERE i.IDCLASSE = : idclasse AND i.ANNEEACADEMIQUE =: anneeacademique) ORDER BY e.MATRICULE
+
+Time : 09:36:14
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ': idclasse AND i.ANNEEACADEMIQUE =: anneeacademique) ORDER BY e.MATRICULE' at line 1
+Raw SQL : SELECT e.* FROM eleves e WHERE e.IDELEVE IN (SELECT i.IDELEVE FROM inscription i WHERE i.IDCLASSE = : idclasse AND i.ANNEEACADEMIQUE =: anneeacademique) ORDER BY e.MATRICULE
+
+Time : 09:36:08
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ': idclasse AND i.ANNEEACADEMIQUE =: anneeacademique) ORDER BY e.MATRICULE' at line 1
+Raw SQL : SELECT e.* FROM eleves e WHERE e.IDELEVE IN (SELECT i.IDELEVE FROM inscription i WHERE i.IDCLASSE = : idclasse AND i.ANNEEACADEMIQUE =: anneeacademique) ORDER BY e.MATRICULE
+
+Time : 09:33:51
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ': idclasse AND i.ANNEEACADEMIQUE =: anneeacademique) ORDER BY e.MATRICULE' at line 1
+Raw SQL : SELECT e.* FROM eleves e WHERE e.IDELEVE IN (SELECT i.IDELEVE FROM inscription i WHERE i.IDCLASSE = : idclasse AND i.ANNEEACADEMIQUE =: anneeacademique) ORDER BY e.MATRICULE
+
+Time : 09:31:33
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ': idclasse AND i.ANNEEACADEMIQUE =: anneeacademique) ORDER BY e.MATRICULE' at line 1
+Raw SQL : SELECT e.* FROM eleves e WHERE e.IDELEVE IN (SELECT i.IDELEVE FROM inscription i WHERE i.IDCLASSE = : idclasse AND i.ANNEEACADEMIQUE =: anneeacademique) ORDER BY e.MATRICULE
+
+Time : 09:27:33
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ': idclasse AND i.ANNEEACADEMIQUE =: anneeacademique) ORDER BY e.MATRICULE' at line 1
+Raw SQL : SELECT e.* FROM eleves e WHERE e.IDELEVE IN (SELECT i.IDELEVE FROM inscription i WHERE i.IDCLASSE = : idclasse AND i.ANNEEACADEMIQUE =: anneeacademique) ORDER BY e.MATRICULE
+
+Time : 09:25:21
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ': idclasse AND i.ANNEEACADEMIQUE =: anneeacademique ORDER BY e.MATRICULE' at line 1
+Raw SQL : SELECT e.* FROM eleves e LEFT JOIN inscription i ON i.IDELEVE = e.IDELEVE AND i.IDCLASSE =: idclasse AND i.ANNEEACADEMIQUE =: anneeacademique ORDER BY e.MATRICULE
+
+Time : 09:17:55
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ': idclasse AND i.ANNEEACADEMIQUE =: anneeacademique) ORDER BY e.MATRICULE' at line 1
+Raw SQL : SELECT e.* FROM eleves e WHERE e.IDELEVE IN (SELECT i.IDELEVE FROM inscription i WHERE i.IDCLASSE = : idclasse AND i.ANNEEACADEMIQUE =: anneeacademique) ORDER BY e.MATRICULE

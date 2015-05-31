@@ -122,7 +122,7 @@ function soumettreFormEleve() {
     }
     if (resp.length === 0) {
         alertWebix("Définir au moins les informations d'un responsable");
-        requiredFields([$("input[name=nom]"), $("input[name=portable]")]);
+        addRequiredFields([$("input[name=nom]"), $("input[name=portable]")]);
         onglets(1, 2, 3);
         return;
     }

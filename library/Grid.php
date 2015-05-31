@@ -26,6 +26,11 @@ final class Grid {
     public $actionbutton = true;
     public $target;
     public $_key;
+    /**
+     *id de la table datatable a generer, valeur par defaut, id = databable
+     * @var type chaine de caractere
+     */
+    public $dataTable = "dataTable";
 
     function __construct($data, $id = 0) {
         $this->id = $id;
@@ -105,7 +110,7 @@ final class Grid {
         //$id = $this->colonnes[$this->id]->getid();
         $str .= "<div id = 'grid' style=\"max-height:" . $hauteur . ";max-width:" . $largeur . "\">";
         /* table de donnees */
-        $str .= "<table class=\"dataTable\" id=\"dataTable\">";
+        $str .= "<table class=\"dataTable\" id=\"".$this->dataTable."\">";
         //AFFICHAGE DES COLONNES
         $str .= "<thead><tr>";
         if ($this->selectbutton) {

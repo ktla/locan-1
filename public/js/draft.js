@@ -57,4 +57,37 @@
 
 <script type="text/javascript" src="<?php echo SITE_ROOT; ?>public/js/jquery-ui.js"></script>
         <script type="text/javascript" src="<?php echo SITE_ROOT; ?>public/js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="<?php echo SITE_ROOT; ?>public/js/codebase/webix.js"></script>*/
+        <script type="text/javascript" src="<?php echo SITE_ROOT; ?>public/js/codebase/webix.js"></script>
+  
+  *
+  *$('#example').dataTable( {
+  "columns": [
+    { "width": "20%" },
+    null,
+    null,
+    null,
+    null
+  ]
+} );
+ ou
+ $('#example').dataTable( {
+  "columnDefs": [
+    { "width": "20%", "targets": 0 }
+  ]
+} );
+ 
+ 
+ $('.table').dataTable({
+  'bAutoWidth': false , 
+  'aoColumns' : [
+    { 'sWidth': '15%' },
+    { 'sWidth': '15%' },
+    { 'sWidth': '15%' },
+    { 'sWidth': '15%' },
+    { 'sWidth': '15%' },
+    { 'sWidth': '15%' },
+    { 'sWidth': '10%' }
+  ]
+});
+
+  **/

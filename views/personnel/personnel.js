@@ -1,6 +1,16 @@
-var calendrier;
+
 $(document).ready(function () {
-    calendrier = getCalendar("date");
+    $('#dataTable').DataTable({
+        "columnDefs": [
+            {"width": "5%", "targets": 0},
+            {"width": "10%", "targets": 1},
+            {"width": "25%", "targets": 2},
+            {"width": "25%", "targets": 3},
+            {"width": "15%", "targets": 4},
+            {"width": "15%", "targets": 5}
+        ]
+    });
+  
 });
 
 function submitForm() {

@@ -1,8 +1,11 @@
 <script>
     $(document).ready(function () {
-        $("#dataTable, #dataTable2").DataTable({
-            
-             "bInfo": false
+        $("#dataTable").DataTable({
+            /*"columnDefs": [
+                {"width": "12%", "targets": 0},
+                {"width": "5%", "targets": 1}
+            ],*/
+            "bInfo": false
         });
     });
 </script>

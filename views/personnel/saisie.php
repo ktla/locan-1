@@ -2,7 +2,9 @@
 
 </div>
 <script>
-   
+   $(document).ready(function(){
+       calendrier = getCalendar("date");
+   });
 </script>
 <div class="titre">
     Saisie d'un nouvel Personnel

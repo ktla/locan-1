@@ -7,17 +7,44 @@ class userController extends Controller {
     }
 
     public function index() {
-
+        $this->view->clientsJS("user" . DS . "user");
         if (!empty($this->request->iduser)) {
             $droits = json_encode($_POST['droits']);
             $this->User->update(["DROITSPECIFIQUE" => $droits], ["IDUSER" => $this->request->iduser]);
         }
         $view = new View();
-        $this->view->clientsJS("user" . DS . "user");
+
         $data = $this->User->selectAll();
         $comboUser = new Combobox($data, "listeusers", "IDUSER", "LOGIN");
         $comboUser->first = " ";
         $view->Assign("comboUser", $comboUser->view());
+
+        $this->loadModel("connexion");
+        $data = $this->Connexion->selectAll();
+        $grid = new Grid($data, 0);
+
+        $grid->addcolonne(0, "IDCONNEXION", "IDCONNEXION", false);
+        $grid->addcolonne(1, "Compte", "COMPTE");
+        $grid->addcolonne(2, "Date de début", "DATEDEBUT");
+        $grid->addcolonne(3, "Machine", "MACHINESOURCE");
+        $grid->addcolonne(4, "Adresse", "IPSOURCE");
+        $grid->addcolonne(5, "Connexion", "CONNEXION");
+        $grid->addcolonne(6, "Date de fin", "DATEFIN");
+        $grid->addcolonne(7, "Déconnexion", "DECONNEXION");
+
+        $grid->setColDate(2);
+        $grid->setColDate(6);
+        $total = count($data);
+        $view->Assign("connexions", $grid->display());
+        $this->loadModel("droit");
+        $droits = $this->Droit->selectAll();
+        $grid = new Grid($droits, 0);
+        $grid->addcolonne(0, "ID", "IDDROIT", false);
+        $grid->addcolonne(1, "CODE", "CODEDROIT");
+        $grid->addcolonne(2, "LIBELLE", "LIBELLE");
+
+        $view->Assign("droits", $grid->display());
+        $view->Assign("total", $total);
         $content = $view->Render("user" . DS . "index", false);
         $this->Assign("content", $content);
     }
@@ -26,12 +53,13 @@ class userController extends Controller {
      * affiche la grid des differents connexion de l'utilisateur
      */
     public function connexion() {
+
+        $this->view->clientsJS("user" . DS . "user");
+
         $data = $this->User->mesConnexions($this->input->session('user'));
-        $grid = new Grid($data, 1);
+        $grid = new Grid($data, 0);
 
         $grid->addcolonne(0, "IDCONNEXION", "IDCONNEXION", false);
-        //Quand c'est toi, je n'ai besoin d'afficher l'utilisateur
-        //$grid->addcolonne(2 , "Utilisateur", "COMPTE");
         $grid->addcolonne(1, "Date de début", "DATEDEBUT");
         $grid->addcolonne(2, "Machine", "MACHINESOURCE");
         $grid->addcolonne(3, "Adresse", "IPSOURCE");
@@ -43,10 +71,12 @@ class userController extends Controller {
         $grid->setColDate(5);
         $total = count($data);
 
-        $this->Assign("content", (new View())->output(array(
-                    "connexions" => $grid->display(),
-                    "errors" => false,
-                    "total" => $total), false));
+        $view = new View();
+        $view->Assign("connexions", $grid->display());
+        $view->Assign("errors", false);
+        $view->Assign("total", $total);
+        $content = $view->Render("user" . DS . "connexion", false);
+        $this->Assign("content", $content);
     }
 
     public function mdp() {

@@ -30,8 +30,10 @@ class Combobox {
     }
 
     function view($width = '100%') {
-        //var_dump($this->data);
         
+        if(is_null($this->data)){
+           return "<p class=\"infos\">Aucun enregistrement</p>";  
+        }
         if (!count($this->data) && !$this->other) {
             return "<p class=\"infos\">Aucun enregistrement</p>";
         }

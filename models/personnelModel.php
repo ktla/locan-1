@@ -37,4 +37,19 @@ class personnelModel extends Model{
         return $this->query($query, $params);
     }
     
+    
+    public function findSingleRowBy($conditions = array()) {
+        $str = "";
+        $params = array();
+        foreach ($conditions as $key => $condition) {
+            $str .= " $key = :$key AND ";
+            $params[$key] = $condition;
+        }
+        $str = substr($str, 0, strlen($str) - 4);
+        $query = "SELECT  p.*, CONCAT(p.NOM,' ', p.PRENOM) AS CNOM, f.LIBELLE as LIBELLE "
+                . "FROM personnels p "
+                . "LEFT JOIN fonctions f ON f.IDFONCTION = p.FONCTION "
+                . "WHERE $str";
+        return $this->row($query, $params);
+    }
 }

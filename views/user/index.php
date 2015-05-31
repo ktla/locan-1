@@ -57,11 +57,11 @@
                 </table>
             </fieldset>
         </div>
-        <div id="onglet2" class="onglet" style="display: none; height: 520px"></div>
-        <div id="onglet3" class="onglet" style="display: none; height: 520px"></div>
+        <div id="onglet2" class="onglet" style="display: none; height: 520px"><?php echo $droits; ?></div>
+        <div id="onglet3" class="onglet" style="display: none; height: 520px"><?php echo $connexions; ?></div>
     </div>
     <div class="recapitulatif">
-
+           <?php echo $total; ?> sessions
     </div>
     <div class="navigation">
         <?php echo btn_ok("validerFormDroit();"); ?>

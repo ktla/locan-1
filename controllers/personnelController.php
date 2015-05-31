@@ -18,9 +18,10 @@ class personnelController extends Controller {
         
         $data = $this->Personnel->selectAll();
 
-        $personnels = new Grid($data, 2);
+        $personnels = new Grid($data, 0);
+        $personnels->addcolonne(0, "IDPERSONNEL", "IDPERSONNEL", false);
         $personnels->addcolonne(1, "Civ", "CIVILITE");
-        $personnels->addcolonne(2, "Matricule", "IDPERSONNEL");
+        $personnels->addcolonne(2, "Matricule", "MATRICULE");
         $personnels->addcolonne(3, "Nom", "NOM");
         $personnels->addcolonne(4, "Prénom", "PRENOM");
         $personnels->addcolonne(5, "Fonction", "LIBELLE");

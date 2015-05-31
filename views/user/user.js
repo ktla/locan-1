@@ -19,11 +19,16 @@ $(document).ready(function () {
 
         });
     });
+    $("#dataTable").DataTable({
+        "bInfo": false
+    });
+      $("#table_droit").DataTable({
+        "bInfo": false
+    });
 
-  
 });
 
-function validerFormDroit(){
+function validerFormDroit() {
     frm = $("form[name=frmdroit]");
     hidden = $("<input type = 'hidden' name = 'iduser' />");
     hidden.val($("select[name=listeusers]").val());

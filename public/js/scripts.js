@@ -45,7 +45,7 @@ $(document).ready(function () {
         }
     });
     //default datatables
-   $('#dataTable, #dataTable2').DataTable();
+   
 
     /*
      * Fonction permettant d'afficher et cacher le menu.

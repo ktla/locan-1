@@ -1,6 +1,7 @@
 <div id="entete">
-    <div style="text-align: center;margin-bottom: 5px;">Fonction <?php echo $fonctions; ?></div>
+    <span class="select" style="width: 300px; margin-left: 120px;"><label>Fonction : </label><?php echo $fonctions; ?></span>
 </div>
+
 <div class="titre">
     Gestion du Personnel
 </div>

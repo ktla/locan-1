@@ -16,5 +16,5 @@
 </div>
 <div class="navigation"></div>
 <div class="status">
-    
+
 </div>

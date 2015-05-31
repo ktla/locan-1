@@ -1,0 +1,63 @@
+Time : 22:15:28
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'IDDCLASSE' in 'where clause'
+Raw SQL : SELECT * FROM `classes_parametres` WHERE  IDDCLASSE = :IDDCLASSE AND  ANNEEACADEMIQUE = :ANNEEACADEMIQUE 
+
+Time : 21:40:09
+SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`locan`.`classes_parametres`, CONSTRAINT `classes_parametres_ibfk_3` FOREIGN KEY (`PROFPRINCIPALE`) REFERENCES `personnels` (`IDPERSONNEL`) ON DELETE SET NULL ON UPDATE CASCADE)
+Raw SQL : UPDATE `classes_parametres` SET  PROFPRINCIPALE = :PROFPRINCIPALE  WHERE  IDCLASSE = :IDCLASSE AND  ANNEEACADEMIQUE = :ANNEEACADEMIQUE
+
+Time : 21:40:04
+SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`locan`.`classes_parametres`, CONSTRAINT `classes_parametres_ibfk_3` FOREIGN KEY (`PROFPRINCIPALE`) REFERENCES `personnels` (`IDPERSONNEL`) ON DELETE SET NULL ON UPDATE CASCADE)
+Raw SQL : UPDATE `classes_parametres` SET  PROFPRINCIPALE = :PROFPRINCIPALE  WHERE  IDCLASSE = :IDCLASSE AND  ANNEEACADEMIQUE = :ANNEEACADEMIQUE
+
+Time : 21:39:07
+SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`locan`.`classes_parametres`, CONSTRAINT `classes_parametres_ibfk_3` FOREIGN KEY (`PROFPRINCIPALE`) REFERENCES `personnels` (`IDPERSONNEL`) ON DELETE SET NULL ON UPDATE CASCADE)
+Raw SQL : UPDATE `classes_parametres` SET  PROFPRINCIPALE = :PROFPRINCIPALE  WHERE  IDCLASSE = :IDCLASSE AND  ANNEEACADEMIQUE = :ANNEEACADEMIQUE
+
+Time : 21:39:04
+SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`locan`.`classes_parametres`, CONSTRAINT `classes_parametres_ibfk_3` FOREIGN KEY (`PROFPRINCIPALE`) REFERENCES `personnels` (`IDPERSONNEL`) ON DELETE SET NULL ON UPDATE CASCADE)
+Raw SQL : UPDATE `classes_parametres` SET  PROFPRINCIPALE = :PROFPRINCIPALE  WHERE  IDCLASSE = :IDCLASSE AND  ANNEEACADEMIQUE = :ANNEEACADEMIQUE
+
+Time : 20:43:44
+SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`locan`.`inscription`, CONSTRAINT `inscription_ibfk_1` FOREIGN KEY (`IDELEVE`) REFERENCES `eleves` (`IDELEVE`) ON DELETE CASCADE ON UPDATE CASCADE)
+Raw SQL : INSERT INTO  inscription( IDELEVE, IDCLASSE, ANNEEACADEMIQUE) VALUES(:IDELEVE,:IDCLASSE,:ANNEEACADEMIQUE)
+
+Time : 20:43:41
+SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`locan`.`inscription`, CONSTRAINT `inscription_ibfk_1` FOREIGN KEY (`IDELEVE`) REFERENCES `eleves` (`IDELEVE`) ON DELETE CASCADE ON UPDATE CASCADE)
+Raw SQL : INSERT INTO  inscription( IDELEVE, IDCLASSE, ANNEEACADEMIQUE) VALUES(:IDELEVE,:IDCLASSE,:ANNEEACADEMIQUE)
+
+Time : 19:46:05
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'locan.classe_parametre' doesn't exist
+Raw SQL : INSERT INTO  classe_parametre( IDCLASSE, ANNEEACADEMIQUE) VALUES(:IDCLASSE,:ANNEEACADEMIQUE)
+
+Time : 19:41:13
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'locan.classe_parametre' doesn't exist
+Raw SQL : INSERT INTO  classe_parametre( IDCLASSE, ANNEEACADEMIQUE) VALUES(:IDCLASSE,:ANNEEACADEMIQUE)
+
+Time : 17:41:53
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '40-2-2014-2015' for key 'IDELEVE'
+Raw SQL : INSERT INTO  inscription( IDELEVE, IDCLASSE, ANNEEACADEMIQUE) VALUES(:IDELEVE,:IDCLASSE,:ANNEEACADEMIQUE)
+
+Time : 17:41:48
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '40-2-2014-2015' for key 'IDELEVE'
+Raw SQL : INSERT INTO  inscription( IDELEVE, IDCLASSE, ANNEEACADEMIQUE) VALUES(:IDELEVE,:IDCLASSE,:ANNEEACADEMIQUE)
+
+Time : 17:36:05
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '40-2-2014-2015' for key 'IDELEVE'
+Raw SQL : INSERT INTO  inscription( IDELEVE, IDCLASSE, ANNEEACADEMIQUE) VALUES(:IDELEVE,:IDCLASSE,:ANNEEACADEMIQUE)
+
+Time : 17:28:38
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '% ORDER BY e.MATRICULE DESC LIMIT 1' at line 1
+Raw SQL : SELECT e.*, CONCAT(e.NOM, ' ', e.PRENOM) AS CNOM, i.IDINSCRIPTION FROM eleves e INNER JOIN inscription i ON e.IDELEVE = i.IDELEVE AND i.IDCLASSE = :idclasse WHERE e.MATRICULE LIKE :matric% ORDER BY e.MATRICULE DESC LIMIT 1
+
+Time : 16:57:41
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'CODE' in 'field list'
+Raw SQL : INSERT INTO  classes( CODE, LIBELLE, DECOUPAGE, ANNEEACADEMIQUE) VALUES(:CODE,:LIBELLE,:DECOUPAGE,:ANNEEACADEMIQUE)
+
+Time : 16:03:21
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ' d.LIBELLE AS FK_DECOUPAGE, n.* FROM classes c LEFT JOIN decoupage d ON c.DECOUP' at line 1
+Raw SQL : SELECT c*., d.LIBELLE AS FK_DECOUPAGE, n.* FROM classes c LEFT JOIN decoupage d ON c.DECOUPAGE = d.IDDECOUPAGE LEFT JOIN niveau n ON n.IDNIVEAU = c.NIVEAU ORDER BY c.NIVEAU
+
+Time : 15:56:18
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'CODE' in 'field list'
+Raw SQL : INSERT INTO  classes( CODE, LIBELLE, DECOUPAGE, ANNEEACADEMIQUE) VALUES(:CODE,:LIBELLE,:DECOUPAGE,:ANNEEACADEMIQUE)
