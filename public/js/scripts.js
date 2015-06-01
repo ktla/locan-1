@@ -151,6 +151,10 @@ function onglets(premier, actuel, nombre) {
         table = $("#tab_mat").DataTable();
         table.columns.adjust().draw();
     }
+    if($.fn.DataTable.isDataTable("#responsabletable")){
+        table = $("#responsabletable").DataTable();
+        table.columns.adjust().draw();
+    }
 }
 
 

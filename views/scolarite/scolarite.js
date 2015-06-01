@@ -56,7 +56,7 @@ function ajoutScolarite(){
            "echeances": $("input[name=echeances]").val(),
        },
        success: function(result){
-           
+           $("#scolarite-content").html(result[0]);
        },
        error: function(xhr, status, error){
            alert("Une erreur s'est produite " + xhr + " " + error);

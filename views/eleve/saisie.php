@@ -33,6 +33,11 @@
     <div id="onglet1" class="onglet" style="display: block; height: 470px;">
         <form action="<?php echo url('eleve', 'saisie'); ?>" name = 'frmeleve' method="post" enctype="multipart/form-data">
             <fieldset style="clear: both; width: 800px"><legend>Identité</legend>
+                <input type="hidden" name="ideleve" value="" />
+                <input type='hidden' name='responsable' value=""/>
+                <input type="hidden" name="datenaiss" value="" />
+                <input type="hidden" name="photoeleve" value="" />
+                
                 <span class="text" style="width: 250px">
                     <label>Nom</label>
                     <input type="text" name="nomel" maxlength="30" />
@@ -63,7 +68,6 @@
                 <span class="text" style="width: 140px">
                     <label>Date de Naissance</label>
                     <div id="datenaiss" style="margin-top: 10px;"></div>
-
                 </span>
                 <span class="select" style="width: 180px">`
                     <label>Pays de Naiss.</label>
@@ -81,8 +85,8 @@
                     <input type="text" name="cni" />
                 </span>
                 <span class="text" style="width: 250px;" >
-                    <label>Identifiant dans l'Etabl.</label>
-                    <input type="text" name="identifiant" />
+                    <label>Identifiant dans l'Etabl.: Matricule</label>
+                    <input type="text" name="matricule" value="" placeholder="Laisser vide si inconnu"/>
                 </span>
                 <span class="text" style="width: 125px;margin-right: 20px;">
                     <label>Date entrée : </label>
@@ -124,29 +128,23 @@
                 <img src="<?php echo SITE_ROOT . "public/img/btn_add.png" ?>" id="ajout-responsable" style="cursor: pointer;" />
             </p>
             <div id="ajout-responsable-dialog-form" title="Selectionner un responsable">
-                <form>
-                    <label>Choisir un responsable</label>
-                    <?php echo $comboResponsables; ?>
-                    <label>Parent&eacute;</label>
-                    <?php echo $parenteextra; ?>
-                    <?php
+                <label>Choisir un responsable</label>
+                <?php echo $comboResponsables; ?>
+                <label>Parent&eacute;</label>
+                <?php echo $parenteextra; ?>
+                <?php
                 foreach ($charges as $charge) {
                     echo "<input type ='checkbox' value = \"" . $charge['IDCHARGE'] . "\" name = 'chargeextra' />"
                     . $charge['LIBELLE'] . "<br/>";
                 }
                 ?>
-                </form>    
             </div>
+            <div id="responsable_content">
             <table class="dataTable" id="responsabletable">
-                <thead><tr><th>Nom</th><th>Pr&eacute;nom</th><th></th></thead>
-
-                </thead>
-                <tbody id="responsablebody">
-
-                </tbody>
+                <thead><tr><th>Civilit&eacute;</th><th>Nom & Pr&eacute;nom</th><th></th></thead>
+                <tbody id="responsablebody"></tbody>
             </table>
-
-
+            </div>
         </fieldset>
         <form name="formresponsable"  action='' method="post" enctype="multipart/form-data">
             <fieldset style="width: 480px; height: 446px;"><legend>Informations li&eacute;es au responsable</legend>
@@ -250,7 +248,7 @@
 
                 </div>
                 <input type="hidden" name="urleffacer" value="<?php echo Router::url("eleve", "photo"); ?>" />
-                <input type="hidden" name="hiddenphoto" />
+                <input type="hidden" name="hiddenphoto" value="" />
             </fieldset>
 
             <div id="photoeleve" style="border: 1px solid #000; float: left;  position: relative;width: 200px; height: 200px;margin: 8px 20px;">
@@ -262,8 +260,8 @@
 <div class="recapitulatif">
     <div class="errors">
         <?php
-        if ($errors)
-            echo $message;
+        //if ($errors)
+          //  echo $message;
         ?>
     </div>
 </div>

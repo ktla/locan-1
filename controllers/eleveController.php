@@ -12,14 +12,12 @@ class EleveController extends Controller {
     public function index() {
         $view = new View();
         $this->view->clientsJS("eleve" . DS . "eleve");
-
         //Le model du dit controller est charger automatiquement
         //$this->Load_Model("eleve");
 
         $data = $this->Eleve->selectAll();
         $eleves = new Combobox($data, "listeeleve", "IDELEVE", "CNOM");
         $eleves->idname = "listeeleve";
-
         $view->Assign("eleves", $eleves->view("250px"));
 
         $content = $view->Render("eleve" . DS . "index", false);
@@ -27,118 +25,57 @@ class EleveController extends Controller {
     }
 
     /**
-     * Validation des donnees si le formulaire est soumis
-     */
-    private function validerSaisie(&$message) {
-        if (!empty($this->request->nomel) && !empty($this->request->prenomel)) {
-            $responsables = json_decode($_POST['responsables']);
-            $redoublant = (strcasecmp($this->request->redoublant, "Oui") == 0);
-            $provenance = empty($this->request->provenance) ? null : $this->request->provenance;
-
-            $params = [
-                "matricule" => "",
-                "nom" => $this->request->nomel,
-                "prenom" => $this->request->prenomel,
-                "autrenom" => $this->request->autrenom,
-                "sexe" => $this->request->sexe,
-                "photo" => $this->request->hiddenphoto,
-                "cni" => $this->request->cni,
-                "nationalite" => $this->request->nationalite,
-                "datenaiss" => $this->request->datenaiss,
-                "lieunaiss" => $this->request->lieunaiss,
-                "paysnaiss" => $this->request->paysnaiss,
-                "dateentree" => $this->request->dateentree,
-                "provenance" => $provenance,
-                "redoublant" => $redoublant,
-            ];
-            //Effectuer l'insertion a proprement parle
-            if ($this->Eleve->insert($params)) {
-                //Si tout s'est bien passee, inserer les responsables en utilisant le last insert id
-                $id = $this->Eleve->lastInsertId();
-                if ($this->saveResponsables($responsables, $id)) {
-                    //Si tout va bien, rediriger sur a liste des eleves
-                    header("Location: " . Router::url("eleve"));
-                } else {
-                    $message = "Erreur lors de la sauvegarde des responsables";
-                    return false;
-                }
-            } else {
-                $message = "Erreur lors de la sauvegarde de l'élève";
-                return false;
-            }
-        }
-        return false;
-    }
-
-    /**
      * Methode appellee dans la validation du formulaire validateSaisie
      * Fonction deleguer de la function validate saisie
-     * cette fonction gere le volet sauvegarde des informations  concernant des responsables
+     * cette fonction gere le volet sauvegarde des informations  concernant les responsables
      * @param type $responsables des responsables sous formes d'un object JSON, ces responsables sont a inserer dans la BD
      * @param type $ideleve l'eleve dont ils sont les responsables
      */
-    private function saveResponsables($newresponsables, $ideleve = 0, $oldresponsable = null) {
-
+    private function saveResponsables($resp, $ideleve = 0) {
         $this->loadModel("responsable");
         $this->loadModel("responsableeleve");
-        $this->loadModel("responsablecharge");
-        foreach ($newresponsables as $resp) {
+        $params = [
+            "civilite" => $resp->civilite,
+            "nom" => $resp->nom,
+            "prenom" => $resp->prenom,
+            "adresse" => $resp->adresse,
+            "telephone" => $resp->telephone,
+            "portable" => $resp->portable,
+            "email" => $resp->email,
+            "profession" => $resp->profession,
+            "bp" => $resp->bp,
+            "acceptesms" => isset($resp->acceptesms) ? 1 : 0,
+            "numsms" => $resp->numsms
+        ];
+        if ($this->Responsable->insert($params)) {
             $params = [
-                "civilite" => $resp->civilite,
-                "nom" => $resp->nom,
-                "prenom" => $resp->prenom,
-                "adresse" => $resp->adresse,
-                "telephone" => $resp->telephone,
-                "portable" => $resp->portable,
-                "email" => $resp->email,
-                "profession" => $resp->profession,
-                "bp" => $resp->bp
+                "idresponsable" => $this->Responsable->lastInsertId(),
+                "ideleve" => $ideleve,
+                "parente" => $resp->parente,
+                "charges" => json_encode($resp->charge)
             ];
-
-            if ($this->Responsable->insert($params)) {
-                $idresp = $this->Responsable->lastInsertId();
-                $acceptesms = isset($resp->acceptesms) ? 1 : 0;
-                $params = [
-                    "idresponsable" => $idresp,
-                    "ideleve" => $ideleve,
-                    "parente" => $resp->parente,
-                    "acceptesms" => $acceptesms,
-                    "numsms" => $resp->numsms
-                ];
-                if ($this->Responsableeleve->insert($params)) {
-                    $idrespeleve = $this->Responsableeleve->lastInsertId();
-                    foreach ($resp->charge as $charge) {
-                        $params = [
-                            "idresponsableeleve" => $idrespeleve,
-                            "idcharge" => $charge];
-                        if ($this->Responsablecharge->insert($params)) {
-                            continue;
-                        } else {
-                            return false;
-                        }
-                    }
-                } else {
-                    return false;
-                }
-            } else {
-                return false;
-            }
+            $this->Responsableeleve->insert($params);
         }
-        return true;
     }
 
     public function saisie() {
         $this->view->clientsJS("eleve" . DS . "eleve");
-
-        $message = "";
-        $view = new View();
-        $validate = $this->validerSaisie($message);
-        if (!$validate && !empty($message)) {
-            $view->Assign("errors", true);
-            $view->Assign("message", $message);
-        } elseif (!$validate && empty($message)) {
-            $view->Assign("errors", false);
+        //Effectuer une derniere mise a jour en cas modification
+        if (!empty($this->request->ideleve)) {
+            $redoublant = (strcasecmp($this->request->redoublant, "Oui") == 0);
+            $provenance = empty($this->request->provenance) ? null : $this->request->provenance;
+            $params = ["matricule" => $this->request->matricule, "nom" => $this->request->nomel,
+                "prenom" => $this->request->prenomel, "autrenom" => $this->request->autrenom,
+                "sexe" => $this->request->sexe, "photo" => $this->request->hiddenphoto,
+                "cni" => $this->request->cni, "nationalite" => $this->request->nationalite,
+                "datenaiss" => $this->request->datenaiss, "lieunaiss" => $this->request->lieunaiss,
+                "paysnaiss" => $this->request->paysnaiss, "dateentree" => $this->request->dateentree,
+                "provenance" => $provenance, "redoublant" => $redoublant
+            ];
+            $this->Eleve->update($params, ["IDELEVE" => $this->request->ideleve]);
+            header("Location:" . Router::url("eleve"));
         }
+        $view = new View();
 
         $this->loadModel("pays");
         $data = $this->Pays->selectAll();
@@ -156,6 +93,8 @@ class EleveController extends Controller {
         $this->loadModel("civilite");
         $civ = $this->Civilite->selectAll();
         $civilite = new Combobox($civ, "civilite", "CIVILITE", "CIVILITE");
+        $civilite->selected = true;
+        $civilite->selectedid = "Mr";
         $view->Assign("civilite", $civilite->view());
 
         $this->loadModel("parente");
@@ -163,6 +102,7 @@ class EleveController extends Controller {
         $parente = new Combobox($par, "parente", "LIBELLE", "LIBELLE");
         $view->Assign("parente", $parente->view());
         $parente->name = "parenteextra";
+        $parente->idname = "parenteextra";
         $view->Assign("parenteextra", $parente->view());
 
         $this->loadModel("charge");
@@ -176,6 +116,70 @@ class EleveController extends Controller {
 
         $content = $view->Render("eleve" . DS . "saisie", false);
         $this->Assign("content", $content);
+    }
+
+    /**
+     * code ajax utiliser lors de la saisie d'un nouvel eleve
+     * @param type $action
+     */
+    public function ajaxsaisie($action) {
+        $redoublant = (strcasecmp($this->request->redoublant, "Oui") == 0);
+        $provenance = empty($this->request->provenance) ? null : $this->request->provenance;
+        $params = [
+            "matricule" => $this->request->matricule,
+            "nom" => $this->request->nomel,
+            "prenom" => $this->request->prenomel,
+            "autrenom" => $this->request->autrenom,
+            "sexe" => $this->request->sexe,
+            "photo" => $this->request->photoeleve,
+            "cni" => $this->request->cni,
+            "nationalite" => $this->request->nationalite,
+            "datenaiss" => $this->request->datenaiss,
+            "lieunaiss" => $this->request->lieunaiss,
+            "paysnaiss" => $this->request->paysnaiss,
+            "dateentree" => $this->request->dateentree,
+            "provenance" => $provenance,
+            "redoublant" => $redoublant,
+        ];
+        if (!empty($this->request->ideleve)) {
+            $this->Eleve->update($params, ["IDELEVE" => $this->request->ideleve]);
+            $ideleve = $this->request->ideleve;
+        } else {
+            $this->Eleve->insert($params);
+            $ideleve = $this->Eleve->lastInsertId();
+        }
+        
+        $json = array();
+        $json[0] = $ideleve;
+        $view = new View();
+        switch ($action) {
+            case "responsable":
+                $responsables = json_decode($_POST['responsable']);
+                $this->saveResponsables($responsables, $ideleve);
+                $data = $this->Eleve->getResponsables($ideleve);
+                $view->Assign("responsables", $data);
+                $json[1] = $view->Render("eleve" . DS . "ajax" . DS . "responsables", false);
+                break;
+            case "oldresponsable":
+                $this->loadModel("responsableeleve");
+                $resp = json_decode($_POST['responsable']);
+                $params = [
+                    "idresponsable" => $resp->idresponsable,
+                    "ideleve" => $ideleve,
+                    "parente" => $resp->parente,
+                    "charges" => json_encode($resp->charges)
+                ];
+                $this->Responsableeleve->insert($params);
+                $data = $this->Eleve->getResponsables($ideleve);
+                $view->Assign("responsables", $data);
+                $nonresp = $this->Eleve->getNonResponsables($ideleve);
+                $view->Assign("nonresponsable", $nonresp);
+                $json[1] = $view->Render("eleve" . DS . "ajax" . DS . "responsables", false);
+                $json[2] = $view->Render("eleve" . DS . "ajax" . DS . "nonresponsable", false);
+            break;
+        }
+        
+        echo json_encode($json);
     }
 
     public function delete($id) {
@@ -195,33 +199,28 @@ class EleveController extends Controller {
     }
 
     public function ajax() {
-        sleep(2);
-        if (!isset($this->session->user)) {
-            print json_encode(false);
-        } else {
-            $arr = array();
-            $data = $this->Eleve->findBy(["IDELEVE" => $this->request->ideleve]);
-            $view = new View();
-            $view->Assign("nom", $data["NOM"]);
-            $view->Assign("prenom", $data["PRENOM"]);
-            $view->Assign("sexe", $data["SEXE"]);
-            $view->Assign("datenaiss", $data["DATENAISS"]);
-            $view->Assign("lieunaiss", $data["LIEUNAISS"]);
-            $view->Assign("nationalite", $data["NATIONALITE"]);
-            $view->Assign("nationalite", $data["NATIONALITE"]);
-            $view->Assign("dateentree", $data["DATEENTREE"]);
-            $view->Assign("provenance", $data["FK_PROVENANCE"]);
-            $view->Assign("datesortie", $data["DATENAISS"]);
-            $view->Assign("motifsortie", $data["FK_MOTIF"]);
+        $arr = array();
+        $data = $this->Eleve->findBy(["IDELEVE" => $this->request->ideleve]);
+        $view = new View();
+        $view->Assign("nom", $data["NOM"]);
+        $view->Assign("prenom", $data["PRENOM"]);
+        $view->Assign("sexe", $data["SEXE"]);
+        $view->Assign("datenaiss", $data["DATENAISS"]);
+        $view->Assign("lieunaiss", $data["LIEUNAISS"]);
+        $view->Assign("nationalite", $data["NATIONALITE"]);
+        $view->Assign("nationalite", $data["NATIONALITE"]);
+        $view->Assign("dateentree", $data["DATEENTREE"]);
+        $view->Assign("provenance", $data["FK_PROVENANCE"]);
+        $view->Assign("datesortie", $data["DATENAISS"]);
+        $view->Assign("motifsortie", $data["FK_MOTIF"]);
 
-            $arr[0] = $view->Render("eleve" . DS . "ajax" . DS . "onglet1", false);
-            $arr[1] = $view->Render("eleve" . DS . "ajax" . DS . "onglet2", false);
-            $arr[2] = $view->Render("eleve" . DS . "ajax" . DS . "onglet3", false);
-            $arr[3] = $view->Render("eleve" . DS . "ajax" . DS . "onglet4", false);
-            $arr[4] = $view->Render("eleve" . DS . "ajax" . DS . "onglet5", false);
-            $arr[5] = $view->Render("eleve" . DS . "ajax" . DS . "onglet6", false);
-            print json_encode($arr);
-        }
+        $arr[0] = $view->Render("eleve" . DS . "ajax" . DS . "onglet1", false);
+        $arr[1] = $view->Render("eleve" . DS . "ajax" . DS . "onglet2", false);
+        $arr[2] = $view->Render("eleve" . DS . "ajax" . DS . "onglet3", false);
+        $arr[3] = $view->Render("eleve" . DS . "ajax" . DS . "onglet4", false);
+        $arr[4] = $view->Render("eleve" . DS . "ajax" . DS . "onglet5", false);
+        $arr[5] = $view->Render("eleve" . DS . "ajax" . DS . "onglet6", false);
+        print json_encode($arr);
     }
 
     //Utiliser dans la page saisie eleve et permet
@@ -263,7 +262,20 @@ class EleveController extends Controller {
         }
         print json_encode($json_array);
     }
-
+    
+    public function deleteResponsable(){
+        $this->loadModel("responsableEleve");
+        $this->Responsableeleve->delete($this->request->idresponsableeleve);
+        $json = array();
+        $data = $this->Eleve->getResponsables($this->request->ideleve);
+        $view = new View();
+        $view->Assign("responsables", $data);
+        $json[0] = $view->Render("eleve" . DS . "ajax" . DS . "responsables", false);
+        $nonresponsable = $this->Eleve->getNonResponsables($this->request->ideleve);
+        $view->Assign("nonresponsable", $nonresponsable);
+        $json[1] = $view->Render("eleve" . DS . "ajax" . DS . "nonresponsable", false);
+        echo json_encode($json);
+    }
     public function imprimer() {
         $this->pdf = new PDF();
         $view = new View();

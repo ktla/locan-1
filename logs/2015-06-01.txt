@@ -1,0 +1,31 @@
+Time : 14:19:34
+SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`locan`.`responsable_eleve`, CONSTRAINT `responsable_eleve_ibfk_1` FOREIGN KEY (`IDRESPONSABLE`) REFERENCES `responsables` (`IDRESPONSABLE`) ON DELETE CASCADE ON UPDATE CASCADE)
+Raw SQL : INSERT INTO  responsable_eleve( IDRESPONSABLE, IDELEVE, PARENTE, CHARGES) VALUES(:idresponsable,:ideleve,:parente,:charges)
+
+Time : 14:14:05
+SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`locan`.`responsable_eleve`, CONSTRAINT `responsable_eleve_ibfk_1` FOREIGN KEY (`IDRESPONSABLE`) REFERENCES `responsables` (`IDRESPONSABLE`) ON DELETE CASCADE ON UPDATE CASCADE)
+Raw SQL : INSERT INTO  responsable_eleve( IDRESPONSABLE, IDELEVE, PARENTE, CHARGES) VALUES(:idresponsable,:ideleve,:parente,:charges)
+
+Time : 14:03:20
+SQLSTATE[HY093]: Invalid parameter number
+Raw SQL : SELECT r.*, re.* FROM responsables r LEFT JOIN responsable_eleve re ON re.IDRESPONSABLE = r.IDRESPONSABLE AND re.IDELEVE = :ideleve WHERE r.IDRESPONSABLE IN (SELECT e.IDRESPONSABLE FROM responsable_eleve e WHERE e.IDELEVE = :ideleve)
+
+Time : 14:01:49
+SQLSTATE[HY093]: Invalid parameter number
+Raw SQL : SELECT r.*, re.* FROM responsables r LEFT JOIN responsable_eleve re ON re.IDRESPONSABLE = r.IDRESPONSABLE AND re.IDELEVE = :ideleve WHERE r.IDRESPONSABLE IN (SELECT e.IDRESPONSABLE FROM responsable_eleve e WHERE e.IDELEVE = :ideleve)
+
+Time : 11:08:30
+SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`locan`.`responsable_eleve`, CONSTRAINT `responsable_eleve_ibfk_1` FOREIGN KEY (`IDRESPONSABLE`) REFERENCES `responsables` (`IDRESPONSABLE`) ON DELETE CASCADE ON UPDATE CASCADE)
+Raw SQL : INSERT INTO  responsable_eleve( IDRESPONSABLE, IDELEVE, PARENTE, CHARGES) VALUES(:idresponsable,:ideleve,:parente,:charges)
+
+Time : 10:25:37
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'CHARGE' in 'field list'
+Raw SQL : INSERT INTO  responsable_eleve( IDRESPONSABLE, IDELEVE, PARENTE, ACCEPTESMS, NUMSMS, CHARGE) VALUES(:idresponsable,:ideleve,:parente,:acceptesms,:numsms,:charge)
+
+Time : 00:16:53
+SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`locan`.`responsables`, CONSTRAINT `responsables_ibfk_1` FOREIGN KEY (`CIVILITE`) REFERENCES `civilite` (`CIVILITE`) ON DELETE SET NULL ON UPDATE CASCADE)
+Raw SQL : INSERT INTO  responsables( CIVILITE, NOM, PRENOM, ADRESSE, TELEPHONE, PORTABLE, EMAIL, PROFESSION, BP) VALUES(:civilite,:nom,:prenom,:adresse,:telephone,:portable,:email,:profession,:bp)
+
+Time : 00:14:36
+SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`locan`.`responsables`, CONSTRAINT `responsables_ibfk_1` FOREIGN KEY (`CIVILITE`) REFERENCES `civilite` (`CIVILITE`) ON DELETE SET NULL ON UPDATE CASCADE)
+Raw SQL : INSERT INTO  responsables( CIVILITE, NOM, PRENOM, ADRESSE, TELEPHONE, PORTABLE, EMAIL, PROFESSION, BP) VALUES(:civilite,:nom,:prenom,:adresse,:telephone,:portable,:email,:profession,:bp)

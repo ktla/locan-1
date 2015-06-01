@@ -26,23 +26,6 @@ class EleveModel extends Model {
         return $this->query($query);
     }
     /**
-     *  "matricule" => "",
-                "nom" => $this->request->nomel,
-                "prenom" => $this->request->prenomel,
-                "autrenom" => $this->request->autrenom,
-                "sexe" => $this->request->sexe,
-                "photo" => $this->request->hiddenphoto,
-                "cni" => $this->request->cni,
-                "nationalite" => $this->request->nationalite,
-                "datenaiss" => $this->request->datenaiss,
-                "lieunaiss" => $this->request->lieunaiss,
-                "paysnaiss" => $this->request->paysnaiss,
-                "dateentree" => $this->request->dateentree,
-                "provenance" => $this->request->provenance,
-                "redoublant" => $redoublant,
-                "datesortie" => $this->request->datesortie,
-                "motifsortie" => $this->request->motifsortie
-      ];
      * @param type $params
      * @return type
      */
@@ -70,6 +53,32 @@ class EleveModel extends Model {
                 . "LEFT JOIN motifsortie m ON m.IDMOTIF = e.MOTIFSORTIE "
                 . "WHERE $str";
         return $this->row($query, $params);
+    }
+    /**
+     * Permet d'obtenir la liste des responsable de l'eleve passe en parametre
+     * @param type $ideleve
+     * @return type
+     */
+      public function getResponsables($ideleve){
+        $query = "SELECT r.*, re.* "
+                . "FROM responsables r "
+                . "LEFT JOIN responsable_eleve re ON re.IDRESPONSABLE = r.IDRESPONSABLE AND re.IDELEVE = :eleve "
+                . "WHERE r.IDRESPONSABLE IN (SELECT e.IDRESPONSABLE "
+                . "FROM responsable_eleve e "
+                . "WHERE e.IDELEVE = :ideleve)";
+        return $this->query($query, ["eleve" => $ideleve, "ideleve" => $ideleve]);
+    }
+    /**
+     * Permet d'obtenir la liste des responsable qui ne sont pas responsable de l'eleve passe en parametre
+     * @param type $ideleve
+     * @return type
+     */
+    public function getNonResponsables($ideleve){
+        $query = "SELECT r.* "
+                . "FROM responsables r "
+                . "WHERE r.IDRESPONSABLE NOT IN (SELECT e.IDRESPONSABLE "
+                . "FROM responsable_eleve e WHERE e.IDELEVE = :ideleve)";
+        return $this->query($query, ["ideleve" => $ideleve]);
     }
 
 }

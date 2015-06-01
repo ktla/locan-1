@@ -14,4 +14,6 @@ class responsableModel extends Model{
                 . "FROM $this->_table r ORDER BY NOM";
         return $this->query($query);
     }
+    
+  
 }
