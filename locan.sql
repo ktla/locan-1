@@ -2,10 +2,10 @@
 -- version 4.1.14
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: May 26, 2015 at 12:08 AM
--- Server version: 5.6.17
--- PHP Version: 5.5.12
+-- Client :  127.0.0.1
+-- Généré le :  Mar 02 Juin 2015 à 11:57
+-- Version du serveur :  5.6.17
+-- Version de PHP :  5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `locan`
+-- Base de données :  `locan`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `anneeacademique`
+-- Structure de la table `anneeacademique`
 --
 
 CREATE TABLE IF NOT EXISTS `anneeacademique` (
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `anneeacademique` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `anneeacademique`
+-- Contenu de la table `anneeacademique`
 --
 
 INSERT INTO `anneeacademique` (`anneeacademique`) VALUES
@@ -42,7 +42,7 @@ INSERT INTO `anneeacademique` (`anneeacademique`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `charge`
+-- Structure de la table `charge`
 --
 
 CREATE TABLE IF NOT EXISTS `charge` (
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `charge` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `charge`
+-- Contenu de la table `charge`
 --
 
 INSERT INTO `charge` (`IDCHARGE`, `LIBELLE`) VALUES
@@ -63,7 +63,7 @@ INSERT INTO `charge` (`IDCHARGE`, `LIBELLE`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `civilite`
+-- Structure de la table `civilite`
 --
 
 CREATE TABLE IF NOT EXISTS `civilite` (
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `civilite` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `civilite`
+-- Contenu de la table `civilite`
 --
 
 INSERT INTO `civilite` (`CIVILITE`) VALUES
@@ -84,30 +84,87 @@ INSERT INTO `civilite` (`CIVILITE`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `classes`
+-- Structure de la table `classes`
 --
 
 CREATE TABLE IF NOT EXISTS `classes` (
-  `CODE` varchar(15) NOT NULL,
+  `IDCLASSE` int(11) NOT NULL AUTO_INCREMENT,
   `LIBELLE` varchar(150) NOT NULL,
   `DECOUPAGE` int(11) DEFAULT NULL,
+  `NIVEAU` int(11) DEFAULT NULL,
   `ANNEEACADEMIQUE` varchar(15) NOT NULL DEFAULT '',
-  PRIMARY KEY (`CODE`,`ANNEEACADEMIQUE`),
+  PRIMARY KEY (`IDCLASSE`),
   KEY `DECOUPAGE` (`DECOUPAGE`),
-  KEY `ANNEEACADEMIQUE` (`ANNEEACADEMIQUE`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `NIVEAU` (`NIVEAU`),
+  KEY `classes_ibfk_2` (`ANNEEACADEMIQUE`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=53 ;
 
 --
--- Dumping data for table `classes`
+-- Contenu de la table `classes`
 --
 
-INSERT INTO `classes` (`CODE`, `LIBELLE`, `DECOUPAGE`, `ANNEEACADEMIQUE`) VALUES
-('5A', 'Cinquième A', 1, '2014-2015');
+INSERT INTO `classes` (`IDCLASSE`, `LIBELLE`, `DECOUPAGE`, `NIVEAU`, `ANNEEACADEMIQUE`) VALUES
+(11, 'vevweve', 1, 5, '2014-2015'),
+(22, 'cinquieme', 1, 6, '2014-2015'),
+(23, 'ewrewrber', 1, 6, '2014-2015'),
+(24, 'wervwerv', 1, 6, '2014-2015'),
+(25, 'gwergwerg', 1, 6, '2014-2015'),
+(26, 'fwfwe', 1, 6, '2014-2015'),
+(27, 'weherh', 1, 6, '2014-2015'),
+(30, 'grwergegehe', 1, 6, '2014-2015'),
+(31, 'gergerg', 1, 6, '2014-2015'),
+(32, 'erherrt', 1, 6, '2014-2015'),
+(36, 'rehrhrhr', 1, 6, '2014-2015'),
+(42, 'erbwerewr', 1, 6, '2014-2015'),
+(51, 'rbtrbrtb', 1, 6, '2014-2015'),
+(52, 'bbtbtb', 1, 6, '2014-2015');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `connexions`
+-- Structure de la table `classes_parametres`
+--
+
+CREATE TABLE IF NOT EXISTS `classes_parametres` (
+  `IDPARAMETRE` int(11) NOT NULL AUTO_INCREMENT,
+  `IDCLASSE` int(11) DEFAULT NULL,
+  `PROFPRINCIPALE` int(11) DEFAULT NULL,
+  `CPEPRINCIPALE` int(11) DEFAULT NULL,
+  `RESPADMINISTRATIF` int(11) DEFAULT NULL,
+  `ANNEEACADEMIQUE` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`IDPARAMETRE`),
+  UNIQUE KEY `IDCLASSE_2` (`IDCLASSE`,`PROFPRINCIPALE`,`CPEPRINCIPALE`,`RESPADMINISTRATIF`,`ANNEEACADEMIQUE`),
+  KEY `IDCLASSE` (`IDCLASSE`,`PROFPRINCIPALE`,`CPEPRINCIPALE`,`RESPADMINISTRATIF`,`ANNEEACADEMIQUE`),
+  KEY `PROFPRINCIPALE` (`PROFPRINCIPALE`),
+  KEY `CPEPRINCIPALE` (`CPEPRINCIPALE`),
+  KEY `RESPADMINISTRATIF` (`RESPADMINISTRATIF`),
+  KEY `ANNEEACADEMIQUE` (`ANNEEACADEMIQUE`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=49 ;
+
+--
+-- Contenu de la table `classes_parametres`
+--
+
+INSERT INTO `classes_parametres` (`IDPARAMETRE`, `IDCLASSE`, `PROFPRINCIPALE`, `CPEPRINCIPALE`, `RESPADMINISTRATIF`, `ANNEEACADEMIQUE`) VALUES
+(7, 11, 3, NULL, NULL, '2014-2015'),
+(18, 22, 6, NULL, NULL, '2014-2015'),
+(19, 23, NULL, NULL, NULL, '2014-2015'),
+(20, 24, NULL, NULL, NULL, '2014-2015'),
+(21, 25, NULL, NULL, NULL, '2014-2015'),
+(22, 26, NULL, NULL, NULL, '2014-2015'),
+(23, 27, NULL, NULL, NULL, '2014-2015'),
+(26, 30, NULL, NULL, 5, '2014-2015'),
+(27, 31, NULL, NULL, NULL, '2014-2015'),
+(28, 32, NULL, NULL, NULL, '2014-2015'),
+(32, 36, NULL, NULL, NULL, '2014-2015'),
+(38, 42, NULL, NULL, NULL, '2014-2015'),
+(47, 51, NULL, NULL, NULL, '2014-2015'),
+(48, 52, NULL, NULL, NULL, '2014-2015');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `connexions`
 --
 
 CREATE TABLE IF NOT EXISTS `connexions` (
@@ -120,10 +177,10 @@ CREATE TABLE IF NOT EXISTS `connexions` (
   `DATEFIN` datetime DEFAULT NULL,
   `DECONNEXION` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`IDCONNEXION`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=261 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=292 ;
 
 --
--- Dumping data for table `connexions`
+-- Contenu de la table `connexions`
 --
 
 INSERT INTO `connexions` (`IDCONNEXION`, `COMPTE`, `DATEDEBUT`, `MACHINESOURCE`, `IPSOURCE`, `CONNEXION`, `DATEFIN`, `DECONNEXION`) VALUES
@@ -226,32 +283,64 @@ INSERT INTO `connexions` (`IDCONNEXION`, `COMPTE`, `DATEDEBUT`, `MACHINESOURCE`,
 (257, 'armel', '2015-05-24 23:55:33', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-25 00:01:07', 'Session fermÃ©e correctement'),
 (258, 'armel', '2015-05-25 00:01:09', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-25 00:01:10', 'Session fermÃ©e correctement'),
 (259, 'jp', '2015-05-25 00:01:15', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
-(260, 'jp', '2015-05-25 22:47:15', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', '');
+(260, 'jp', '2015-05-25 22:47:15', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(261, 'armel', '2015-05-26 00:53:36', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-26 01:03:43', 'Session fermÃ©e correctement'),
+(262, 'jp', '2015-05-26 01:03:51', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-26 04:19:42', 'Session expriÃ©e'),
+(263, 'armel', '2015-05-26 06:54:41', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(264, 'jp', '2015-05-26 09:39:58', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-26 10:44:28', 'Session expriÃ©e'),
+(265, 'jp', '2015-05-26 11:41:54', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-26 12:42:03', 'Session expriÃ©e'),
+(266, 'jp', '2015-05-26 16:32:22', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-26 17:32:35', 'Session expriÃ©e'),
+(267, 'jp', '2015-05-26 20:10:13', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(268, 'jp', '2015-05-26 22:43:07', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-26 23:57:18', 'Session expriÃ©e'),
+(269, 'armel', '2015-05-26 22:57:40', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-27 00:00:25', 'Session expriÃ©e'),
+(270, 'armel', '2015-05-27 10:44:48', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-27 11:28:34', 'Session fermÃ©e correctement'),
+(271, 'armel', '2015-05-27 11:28:41', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-27 12:45:20', 'Session expriÃ©e'),
+(272, 'jp', '2015-05-28 15:02:57', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(273, 'armel', '2015-05-28 15:25:27', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(274, 'armel', '2015-05-28 15:55:37', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-28 18:57:46', 'Session expriÃ©e'),
+(275, 'armel', '2015-05-28 19:42:12', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(276, 'armel', '2015-05-29 21:04:05', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(277, 'jp', '2015-05-31 06:57:06', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-31 09:50:12', 'Session expriÃ©e'),
+(278, 'armel', '2015-05-31 08:42:51', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-31 09:42:51', 'Session expriÃ©e'),
+(279, 'jp', '2015-05-31 10:14:07', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(280, 'armel', '2015-05-31 10:27:35', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(281, 'armel', '2015-05-31 12:46:26', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-31 16:05:46', 'Session expriÃ©e'),
+(282, 'jp', '2015-05-31 14:49:45', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(283, 'armel', '2015-05-31 17:49:40', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(284, 'armel', '2015-05-31 19:19:33', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-05-31 20:23:19', 'Session expriÃ©e'),
+(285, 'armel', '2015-05-31 20:41:11', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-06-01 00:27:31', 'Session fermÃ©e correctement'),
+(286, 'jp', '2015-05-31 20:49:21', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(287, 'armel', '2015-06-01 08:22:03', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-06-01 09:57:05', 'Session expriÃ©e'),
+(288, 'armel', '2015-06-01 10:14:13', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-06-01 12:19:59', 'Session expriÃ©e'),
+(289, 'armel', '2015-06-01 13:52:33', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-06-01 15:40:32', 'Session expriÃ©e'),
+(290, 'armel', '2015-06-01 15:48:07', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-06-01 19:28:33', 'Session expriÃ©e'),
+(291, 'armel', '2015-06-01 19:36:48', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `decoupage`
+-- Structure de la table `decoupage`
 --
 
 CREATE TABLE IF NOT EXISTS `decoupage` (
   `IDDECOUPAGE` int(11) NOT NULL AUTO_INCREMENT,
   `LIBELLE` varchar(30) NOT NULL,
   PRIMARY KEY (`IDDECOUPAGE`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Dumping data for table `decoupage`
+-- Contenu de la table `decoupage`
 --
 
 INSERT INTO `decoupage` (`IDDECOUPAGE`, `LIBELLE`) VALUES
-(1, 'Trimestre'),
-(2, 'Semestre');
+(1, 'Séquence'),
+(2, 'Trimestre'),
+(3, 'Semestre');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `droits`
+-- Structure de la table `droits`
 --
 
 CREATE TABLE IF NOT EXISTS `droits` (
@@ -260,10 +349,10 @@ CREATE TABLE IF NOT EXISTS `droits` (
   `LIBELLE` varchar(255) NOT NULL,
   PRIMARY KEY (`IDDROIT`),
   UNIQUE KEY `CODE` (`CODEDROIT`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=53 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=58 ;
 
 --
--- Dumping data for table `droits`
+-- Contenu de la table `droits`
 --
 
 INSERT INTO `droits` (`IDDROIT`, `CODEDROIT`, `LIBELLE`) VALUES
@@ -271,12 +360,12 @@ INSERT INTO `droits` (`IDDROIT`, `CODEDROIT`, `LIBELLE`) VALUES
 (2, '102', 'Modifier mon adresse email'),
 (3, '103', 'Mes connexions'),
 (4, '104', 'Modifier mon numéro de téléphone'),
-(5, '201', 'Etablissement'),
-(6, '202', 'Classes'),
-(7, '203', 'Personnels'),
-(8, '204', 'Elèves'),
-(11, '205', 'Conseils de classe'),
-(12, '206', 'Répertoire téléphonique'),
+(5, '201', 'Consulter les informations sur l''etablissement'),
+(6, '202', 'Consulter les informations sur les classes'),
+(7, '203', 'Consulter les informations sur le personnels'),
+(8, '204', 'Consulter les informations sur les élèves'),
+(11, '205', 'Afficher les clauses des conseils de classe'),
+(12, '206', 'Consulter le répertoire téléphonique de l''établissement et du personnels'),
 (13, '301', 'Appel en salle'),
 (14, '302', 'Absences du jour'),
 (15, '303', 'Consultation des absences'),
@@ -314,13 +403,17 @@ INSERT INTO `droits` (`IDDROIT`, `CODEDROIT`, `LIBELLE`) VALUES
 (48, '803', 'Récupération des classes'),
 (49, '105', 'Déconnexion'),
 (50, '507', 'Suppression du personnel'),
-(51, '207', 'Enseignants'),
-(52, '315', 'Saisie d''une punition');
+(51, '207', 'Consulter les informations sur les enseignants'),
+(52, '315', 'Saisie d''une punition'),
+(53, '407', 'Modification des notes'),
+(54, '408', 'Verrouillage et Déverrouillage des notes'),
+(56, '508', 'Saisie des scolarités'),
+(57, '208', 'Consulter la scolarités de chaque classes');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `eleves`
+-- Structure de la table `eleves`
 --
 
 CREATE TABLE IF NOT EXISTS `eleves` (
@@ -346,45 +439,79 @@ CREATE TABLE IF NOT EXISTS `eleves` (
   KEY `LIEUNAISS` (`PAYSNAISS`),
   KEY `PROVENANCE` (`PROVENANCE`),
   KEY `MOTIFSORTIE` (`MOTIFSORTIE`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=75 ;
 
 --
--- Dumping data for table `eleves`
+-- Contenu de la table `eleves`
 --
 
 INSERT INTO `eleves` (`IDELEVE`, `MATRICULE`, `NOM`, `PRENOM`, `AUTRENOM`, `SEXE`, `PHOTO`, `CNI`, `NATIONALITE`, `DATENAISS`, `PAYSNAISS`, `LIEUNAISS`, `DATEENTREE`, `PROVENANCE`, `REDOUBLANT`, `DATESORTIE`, `MOTIFSORTIE`) VALUES
-(1, '27eleve', 'wgreg', 'werge', 'gegre', 'F', 'http://localhost/locan/photos/eleves/elab_logo.png', NULL, 'Cameroun', '0000-00-00', 'Cameroun', 'ergerg', '0000-00-00', 1, 0, '0000-00-00', 2),
-(2, '39eleve', 'egrt', 'etgrtgr', '', 'M', '', NULL, 'Cameroun', '0000-00-00', 'Cameroun', '', '0000-00-00', 1, 0, '0000-00-00', 1),
+(1, '155001', 'wgreg', 'werge', 'gegre', 'F', 'http://localhost/locan/photos/eleves/elab_logo.png', NULL, 'Cameroun', '0000-00-00', 'Cameroun', 'ergerg', '0000-00-00', 1, 0, '0000-00-00', 2),
+(2, '155002', 'egrt', 'etgrtgr', '', 'M', '', NULL, 'Cameroun', '0000-00-00', 'Cameroun', '', '0000-00-00', 1, 0, '0000-00-00', 1),
 (3, '54eleve', 'dnhr', 'tyjrtjr', '', 'M', 'http://localhost/locan/photos/eleves/WIN_20150309_163112.JPG', NULL, 'Cameroun', '0000-00-00', 'Cameroun', '', '0000-00-00', 1, 0, '0000-00-00', 1),
 (4, '62eleve', 'grege', 'wergerg', '', 'M', '', NULL, 'Cameroun', '0000-00-00', 'Cameroun', '', '0000-00-00', NULL, 0, '0000-00-00', 1),
 (5, 'EL001', 'ELNOM1', 'Elprenom1', NULL, 'Masculin', NULL, NULL, NULL, '2015-04-07', NULL, NULL, '2015-04-14', NULL, 0, NULL, NULL),
 (6, 'EL002', 'ELNOM2', 'Elprenom2', NULL, 'Feminin', NULL, NULL, NULL, '2015-04-06', NULL, NULL, '2015-04-28', NULL, 0, '2015-04-08', NULL),
-(20, '', 'ycytcy', 'vvuvu', 'tcvuv', 'M', '031014_1754_Connectinga20.png', '', 'Cameroun', '2015-05-06', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
-(21, '', 'ycytcy', 'vvuvu', 'tcvuv', 'M', '031014_1754_Connectinga20.png', '', 'Cameroun', '2015-05-06', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
-(22, '', 'ycytcy', 'vvuvu', 'tcvuv', 'M', '031014_1754_Connectinga20.png', '', 'Cameroun', '2015-05-06', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
-(23, '', 'ycytcy', 'vvuvu', 'tcvuv', 'M', '031014_1754_Connectinga20.png', '', 'Cameroun', '2015-05-06', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
-(24, '', 'ycytcy', 'vvuvu', 'tcvuv', 'M', '031014_1754_Connectinga20.png', '', 'Cameroun', '2015-05-06', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
-(25, '', 'ycytcy', 'vvuvu', 'tcvuv', 'M', '031014_1754_Connectinga20.png', '', 'Cameroun', '2015-05-06', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
-(26, '', 'ycytcy', 'vvuvu', 'tcvuv', 'M', '031014_1754_Connectinga20.png', '', 'Cameroun', '2015-05-06', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
-(27, '', 'ycytcy', 'vvuvu', 'tcvuv', 'M', '031014_1754_Connectinga20.png', '', 'Cameroun', '2015-05-06', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
-(28, '', 'gege', 'seher', 'oihioin', 'M', '031014_1754_Connectinga20.png', 'uog8g', 'Cameroun', '2015-05-06', 'Cameroun', '', '2015-05-20', 1, 0, NULL, NULL),
-(29, '', 'gege', 'seher', 'oihioin', 'M', '031014_1754_Connectinga20.png', 'uog8g', 'Cameroun', '2015-05-06', 'Cameroun', '', '2015-05-20', 1, 0, NULL, NULL),
-(30, '', 'jchvjhv', 'lkbjk', 'vkbkj', 'M', '031014_1754_Connectinga20.png', 'kuvyuv', 'Cameroun', '2015-05-20', 'Cameroun', 'iuigui', '2015-05-19', 1, 0, NULL, NULL),
-(31, '', 'jchvjhv', 'lkbjk', 'vkbkj', 'M', '031014_1754_Connectinga20.png', 'kuvyuv', 'Cameroun', '2015-05-20', 'Cameroun', 'iuigui', '2015-05-19', 1, 0, NULL, NULL),
-(32, '', 'jchvjhv', 'lkbjk', 'vkbkj', 'M', '031014_1754_Connectinga20.png', 'kuvyuv', 'Cameroun', '2015-05-20', 'Cameroun', 'iuigui', '2015-05-19', 1, 0, NULL, NULL),
-(33, '', 'jchvjhv', 'lkbjk', 'vkbkj', 'M', '031014_1754_Connectinga20.png', 'kuvyuv', 'Cameroun', '2015-05-20', 'Cameroun', 'iuigui', '2015-05-19', 1, 0, NULL, NULL),
-(34, '', 'jchvjhv', 'lkbjk', 'vkbkj', 'M', '031014_1754_Connectinga20.png', 'kuvyuv', 'Cameroun', '2015-05-20', 'Cameroun', 'iuigui', '2015-05-19', 1, 0, NULL, NULL),
-(35, '', 'jchvjhv', 'lkbjk', 'vkbkj', 'M', '031014_1754_Connectinga20.png', 'kuvyuv', 'Cameroun', '2015-05-20', 'Cameroun', 'iuigui', '2015-05-19', 1, 0, NULL, NULL),
-(36, '', 'jchvjhv', 'lkbjk', 'vkbkj', 'M', '031014_1754_Connectinga20.png', 'kuvyuv', 'Cameroun', '2015-05-20', 'Cameroun', 'iuigui', '2015-05-19', 1, 0, NULL, NULL),
-(37, '', 'jchvjhv', 'lkbjk', 'vkbkj', 'M', '031014_1754_Connectinga20.png', 'kuvyuv', 'Cameroun', '2015-05-20', 'Cameroun', 'iuigui', '2015-05-19', 1, 0, NULL, NULL),
-(38, '', 'jchvjhv', 'lkbjk', 'vkbkj', 'M', '031014_1754_Connectinga20.png', 'kuvyuv', 'Cameroun', '2015-05-20', 'Cameroun', 'iuigui', '2015-05-19', 1, 0, NULL, NULL),
-(39, '', 'jchvjhv', 'lkbjk', 'vkbkj', 'M', '031014_1754_Connectinga20.png', 'kuvyuv', 'Cameroun', '2015-05-20', 'Cameroun', 'iuigui', '2015-05-19', 1, 0, NULL, NULL),
-(40, '', 'jchvjhv', 'lkbjk', 'vkbkj', 'M', '031014_1754_Connectinga20.png', 'kuvyuv', 'Cameroun', '2015-05-20', 'Cameroun', 'iuigui', '2015-05-19', 1, 0, NULL, NULL);
+(20, '156002', 'ycytcy', 'vvuvu', 'tcvuv', 'M', '031014_1754_Connectinga20.png', '', 'Cameroun', '2015-05-06', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(21, '156001', 'ycytcy', 'vvuvu', 'tcvuv', 'M', '031014_1754_Connectinga20.png', '', 'Cameroun', '2015-05-06', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(22, '156001', 'ycytcy', 'vvuvu', 'tcvuv', 'M', '031014_1754_Connectinga20.png', '', 'Cameroun', '2015-05-06', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(23, '156002', 'ycytcy', 'vvuvu', 'tcvuv', 'M', '031014_1754_Connectinga20.png', '', 'Cameroun', '2015-05-06', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(24, '156003', 'ycytcy', 'vvuvu', 'tcvuv', 'M', '031014_1754_Connectinga20.png', '', 'Cameroun', '2015-05-06', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(25, '156001', 'ycytcy', 'vvuvu', 'tcvuv', 'M', '031014_1754_Connectinga20.png', '', 'Cameroun', '2015-05-06', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(26, '156002', 'ycytcy', 'vvuvu', 'tcvuv', 'M', '031014_1754_Connectinga20.png', '', 'Cameroun', '2015-05-06', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(27, '156001', 'ycytcy', 'vvuvu', 'tcvuv', 'M', '031014_1754_Connectinga20.png', '', 'Cameroun', '2015-05-06', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(28, '156003', 'gege', 'seher', 'oihioin', 'M', '031014_1754_Connectinga20.png', 'uog8g', 'Cameroun', '2015-05-06', 'Cameroun', '', '2015-05-20', 1, 0, NULL, NULL),
+(29, '156004', 'gege', 'seher', 'oihioin', 'M', '031014_1754_Connectinga20.png', 'uog8g', 'Cameroun', '2015-05-06', 'Cameroun', '', '2015-05-20', 1, 0, NULL, NULL),
+(30, '156002', 'jchvjhv', 'lkbjk', 'vkbkj', 'M', '031014_1754_Connectinga20.png', 'kuvyuv', 'Cameroun', '2015-05-20', 'Cameroun', 'iuigui', '2015-05-19', 1, 0, NULL, NULL),
+(31, '156005', 'jchvjhv', 'lkbjk', 'vkbkj', 'M', '031014_1754_Connectinga20.png', 'kuvyuv', 'Cameroun', '2015-05-20', 'Cameroun', 'iuigui', '2015-05-19', 1, 0, NULL, NULL),
+(32, '156001', 'jchvjhv', 'lkbjk', 'vkbkj', 'M', '031014_1754_Connectinga20.png', 'kuvyuv', 'Cameroun', '2015-05-20', 'Cameroun', 'iuigui', '2015-05-19', 1, 0, NULL, NULL),
+(33, '156003', 'jchvjhv', 'lkbjk', 'vkbkj', 'M', '031014_1754_Connectinga20.png', 'kuvyuv', 'Cameroun', '2015-05-20', 'Cameroun', 'iuigui', '2015-05-19', 1, 0, NULL, NULL),
+(34, '156001', 'jchvjhv', 'lkbjk', 'vkbkj', 'M', '031014_1754_Connectinga20.png', 'kuvyuv', 'Cameroun', '2015-05-20', 'Cameroun', 'iuigui', '2015-05-19', 1, 0, NULL, NULL),
+(35, '156002', 'jchvjhv', 'lkbjk', 'vkbkj', 'M', '031014_1754_Connectinga20.png', 'kuvyuv', 'Cameroun', '2015-05-20', 'Cameroun', 'iuigui', '2015-05-19', 1, 0, NULL, NULL),
+(36, '155001', 'jchvjhv', 'lkbjk', 'vkbkj', 'M', '031014_1754_Connectinga20.png', 'kuvyuv', 'Cameroun', '2015-05-20', 'Cameroun', 'iuigui', '2015-05-19', 1, 0, NULL, NULL),
+(37, '156003', 'jchvjhv', 'lkbjk', 'vkbkj', 'M', '031014_1754_Connectinga20.png', 'kuvyuv', 'Cameroun', '2015-05-20', 'Cameroun', 'iuigui', '2015-05-19', 1, 0, NULL, NULL),
+(38, '156001', 'ELNOM3', 'ELPRENOM3', 'ELAUTRENOM3', 'M', '031014_1754_Connectinga20.png', 'kuvyuv', 'Cameroun', '2015-05-20', 'Cameroun', 'iuigui', '2015-05-19', 1, 0, NULL, NULL),
+(39, '156002', 'jchvjhv', 'lkbjk', 'vkbkj', 'M', '031014_1754_Connectinga20.png', 'kuvyuv', 'Cameroun', '2015-05-20', 'Cameroun', 'iuigui', '2015-05-19', 1, 0, NULL, NULL),
+(40, '156001', 'jchvjhv', 'lkbjk', 'vkbkj', 'M', '031014_1754_Connectinga20.png', 'kuvyuv', 'Cameroun', '2015-05-20', 'Cameroun', 'iuigui', '2015-05-19', 1, 0, NULL, NULL),
+(41, '', 'j g uyu', '', '', 'M', '', '', 'Cameroun', '0000-00-00', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(42, '', 'j g uyu', '', '', 'M', '', '', 'Cameroun', '0000-00-00', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(43, '', 'j g uyu', '', '', 'M', '', '', 'Cameroun', '0000-00-00', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(44, '', 'j g uyu', '', '', 'M', '', '', 'Cameroun', '0000-00-00', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(45, '', 'vasdvsdv', '', '', 'M', '', '', 'Cameroun', '0000-00-00', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(46, '', 'verrv', '', '', 'M', '', '', 'Cameroun', '2015-05-04', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(47, '', 'verrv', '', '', 'M', '031014_1754_Connectinga20.png', '', 'Cameroun', '2015-05-04', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(48, '', 'erver', '', '', 'M', '', '', 'Cameroun', '2015-05-04', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(49, 'tbrtybtbbrb', 'erver', '', '', 'M', '', '', 'Cameroun', '2015-05-04', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(50, '', 'vervr', '', '', 'M', '', '', 'Cameroun', '2015-06-16', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(51, '', 'vervr', '', '', 'M', '', '', 'Cameroun', '2015-06-16', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(52, '', 'vervr', '', '', 'M', '', '', 'Cameroun', '2015-06-16', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(53, '', 'vsfv', '', '', 'M', '', '', 'Cameroun', '2015-07-08', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(54, '', 'berwervwe', '', '', 'M', '', '', 'Cameroun', '2015-06-02', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(55, '', 'berwervwe', '', '', 'M', '', '', 'Cameroun', '2015-06-02', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(56, '', 'sbdf dfrd', '', '', 'M', '', '', 'Cameroun', '2015-06-09', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(57, '', 'sbdf dfrd', '', '', 'M', '', '', 'Cameroun', '2015-06-09', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(58, '', 'sbdf dfrd', '', '', 'M', '', '', 'Cameroun', '2015-06-09', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(59, '', 'sbdf dfrd', '', '', 'M', '', '', 'Cameroun', '2015-06-09', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(60, '', 'zvevzerv', '', '', 'M', '', '', 'Cameroun', '2015-06-09', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(61, '', 'drgbddrgf', '', '', 'M', '', '', 'Cameroun', '2015-06-09', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(62, '', 'vsefvsefv', '', '', 'M', '', '', 'Cameroun', '2015-06-08', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(63, '', 'drberbwer', '', '', 'M', '031014_1754_Connectinga20.png', '', 'Cameroun', '2015-06-09', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(64, '', 'drberbwer', '', '', 'M', '031014_1754_Connectinga20.png', '', 'Cameroun', '2015-06-09', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(65, '', 'vwevwerv', '', '', 'M', '', '', 'Cameroun', '2015-06-15', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(66, '', 'vwevwerv', '', '', 'M', '', '', 'Cameroun', '2015-06-15', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(67, '', 'vwevwerv', '', '', 'M', '', '', 'Cameroun', '2015-06-15', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(68, '', 'vfverv', '', '', 'M', '', '', 'Cameroun', '2015-06-09', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(69, '', 'fwferf', '', '', 'M', '', '', 'Cameroun', '2015-06-09', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(70, '', 'vrevwerve', '', '', 'M', '', '', 'Cameroun', '2015-06-16', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(71, '', 'fwerfwre', '', '', 'M', '', '', 'Cameroun', '2015-06-10', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(72, '', 'werfwref', '', '', 'M', '', '', 'Cameroun', '2015-06-08', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(73, '', 'fwefwe', '', '', 'M', '', '', 'Cameroun', '2015-06-02', 'Cameroun', '', '0000-00-00', 1, 0, NULL, NULL),
+(74, '', 'Ainam', 'Jean-Paul', '', 'M', '031014_1754_Connectinga20.png', '1454', 'Cameroun', '2015-06-02', 'Cameroun', 'bongor', '2015-06-15', 1, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `enseignants`
+-- Structure de la table `enseignants`
 --
 
 CREATE TABLE IF NOT EXISTS `enseignants` (
@@ -398,7 +525,36 @@ CREATE TABLE IF NOT EXISTS `enseignants` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `etablissements`
+-- Structure de la table `enseignements`
+--
+
+CREATE TABLE IF NOT EXISTS `enseignements` (
+  `IDENSEIGNEMENT` int(11) NOT NULL AUTO_INCREMENT,
+  `MATIERE` int(11) DEFAULT NULL,
+  `PROFESSEUR` int(11) DEFAULT NULL,
+  `CLASSE` int(11) NOT NULL,
+  `GROUPE` int(11) DEFAULT NULL,
+  `COEFF` int(11) NOT NULL,
+  PRIMARY KEY (`IDENSEIGNEMENT`),
+  KEY `MATIERE` (`MATIERE`,`PROFESSEUR`,`CLASSE`),
+  KEY `PROFESSEUR` (`PROFESSEUR`),
+  KEY `CLASSE` (`CLASSE`),
+  KEY `GROUPE` (`GROUPE`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=42 ;
+
+--
+-- Contenu de la table `enseignements`
+--
+
+INSERT INTO `enseignements` (`IDENSEIGNEMENT`, `MATIERE`, `PROFESSEUR`, `CLASSE`, `GROUPE`, `COEFF`) VALUES
+(39, 1, 3, 51, 1, 2),
+(40, 3, 3, 51, 1, 2),
+(41, 2, 3, 51, 2, 5);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `etablissements`
 --
 
 CREATE TABLE IF NOT EXISTS `etablissements` (
@@ -408,7 +564,7 @@ CREATE TABLE IF NOT EXISTS `etablissements` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
--- Dumping data for table `etablissements`
+-- Contenu de la table `etablissements`
 --
 
 INSERT INTO `etablissements` (`IDETABLISSEMENT`, `ETABLISSEMENT`) VALUES
@@ -419,7 +575,7 @@ INSERT INTO `etablissements` (`IDETABLISSEMENT`, `ETABLISSEMENT`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `fonctions`
+-- Structure de la table `fonctions`
 --
 
 CREATE TABLE IF NOT EXISTS `fonctions` (
@@ -429,7 +585,7 @@ CREATE TABLE IF NOT EXISTS `fonctions` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `fonctions`
+-- Contenu de la table `fonctions`
 --
 
 INSERT INTO `fonctions` (`IDFONCTION`, `LIBELLE`) VALUES
@@ -441,7 +597,28 @@ INSERT INTO `fonctions` (`IDFONCTION`, `LIBELLE`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `groupemenus`
+-- Structure de la table `groupe`
+--
+
+CREATE TABLE IF NOT EXISTS `groupe` (
+  `IDGROUPE` int(11) NOT NULL AUTO_INCREMENT,
+  `DESCRIPTION` varchar(250) NOT NULL,
+  PRIMARY KEY (`IDGROUPE`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Contenu de la table `groupe`
+--
+
+INSERT INTO `groupe` (`IDGROUPE`, `DESCRIPTION`) VALUES
+(1, 'Groupe 1'),
+(2, 'Groupe 2'),
+(3, 'Groupe 3');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `groupemenus`
 --
 
 CREATE TABLE IF NOT EXISTS `groupemenus` (
@@ -454,7 +631,7 @@ CREATE TABLE IF NOT EXISTS `groupemenus` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
--- Dumping data for table `groupemenus`
+-- Contenu de la table `groupemenus`
 --
 
 INSERT INTO `groupemenus` (`IDGROUPE`, `LIBELLE`, `ICON`, `ALT`, `TITLE`) VALUES
@@ -472,7 +649,35 @@ INSERT INTO `groupemenus` (`IDGROUPE`, `LIBELLE`, `ICON`, `ALT`, `TITLE`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `locan`
+-- Structure de la table `inscription`
+--
+
+CREATE TABLE IF NOT EXISTS `inscription` (
+  `IDINSCRIPTION` int(11) NOT NULL AUTO_INCREMENT,
+  `IDELEVE` int(11) NOT NULL,
+  `IDCLASSE` int(11) NOT NULL,
+  `ANNEEACADEMIQUE` varchar(15) NOT NULL,
+  PRIMARY KEY (`IDINSCRIPTION`),
+  UNIQUE KEY `IDELEVE` (`IDELEVE`,`IDCLASSE`,`ANNEEACADEMIQUE`),
+  KEY `IDCLASSE` (`IDCLASSE`),
+  KEY `ANNEEACADEMIQUE` (`ANNEEACADEMIQUE`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=49 ;
+
+--
+-- Contenu de la table `inscription`
+--
+
+INSERT INTO `inscription` (`IDINSCRIPTION`, `IDELEVE`, `IDCLASSE`, `ANNEEACADEMIQUE`) VALUES
+(48, 27, 52, '2014-2015'),
+(29, 32, 31, '2014-2015'),
+(30, 35, 31, '2014-2015'),
+(28, 36, 11, '2014-2015'),
+(27, 38, 11, '2014-2015');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `locan`
 --
 
 CREATE TABLE IF NOT EXISTS `locan` (
@@ -492,7 +697,7 @@ CREATE TABLE IF NOT EXISTS `locan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `locan`
+-- Contenu de la table `locan`
 --
 
 INSERT INTO `locan` (`ID`, `NOM`, `RESPONSABLE`, `ADRESSE`, `BP`, `TELEPHONE`, `TELEPHONE2`, `MOBILE`, `FAX`, `EMAIL`, `SITEWEB`, `LOGO`) VALUES
@@ -501,45 +706,47 @@ INSERT INTO `locan` (`ID`, `NOM`, `RESPONSABLE`, `ADRESSE`, `BP`, `TELEPHONE`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `matieres`
+-- Structure de la table `matieres`
 --
 
 CREATE TABLE IF NOT EXISTS `matieres` (
+  `IDMATIERE` int(11) NOT NULL AUTO_INCREMENT,
   `CODE` varchar(15) NOT NULL,
-  `LIBELLE` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `LIBELLE` varchar(255) NOT NULL,
+  PRIMARY KEY (`IDMATIERE`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 --
--- Dumping data for table `matieres`
+-- Contenu de la table `matieres`
 --
 
-INSERT INTO `matieres` (`CODE`, `LIBELLE`) VALUES
-('ATEPTS', 'Atelier d''éducation physique et sportive'),
-('ATEXA', 'Atelier d''expression artistique'),
-('CPTTA', 'Comptabilité'),
-('jrtyj', 'Atelier d''éducation physique et sportive'),
-('rethrtyh', 'Atelier d''éducation physique et sportive'),
-('thrt', 'Atelier d''éducation physique et sportive'),
-('vwerge', 'gwerge'),
-('rther', 'hwrthre'),
-('erber', 'werge'),
-('geqr', 'erger'),
-('gwerge', 'berherhtre'),
-('hwerher', 'vefert'),
-('herthert', 'erthret'),
-('ernr', 'erhre'),
-('gerg', 'werger'),
-('gqwegwq', 'gwerger'),
-('rthre', 'rthret'),
-('math', 'mathÃ©matique'),
-('ntjty', 'rtrjht'),
-('transformation', 'transforme'),
-('rthrthrt', 'ukykt');
+INSERT INTO `matieres` (`IDMATIERE`, `CODE`, `LIBELLE`) VALUES
+(1, 'ATEPTS', 'Atelier d''éducation physique et sportive'),
+(2, 'ATEXA', 'Atelier d''expression artistique'),
+(3, 'CPTTA', 'Comptabilité'),
+(4, 'jrtyj', 'Atelier d''éducation physique et sportive'),
+(5, 'rethrtyh', 'Atelier d''éducation physique et sportive'),
+(6, 'thrt', 'Atelier d''éducation physique et sportive'),
+(7, 'vwerge', 'gwerge'),
+(8, 'rther', 'hwrthre'),
+(9, 'erber', 'werge'),
+(10, 'geqr', 'erger'),
+(11, 'gwerge', 'berherhtre'),
+(12, 'hwerher', 'vefert'),
+(13, 'herthert', 'erthret'),
+(14, 'ernr', 'erhre'),
+(15, 'gerg', 'werger'),
+(16, 'gqwegwq', 'gwerger'),
+(17, 'rthre', 'rthret'),
+(18, 'math', 'mathÃ©matique'),
+(19, 'ntjty', 'rtrjht'),
+(20, 'transformation', 'transforme'),
+(21, 'rthrthrt', 'ukykt');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `menus`
+-- Structure de la table `menus`
 --
 
 CREATE TABLE IF NOT EXISTS `menus` (
@@ -554,10 +761,10 @@ CREATE TABLE IF NOT EXISTS `menus` (
   PRIMARY KEY (`IDMENUS`),
   KEY `CODEDROIT` (`CODEDROIT`),
   KEY `IDGROUPE` (`IDGROUPE`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=41 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=43 ;
 
 --
--- Dumping data for table `menus`
+-- Contenu de la table `menus`
 --
 
 INSERT INTO `menus` (`IDMENUS`, `IDGROUPE`, `LIBELLE`, `HREF`, `ICON`, `CODEDROIT`, `ALT`, `TITLE`) VALUES
@@ -599,12 +806,14 @@ INSERT INTO `menus` (`IDMENUS`, `IDGROUPE`, `LIBELLE`, `HREF`, `ICON`, `CODEDROI
 (36, 6, 'Options générales', 'parametres/options', 'option.png', '601', NULL, NULL),
 (37, 6, 'Tous les mots de passe', 'parametres/mdp', 'mdp.png', '602', NULL, NULL),
 (39, 6, 'Calendrier scolaire', 'etablissement/calendrier', 'calendrier.png', '605', NULL, NULL),
-(40, 3, 'Saisie d''une punition', 'punition/saisie', 'punition.png', '315', NULL, NULL);
+(40, 3, 'Saisie d''une punition', 'punition/saisie', 'punition.png', '315', NULL, NULL),
+(41, 2, 'Scolarités', 'scolarite', 'scolarite', '208', NULL, NULL),
+(42, 5, 'Saisie scolarités', 'scolarite/saisie', 'saisiescolarite', '508', NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `motifsortie`
+-- Structure de la table `motifsortie`
 --
 
 CREATE TABLE IF NOT EXISTS `motifsortie` (
@@ -615,7 +824,7 @@ CREATE TABLE IF NOT EXISTS `motifsortie` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `motifsortie`
+-- Contenu de la table `motifsortie`
 --
 
 INSERT INTO `motifsortie` (`IDMOTIF`, `LIBELLE`, `DESCRIPTION`) VALUES
@@ -627,7 +836,34 @@ INSERT INTO `motifsortie` (`IDMOTIF`, `LIBELLE`, `DESCRIPTION`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `parente`
+-- Structure de la table `niveau`
+--
+
+CREATE TABLE IF NOT EXISTS `niveau` (
+  `IDNIVEAU` int(11) NOT NULL AUTO_INCREMENT,
+  `NIVEAUSELECT` varchar(30) NOT NULL,
+  `NIVEAUHTML` varchar(30) NOT NULL,
+  `GROUPE` int(11) NOT NULL,
+  PRIMARY KEY (`IDNIVEAU`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+
+--
+-- Contenu de la table `niveau`
+--
+
+INSERT INTO `niveau` (`IDNIVEAU`, `NIVEAUSELECT`, `NIVEAUHTML`, `GROUPE`) VALUES
+(0, 'T&#x2e1;&#x1D49;', 'T<sup>le</sup>', 0),
+(1, '1&#x1D49;&#x2b3;&#x1D49;', '1<sup>ère</sup>', 1),
+(2, '2&#x1db0;&#x1d48;&#x1D49;', '2<sup>nde</sup>', 2),
+(3, '3&#x1D49;&#x1d50;&#x1D49;', '3<sup>ème</sup>', 3),
+(4, '4&#x1D49;&#x1d50;&#x1D49;', '4<sup>ème</sup>', 4),
+(5, '5&#x1D49;&#x1d50;&#x1D49;', '5<sup>ème</sup>', 5),
+(6, '6&#x1D49;&#x1d50;&#x1D49;', '6<sup>ème</sup>', 6);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `parente`
 --
 
 CREATE TABLE IF NOT EXISTS `parente` (
@@ -636,7 +872,7 @@ CREATE TABLE IF NOT EXISTS `parente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `parente`
+-- Contenu de la table `parente`
 --
 
 INSERT INTO `parente` (`LIBELLE`) VALUES
@@ -650,7 +886,7 @@ INSERT INTO `parente` (`LIBELLE`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pays`
+-- Structure de la table `pays`
 --
 
 CREATE TABLE IF NOT EXISTS `pays` (
@@ -659,7 +895,7 @@ CREATE TABLE IF NOT EXISTS `pays` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pays`
+-- Contenu de la table `pays`
 --
 
 INSERT INTO `pays` (`PAYS`) VALUES
@@ -671,11 +907,12 @@ INSERT INTO `pays` (`PAYS`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `personnels`
+-- Structure de la table `personnels`
 --
 
 CREATE TABLE IF NOT EXISTS `personnels` (
-  `IDPERSONNEL` varchar(15) CHARACTER SET latin1 NOT NULL,
+  `IDPERSONNEL` int(11) NOT NULL AUTO_INCREMENT,
+  `MATRICULE` varchar(15) CHARACTER SET latin1 NOT NULL,
   `IDUSER` int(11) DEFAULT NULL,
   `CIVILITE` varchar(10) DEFAULT NULL,
   `NOM` varchar(30) CHARACTER SET latin1 NOT NULL,
@@ -691,23 +928,24 @@ CREATE TABLE IF NOT EXISTS `personnels` (
   KEY `CIVILITE` (`CIVILITE`),
   KEY `LOGIN` (`IDUSER`),
   KEY `FONCTION` (`FONCTION`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
--- Dumping data for table `personnels`
+-- Contenu de la table `personnels`
 --
 
-INSERT INTO `personnels` (`IDPERSONNEL`, `IDUSER`, `CIVILITE`, `NOM`, `PRENOM`, `AUTRENOM`, `FONCTION`, `GRADE`, `DATENAISS`, `PORTABLE`, `TELEPHONE`, `EMAIL`) VALUES
-('ADMIN', 1, 'Mr', 'Bruno', 'Bruno', '', 4, NULL, NULL, '652847527', '65847224', 'fort'),
-('ADMIN2', 4, 'Mr', 'Ainam', 'Jean-paul', '', 3, NULL, '2015-05-05', NULL, '235', 'erberre'),
-('ASSIST01', 5, 'Mlle', 'Estelle', 'Estelle', '', 1, NULL, NULL, NULL, '', NULL),
-('dtfty416', 6, 'Dr', 'dtfty', 'fhtmfgh', 'FGM', 1, 'fm', '0000-00-00', 'fhjm', 'hfjm', NULL),
-('PERSO01', 2, 'Mr', 'Nom1', 'Prenom2', '', 1, NULL, NULL, NULL, '+237652289165', NULL);
+INSERT INTO `personnels` (`IDPERSONNEL`, `MATRICULE`, `IDUSER`, `CIVILITE`, `NOM`, `PRENOM`, `AUTRENOM`, `FONCTION`, `GRADE`, `DATENAISS`, `PORTABLE`, `TELEPHONE`, `EMAIL`) VALUES
+(1, 'ADMIN', 1, 'Mr', 'Bruno', 'Bruno', '', 4, NULL, NULL, '652847527', '65847224', 'fort'),
+(2, 'ADMIN2', 4, 'Mr', 'Ainam', 'Jean-paul', '', 3, NULL, '2015-05-05', NULL, '235', 'erberre'),
+(3, 'ASSIST01', 5, 'Mlle', 'Estelle', 'Estelle', '', 1, NULL, NULL, NULL, '', NULL),
+(4, 'dtfty416', 6, 'Dr', 'dtfty', 'fhtmfgh', 'FGM', 1, 'fm', '0000-00-00', 'fhjm', 'hfjm', NULL),
+(5, 'PERSO01', 2, 'Mr', 'Nom1', 'Prenom2', '', 1, NULL, NULL, NULL, '+237652289165', NULL),
+(6, '', NULL, 'Mr', 'ainam ', 'jean paul', '', 1, '', '2015-05-12', 'nrtjh', '', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `profile`
+-- Structure de la table `profile`
 --
 
 CREATE TABLE IF NOT EXISTS `profile` (
@@ -719,7 +957,7 @@ CREATE TABLE IF NOT EXISTS `profile` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
--- Dumping data for table `profile`
+-- Contenu de la table `profile`
 --
 
 INSERT INTO `profile` (`IDPROFILE`, `PROFILE`, `LISTEDROIT`) VALUES
@@ -732,7 +970,7 @@ INSERT INTO `profile` (`IDPROFILE`, `PROFILE`, `LISTEDROIT`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `responsables`
+-- Structure de la table `responsables`
 --
 
 CREATE TABLE IF NOT EXISTS `responsables` (
@@ -746,54 +984,25 @@ CREATE TABLE IF NOT EXISTS `responsables` (
   `PORTABLE` varchar(15) DEFAULT NULL,
   `EMAIL` varchar(75) DEFAULT NULL,
   `PROFESSION` varchar(150) DEFAULT NULL,
+  `ACCEPTESMS` int(11) DEFAULT NULL COMMENT '0 = n''accepte pas de sms, 1 = accepte de sms',
+  `NUMSMS` varchar(15) DEFAULT NULL COMMENT 'numero sur lequel il accepte les sms',
   PRIMARY KEY (`IDRESPONSABLE`),
   KEY `CIVILITE` (`CIVILITE`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=55 ;
 
 --
--- Dumping data for table `responsables`
+-- Contenu de la table `responsables`
 --
 
-INSERT INTO `responsables` (`IDRESPONSABLE`, `CIVILITE`, `NOM`, `PRENOM`, `ADRESSE`, `BP`, `TELEPHONE`, `PORTABLE`, `EMAIL`, `PROFESSION`) VALUES
-(25, 'Dr', 'lbobn', 'blknn', '##', '', '', 'kbb', '', ';knln'),
-(26, 'Dr', 'bibinno', 'jbb', 'ohhoi#lnoi#', '235', 'nlnk', 'ino', '', ''),
-(27, 'Dr', 'lbobn', 'blknn', '##', '', '', 'kbb', '', ';knln'),
-(28, 'Dr', 'bibinno', 'jbb', 'ohhoi#lnoi#', '235', 'nlnk', 'ino', '', ''),
-(29, 'Dr', 'lbobn', 'blknn', '##', '', '', 'kbb', '', ';knln'),
-(30, 'Dr', 'bibinno', 'jbb', 'ohhoi#lnoi#', '235', 'nlnk', 'ino', '', '');
+INSERT INTO `responsables` (`IDRESPONSABLE`, `CIVILITE`, `NOM`, `PRENOM`, `ADRESSE`, `BP`, `TELEPHONE`, `PORTABLE`, `EMAIL`, `PROFESSION`, `ACCEPTESMS`, `NUMSMS`) VALUES
+(28, 'Dr', 'bibinno', 'jbb', 'ohhoi#lnoi#', '235', 'nlnk', 'ino', '', '', 1, NULL),
+(53, 'Mr', 'rdbrber', 'berberb', 'berb#ber#ebrbre', '', 'erber', 'berb', 'erberb', 'berbretb', 0, NULL),
+(54, 'Mr', 'bewrbwer', '', '##', '', '', 'vwrevwerv', '', '', 1, '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `responsable_charge`
---
-
-CREATE TABLE IF NOT EXISTS `responsable_charge` (
-  `IDRESPONSABLEELEVE` int(11) NOT NULL,
-  `IDCHARGE` varchar(15) NOT NULL,
-  PRIMARY KEY (`IDRESPONSABLEELEVE`,`IDCHARGE`),
-  KEY `IDCHARGE` (`IDCHARGE`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `responsable_charge`
---
-
-INSERT INTO `responsable_charge` (`IDRESPONSABLEELEVE`, `IDCHARGE`) VALUES
-(9, 'Accident'),
-(10, 'Accident'),
-(11, 'Accident'),
-(12, 'Accident'),
-(13, 'Accident'),
-(14, 'Accident'),
-(9, 'Contact'),
-(11, 'Contact'),
-(13, 'Contact');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `responsable_eleve`
+-- Structure de la table `responsable_eleve`
 --
 
 CREATE TABLE IF NOT EXISTS `responsable_eleve` (
@@ -801,30 +1010,60 @@ CREATE TABLE IF NOT EXISTS `responsable_eleve` (
   `IDRESPONSABLE` int(11) NOT NULL,
   `IDELEVE` int(11) NOT NULL,
   `PARENTE` varchar(15) DEFAULT NULL,
-  `ACCEPTESMS` bit(1) DEFAULT NULL COMMENT '1 = recois sms, 0 = ne recois pas',
-  `NUMSMS` varchar(15) DEFAULT NULL COMMENT 'Num sur lequel il recois le sms',
+  `CHARGES` varchar(250) DEFAULT NULL COMMENT 'Les charges de ce responsable sous forme d''objet JSON',
   PRIMARY KEY (`IDRESPONSABLEELEVE`),
   KEY `PARENTE` (`PARENTE`),
   KEY `IDRESPONSABLE` (`IDRESPONSABLE`,`IDELEVE`),
   KEY `IDELEVE` (`IDELEVE`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=57 ;
 
 --
--- Dumping data for table `responsable_eleve`
+-- Contenu de la table `responsable_eleve`
 --
 
-INSERT INTO `responsable_eleve` (`IDRESPONSABLEELEVE`, `IDRESPONSABLE`, `IDELEVE`, `PARENTE`, `ACCEPTESMS`, `NUMSMS`) VALUES
-(9, 25, 38, 'COUSINE', b'1', 'kubiub'),
-(10, 26, 38, 'COUSINE', b'1', 'iononoi'),
-(11, 27, 39, 'COUSINE', b'1', 'kubiub'),
-(12, 28, 39, 'COUSINE', b'1', 'iononoi'),
-(13, 29, 40, 'COUSINE', b'1', 'kubiub'),
-(14, 30, 40, 'COUSINE', b'1', 'iononoi');
+INSERT INTO `responsable_eleve` (`IDRESPONSABLEELEVE`, `IDRESPONSABLE`, `IDELEVE`, `PARENTE`, `CHARGES`) VALUES
+(12, 28, 39, 'COUSINE', NULL),
+(34, 53, 62, 'COUSINE', '["Accident"]'),
+(37, 28, 64, 'COUSINE', '["Accident","Contact"]'),
+(40, 53, 64, 'COUSINE', '["Accident","Contact"]'),
+(41, 28, 65, 'COUSINE', '["Accident","Contact","Financier"]'),
+(42, 28, 66, 'COUSINE', '["Accident","Contact","Financier"]'),
+(44, 28, 68, 'COUSINE', '[]'),
+(47, 28, 70, 'COUSINE', '["Accident","Contact"]'),
+(49, 53, 71, 'COUSINE', '["Accident","Contact","Financier"]'),
+(50, 53, 72, 'COUSINE', '["Accident","Contact","Financier"]'),
+(51, 53, 73, 'COUSINE', '["Accident","Contact","Financier"]'),
+(52, 53, 74, 'COUSINE', '["Accident","Contact","Financier"]'),
+(54, 28, 74, 'MERE', '["Accident","Contact","Financier"]'),
+(56, 54, 74, 'MERE', '["Accident","Contact","Financier"]');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Structure de la table `scolarites`
+--
+
+CREATE TABLE IF NOT EXISTS `scolarites` (
+  `IDSCOLARITE` int(11) NOT NULL AUTO_INCREMENT,
+  `LIBELLE` varchar(150) NOT NULL,
+  `MONTANT` int(11) NOT NULL,
+  `ECHEANCES` date NOT NULL,
+  `CLASSE` int(11) NOT NULL,
+  PRIMARY KEY (`IDSCOLARITE`),
+  KEY `CLASSE` (`CLASSE`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+
+--
+-- Contenu de la table `scolarites`
+--
+
+INSERT INTO `scolarites` (`IDSCOLARITE`, `LIBELLE`, `MONTANT`, `ECHEANCES`, `CLASSE`) VALUES
+(6, 'Tranche 1', 75000, '2015-06-17', 24);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `users`
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
@@ -840,30 +1079,41 @@ CREATE TABLE IF NOT EXISTS `users` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
--- Dumping data for table `users`
+-- Contenu de la table `users`
 --
 
 INSERT INTO `users` (`IDUSER`, `LOGIN`, `PASSWORD`, `PROFILE`, `DROITSPECIFIQUE`, `ACTIF`) VALUES
-(1, 'armel', '069a6a9ccaaca7967a0c43cb5e161187', 1, '["104","105","201","202","203","204","205","206","207","305","401","402","403","404","405","406","501","502","503","504","505","602","603","605"]', 1),
+(1, 'armel', '069a6a9ccaaca7967a0c43cb5e161187', 1, '["103","104","105","201","202","203","204","205","206","207","208","401","402","403","404","405","406","501","502","503","504","505","508","602","603"]', 1),
 (2, 'bruno', 'md5(''bruno'')', 1, '["101","102","103","104","105","201","202","203","204","205","206","207","301","302","303","304","305","306","307","308","309","310","311","312","313","314","315","401","402","403","404","405","406","501","502","503","504","505","506","507","601","602","603","604","605","701","702","801","802","803"]', 1),
-(3, 'estelle', 'md5(''estelle'')', 2, NULL, 1),
-(4, 'jp', '55add3d845bfcd87a9b0949b0da49c0a', 1, '["101","102","103","104","105","201","202","203","204","205","206","207","301","302","303","304","305","306","307","308","309","310","311","312","313","314","315","401","402","403","404","405","406","501","502","503","504","505","506","507","601","602","603","604","605","701","702","801","802","803"]', 1),
-(5, 'nom1', 'md5(''nom1'')', 2, NULL, 1),
+(3, 'estelle', 'md5(''estelle'')', 2, '["104","105","201"]', 1),
+(4, 'jp', '55add3d845bfcd87a9b0949b0da49c0a', 1, '["103","104","105","201","202","203","204","205","206","207","208","401","402","403","404","405","406","501","502","503","504","505","508","602","603","605"]', 1),
+(5, 'nom1', 'md5(''nom1'')', 2, '["102","103","201","202"]', 1),
 (6, 'nom2', 'md5(''nom2'')', 4, '["101","102","103","104","105","201","202","203","204","205","206","207","301","302","303","304","305","306","307","308","309","310","311","312","313","314","315","401","402","403","404","405","406","501","502","503","504","505","506","507","601","602","603","604","605","701","702","801","802","803"]', 0);
 
 --
--- Constraints for dumped tables
+-- Contraintes pour les tables exportées
 --
 
 --
--- Constraints for table `classes`
+-- Contraintes pour la table `classes`
 --
 ALTER TABLE `classes`
   ADD CONSTRAINT `classes_ibfk_1` FOREIGN KEY (`DECOUPAGE`) REFERENCES `decoupage` (`IDDECOUPAGE`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `classes_ibfk_2` FOREIGN KEY (`ANNEEACADEMIQUE`) REFERENCES `anneeacademique` (`anneeacademique`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `classes_ibfk_2` FOREIGN KEY (`ANNEEACADEMIQUE`) REFERENCES `anneeacademique` (`anneeacademique`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `classes_ibfk_3` FOREIGN KEY (`NIVEAU`) REFERENCES `niveau` (`IDNIVEAU`);
 
 --
--- Constraints for table `eleves`
+-- Contraintes pour la table `classes_parametres`
+--
+ALTER TABLE `classes_parametres`
+  ADD CONSTRAINT `classes_parametres_ibfk_1` FOREIGN KEY (`IDCLASSE`) REFERENCES `classes` (`IDCLASSE`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `classes_parametres_ibfk_2` FOREIGN KEY (`ANNEEACADEMIQUE`) REFERENCES `anneeacademique` (`anneeacademique`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `classes_parametres_ibfk_3` FOREIGN KEY (`PROFPRINCIPALE`) REFERENCES `personnels` (`IDPERSONNEL`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `classes_parametres_ibfk_4` FOREIGN KEY (`CPEPRINCIPALE`) REFERENCES `responsables` (`IDRESPONSABLE`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `classes_parametres_ibfk_5` FOREIGN KEY (`RESPADMINISTRATIF`) REFERENCES `personnels` (`IDPERSONNEL`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `eleves`
 --
 ALTER TABLE `eleves`
   ADD CONSTRAINT `eleves_ibfk_1` FOREIGN KEY (`NATIONALITE`) REFERENCES `pays` (`PAYS`) ON DELETE SET NULL ON UPDATE CASCADE,
@@ -872,14 +1122,31 @@ ALTER TABLE `eleves`
   ADD CONSTRAINT `eleves_ibfk_5` FOREIGN KEY (`PROVENANCE`) REFERENCES `etablissements` (`IDETABLISSEMENT`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `menus`
+-- Contraintes pour la table `enseignements`
+--
+ALTER TABLE `enseignements`
+  ADD CONSTRAINT `enseignements_ibfk_1` FOREIGN KEY (`MATIERE`) REFERENCES `matieres` (`IDMATIERE`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `enseignements_ibfk_2` FOREIGN KEY (`PROFESSEUR`) REFERENCES `personnels` (`IDPERSONNEL`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `enseignements_ibfk_3` FOREIGN KEY (`CLASSE`) REFERENCES `classes` (`IDCLASSE`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `enseignements_ibfk_4` FOREIGN KEY (`GROUPE`) REFERENCES `groupe` (`IDGROUPE`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `inscription`
+--
+ALTER TABLE `inscription`
+  ADD CONSTRAINT `inscription_ibfk_1` FOREIGN KEY (`IDELEVE`) REFERENCES `eleves` (`IDELEVE`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `inscription_ibfk_2` FOREIGN KEY (`IDCLASSE`) REFERENCES `classes` (`IDCLASSE`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `inscription_ibfk_3` FOREIGN KEY (`ANNEEACADEMIQUE`) REFERENCES `anneeacademique` (`anneeacademique`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `menus`
 --
 ALTER TABLE `menus`
   ADD CONSTRAINT `menus_ibfk_1` FOREIGN KEY (`CODEDROIT`) REFERENCES `droits` (`CODEDROIT`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `menus_ibfk_2` FOREIGN KEY (`IDGROUPE`) REFERENCES `groupemenus` (`IDGROUPE`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `personnels`
+-- Contraintes pour la table `personnels`
 --
 ALTER TABLE `personnels`
   ADD CONSTRAINT `personnels_ibfk_1` FOREIGN KEY (`CIVILITE`) REFERENCES `civilite` (`CIVILITE`) ON DELETE SET NULL ON UPDATE CASCADE,
@@ -887,20 +1154,13 @@ ALTER TABLE `personnels`
   ADD CONSTRAINT `personnels_ibfk_4` FOREIGN KEY (`IDUSER`) REFERENCES `users` (`IDUSER`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `responsables`
+-- Contraintes pour la table `responsables`
 --
 ALTER TABLE `responsables`
   ADD CONSTRAINT `responsables_ibfk_1` FOREIGN KEY (`CIVILITE`) REFERENCES `civilite` (`CIVILITE`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `responsable_charge`
---
-ALTER TABLE `responsable_charge`
-  ADD CONSTRAINT `responsable_charge_ibfk_1` FOREIGN KEY (`IDRESPONSABLEELEVE`) REFERENCES `responsable_eleve` (`IDRESPONSABLEELEVE`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `responsable_charge_ibfk_2` FOREIGN KEY (`IDCHARGE`) REFERENCES `charge` (`IDCHARGE`);
-
---
--- Constraints for table `responsable_eleve`
+-- Contraintes pour la table `responsable_eleve`
 --
 ALTER TABLE `responsable_eleve`
   ADD CONSTRAINT `responsable_eleve_ibfk_1` FOREIGN KEY (`IDRESPONSABLE`) REFERENCES `responsables` (`IDRESPONSABLE`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -908,7 +1168,13 @@ ALTER TABLE `responsable_eleve`
   ADD CONSTRAINT `responsable_eleve_ibfk_3` FOREIGN KEY (`PARENTE`) REFERENCES `parente` (`LIBELLE`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
--- Constraints for table `users`
+-- Contraintes pour la table `scolarites`
+--
+ALTER TABLE `scolarites`
+  ADD CONSTRAINT `scolarites_ibfk_1` FOREIGN KEY (`CLASSE`) REFERENCES `classes` (`IDCLASSE`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`PROFILE`) REFERENCES `profile` (`IDPROFILE`) ON DELETE SET NULL ON UPDATE CASCADE;

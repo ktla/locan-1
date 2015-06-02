@@ -23,7 +23,7 @@
         <?php echo $total . " membres du personnel"; ?>
     </div>
     <div class="navigation">
-        <?php if(isAuth($codedroit))
+        <?php//if(isAuth($codedroit)) ?>
         <img src="<?php echo SITE_ROOT . "public/img/btn_add.png" ?>" onclick="document.forms[0].submit();" />
     </div>
 </form>
