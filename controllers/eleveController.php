@@ -10,6 +10,9 @@ class EleveController extends Controller {
     }
 
     public function index() {
+        if(!isAuth(204)){
+            return;
+        }
         $view = new View();
         $this->view->clientsJS("eleve" . DS . "eleve");
         //Le model du dit controller est charger automatiquement
@@ -59,6 +62,9 @@ class EleveController extends Controller {
     }
 
     public function saisie() {
+        if (!isAuth(503)) {
+            return;
+        }
         $this->view->clientsJS("eleve" . DS . "eleve");
         //Effectuer une derniere mise a jour en cas modification
         if (!empty($this->request->ideleve)) {

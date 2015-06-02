@@ -1,65 +1,38 @@
-var echeances;
-
-$(document).ready(function(){
-    $("#comboClasses").change(function(){
-       alert($("#comboClasses").val()); 
-    });
-    //Popup form
-    $("#scolarite-dialog-form").dialog({
-        autoOpen: false,
-        height: 250,
-        width: 350,
-        modal: true,
-        resizable: false,
-        buttons: {
-            "Ajouter": function () {
-                ajoutScolarite();
-                $(this).dialog("close");
+$(document).ready(function () {
+    $("select[name=listeusers]").change(function () {
+        $.ajax({
+            url: "./user/ajax",
+            dataType: "json",
+            type: "POST",
+            data: {
+                "iduser": $("select[name=listeusers]").val()
             },
-            Annuler: function () {
-                $(this).dialog("close");
+            success: function (result) {
+                $("#onglet1").html(result[0]);
+                $("#onglet2").html(result[1]);
+                $("#onglet3").html(result[2]);
+                $(".recapitulatif").html(result[3] + " sessions");
+            },
+            error: function (xhr, status, error) {
+                alertWebix("Veuillez rafraichir la page \n" + status + " " + error);
             }
-        }
+
+        });
     });
-    echeances = getCalendar("echeances");
-    
-    //Bouton pour le popup
-    $("#img-ajout").on("click",function(){ 
-        $("#scolarite-dialog-form").dialog("open");
+    $("#dataTable").DataTable({
+        "bInfo": false
     });
-    
-    $("#scolariteTable").DataTable({
-        "bInfo": false,
-        "scrollY": 200,
-        "searching": false,
-        "paging": false,
-        "columns":[
-            {"width": "55%"},
-            {"width": "20%"},
-            {"width": "20%"},
-            {"width": "5%"}
-        ]
+      $("#table_droit").DataTable({
+        "bInfo": false
     });
+
 });
 
-function ajoutScolarite(){
-    var d = echeances.getValue();
-    $("input[name=echeances]").val(d.split(' ')[0]);
-    $.ajax({
-       url : "./ajax/ajouterscolarite",
-       type : "POST",
-       dataType : "json",
-       data:{
-           "idclasse" : $("#comboClasses").val(),
-           "libelle" : $("input[name=libelle]").val(),
-           "montant": $("input[name=montant]").val(),
-           "echeances": $("input[name=echeances]").val(),
-       },
-       success: function(result){
-           
-       },
-       error: function(xhr, status, error){
-           alert("Une erreur s'est produite " + xhr + " " + error);
-       }
-    });
+function validerFormDroit() {
+    frm = $("form[name=frmdroit]");
+    hidden = $("<input type = 'hidden' name = 'iduser' />");
+    hidden.val($("select[name=listeusers]").val());
+    frm.append(hidden);
+    //console.log(frm);
+    frm.submit();
 }

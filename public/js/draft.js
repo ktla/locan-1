@@ -89,5 +89,6 @@
     { 'sWidth': '10%' }
   ]
 });
-
+$('.post').prepend("<h3 class='showText'>biography</h3>\n<div class='toggle'>");
+$('.post').append("</div>");
   **/

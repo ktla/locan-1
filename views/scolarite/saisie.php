@@ -18,5 +18,11 @@
     </div>
 </div>
 <div class="recapitulatif"></div>
-<div class="navigation"></div>
+<div class="navigation">
+    <?php 
+    if(isAuth(208)){
+        echo btn_ok("document.location='".Router::url("scolarite")."'"); 
+    }else{
+        echo btn_ok_disabled();
+    }?></div>
 <div class="status"></div>

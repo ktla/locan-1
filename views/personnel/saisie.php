@@ -61,8 +61,18 @@
 
     </div>
     <div class="navigation">
-        <?php echo btn_ok("submitForm();"); ?>
-        <?php echo btn_cancel("document.location=\"" . Router::url("personnel") . "\""); ?>
+        <?php 
+         if (!isAuth(502)) {
+             echo btn_ok("submitForm();");
+         }else{
+             echo btn_ok_disabled();
+         }
+         if(isAuth(203)){
+            echo btn_cancel("document.location=\"" . Router::url("personnel") . "\"");
+        }else{
+            echo btn_cancel_disabled();
+        } 
+        ?>
     </div>
 
 </form>

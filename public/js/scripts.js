@@ -14,6 +14,8 @@ $(document).ready(function () {
     $.extend($.fn.dataTable.defaults, {
         "aaSorting": [],
         "scrollCollapse": true,
+        "autoWidth": false,
+        //"dom": '<"tableWrapper"fl>',
         "scrollY": 450,
         "pageLength": 200,
         "paging": true,

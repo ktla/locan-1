@@ -88,7 +88,10 @@ table.dataTable th.dt-center,table.dataTable td.dt-center,table.dataTable td.dat
     text-align:center}
 
 table.dataTable,table.dataTable th,table.dataTable td{
-    -webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box}
+    /*-webkit-box-sizing:content-box;
+    -moz-box-sizing:content-box;
+    box-sizing:content-box*/
+}
 
 
 .dataTables_wrapper{

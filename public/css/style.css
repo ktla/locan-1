@@ -394,3 +394,19 @@ a{
     border: 1px solid #FF0000;
     background-color: #fee;
 }
+
+#page-content .tableWrapper{
+    padding: 5px;
+    font-weight: normal;
+    background: url("../img/ui-bg_highlight-soft_75_cccccc_1x100.png") repeat-x 
+        scroll 50% 50% #CCCCCC;
+    border: 1px solid #AAAAAA;
+    color: #222222;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+}
+#page-content .tableWrapper:after, #page-content .tableWrapper:before{
+    clear: both;
+    content: "";
+    display: table;
+}

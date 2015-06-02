@@ -27,7 +27,9 @@ class DateFR {
         }
     }
 
-    //Renvoi le mois en francais sous $len caractere. si 0 = tous les caractere. Jan - Dec
+    /**
+     * Renvoi le mois en francais sous $len caractere. si 0 = tous les caractere. Jan - Dec
+     */
     function getMois($len = 0) {
         if ($len == 0) {
             return $this->moisFR[$this->month];
@@ -36,12 +38,16 @@ class DateFR {
         }
     }
 
-    //Renvoi la date du jour du mois.1 - 31
+    /**
+     * Renvoi la date du jour du mois.1 - 31
+     */
     function getDate() {
         return date("d", $this->strtime);
     }
 
-    //Renvoi l'anne en francais sous $len caractere. si 0 = tous les caractere
+    /**
+     * Renvoi l'anne en francais sous $len caractere. si 0 = tous les caractere
+     */
     function getYear($len = 0) {
         if ($len == 0) {
             return $this->year;
@@ -65,7 +71,9 @@ class DateFR {
         return $this->getDate() . " " . $this->getMois($len) . " " . $this->year;
     }
 
-    //Affiche un format de date normal qui varie en fonction du jrs, le mois et l'annee
+    /**
+     * Affiche un format de date normal qui varie en fonction du jrs, le mois et l'annee
+     */
     function getDateMessage($len) {
         if($this->year == "1970")
             return "";

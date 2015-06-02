@@ -56,7 +56,9 @@
     </div>
     <div class="navigation">
         <img src="<?php echo SITE_ROOT . "public/img/btn_ok.png"; ?>" onclick="document.forms[0].submit();" />
-        <img src="<?php echo SITE_ROOT . "public/img/btn_cancel.png"; ?>" onclick="document.location = '<?php echo Router::url("etablissement"); ?>'" />
+        <?php if(isAuth(201)){ ?>
+            <img src="<?php echo SITE_ROOT . "public/img/btn_cancel.png"; ?>" onclick="document.location = '<?php echo Router::url("etablissement"); ?>'" />
+        <?php } ?>
         
     </div>
 </form>

@@ -13,6 +13,7 @@
             "bInfo": false
         });
     });
+
 </script>
 <div class="titre">Liste des classes</div>
 <form action="<?php echo Router::url("classe", "saisie"); ?>" method="post">

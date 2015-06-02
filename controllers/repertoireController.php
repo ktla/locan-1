@@ -6,6 +6,9 @@ class repertoireController extends Controller{
     }
     
     public function index(){
+        if(!isAuth(206)){
+            return;
+        }
         $view = new View();
         $rep = $this->Repertoire->selectAll();
         //var_dump($rep);die();

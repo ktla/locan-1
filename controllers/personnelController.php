@@ -7,7 +7,9 @@ class personnelController extends Controller {
     }
 
     function index() {
-
+        if(!isAuth(203)){
+            return;
+        }
         $this->view->clientsJS("personnel" . DS . "personnel");
         $this->loadModel("fonction");
         $data = $this->Fonction->selectAll();

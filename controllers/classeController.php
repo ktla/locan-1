@@ -11,6 +11,9 @@ class classeController extends Controller {
     }
 
     public function index() {
+        if (!isAuth(202)) {
+            return;
+        }
         $view = new View();
         $data = $this->Classe->selectAll();
         $comboClasse = new Combobox($data, "classes", "IDCLASSE", "LIBELLE");
@@ -41,14 +44,19 @@ class classeController extends Controller {
     }
 
     public function saisie() {
+        //505 Saisie des classes
+        if (!isAuth(505)) {
+            return;
+        }
         $this->view->clientsJS("classe" . DS . "classe");
-        if(!empty($this->request->idclasse)){
+        if (!empty($this->request->idclasse)) {
             //Faire un dernier update si on clique sur okay
-            $params = ["LIBELLE" => $this->request->libelle,"DECOUPAGE" => $this->request->decoupage,
-            "NIVEAU" => $this->request->niveau, "ANNEEACADEMIQUE" => $this->session->anneeacademique];
+            $params = ["LIBELLE" => $this->request->libelle, "DECOUPAGE" => $this->request->decoupage,
+                "NIVEAU" => $this->request->niveau, "ANNEEACADEMIQUE" => $this->session->anneeacademique];
             $this->Classe->update($params, ["IDCLASSE" => $this->request->idclasse]);
         }
-        if (!isset($this->request->saisie)) {
+        //202 Consultation des informations sur les classes
+        if (!isset($this->request->saisie) && isAuth(202)) {
             $this->showClasses();
         } else {
             $view = new View();
@@ -84,13 +92,11 @@ class classeController extends Controller {
             $groupe = $this->Groupe->selectAll();
             $groupeCombo = new Combobox($groupe, "groupe", "IDGROUPE", "DESCRIPTION");
             $view->Assign("comboGroupe", $groupeCombo->view());
-            
+
             $content = $view->Render("classe" . DS . "saisie", false);
             $this->Assign("content", $content);
         }
     }
-
-   
 
     public function edit($id) {
         $view = new View();
@@ -163,7 +169,7 @@ class classeController extends Controller {
             case "ajoutmatiere":
                 //Ajout de matiere
                 $mat = json_decode($_POST['matiere']);
-               
+
                 $params = ["MATIERE" => $mat->matiere, "PROFESSEUR" => $mat->enseignant,
                     "CLASSE" => $idclasse, "GROUPE" => $mat->groupe, "COEFF" => $mat->coeff];
                 $this->Enseignement->insert($params);
@@ -266,22 +272,22 @@ class classeController extends Controller {
         $json[2] = SITE_ROOT . "public/img/btn_add.png";
         echo json_encode($json);
     }
-    
+
     //Supprime un enseignement de la page saisie enseignement via ajax
-    public function deleteEnseignement(){
+    public function deleteEnseignement() {
         $this->loadModel("enseignement");
         $this->Enseignement->delete($this->request->idenseignement);
         $view = new View();
         $json = array();
-         $view->Assign("matieres", $this->Enseignement->getNonEnseignements($this->request->idclasse));
+        $view->Assign("matieres", $this->Enseignement->getNonEnseignements($this->request->idclasse));
         $json[0] = $view->Render("classe" . DS . "ajax" . DS . "dialog-5", false);
         $ens = $this->Enseignement->getEnseignements($this->request->idclasse);
         $view->Assign("enseignements", $ens);
         $json[1] = $view->Render("classe" . DS . "ajax" . DS . "matiere", false);
         echo json_encode($json);
     }
-    
-     public function delete($id) {
+
+    public function delete($id) {
         if ($this->Classe->delete($id)) {
             header("Location: " . Router::url("classe", "saisie"));
         } else {

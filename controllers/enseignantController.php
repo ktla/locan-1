@@ -11,6 +11,14 @@
  *
  * @author JP
  */
-class enseignantController {
-    //put your code here
+class enseignantController extends Controller{
+    public function __construct() {
+        parent::__construct();
+    }
+    public function index(){
+        if(!isAuth(207)){
+            return;
+        }
+        
+    }
 }

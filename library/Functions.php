@@ -52,12 +52,19 @@ function btn_cancel($action){
 function btn_ok($action){
     return "<img src = \"" . SITE_ROOT  . "public/img/btn_ok.png \" onclick = \"".$action."\"/>";
 }
-function btn_add_disabled($action){
+function btn_add_disabled($action = ""){
     return "<img src = \"" . SITE_ROOT  . "public/img/btn_add_disabled.png \" onclick = \"".$action."\"/>";
 }
-function btn_effacer_disabled($action){
+function btn_effacer_disabled($action = ""){
     return "<img style = 'cursor: auto;' src = \"" . SITE_ROOT  . "public/img/btn_effacer_disabled.png \" onclick = \"".$action."\"/>";
 }
 function btn_effacer($action){
     return "<img src = \"" . SITE_ROOT  . "public/img/btn_effacer.png \" onclick = \"".$action."\"/>";
+}
+function btn_cancel_disabled($action = ""){
+    return "cancel disabled";
+}
+
+function btn_ok_disabled($action = ""){
+    return "ok disabled";
 }

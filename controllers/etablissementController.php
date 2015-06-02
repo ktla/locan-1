@@ -7,7 +7,9 @@ class etablissementController extends Controller {
     }
 
     public function index() {
-
+        if(!isAuth(201)){
+            return;
+        }
         $view = new View();
         $this->loadModel("locan");
 
@@ -50,6 +52,9 @@ class etablissementController extends Controller {
     }
 
     public function saisie() {
+        if (!isAuth(501)) {
+            return;
+        }
         $view = new View();
         $view->Assign("errors", false);
         $message = "";

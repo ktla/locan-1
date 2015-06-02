@@ -31,6 +31,8 @@ final class Grid {
      * @var type chaine de caractere
      */
     public $dataTable = "dataTable";
+    public $droitdelete = 101; //pour des questions de tests
+    public $droitedit = 101; //pour des questions de tests
 
     function __construct($data, $id = 0) {
         $this->id = $id;
@@ -160,15 +162,22 @@ final class Grid {
                 if ($this->editbutton || $this->deletebutton) {
                     $str .= "<td style = 'width:50px;padding:0; margin:0;text-align:center;'>";
                     if ($this->editbutton) {
-                        $_url = url($controller, 'edit', $line[$this->_key]);
-                        $str .= "<img style = 'cursor:pointer;' onclick = \"document.location='" . $_url . "';\""
-                                . " src = '" . SITE_ROOT . "public/img/edit.png' title = \"" . $this->editbuttontext . "\" />&nbsp;&nbsp;";
-                    
+                        if(isAuth($this->droitedit)){
+                            $_url = url($controller, 'edit', $line[$this->_key]);
+                            $str .= "<img style = 'cursor:pointer;' onclick = \"document.location='" . $_url . "';\""
+                                    . " src = '" . SITE_ROOT . "public/img/edit.png' title = \"" . $this->editbuttontext . "\" />&nbsp;&nbsp;";
+                        }else{
+                            $str .= "<img style = 'cursor:pointer;' src = '".SITE_ROOT."public/img/edit_disabled.png' />";
+                        }
                     }if ($this->deletebutton) {
-                       $_url = url($controller, 'delete', $line[$this->_key]);
-                        $str .= "<img style = 'cursor:pointer;' onclick = \"javascript:deleteRow('" . $_url . "', '" . $line[$this->_key] . "');\""
-                                . " src = '" . SITE_ROOT . "public/img/delete.png' title = \"" . $this->deletebuttontext . "\" />";
+                        if(isAuth($this->droitdelete)){
+                            $_url = url($controller, 'delete', $line[$this->_key]);
+                             $str .= "<img style = 'cursor:pointer;' onclick = \"javascript:deleteRow('" . $_url . "', '" . $line[$this->_key] . "');\""
+                                     . " src = '" . SITE_ROOT . "public/img/delete.png' title = \"" . $this->deletebuttontext . "\" />";
+                      }else{
+                          $str .= "<img style = 'cursor:pointer;' src = '".SITE_ROOT."public/img/delete_disabled.png' />";
                       } 
+                    }
                     $str .= "</td>";
                 }
             }
