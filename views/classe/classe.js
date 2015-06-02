@@ -36,7 +36,7 @@ $(document).ready(function () {
     var pop3 = popup("#dialog-3");
     var pop4 = popup("#dialog-4");
     var pop5 = popup("#dialog-5");
-    pop5.dialog("option", "height", 250);
+    pop5.dialog("option", "height", 300);
 
     $("#ajout_eleve").button().on("click", function () {
         openPopup(pop1);

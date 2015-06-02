@@ -13,7 +13,8 @@
             <span class="select" style="width: 150px;">    
                 <label>Découpage</label>
                 <select name="decoupage">
-                    <option value="1">Trimestre</option>
+                    <option value="1">S&eacute;quence</option>
+                    <option value="2">Trimestre</option>
                     <option value ="2">Semestre</option>
                 </select>
             </span>
@@ -44,7 +45,7 @@
             <fieldset style="width: 360px; height: 415px;"><legend>Elèves</legend>
                 <?php //echo $comboEleves; ?>
                 <img id="ajout_eleve" src="<?php echo SITE_ROOT . "public/img/btn_add.png"; ?>" style="position: relative; margin-bottom: 3px; cursor: pointer;  float: right;">
-                <div id="dialog-1" title="S&eacute;lectionner un Eleve">
+                <div id="dialog-1" class="dialog" title="S&eacute;lectionner un Eleve">
 
                     <span>
                         <label>Choisir Un Eleve</label>
@@ -62,7 +63,7 @@
 
             <fieldset style="width: 360px; height: 128px; margin-left: 10px; "><legend>Prof. Principal</legend>
                 <img id="ajout_pp" src="<?php echo SITE_ROOT . "public/img/btn_add.png"; ?>" style="position: relative; margin-top: 3px; margin-bottom: 15px; cursor: pointer;  float: right;">
-                <div id="dialog-2" title="Selectionner un Enseignant">
+                <div id="dialog-2" class="dialog" title="Selectionner un Enseignant">
 
                     <span>
                         <label>Choisir Un Enseignant</label>
@@ -79,13 +80,11 @@
             </fieldset>
             <fieldset style="width: 360px; height: 128px;  margin-left: 10px;"><legend>Cpe. Principal</legend>
                 <img id="ajout_cpe" src="<?php echo SITE_ROOT . "public/img/btn_add.png"; ?>" style="position: relative; margin-top: 3px; margin-bottom: 15px; cursor: pointer;  float: right;">
-                <div id="dialog-3" title="Selectionner un Parent Principal">
-
-                    <span style="width: 182px;">
+                <div id="dialog-3" class="dialog" title="Selectionner un Parent Principal">
+                    <span>
                         <label>Choisir Un Parent</label>
                         <?php echo $comboResponsables; ?>
                     </span>
-
                 </div>
                 <div id="cpe_content">
                     <table class="dataTable" id="tab_cpe">
@@ -97,9 +96,8 @@
             <fieldset style="width: 365px; height: 128px; margin-left: 10px;"><legend>Responsable Administratif</legend>
 
                 <img id="ajout_ra" src="<?php echo SITE_ROOT . "public/img/btn_add.png"; ?>" style="position: relative; margin-top: 3px; margin-bottom: 15px; cursor: pointer;  float: right;">
-                <div id="dialog-4" title="Selectionner Un Resp. Administratif">
-
-                    <span style="width: 182px;">
+                <div id="dialog-4" class="dialog" title="Selectionner Un Resp. Administratif">
+                    <span>
                         <label>Choisir Un Resp. Administratif</label>
                         <?php echo $comboEnseignants; ?>
                     </span>
@@ -116,9 +114,9 @@
         </div>
         <div id="onglet2" class="onglet" style="display: none; height: 420px;">
             <img id="ajout_mat" src="<?php echo SITE_ROOT . "public/img/btn_add.png"; ?>" style="position: relative; margin-top: 3px; margin-bottom: 15px; cursor: pointer;  float: right;">
-            <div id="dialog-5" title="Ajout d&apos;une Mati&egrave;re">
+            <div id="dialog-5" class="dialog" title="Ajout d&apos;une Mati&egrave;re">
 
-                <span style="width: 182px;">
+                <span>
                     <label>Mati&egrave;re</label>
                     <?php echo $comboMatieres; ?>
                 </span>

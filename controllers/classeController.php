@@ -71,6 +71,7 @@ class classeController extends Controller {
             $this->loadModel("personnel");
             $pers = $this->Personnel->selectAll();
             $comboEnseignants = new Combobox($pers, "listeenseignant", "IDPERSONNEL", "CNOM");
+            $comboEnseignants->idname = "";
             $view->Assign("comboEnseignants", $comboEnseignants->view());
 
             $this->loadModel("responsable");
@@ -98,8 +99,85 @@ class classeController extends Controller {
         }
     }
 
+    private function validateEdit(){
+        
+    }
     public function edit($id) {
+        $this->view->clientsJS("classe" . DS . "edit");
+        if(!empty($this->request->idclasse)){
+            $this->validateEdit();
+        }
         $view = new View();
+        $view->Assign("errors", false);
+        //Charger les model necessaire
+        $this->loadModel("classeparametre");
+        $this->loadModel("responsable");
+        $this->loadModel("personnel");
+        $this->loadModel("matiere");
+        $this->loadModel("inscription");
+        $this->loadModel("enseignement");
+        /**
+         * Information sur la classe
+         */
+        $classe = $this->Classe->findSingleRowBy(["IDCLASSE" => $id]);
+        $view->Assign("libelle", $classe['LIBELLE']);
+        $this->loadModel("niveau");
+        $niveau = $this->Niveau->selectAll();
+        $comboNiveau = new Combobox($niveau, "niveau", "IDNIVEAU", "NIVEAUSELECT");
+        $comboNiveau->selected = true;
+        $comboNiveau->selectedid = $classe['NIVEAU'];
+        $view->Assign("comboNiveau", $comboNiveau->view());
+        $view->Assign("decoupage", $classe['DECOUPAGE']);
+        $view->Assign("idclasse", $id);
+      
+        /**
+         * Combo des eleves non encore inscrits
+         */
+        $elevesnoninscrits = $this->Inscription->getNonInscrits($this->session->anneeacademique);
+        $comboEleve = new Combobox($elevesnoninscrits, "listeeleve", "IDELEVE", "CNOM");
+        $view->Assign("comboElevesNonInscrits", $comboEleve->view());
+
+        /**
+         * Eleve deja inscrits dans cette classe a cette periode
+         */
+        $elevesInscrits = $this->Inscription->getInscrits($id, $this->session->anneeacademique);
+        $view->Assign("elevesInscrits", $elevesInscrits);
+        /**
+         * Parametre de la classe, son prof principale, son administrateur principale
+         * son cpe principale sous forme de variable dataTable if defined
+         */
+        $param = $this->Classeparametre->findSingleRowBy(["IDCLASSE" => $id]);
+        //Prof Principale\
+        $prof = $this->Personnel->findSingleRowBy(["IDPERSONNEL" => $param['PROFPRINCIPALE']]);
+        $view->Assign("prof", $prof);
+        //CPE principale
+        $cpe = $this->Responsable->findSingleRowBy(["IDRESPONSABLE" => $param['CPEPRINCIPALE']]);
+        $view->Assign("cpe", $cpe);
+        //Administration principale
+        $admin = $this->Personnel->findSingleRowBy(["IDPERSONNEL" => $param['RESPADMINISTRATIF']]);
+        $view->Assign("admin", $admin);
+        /**
+         * Les des enseignants, personnels, et responsable pour les combobox
+         */
+        //Enseignant
+        $pers = $this->Personnel->selectAll();
+        $comboEnseignants = new Combobox($pers, "listeenseignant", "IDPERSONNEL", "CNOM");
+        $view->Assign("comboEnseignants", $comboEnseignants->view());
+
+        //Responsable
+        $data = $this->Responsable->selectAll();
+        $comboResponsables = new Combobox($data, "listeresponsable", "IDRESPONSABLE", "CNOM");
+        $view->Assign("comboResponsables", $comboResponsables->view());
+        
+        //Matiere
+        $mat = $this->Matiere->selectAll();
+        $comboMatieres = new Combobox($mat, "listematiere", "IDMATIERE", "LIBELLE");
+        $view->Assign("comboMatieres", $comboMatieres->view());
+        //Enseignements
+        $ens = $this->Enseignement->getEnseignements($id);
+        $view->Assign("enseignements", $ens);
+        
+        $view->Assign("message", "");
         $content = $view->Render("classe" . DS . "edit", false);
         $this->Assign("content", $content);
     }
