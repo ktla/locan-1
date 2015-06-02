@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 02 Juin 2015 à 11:57
+-- Généré le :  Mar 02 Juin 2015 à 16:34
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `classes` (
   KEY `DECOUPAGE` (`DECOUPAGE`),
   KEY `NIVEAU` (`NIVEAU`),
   KEY `classes_ibfk_2` (`ANNEEACADEMIQUE`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=53 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=54 ;
 
 --
 -- Contenu de la table `classes`
@@ -112,7 +112,7 @@ INSERT INTO `classes` (`IDCLASSE`, `LIBELLE`, `DECOUPAGE`, `NIVEAU`, `ANNEEACADE
 (26, 'fwfwe', 1, 6, '2014-2015'),
 (27, 'weherh', 1, 6, '2014-2015'),
 (30, 'grwergegehe', 1, 6, '2014-2015'),
-(31, 'gergerg', 1, 6, '2014-2015'),
+(31, 'Sixieme', 1, 6, '2014-2015'),
 (32, 'erherrt', 1, 6, '2014-2015'),
 (36, 'rehrhrhr', 1, 6, '2014-2015'),
 (42, 'erbwerewr', 1, 6, '2014-2015'),
@@ -139,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `classes_parametres` (
   KEY `CPEPRINCIPALE` (`CPEPRINCIPALE`),
   KEY `RESPADMINISTRATIF` (`RESPADMINISTRATIF`),
   KEY `ANNEEACADEMIQUE` (`ANNEEACADEMIQUE`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=49 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=50 ;
 
 --
 -- Contenu de la table `classes_parametres`
@@ -154,7 +154,7 @@ INSERT INTO `classes_parametres` (`IDPARAMETRE`, `IDCLASSE`, `PROFPRINCIPALE`, `
 (22, 26, NULL, NULL, NULL, '2014-2015'),
 (23, 27, NULL, NULL, NULL, '2014-2015'),
 (26, 30, NULL, NULL, 5, '2014-2015'),
-(27, 31, NULL, NULL, NULL, '2014-2015'),
+(27, 31, 2, 53, 5, '2014-2015'),
 (28, 32, NULL, NULL, NULL, '2014-2015'),
 (32, 36, NULL, NULL, NULL, '2014-2015'),
 (38, 42, NULL, NULL, NULL, '2014-2015'),
@@ -177,7 +177,7 @@ CREATE TABLE IF NOT EXISTS `connexions` (
   `DATEFIN` datetime DEFAULT NULL,
   `DECONNEXION` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`IDCONNEXION`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=292 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=295 ;
 
 --
 -- Contenu de la table `connexions`
@@ -314,7 +314,10 @@ INSERT INTO `connexions` (`IDCONNEXION`, `COMPTE`, `DATEDEBUT`, `MACHINESOURCE`,
 (288, 'armel', '2015-06-01 10:14:13', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-06-01 12:19:59', 'Session expriÃ©e'),
 (289, 'armel', '2015-06-01 13:52:33', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-06-01 15:40:32', 'Session expriÃ©e'),
 (290, 'armel', '2015-06-01 15:48:07', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-06-01 19:28:33', 'Session expriÃ©e'),
-(291, 'armel', '2015-06-01 19:36:48', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', '');
+(291, 'armel', '2015-06-01 19:36:48', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(292, 'armel', '2015-06-02 11:05:39', 'PET-PC', '::1', 'Connexion rÃ©ussie', '2015-06-02 14:09:37', 'Session expriÃ©e'),
+(293, 'armel', '2015-06-02 14:13:26', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', ''),
+(294, 'armel', '2015-06-02 15:03:48', 'PET-PC', '::1', 'Session en cours', '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -547,9 +550,9 @@ CREATE TABLE IF NOT EXISTS `enseignements` (
 --
 
 INSERT INTO `enseignements` (`IDENSEIGNEMENT`, `MATIERE`, `PROFESSEUR`, `CLASSE`, `GROUPE`, `COEFF`) VALUES
-(39, 1, 3, 51, 1, 2),
-(40, 3, 3, 51, 1, 2),
-(41, 2, 3, 51, 2, 5);
+(39, 1, 3, 31, 1, 2),
+(40, 3, 3, 31, 1, 2),
+(41, 2, 3, 31, 2, 5);
 
 -- --------------------------------------------------------
 
@@ -1051,7 +1054,7 @@ CREATE TABLE IF NOT EXISTS `scolarites` (
   `CLASSE` int(11) NOT NULL,
   PRIMARY KEY (`IDSCOLARITE`),
   KEY `CLASSE` (`CLASSE`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Contenu de la table `scolarites`
@@ -1083,7 +1086,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`IDUSER`, `LOGIN`, `PASSWORD`, `PROFILE`, `DROITSPECIFIQUE`, `ACTIF`) VALUES
-(1, 'armel', '069a6a9ccaaca7967a0c43cb5e161187', 1, '["103","104","105","201","202","203","204","205","206","207","208","401","402","403","404","405","406","501","502","503","504","505","508","602","603"]', 1),
+(1, 'armel', '069a6a9ccaaca7967a0c43cb5e161187', 1, '["101","103","104","105","201","202","203","204","205","206","207","208","401","402","403","404","405","406","501","502","503","504","505","508","602","603"]', 1),
 (2, 'bruno', 'md5(''bruno'')', 1, '["101","102","103","104","105","201","202","203","204","205","206","207","301","302","303","304","305","306","307","308","309","310","311","312","313","314","315","401","402","403","404","405","406","501","502","503","504","505","506","507","601","602","603","604","605","701","702","801","802","803"]', 1),
 (3, 'estelle', 'md5(''estelle'')', 2, '["104","105","201"]', 1),
 (4, 'jp', '55add3d845bfcd87a9b0949b0da49c0a', 1, '["103","104","105","201","202","203","204","205","206","207","208","401","402","403","404","405","406","501","502","503","504","505","508","602","603","605"]', 1),
